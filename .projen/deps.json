@@ -1,12 +1,16 @@
 {
   "dependencies": [
     {
+      "name": "@tsconfig/recommended",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },
     {
       "name": "@types/node",
-      "version": "^10.17.0",
+      "version": "^14.17.0",
       "type": "build"
     },
     {
@@ -19,7 +23,7 @@
     },
     {
       "name": "aws-cdk",
-      "version": "^1.95.2",
+      "version": "^1.132.0",
       "type": "build"
     },
     {
@@ -57,18 +61,7 @@
       "type": "build"
     },
     {
-      "name": "npm-check-updates",
-      "version": "^11",
-      "type": "build"
-    },
-    {
       "name": "projen",
-      "version": "^0.17.95",
-      "type": "build"
-    },
-    {
-      "name": "standard-version",
-      "version": "^9",
       "type": "build"
     },
     {
@@ -77,6 +70,7 @@
     },
     {
       "name": "ts-node",
+      "version": "^9",
       "type": "build"
     },
     {
@@ -85,12 +79,27 @@
     },
     {
       "name": "@aws-cdk/assert",
-      "version": "^1.95.2",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-codecommit",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-lambda",
+      "version": "^1.132.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/core",
-      "version": "^1.95.2",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/pipelines",
+      "version": "^1.132.0",
       "type": "runtime"
     }
   ],
