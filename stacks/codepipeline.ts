@@ -23,21 +23,18 @@ export class FourDPipelineStack extends Stack {
     });
 
     // CodeBuild
-    const installLintTestBuild = new BuildStage(this, 'installLintTestBuild',
+    const build = new BuildStage(this, 'build',
       {
         install: {
           commands: ['npm install -g pnpm', 'pnpm install'],
-        },
-        pre_build: {
-          commands: ['pnpm test'],
         },
         build: {
           commands: ['pnpm build'],
         },
       });
     codepipeline.addStage({
-      stageName: 'InstallLintTestBuild',
-      actions: [installLintTestBuild.buildAction(source.getSourceOutput())],
+      stageName: 'ProjenBuild', // projens build includes testing and linting
+      actions: [build.buildAction(source.getSourceOutput(), 'build')],
     });
 
   }

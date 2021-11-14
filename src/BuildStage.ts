@@ -37,9 +37,9 @@ export class BuildStage {
     });
   }
 
-  public buildAction = (sourceInput: Artifact) : CodeBuildAction => {
+  public buildAction = (sourceInput: Artifact, actionName: string) : CodeBuildAction => {
     return new CodeBuildAction({
-      actionName: 'CodeBuild',
+      actionName: `${this.stack.artifactId}-${actionName}`,
       project: this.pipelineProject,
       input: sourceInput,
     });
