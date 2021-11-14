@@ -73,7 +73,7 @@ Object {
                 },
                 "Configuration": Object {
                   "ProjectName": Object {
-                    "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                    "Ref": "testpipelinebuildCodeCommitProject077EE4B1",
                   },
                 },
                 "InputArtifacts": Array [
@@ -81,17 +81,17 @@ Object {
                     "Name": "Artifact_Source_Source-Action",
                   },
                 ],
-                "Name": "CodeBuild",
+                "Name": "test-pipeline-build",
                 "RoleArn": Object {
                   "Fn::GetAtt": Array [
-                    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
+                    "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleD5337B72",
                     "Arn",
                   ],
                 },
                 "RunOrder": 1,
               },
             ],
-            "Name": "InstallLintTestBuild",
+            "Name": "ProjenBuild",
           },
         ],
       },
@@ -216,7 +216,7 @@ Object {
               "Principal": Object {
                 "AWS": Object {
                   "Fn::GetAtt": Array [
-                    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
+                    "testpipelinebuildCodeCommitProjectRole4BF014E7",
                     "Arn",
                   ],
                 },
@@ -234,7 +234,7 @@ Object {
               "Principal": Object {
                 "AWS": Object {
                   "Fn::GetAtt": Array [
-                    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
+                    "testpipelinebuildCodeCommitProjectRole4BF014E7",
                     "Arn",
                   ],
                 },
@@ -322,7 +322,7 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595": Object {
+    "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleD5337B72": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -354,7 +354,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleDefaultPolicyF3AA6FDD": Object {
+    "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleDefaultPolicy39A2CF36": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -367,7 +367,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                  "testpipelinebuildCodeCommitProject077EE4B1",
                   "Arn",
                 ],
               },
@@ -375,10 +375,10 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleDefaultPolicyF3AA6FDD",
+        "PolicyName": "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleDefaultPolicy39A2CF36",
         "Roles": Array [
           Object {
-            "Ref": "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
+            "Ref": "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleD5337B72",
           },
         ],
       },
@@ -452,7 +452,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
+                  "testpipelinePipelineProjenBuildtestpipelinebuildCodePipelineActionRoleD5337B72",
                   "Arn",
                 ],
               },
@@ -613,7 +613,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0": Object {
+    "testpipelinebuildCodeCommitProject077EE4B1": Object {
       "Properties": Object {
         "Artifacts": Object {
           "Type": "CODEPIPELINE",
@@ -633,7 +633,7 @@ Object {
         },
         "ServiceRole": Object {
           "Fn::GetAtt": Array [
-            "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
+            "testpipelinebuildCodeCommitProjectRole4BF014E7",
             "Arn",
           ],
         },
@@ -645,11 +645,6 @@ Object {
       \\"commands\\": [
         \\"npm install -g pnpm\\",
         \\"pnpm install\\"
-      ]
-    },
-    \\"pre_build\\": {
-      \\"commands\\": [
-        \\"pnpm test\\"
       ]
     },
     \\"build\\": {
@@ -664,7 +659,7 @@ Object {
       },
       "Type": "AWS::CodeBuild::Project",
     },
-    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169": Object {
+    "testpipelinebuildCodeCommitProjectRole4BF014E7": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -681,7 +676,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "testpipelineinstallLintTestBuildCodeCommitProjectRoleDefaultPolicyBCEB9FC2": Object {
+    "testpipelinebuildCodeCommitProjectRoleDefaultPolicy2900951F": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -711,7 +706,7 @@ Object {
                       },
                       ":log-group:/aws/codebuild/",
                       Object {
-                        "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                        "Ref": "testpipelinebuildCodeCommitProject077EE4B1",
                       },
                     ],
                   ],
@@ -734,7 +729,7 @@ Object {
                       },
                       ":log-group:/aws/codebuild/",
                       Object {
-                        "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                        "Ref": "testpipelinebuildCodeCommitProject077EE4B1",
                       },
                       ":*",
                     ],
@@ -769,7 +764,7 @@ Object {
                     },
                     ":report-group/",
                     Object {
-                      "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                      "Ref": "testpipelinebuildCodeCommitProject077EE4B1",
                     },
                     "-*",
                   ],
@@ -837,10 +832,10 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "testpipelineinstallLintTestBuildCodeCommitProjectRoleDefaultPolicyBCEB9FC2",
+        "PolicyName": "testpipelinebuildCodeCommitProjectRoleDefaultPolicy2900951F",
         "Roles": Array [
           Object {
-            "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
+            "Ref": "testpipelinebuildCodeCommitProjectRole4BF014E7",
           },
         ],
       },

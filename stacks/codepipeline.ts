@@ -1,5 +1,6 @@
 import { Repository } from '@aws-cdk/aws-codecommit';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
+import { CodeBuildProject } from '@aws-cdk/aws-events-targets';
 import { Stack, Construct, StackProps } from '@aws-cdk/core';
 import { BuildStage } from '../src/BuildStage';
 import { SourceStage } from '../src/SourceStage';
@@ -37,5 +38,8 @@ export class FourDPipelineStack extends Stack {
       actions: [build.buildAction(source.getSourceOutput(), 'build')],
     });
 
+    repository.onCommit('OnCommit', {
+      target: new CodeBuildProject(build.getPipelineProject()),
+    });
   }
 }
