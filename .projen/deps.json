@@ -122,11 +122,6 @@
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/pipelines",
-      "version": "^1.132.0",
-      "type": "runtime"
-    },
-    {
       "name": "dotenv",
       "type": "runtime"
     }

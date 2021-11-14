@@ -187,7 +187,7 @@
           "exec": "pnpm i"
         },
         {
-          "exec": "pnpm update @tsconfig/recommended @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import husky jest jest-junit json-schema npm-check-updates ts-jest ts-node typescript @aws-cdk/assert @aws-cdk/aws-codebuild @aws-cdk/aws-codecommit @aws-cdk/aws-codepipeline-actions @aws-cdk/aws-codepipeline @aws-cdk/aws-events-targets @aws-cdk/aws-lambda @aws-cdk/core @aws-cdk/pipelines dotenv"
+          "exec": "pnpm update @tsconfig/recommended @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import husky jest jest-junit json-schema npm-check-updates ts-jest ts-node typescript @aws-cdk/assert @aws-cdk/aws-codebuild @aws-cdk/aws-codecommit @aws-cdk/aws-codepipeline-actions @aws-cdk/aws-codepipeline @aws-cdk/aws-events-targets @aws-cdk/aws-lambda @aws-cdk/core dotenv"
         },
         {
           "exec": "npx projen"

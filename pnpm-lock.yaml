@@ -9,7 +9,6 @@ specifiers:
   '@aws-cdk/aws-events-targets': ^1.132.0
   '@aws-cdk/aws-lambda': ^1.132.0
   '@aws-cdk/core': ^1.132.0
-  '@aws-cdk/pipelines': ^1.132.0
   '@tsconfig/recommended': ^1.0.1
   '@types/jest': ^27.0.2
   '@types/node': ^14.17.0
@@ -40,7 +39,6 @@ dependencies:
   '@aws-cdk/aws-events-targets': 1.132.0
   '@aws-cdk/aws-lambda': 1.132.0
   '@aws-cdk/core': 1.132.0
-  '@aws-cdk/pipelines': 1.132.0
   dotenv: 10.0.0
 
 devDependencies:
@@ -823,31 +821,6 @@ packages:
       semver: 7.3.5
     bundledDependencies:
       - semver
-
-  /@aws-cdk/pipelines/1.132.0:
-    resolution: {integrity: sha512-mT3qxGEkkoG3Fo7rVqERxzRhtbUjcnWDJZ/Z7eXIzhdKXGWh3vnY9Xn2yB1oQHhlGLqiyP4AF0Vw0A7Oh22UGA==}
-    engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
-    dependencies:
-      '@aws-cdk/aws-codebuild': 1.132.0
-      '@aws-cdk/aws-codecommit': 1.132.0
-      '@aws-cdk/aws-codepipeline': 1.132.0
-      '@aws-cdk/aws-codepipeline-actions': 1.132.0
-      '@aws-cdk/aws-ec2': 1.132.0
-      '@aws-cdk/aws-ecr': 1.132.0
-      '@aws-cdk/aws-events': 1.132.0
-      '@aws-cdk/aws-iam': 1.132.0
-      '@aws-cdk/aws-lambda': 1.132.0
-      '@aws-cdk/aws-s3': 1.132.0
-      '@aws-cdk/aws-s3-assets': 1.132.0
-      '@aws-cdk/aws-secretsmanager': 1.132.0
-      '@aws-cdk/aws-sns': 1.132.0
-      '@aws-cdk/cloud-assembly-schema': 1.132.0
-      '@aws-cdk/core': 1.132.0
-      '@aws-cdk/cx-api': 1.132.0
-      constructs: 3.3.161
-    transitivePeerDependencies:
-      - '@aws-cdk/assets'
-    dev: false
 
   /@aws-cdk/region-info/1.132.0:
     resolution: {integrity: sha512-B3gwvYWHZZbfn+qaTF0EHE1wOEEfqy2NcTaBYew8DHR/Iif6fbyBJ2FPTCM67+Rupl2j1Eh9F3p4eZf7t/ptGg==}
