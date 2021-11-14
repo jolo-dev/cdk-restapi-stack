@@ -649,7 +649,6 @@ Object {
     },
     \\"pre_build\\": {
       \\"commands\\": [
-        \\"pnpm eslint\\",
         \\"pnpm test\\"
       ]
     },
@@ -664,49 +663,6 @@ Object {
         },
       },
       "Type": "AWS::CodeBuild::Project",
-    },
-    "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "Service": "events.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "testpipelineinstallLintTestBuildCodeCommitProjectEventsRoleDefaultPolicyEBFCB987": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "codebuild:StartBuild",
-              "Effect": "Allow",
-              "Resource": Object {
-                "Fn::GetAtt": Array [
-                  "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
-                  "Arn",
-                ],
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "testpipelineinstallLintTestBuildCodeCommitProjectEventsRoleDefaultPolicyEBFCB987",
-        "Roles": Array [
-          Object {
-            "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
     },
     "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169": Object {
       "Properties": Object {
@@ -889,68 +845,6 @@ Object {
         ],
       },
       "Type": "AWS::IAM::Policy",
-    },
-    "testpipelinerepositoryOnCommit9BD63799": Object {
-      "Properties": Object {
-        "EventPattern": Object {
-          "detail": Object {
-            "event": Array [
-              "referenceCreated",
-              "referenceUpdated",
-            ],
-            "referenceName": Array [
-              "master",
-            ],
-          },
-          "detail-type": Array [
-            "CodeCommit Repository State Change",
-          ],
-          "resources": Array [
-            Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":codecommit:",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ":",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":4dt-api-node",
-                ],
-              ],
-            },
-          ],
-          "source": Array [
-            "aws.codecommit",
-          ],
-        },
-        "State": "ENABLED",
-        "Targets": Array [
-          Object {
-            "Arn": Object {
-              "Fn::GetAtt": Array [
-                "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
-                "Arn",
-              ],
-            },
-            "Id": "Target0",
-            "RoleArn": Object {
-              "Fn::GetAtt": Array [
-                "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B",
-                "Arn",
-              ],
-            },
-          },
-        ],
-      },
-      "Type": "AWS::Events::Rule",
     },
     "testpipelinerepositorytestpipelinetestpipelinePipelineF431BF1FEventRuleC736E536": Object {
       "Properties": Object {
