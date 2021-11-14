@@ -30,7 +30,7 @@ export class FourDPipelineStack extends Stack {
           commands: ['npm install -g pnpm', 'pnpm install'],
         },
         pre_build: {
-          commands: ['pnpm eslint', 'pnpm test'],
+          commands: ['pnpm test'],
         },
         build: {
           commands: ['pnpm build'],
@@ -41,10 +41,5 @@ export class FourDPipelineStack extends Stack {
       actions: [installLintTestBuild.buildAction(source.getSourceOutput())],
     });
 
-    // Run CodeBuild evertime new commit to master
-    repository.onCommit('OnCommit', {
-      target: new targets.CodeBuildProject(installLintTestBuild.getPipelineProject()),
-      branches: ['master'],
-    });
   }
 }

@@ -3,147 +3,6 @@
 exports[`CodePipeline 1`] = `
 Object {
   "Resources": Object {
-    "fourdrepositoryOnCommitBE2BEC45": Object {
-      "Properties": Object {
-        "EventPattern": Object {
-          "detail": Object {
-            "event": Array [
-              "referenceCreated",
-              "referenceUpdated",
-            ],
-            "referenceName": Array [
-              "master",
-            ],
-          },
-          "detail-type": Array [
-            "CodeCommit Repository State Change",
-          ],
-          "resources": Array [
-            Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":codecommit:",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ":",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":4dt-api-node",
-                ],
-              ],
-            },
-          ],
-          "source": Array [
-            "aws.codecommit",
-          ],
-        },
-        "State": "ENABLED",
-        "Targets": Array [
-          Object {
-            "Arn": Object {
-              "Fn::GetAtt": Array [
-                "undefined4dCodeCommitProject42B8B509",
-                "Arn",
-              ],
-            },
-            "Id": "Target0",
-            "RoleArn": Object {
-              "Fn::GetAtt": Array [
-                "undefined4dCodeCommitProjectEventsRoleBB19B4C3",
-                "Arn",
-              ],
-            },
-          },
-        ],
-      },
-      "Type": "AWS::Events::Rule",
-    },
-    "fourdrepositorytestpipelinetestpipelinePipelineF431BF1FEventRuleF23784E2": Object {
-      "Properties": Object {
-        "EventPattern": Object {
-          "detail": Object {
-            "event": Array [
-              "referenceCreated",
-              "referenceUpdated",
-            ],
-            "referenceName": Array [
-              "master",
-            ],
-          },
-          "detail-type": Array [
-            "CodeCommit Repository State Change",
-          ],
-          "resources": Array [
-            Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":codecommit:",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ":",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":4dt-api-node",
-                ],
-              ],
-            },
-          ],
-          "source": Array [
-            "aws.codecommit",
-          ],
-        },
-        "State": "ENABLED",
-        "Targets": Array [
-          Object {
-            "Arn": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":codepipeline:",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ":",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":",
-                  Object {
-                    "Ref": "testpipelinePipeline662FE87D",
-                  },
-                ],
-              ],
-            },
-            "Id": "Target0",
-            "RoleArn": Object {
-              "Fn::GetAtt": Array [
-                "testpipelinePipelineEventsRoleA4A3C53E",
-                "Arn",
-              ],
-            },
-          },
-        ],
-      },
-      "Type": "AWS::Events::Rule",
-    },
     "testpipelinePipeline662FE87D": Object {
       "DependsOn": Array [
         "testpipelinePipelineRoleDefaultPolicy3FB503B2",
@@ -214,7 +73,7 @@ Object {
                 },
                 "Configuration": Object {
                   "ProjectName": Object {
-                    "Ref": "undefined4dCodeCommitProject42B8B509",
+                    "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
                   },
                 },
                 "InputArtifacts": Array [
@@ -223,21 +82,16 @@ Object {
                   },
                 ],
                 "Name": "CodeBuild",
-                "OutputArtifacts": Array [
-                  Object {
-                    "Name": "Artifact_Build_CodeBuild",
-                  },
-                ],
                 "RoleArn": Object {
                   "Fn::GetAtt": Array [
-                    "testpipelinePipelineBuildCodeBuildCodePipelineActionRole822282FF",
+                    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
                     "Arn",
                   ],
                 },
                 "RunOrder": 1,
               },
             ],
-            "Name": "Build",
+            "Name": "InstallLintTestBuild",
           },
         ],
       },
@@ -357,15 +211,12 @@ Object {
               "Action": Array [
                 "kms:Decrypt",
                 "kms:DescribeKey",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
               ],
               "Effect": "Allow",
               "Principal": Object {
                 "AWS": Object {
                   "Fn::GetAtt": Array [
-                    "undefined4dCodeCommitProjectRole15C226D0",
+                    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
                     "Arn",
                   ],
                 },
@@ -383,7 +234,7 @@ Object {
               "Principal": Object {
                 "AWS": Object {
                   "Fn::GetAtt": Array [
-                    "undefined4dCodeCommitProjectRole15C226D0",
+                    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
                     "Arn",
                   ],
                 },
@@ -410,68 +261,6 @@ Object {
       },
       "Type": "AWS::KMS::Alias",
       "UpdateReplacePolicy": "Delete",
-    },
-    "testpipelinePipelineBuildCodeBuildCodePipelineActionRole822282FF": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "AWS": Object {
-                  "Fn::Join": Array [
-                    "",
-                    Array [
-                      "arn:",
-                      Object {
-                        "Ref": "AWS::Partition",
-                      },
-                      ":iam::",
-                      Object {
-                        "Ref": "AWS::AccountId",
-                      },
-                      ":root",
-                    ],
-                  ],
-                },
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "testpipelinePipelineBuildCodeBuildCodePipelineActionRoleDefaultPolicy77875413": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
-                "codebuild:BatchGetBuilds",
-                "codebuild:StartBuild",
-                "codebuild:StopBuild",
-              ],
-              "Effect": "Allow",
-              "Resource": Object {
-                "Fn::GetAtt": Array [
-                  "undefined4dCodeCommitProject42B8B509",
-                  "Arn",
-                ],
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "testpipelinePipelineBuildCodeBuildCodePipelineActionRoleDefaultPolicy77875413",
-        "Roles": Array [
-          Object {
-            "Ref": "testpipelinePipelineBuildCodeBuildCodePipelineActionRole822282FF",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
     },
     "testpipelinePipelineEventsRoleA4A3C53E": Object {
       "Properties": Object {
@@ -528,6 +317,68 @@ Object {
         "Roles": Array [
           Object {
             "Ref": "testpipelinePipelineEventsRoleA4A3C53E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleDefaultPolicyF3AA6FDD": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleDefaultPolicyF3AA6FDD",
+        "Roles": Array [
+          Object {
+            "Ref": "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
           },
         ],
       },
@@ -601,7 +452,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "testpipelinePipelineBuildCodeBuildCodePipelineActionRole822282FF",
+                  "testpipelinePipelineInstallLintTestBuildCodeBuildCodePipelineActionRoleCC416595",
                   "Arn",
                 ],
               },
@@ -762,7 +613,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "undefined4dCodeCommitProject42B8B509": Object {
+    "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0": Object {
       "Properties": Object {
         "Artifacts": Object {
           "Type": "CODEPIPELINE",
@@ -775,14 +626,14 @@ Object {
         },
         "Environment": Object {
           "ComputeType": "BUILD_GENERAL1_SMALL",
-          "Image": "aws/codebuild/standard:1.0",
+          "Image": "aws/codebuild/standard:5.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
         },
         "ServiceRole": Object {
           "Fn::GetAtt": Array [
-            "undefined4dCodeCommitProjectRole15C226D0",
+            "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
             "Arn",
           ],
         },
@@ -792,22 +643,19 @@ Object {
   \\"phases\\": {
     \\"install\\": {
       \\"commands\\": [
-        \\"npm install\\"
+        \\"npm install -g pnpm\\",
+        \\"pnpm install\\"
       ]
     },
-    \\"lint\\": {
+    \\"pre_build\\": {
       \\"commands\\": [
-        \\"npm run eslint\\"
-      ]
-    },
-    \\"test\\": {
-      \\"commands\\": [
-        \\"npm run test\\"
+        \\"pnpm eslint\\",
+        \\"pnpm test\\"
       ]
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"npm run build\\"
+        \\"pnpm build\\"
       ]
     }
   }
@@ -817,7 +665,7 @@ Object {
       },
       "Type": "AWS::CodeBuild::Project",
     },
-    "undefined4dCodeCommitProjectEventsRoleBB19B4C3": Object {
+    "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -834,7 +682,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "undefined4dCodeCommitProjectEventsRoleDefaultPolicy773002FD": Object {
+    "testpipelineinstallLintTestBuildCodeCommitProjectEventsRoleDefaultPolicyEBFCB987": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -843,7 +691,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "undefined4dCodeCommitProject42B8B509",
+                  "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
                   "Arn",
                 ],
               },
@@ -851,16 +699,16 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "undefined4dCodeCommitProjectEventsRoleDefaultPolicy773002FD",
+        "PolicyName": "testpipelineinstallLintTestBuildCodeCommitProjectEventsRoleDefaultPolicyEBFCB987",
         "Roles": Array [
           Object {
-            "Ref": "undefined4dCodeCommitProjectEventsRoleBB19B4C3",
+            "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "undefined4dCodeCommitProjectRole15C226D0": Object {
+    "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -877,7 +725,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "undefined4dCodeCommitProjectRoleDefaultPolicy717F5033": Object {
+    "testpipelineinstallLintTestBuildCodeCommitProjectRoleDefaultPolicyBCEB9FC2": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -907,7 +755,7 @@ Object {
                       },
                       ":log-group:/aws/codebuild/",
                       Object {
-                        "Ref": "undefined4dCodeCommitProject42B8B509",
+                        "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
                       },
                     ],
                   ],
@@ -930,7 +778,7 @@ Object {
                       },
                       ":log-group:/aws/codebuild/",
                       Object {
-                        "Ref": "undefined4dCodeCommitProject42B8B509",
+                        "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
                       },
                       ":*",
                     ],
@@ -965,7 +813,7 @@ Object {
                     },
                     ":report-group/",
                     Object {
-                      "Ref": "undefined4dCodeCommitProject42B8B509",
+                      "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
                     },
                     "-*",
                   ],
@@ -977,9 +825,6 @@ Object {
                 "s3:GetObject*",
                 "s3:GetBucket*",
                 "s3:List*",
-                "s3:DeleteObject*",
-                "s3:PutObject*",
-                "s3:Abort*",
               ],
               "Effect": "Allow",
               "Resource": Array [
@@ -1009,9 +854,6 @@ Object {
               "Action": Array [
                 "kms:Decrypt",
                 "kms:DescribeKey",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
               ],
               "Effect": "Allow",
               "Resource": Object {
@@ -1039,14 +881,155 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "undefined4dCodeCommitProjectRoleDefaultPolicy717F5033",
+        "PolicyName": "testpipelineinstallLintTestBuildCodeCommitProjectRoleDefaultPolicyBCEB9FC2",
         "Roles": Array [
           Object {
-            "Ref": "undefined4dCodeCommitProjectRole15C226D0",
+            "Ref": "testpipelineinstallLintTestBuildCodeCommitProjectRole179BC169",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
+    },
+    "testpipelinerepositoryOnCommit9BD63799": Object {
+      "Properties": Object {
+        "EventPattern": Object {
+          "detail": Object {
+            "event": Array [
+              "referenceCreated",
+              "referenceUpdated",
+            ],
+            "referenceName": Array [
+              "master",
+            ],
+          },
+          "detail-type": Array [
+            "CodeCommit Repository State Change",
+          ],
+          "resources": Array [
+            Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":codecommit:",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ":",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":4dt-api-node",
+                ],
+              ],
+            },
+          ],
+          "source": Array [
+            "aws.codecommit",
+          ],
+        },
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "testpipelineinstallLintTestBuildCodeCommitProjectE73E4DA0",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+            "RoleArn": Object {
+              "Fn::GetAtt": Array [
+                "testpipelineinstallLintTestBuildCodeCommitProjectEventsRole0B927B6B",
+                "Arn",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "testpipelinerepositorytestpipelinetestpipelinePipelineF431BF1FEventRuleC736E536": Object {
+      "Properties": Object {
+        "EventPattern": Object {
+          "detail": Object {
+            "event": Array [
+              "referenceCreated",
+              "referenceUpdated",
+            ],
+            "referenceName": Array [
+              "master",
+            ],
+          },
+          "detail-type": Array [
+            "CodeCommit Repository State Change",
+          ],
+          "resources": Array [
+            Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":codecommit:",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ":",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":4dt-api-node",
+                ],
+              ],
+            },
+          ],
+          "source": Array [
+            "aws.codecommit",
+          ],
+        },
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":codepipeline:",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ":",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":",
+                  Object {
+                    "Ref": "testpipelinePipeline662FE87D",
+                  },
+                ],
+              ],
+            },
+            "Id": "Target0",
+            "RoleArn": Object {
+              "Fn::GetAtt": Array [
+                "testpipelinePipelineEventsRoleA4A3C53E",
+                "Arn",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
     },
   },
 }
