@@ -41,10 +41,5 @@ export class FourDPipelineStack extends Stack {
       actions: [installLintTestBuild.buildAction(source.getSourceOutput())],
     });
 
-    // Run CodeBuild evertime new commit to master
-    repository.onCommit('OnCommit', {
-      target: new targets.CodeBuildProject(installLintTestBuild.getPipelineProject()),
-      branches: ['master'],
-    });
   }
 }
