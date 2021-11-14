@@ -1,4 +1,4 @@
-import { PipelineProject, BuildSpec, ComputeType, BuildEnvironment, LinuxBuildImage } from '@aws-cdk/aws-codebuild';
+import { PipelineProject, BuildSpec, LinuxBuildImage } from '@aws-cdk/aws-codebuild';
 import { Artifact } from '@aws-cdk/aws-codepipeline';
 import { CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Stack } from '@aws-cdk/core';

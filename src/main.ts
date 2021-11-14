@@ -16,5 +16,4 @@ const app = new App();
 const repositoryArn = process.env.GIT_REPOSITORY ?? '4dt-api-node';
 
 new FourDPipelineStack(app, 'four-d-pipeline', repositoryArn, { env, description: 'Pipeline consist of CodeCommit, CodeBuild, CodeDeploy(Soon)' });
-// new PipelineStack(app, 'four-d-pipeline', repositoryArn, { env, description: 'Pipeline consist of CodeCommit, CodeBuild, CodeDeploy(Soon)' });
 app.synth();

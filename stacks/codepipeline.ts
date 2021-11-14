@@ -30,7 +30,7 @@ export class FourDPipelineStack extends Stack {
           commands: ['npm install -g pnpm', 'pnpm install'],
         },
         pre_build: {
-          commands: ['pnpm eslint', 'pnpm test'],
+          commands: ['pnpm test'],
         },
         build: {
           commands: ['pnpm build'],
