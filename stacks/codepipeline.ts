@@ -1,6 +1,5 @@
 import { Repository } from '@aws-cdk/aws-codecommit';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
-import * as targets from '@aws-cdk/aws-events-targets';
 import { Stack, Construct, StackProps } from '@aws-cdk/core';
 import { BuildStage } from '../src/BuildStage';
 import { SourceStage } from '../src/SourceStage';

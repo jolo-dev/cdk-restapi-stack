@@ -28,6 +28,7 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
+.env
 !/.projenrc.js
 /test-reports/
 junit.xml
@@ -42,4 +43,3 @@ junit.xml
 /cdk.out/
 .cdk.staging/
 .parcel-cache/
-.env
