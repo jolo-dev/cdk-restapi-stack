@@ -11,8 +11,7 @@ const project = new AwsCdkTypeScriptApp( {
     '@aws-cdk/aws-codecommit',
     '@aws-cdk/aws-codebuild',
     '@aws-cdk/aws-events-targets',
-    '@aws-cdk/aws-codepipeline-actions',
-    '@aws-cdk/pipelines'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
+    '@aws-cdk/aws-codepipeline-actions'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
   disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
   github: false, // Because we are not on github
   deps: ['dotenv'], /* Runtime dependencies of this module. */

@@ -1,7 +1,6 @@
 import { App } from '@aws-cdk/core';
 import { config } from 'dotenv';
 import { FourDPipelineStack } from '../stacks/codepipeline';
-// import { PipelineStack } from '../stacks/pipeline';
 
 config();
 
