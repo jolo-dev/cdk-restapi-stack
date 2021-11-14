@@ -23,7 +23,7 @@ export class FourDPipelineStack extends Stack {
       actions: [source.getCodeCommitSourceAction()],
     });
 
-    // CodeBuild
+    // Build
     const build = new BuildStage(this, 'build',
       {
         install: {
@@ -33,9 +33,21 @@ export class FourDPipelineStack extends Stack {
           commands: ['pnpm build'],
         },
       });
+
+    const buildAction = build.buildAction(source.getSourceOutput(), 'build');
+
+    // Deploy
+    const cdkDeploy = new BuildStage(this, 'deploy',
+      {
+        post_build: {
+          commands: ['pnpm deploy'],
+        },
+      });
+    const cdkDeployAction = cdkDeploy.buildAction(source.getSourceOutput(), 'deploy');
+
     codepipeline.addStage({
       stageName: 'ProjenBuild', // projens build includes testing and linting
-      actions: [build.buildAction(source.getSourceOutput(), 'build')],
+      actions: [buildAction, cdkDeployAction],
     });
 
     repository.onCommit('OnCommit', {
