@@ -5,3 +5,9 @@ This project uses [`projen`](https://github.com/projen/projen) which is on top o
 ## Prerequisite
 
 - Node v14.x
+- Typescript
+- [`aws configure sso`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html)
+
+## Structure
+
+This project is scaffold by using `npx projen new awscdk-app-ts` and is purely in Typescript.

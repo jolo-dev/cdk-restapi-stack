@@ -83,7 +83,27 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-codebuild",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/aws-codecommit",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-codepipeline-actions",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-codepipeline",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-events-targets",
       "version": "^1.132.0",
       "type": "runtime"
     },
@@ -100,6 +120,10 @@
     {
       "name": "@aws-cdk/pipelines",
       "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "dotenv",
       "type": "runtime"
     }
   ],
