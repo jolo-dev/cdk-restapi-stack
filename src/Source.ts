@@ -2,7 +2,7 @@ import { IRepository } from '@aws-cdk/aws-codecommit';
 import { Artifact } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction } from '@aws-cdk/aws-codepipeline-actions';
 
-export class SourceStage {
+export class Source {
   private readonly repository: IRepository;
   private readonly sourceOutput: Artifact;
 

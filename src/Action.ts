@@ -16,15 +16,13 @@ type Command = {
   };
 };
 
-export class BuildStage {
+export class Action {
 
   private stack : Stack;
   private pipelineProject: PipelineProject;
-  private readonly buildOutput: Artifact;
 
   constructor(stack: Stack, id: string, command: Command) {
     this.stack = stack;
-    this.buildOutput = new Artifact();
 
     this.pipelineProject = new PipelineProject(stack, `${this.stack.artifactId}-${id}-CodeCommitProject`, {
       environment: {
@@ -43,10 +41,6 @@ export class BuildStage {
       project: this.pipelineProject,
       input: sourceInput,
     });
-  };
-
-  public getSourceOutput = (): Artifact => {
-    return this.buildOutput;
   };
 
   public getPipelineProject = () : PipelineProject => {
