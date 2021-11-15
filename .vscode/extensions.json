@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "dbaeumer.vscode-eslint",
-        "hediet.vscode-drawio"
+        "hediet.vscode-drawio",
+        "vsls-contrib.codetour"
     ]
 }

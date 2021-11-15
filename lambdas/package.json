@@ -1,0 +1,19 @@
+{
+  "name": "lambdas",
+  "version": "0.0.1",
+  "description": "This is a package for Lambdas written in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "pnpm test",
+    "build": "esbuild ./src/**.ts --bundle --minify --platform=node --outdir=./build"
+  },
+  "author": "John Nguyen <john@globaldatanet.com>",
+  "license": "ISC",
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.85",
+    "esbuild": "^0.13.13"
+  }
+}

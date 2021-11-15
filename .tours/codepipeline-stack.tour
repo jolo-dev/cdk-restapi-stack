@@ -33,21 +33,6 @@
       "line": 18
     },
     {
-      "file": "src/SourceStage.ts",
-      "description": "Here we define a new `build`- [Action](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-actions).\n`Action` is a class which takes the name of the action as second parameter and an [Object of Commands](./src/Action.ts).",
-      "line": 15,
-      "selection": {
-        "start": {
-          "line": 27,
-          "character": 5
-        },
-        "end": {
-          "line": 35,
-          "character": 10
-        }
-      }
-    },
-    {
       "file": "stacks/codepipeline.ts",
       "description": "Those action can be put into a [stage](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-stages) for defining a logical unit of actions.",
       "line": 21

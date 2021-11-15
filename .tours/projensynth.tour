@@ -1,0 +1,31 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "ProjenSynth",
+  "steps": [
+    {
+      "file": ".projenrc.ts",
+      "description": "In projen, you manage `packages.json` and other project setup such as `.gitignore` in this `.projenrc.ts`- File.\nWhenever you change something, you need to execute `pnpm projen`.",
+      "line": 2
+    },
+    {
+      "file": ".projenrc.ts",
+      "description": "In order to keep all CDK-packages in sync, there is a dedicated `cdkDependencies` starting with `@aws-cdk/`",
+      "line": 8,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 32
+        }
+      }
+    },
+    {
+      "file": ".projenrc.ts",
+      "description": "If you need to put something into the `.gitignore`- File, you need to add that here.",
+      "line": 20
+    }
+  ]
+}
