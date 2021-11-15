@@ -120,7 +120,7 @@
     {
       "file": "stacks/codepipeline.ts",
       "description": "This should allow to execute the `build`-stage any time something has been committed.",
-      "line": 60,
+      "line": 59,
       "selection": {
         "start": {
           "line": 58,

@@ -90,6 +90,11 @@ Object {
                 },
                 "RunOrder": 1,
               },
+            ],
+            "Name": "ProjenBuild",
+          },
+          Object {
+            "Actions": Array [
               Object {
                 "ActionTypeId": Object {
                   "Category": "Build",
@@ -110,14 +115,14 @@ Object {
                 "Name": "test-pipeline-deploy",
                 "RoleArn": Object {
                   "Fn::GetAtt": Array [
-                    "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRole30723E7C",
+                    "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleFD432B77",
                     "Arn",
                   ],
                 },
                 "RunOrder": 1,
               },
             ],
-            "Name": "ProjenBuild",
+            "Name": "ProjenDeploy",
           },
         ],
       },
@@ -444,7 +449,37 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRole30723E7C": Object {
+    "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleDefaultPolicy10F7A2C5": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "testpipelinedeployCodeCommitProject4D17501D",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleDefaultPolicy10F7A2C5",
+        "Roles": Array [
+          Object {
+            "Ref": "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleFD432B77",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleFD432B77": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -475,36 +510,6 @@ Object {
         },
       },
       "Type": "AWS::IAM::Role",
-    },
-    "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRoleDefaultPolicyA6ACD5A0": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
-                "codebuild:BatchGetBuilds",
-                "codebuild:StartBuild",
-                "codebuild:StopBuild",
-              ],
-              "Effect": "Allow",
-              "Resource": Object {
-                "Fn::GetAtt": Array [
-                  "testpipelinedeployCodeCommitProject4D17501D",
-                  "Arn",
-                ],
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRoleDefaultPolicyA6ACD5A0",
-        "Roles": Array [
-          Object {
-            "Ref": "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRole30723E7C",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
     },
     "testpipelinePipelineRoleDefaultPolicy3FB503B2": Object {
       "Properties": Object {
@@ -584,7 +589,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "testpipelinePipelineProjenBuildtestpipelinedeployCodePipelineActionRole30723E7C",
+                  "testpipelinePipelineProjenDeploytestpipelinedeployCodePipelineActionRoleFD432B77",
                   "Arn",
                 ],
               },
