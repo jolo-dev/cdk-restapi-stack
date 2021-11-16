@@ -22,6 +22,10 @@
       "type": "build"
     },
     {
+      "name": "aws-cdk-local",
+      "type": "build"
+    },
+    {
       "name": "aws-cdk",
       "version": "^1.132.0",
       "type": "build"
@@ -123,6 +127,10 @@
     },
     {
       "name": "dotenv",
+      "type": "runtime"
+    },
+    {
+      "name": "esbuild",
       "type": "runtime"
     }
   ],

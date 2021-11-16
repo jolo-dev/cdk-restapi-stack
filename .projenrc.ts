@@ -14,9 +14,10 @@ const project = new AwsCdkTypeScriptApp( {
     '@aws-cdk/aws-codepipeline-actions'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
   disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
   github: false, // Because we are not on github
-  deps: ['dotenv'], /* Runtime dependencies of this module. */
+  deps: ['dotenv', 'esbuild'], /* Runtime dependencies of this module. */
   description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
-  devDeps: ['@tsconfig/recommended', 'husky'], /* Build dependencies for this module. */
-  gitignore: ['.env', 'build', '.DS_Store'],
+  devDeps: ['@tsconfig/recommended', 'husky', 'aws-cdk-local'], /* Build dependencies for this module. */
+  gitignore: ['.env', 'dist', '.DS_Store'],
 } );
+project.setScript('local', 'cdklocal');
 project.synth();

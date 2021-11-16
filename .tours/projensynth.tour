@@ -9,6 +9,11 @@
     },
     {
       "file": ".projenrc.ts",
+      "description": "Here you specify the CDK Version.\nWithout this you would have CDK-packages with different version or you would need to automate them individually.\n**Note: It is changed quite frequently.**",
+      "line": 3
+    },
+    {
+      "file": ".projenrc.ts",
       "description": "In order to keep all CDK-packages in sync, there is a dedicated `cdkDependencies` starting with `@aws-cdk/` and then you need to do \n\n>> pnpm projen",
       "line": 8,
       "selection": {

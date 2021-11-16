@@ -29,7 +29,7 @@ jspm_packages/
 .yarn-integrity
 .cache
 .env
-build
+dist
 .DS_Store
 !/.projenrc.js
 /test-reports/

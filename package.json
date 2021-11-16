@@ -19,7 +19,8 @@
     "test:watch": "npx projen test:watch",
     "upgrade": "npx projen upgrade",
     "upgrade-projen": "npx projen upgrade-projen",
-    "projen": "npx projen"
+    "projen": "npx projen",
+    "local": "cdklocal"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
@@ -28,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "aws-cdk": "^1.132.0",
+    "aws-cdk-local": "^1.65.8",
     "eslint": "^8.2.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -51,7 +53,8 @@
     "@aws-cdk/aws-events-targets": "^1.132.0",
     "@aws-cdk/aws-lambda": "^1.132.0",
     "@aws-cdk/core": "^1.132.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "esbuild": "^0.13.14"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",

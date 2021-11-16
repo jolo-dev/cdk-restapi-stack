@@ -10,7 +10,7 @@
     {
       "file": "src/main.ts",
       "description": "For now we are using Codecommit in `eu-west-1` and the repository is named `4dt-api-node`.\nFor a different Git-repository, create a `.env` and add `GIT_REPOSITORY=name-of-my-repo`.\n\n**NOTE:** This stack only supports Codecommit for now.",
-      "line": 15,
+      "line": 16,
       "selection": {
         "start": {
           "line": 15,
@@ -21,6 +21,11 @@
           "character": 49
         }
       }
+    },
+    {
+      "file": ".projenrc.ts",
+      "description": "Needed to explicitely set this otherwise it would add `npx projen local`.",
+      "line": 22
     },
     {
       "file": "stacks/codepipeline.ts",
