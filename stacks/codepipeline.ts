@@ -1,15 +1,15 @@
 import { Repository } from '@aws-cdk/aws-codecommit';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
 import { CodeBuildProject } from '@aws-cdk/aws-events-targets';
-import { Stack, Construct, StackProps } from '@aws-cdk/core';
+import { NestedStack, Construct, NestedStackProps } from '@aws-cdk/core';
 import { Action } from '../src/Action';
 import { Source } from '../src/Source';
 
-export class FourDPipelineStack extends Stack {
+export class FourDPipelineStack extends NestedStack {
 
   private readonly repositoryName: string;
 
-  constructor(scope: Construct, id: string, repositoryName: string = '4dt-api-node', props?: StackProps) {
+  constructor(scope: Construct, id: string, repositoryName: string = '4dt-api-node', props?: NestedStackProps) {
     super(scope, id, props);
 
     this.repositoryName = repositoryName;
@@ -44,6 +44,9 @@ export class FourDPipelineStack extends Stack {
     // Deploy
     const cdkDeploy = new Action(this, 'deploy',
       {
+        install: {
+          commands: ['npm install -g pnpm', 'pnpm install'],
+        },
         post_build: {
           commands: ['pnpm deploy'],
         },

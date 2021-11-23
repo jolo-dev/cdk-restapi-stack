@@ -31,6 +31,10 @@
       "type": "build"
     },
     {
+      "name": "aws-sdk-client-mock",
+      "type": "build"
+    },
+    {
       "name": "eslint",
       "type": "build"
     },
@@ -111,6 +115,11 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-ec2",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/aws-events-targets",
       "version": "^1.132.0",
       "type": "runtime"
@@ -121,8 +130,21 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-ssm",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/core",
       "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/client-service-catalog",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/client-ssm",
       "type": "runtime"
     },
     {
