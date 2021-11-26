@@ -1,7 +1,7 @@
 import fs from 'fs';
+import { StringParameter } from '@aws-cdk/aws-ssm';
 import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
-import { LambdaFleetStack } from '../stacks/lambdaFleet';
-
+import { LambdaFleetStack } from '../src/stacks/lambdaFleet';
 describe('lambdaFleetStack', () => {
 
   const app = new App({
@@ -11,13 +11,19 @@ describe('lambdaFleetStack', () => {
       privateSubnet2: 'private-subnet-2',
     },
   });
+
+  const env = {
+    account: '123456789010',
+    region: 'eu-west-1',
+    description: 'Parent Stack for deploying the whole infrastructure',
+  };
   class ParentStack extends Stack {
     private lambdaFleetStack: LambdaFleetStack;
     private lambdaFolder: string;
-    constructor(scope: Construct, id: string, lambdaFolder: string, props?: StackProps) {
+    constructor(scope: Construct, id: string, lambdaFolder: string, props: StackProps) {
       super(scope, id, props);
       this.lambdaFolder = lambdaFolder;
-      this.lambdaFleetStack = new LambdaFleetStack(this, 'LambdaFleetTest', `test/${this.lambdaFolder}`);
+      this.lambdaFleetStack = new LambdaFleetStack(this, `${id}LambdaFleetTest`);
     }
 
     public getLambdaFleetStack() {
@@ -29,15 +35,7 @@ describe('lambdaFleetStack', () => {
     }
   }
 
-  const ps = new ParentStack(app, 'ParentTest',
-    'lambdas',
-    {
-      env: {
-        account: '1234',
-        region: 'Spain',
-      },
-      description: 'Parent Stack for deploying the whole infrastructure',
-    });
+  const ps = new ParentStack(app, 'ParentTest', 'lambdas', { env });
   const lambdaFleetStack = ps.getLambdaFleetStack();
 
   beforeAll(() => {
@@ -50,26 +48,38 @@ describe('lambdaFleetStack', () => {
     await lambdaFleetStack.bundlingLambdas();
     // Need to put a timeout otherwise race condition.
     setTimeout(() => {
-      expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/dist`)).toEqual(['assets.js']);
+      expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/dist`))
+        .toEqual(['assets.js']);
     }, 3000);
   });
   it('should return the folder of the built Lambdas', () => {
-    expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/src`)).toEqual(['assets.ts']);
+    expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/src`))
+      .toEqual(['assets.ts']);
   });
 
-  // it('should throw when bundling lambdas is not possible', async () => {
-  //   const foo = new ParentStack(app, 'FooBarStack', 'foo');
-  //   const bar = foo.getLambdaFleetStack();
-  //   await expect(bar.bundlingLambdas()).rejects.toThrow();
-  // });
-
-  //   it('should throw when trying to bundle the folder', async () => {
-  //     const fooStack = new LambdaFleetStack(app, 'ThisThrows', 'foo');
-  //     await expect(() => fooStack.bundlingLambdas()).rejects.toThrow();
-  //   });
+  it('should throw when trying to bundle the folder', async () => {
+    const spy = jest.spyOn(lambdaFleetStack, 'getAllLambdasFromFolder').mockReturnValue([]);
+    await expect(lambdaFleetStack.bundlingLambdas()).rejects.toThrowError();
+    spy.mockRestore();
+  });
 
   it('should throw when folder not exists', () => {
-    expect(() => lambdaFleetStack.getAllLambdasFromFolder('foo')).toThrowError('Cannot find folder: foo');
+    expect(() => lambdaFleetStack.getAllLambdasFromFolder('foo'))
+      .toThrowError('Cannot find folder: foo');
+  });
+
+  it('should stub SSM Parameter Store when no context', async () => {
+    const noContext = new App();
+    const spyStringparameter =
+      jest.spyOn(StringParameter, 'valueForStringParameter')
+        .mockReturnValue('foo')
+        .mockReturnValueOnce('bar')
+        .mockReturnValueOnce('baz');
+
+    new ParentStack(noContext, 'Foo', 'lambdas', { env });
+
+    expect(spyStringparameter).toBeCalledTimes(3);
+    spyStringparameter.mockRestore();
   });
 
 });

@@ -1,26 +1,20 @@
 import { callServiceCatalogProduct, ProductValue, PrivateSubnetValue, VpcInputKeyValue } from './callServiceCatalog';
 import { getSsmParams } from './getSsmParams';
 
-interface NetworkingParams {
-  vpcId: string;
-  privateSubnet1: string;
-  privateSubnet2: string;
-  privateSubnet3?: string;
-}
-
-const toCamelCase = (str = '') => {
-  return str
+export const toCamelCase = (str: string) => {
+  return str.includes('-') ? str
     .replace(/[^a-z0-9]/gi, '-')
     .toLowerCase()
     .split('-')
     .map((el, ind) => ind === 0 ? el : el[0].toUpperCase() +
 el.substring(1, el.length))
-    .join('');
+    .join('')
+    : str;
 };
 
 const availabilityZone = ['eu-west-1a', 'eu-west-1b', 'eu-west-1c'];
 
-export const getNetworkingContext = async (): Promise<NetworkingParams> => {
+export const getNetworkingContext = async () => {
 
   const params = await getSsmParams({ Names: ['/networking/vpc/id', '/networking/private-subnet-1/id', '/networking/private-subnet-2/id'] });
   let validParams = {};
@@ -28,7 +22,7 @@ export const getNetworkingContext = async (): Promise<NetworkingParams> => {
   let countSubnets = 1; // Starting at 1 because the first should have the suffix -1
   if (params.Parameters) {
     for ( const para of params.Parameters ) {
-      const product = para.Name?.split('/')[2]; // getting the second word from the path
+      const product = para.Name!.split('/')[2]; // getting the second word from the path
 
       const key = product === 'vpc' ? 'vpcId' : toCamelCase(product);
       vpcId = product === 'vpc' && para.Value ? para.Value : '';

@@ -21,4 +21,10 @@ describe('getSsmParams', () => {
     ssmClientMock.on(GetParametersCommand).rejects();
     await expect(getSsmParams({ Names: ['/foo/bar/baz', '/lorem/ipsum'] })).rejects.toThrowError('Error in GetParametersCommand');
   });
+
+  it('should throw when region name is set not correctly', async () => {
+    process.env.CDK_DEFAULT_REGION = 'foo';
+    ssmClientMock.on(GetParametersCommand).rejects();
+    await expect(getSsmParams({ Names: ['foo/bar/baz'] })).rejects.toThrow();
+  });
 });

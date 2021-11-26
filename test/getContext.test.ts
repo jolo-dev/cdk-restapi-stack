@@ -1,6 +1,6 @@
 import { SSMClient, GetParametersCommand } from '@aws-sdk/client-ssm';
 import { mockClient } from 'aws-sdk-client-mock';
-import { getNetworkingContext } from '../src/utils/getContext';
+import { getNetworkingContext, toCamelCase } from '../src/utils/getContext';
 
 const ssmClientMock = mockClient(SSMClient);
 
@@ -60,7 +60,7 @@ describe('getNetworkingContext', () => {
     });
   });
 
-  it.only('should return vpcId with three subnets', async () => {
+  it('should return vpcId with three subnets', async () => {
     ssmClientMock.on(GetParametersCommand).resolves({
       Parameters: [{ Name: '/networking/vpc/id', Value: 'vpcId' }],
       InvalidParameters: ['/networking/private-subnet-1/id', '/networking/private-subnet-2/id', '/networking/private-subnet-3/id'],
@@ -78,5 +78,17 @@ describe('getNetworkingContext', () => {
       privateSubnet2: 'privateSubnet2',
       privateSubnet3: 'privateSubnet3',
     });
+  });
+});
+
+describe('toCamelCase', () => {
+  it('should convert camel-case to camelCase ', () => {
+    const camelCaseMe = toCamelCase('camel-case');
+    expect(camelCaseMe).toEqual('camelCase');
+  });
+
+  it('should not camelCase because its already camelCased', () => {
+    const camelCaseMe = toCamelCase('camelCase');
+    expect(camelCaseMe).toEqual('camelCase');
   });
 });

@@ -32,6 +32,14 @@ type PrivateSubnetParams = {
 type ProvisionParameters<T extends ProductValue.VPC | ProductValue.PRIVATE_SUBNET> =
 T extends ProductValue.VPC ? VPCInputParams[] : PrivateSubnetParams[]
 
+/**
+ * Utility Function which orchestrates provisioning and launching products from the Service Catalog
+ * After it launches the product it returns the ID of the VPC or Subnet
+ * @param product Either VPC or Private Subnet look @ ProductValue
+ * @param provisionParameters Parameters for the product e.g. VPC ID, AZs or CIDR Block. You could retrive via CLI aws servicecatalog describe-provisioning-parameters --product-id <product-id> --provisioning-artifact-id <provisioning-artifact-id>
+ * @param count Optional for naming the Subnets by suffix e.g. private-subnet-1 or private-subnet-2
+ * @returns ID of VPC or Subnet
+ */
 export const callServiceCatalogProduct =
 async <T extends ProductValue.VPC | ProductValue.PRIVATE_SUBNET>
 (product: T, provisionParameters: ProvisionParameters<T>, count?: number): Promise<string> => {

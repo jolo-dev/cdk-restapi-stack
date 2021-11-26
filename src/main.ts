@@ -1,6 +1,6 @@
 import { App } from '@aws-cdk/core';
 import { config } from 'dotenv';
-import { CdkParentStack } from '../stacks/parent';
+import { CdkParentStack } from './stacks/parent';
 
 config();
 
@@ -10,7 +10,9 @@ const env = {
   region: 'eu-west-1',
 };
 
+const repositoryName = process.env.GIT_REPOSITORY ?? '4dt-api-node';
+
 const app = new App();
-new CdkParentStack(app, 'FourDStack', { env, description: 'Parent Stack for deploying the whole infrastructure' });
+new CdkParentStack(app, 'FourDStack', repositoryName, { env, description: 'Parent Stack for deploying the whole infrastructure' });
 
 app.synth();

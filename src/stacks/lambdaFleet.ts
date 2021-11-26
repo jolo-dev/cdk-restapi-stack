@@ -3,7 +3,7 @@ import { RestApi, EndpointType, LambdaIntegration } from '@aws-cdk/aws-apigatewa
 import { Vpc, PrivateSubnet, IVpc, ISubnet } from '@aws-cdk/aws-ec2';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
 import { StringParameter } from '@aws-cdk/aws-ssm';
-import { NestedStack, Construct, NestedStackProps, CfnOutput } from '@aws-cdk/core';
+import { NestedStack, Construct, CfnOutput } from '@aws-cdk/core';
 import { build } from 'esbuild';
 
 
@@ -13,11 +13,12 @@ export class LambdaFleetStack extends NestedStack {
   private vpc: IVpc;
   private subnets: ISubnet[];
 
-  constructor(scope: Construct, id: string, lambdaFolder = 'lambdas', props?: NestedStackProps) {
-    super(scope, id, props);
+  constructor(scope: Construct, id: string, lambdaFolder = 'lambdas') {
+    super(scope, id);
 
     // Networking
     let vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
+
     this.vpc = this.getVpc(vpcId);
 
     let subnet1 = this.node.tryGetContext('privateSubnet1') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-1/id');
@@ -66,22 +67,25 @@ export class LambdaFleetStack extends NestedStack {
   public async bundlingLambdas() {
     const lambdas = this.getAllLambdasFromFolder(`${this.lambdaFolder}/src`);
     try {
-      lambdas.forEach(async (lambda) => {
+      if (lambdas.length > 0) {
+        lambdas.forEach(async (lambda) => {
 
-        await build({
-          bundle: true,
-          minify: true,
-          platform: 'node',
-          target: 'node14.7',
-          outdir: `${this.lambdaFolder}/dist`,
-          entryPoints: [`${this.lambdaFolder}/src/${lambda}`],
+          await build({
+            bundle: true,
+            minify: true,
+            platform: 'node',
+            target: 'node14.7',
+            outdir: `${this.lambdaFolder}/dist`,
+            entryPoints: [`${this.lambdaFolder}/src/${lambda}`],
+          });
+
         });
-
-      });
-
+      } else {
+        throw new Error(`Error while bundling Lambda in: ${this.lambdaFolder}`);
+      }
     } catch (error) {
       console.error(error);
-      throw Error('Error while bundling Lambda in: ' + this.lambdaFolder);
+      throw new Error;
     };
   }
 
