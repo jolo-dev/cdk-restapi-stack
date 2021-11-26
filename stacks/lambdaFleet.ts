@@ -1,11 +1,10 @@
 import fs from 'fs';
+import { RestApi, EndpointType, LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { Vpc, PrivateSubnet, IVpc, ISubnet } from '@aws-cdk/aws-ec2';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
 import { StringParameter } from '@aws-cdk/aws-ssm';
-import { NestedStack, Construct, NestedStackProps } from '@aws-cdk/core';
-import { ProvisioningParameter } from '@aws-sdk/client-service-catalog';
+import { NestedStack, Construct, NestedStackProps, CfnOutput } from '@aws-cdk/core';
 import { build } from 'esbuild';
-import { ServiceCatalogProduct } from '../src/ServiceCatalog';
 
 
 export class LambdaFleetStack extends NestedStack {
@@ -18,35 +17,26 @@ export class LambdaFleetStack extends NestedStack {
     super(scope, id, props);
 
     // Networking
-    // 1. Check if there is a vpc product-id in the SSM Parameter store
     let vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
-    // 2. If there is no product-id, then we need to provision a new VPC coming from the Service Catalog of Adidas
-    // https://tools.adidas-group.com/confluence/pages/viewpage.action?spaceKey=CES&title=Service+Catalogue
-    if (vpcId === undefined) {
-      this.callServiceCatalogProduct('vpc', [{ Key: 'Application', Value: 'vpc' }]).then(result => {
-        vpcId = result!;
-      }).catch(error => {
-        console.log(error);
-      });
-    }
     this.vpc = this.getVpc(vpcId);
 
     let subnet1 = this.node.tryGetContext('privateSubnet1') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-1/id');
     let subnet2 = this.node.tryGetContext('privateSubnet2') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-2/id');
-    if (subnet1 === undefined && subnet2 === undefined) {
-      this.callServiceCatalogProduct('private-subnet-1', [{ Key: 'VPCId', Value: vpcId }, { Key: 'AvailabilityZone', Value: 'eu-west-1a' }]).then(result => {
-        subnet1 = result!;
-      }).catch(error => {
-        console.log(error);
-      });
-      this.callServiceCatalogProduct('private-subnet-2', [{ Key: 'VPCId', Value: vpcId }, { Key: 'AvailabilityZone', Value: 'eu-west-1b' }]).then(result => {
-        subnet2 = result!;
-      }).catch(error => {
-        console.log(error);
-      });
-    }
-
     this.subnets = [this.getPrivateSubnet(subnet1), this.getPrivateSubnet(subnet2)];
+
+    // API Gateway
+    const api = new RestApi(this, 'api', {
+      description: 'Gateway for Adidas 4d',
+      deployOptions: {
+        stageName: 'dev',
+      },
+      endpointConfiguration: {
+        types: [EndpointType.PRIVATE],
+      },
+    });
+
+    // 👇 create an Output for the API URL
+    new CfnOutput(this, 'apiUrl', { value: api.url });
 
     // Bundling all the Lambdas
     this.lambdaFolder = lambdaFolder;
@@ -55,7 +45,7 @@ export class LambdaFleetStack extends NestedStack {
 
     lambdas.forEach(lambda => {
       const lambdaName = lambda.replace('.js', '');
-      new Function(this, `${lambdaName}Function`, {
+      let lambdaFunction = new Function(this, `${lambdaName}Function`, {
         runtime: Runtime.NODEJS_14_X,
         handler: `${lambdaName}.handler`,
         code: Code.fromAsset(`${this.lambdaFolder}/dist`),
@@ -65,18 +55,9 @@ export class LambdaFleetStack extends NestedStack {
           subnets: this.subnets,
         },
       });
+      let restEndpoint = api.root.addResource(lambdaName);
+      restEndpoint.addMethod('GET', new LambdaIntegration(lambdaFunction, { proxy: true }));
     });
-  }
-
-  public async callServiceCatalogProduct(product: string, provisionParameters: NonNullable<ProvisioningParameter[]>) {
-    // 3. We take the Product ID for the VPC of the Service Catalog from SSM Parameter Store
-    const productId = StringParameter.valueForStringParameter(this, `/servicecatalog/${product}/product-id`);
-    // 4. We take the Provisioning Artifict ID (Which is the version in the Service Catalog of the VPC)
-    const provisioningArtifactId = StringParameter.valueForStringParameter(this, `/servicecatalog/${product}/provisioning-artifact-id`);
-    const sc = new ServiceCatalogProduct({ productId, provisioningArtifactId, region: process.env.CDK_DEFAULT_REGION ?? 'eu-west-1' });
-    await sc.launchProduct(`${product}`, provisionParameters);
-    const resource = await sc.getRessource({ ProvisionedProductName: `${product}` }, provisionParameters[0].Key!);
-    return resource[0].OutputValue;
   }
 
   /**

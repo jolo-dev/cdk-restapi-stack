@@ -95,6 +95,11 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-apigateway",
+      "version": "^1.132.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/aws-codebuild",
       "version": "^1.132.0",
       "type": "runtime"
@@ -145,6 +150,10 @@
     },
     {
       "name": "@aws-sdk/client-ssm",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/util-waiter",
       "type": "runtime"
     },
     {

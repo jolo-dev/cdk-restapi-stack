@@ -1,11 +1,13 @@
 import {
   ServiceCatalogClient,
   ProvisionProductCommand,
+  ProvisionProductCommandInput,
   ProvisioningParameter,
   GetProvisionedProductOutputsCommand,
   GetProvisionedProductOutputsCommandInput,
 } from '@aws-sdk/client-service-catalog';
 import { SSMClient, PutParameterCommand, PutParameterCommandInput } from '@aws-sdk/client-ssm';
+import { createWaiter, WaiterConfiguration, WaiterState } from '@aws-sdk/util-waiter';
 
 
 interface ServiceCatalogProductProps{
@@ -33,14 +35,15 @@ export class ServiceCatalogProduct {
 
   public async launchProduct(provisionedProductName: string, provisionParameters: ProvisioningParameter[]) {
     try {
-      const command = new ProvisionProductCommand({
+      const input = {
         ProvisionedProductName: provisionedProductName,
         ProductId: this.productId,
         ProvisioningArtifactId: this.provisioningArtifactId,
         ProvisioningParameters: provisionParameters,
-      });
+      };
+      const command = new ProvisionProductCommand(input);
       const response = await this.serviceCatalogClient.send(command);
-
+      await this.waitUntilProductLaunch({ client: this.serviceCatalogClient, maxWaitTime: 600 }, input);
       return response;
     } catch (error) {
       console.error(error);
@@ -68,6 +71,26 @@ export class ServiceCatalogProduct {
     }
   }
 
+  public async checkState(client: ServiceCatalogClient, input: ProvisionProductCommandInput) {
+    let reason;
+    try {
+      const result: any = await client.send(new ProvisionProductCommand(input));
+      reason = result;
+      return { state: WaiterState.SUCCESS, reason };
+    } catch (exception) {
+      console.log(exception);
+    }
+    return { state: WaiterState.ABORTED, reason };
+  };
+
+  public async waitUntilProductLaunch(
+    params: WaiterConfiguration<ServiceCatalogClient>,
+    input: ProvisionProductCommandInput,
+  ) {
+    const result = await createWaiter({ minDelay: 5, maxDelay: 120, ...params }, input, this.checkState);
+    return result;
+  }
+
   public async setSSMParameter(input: PutParameterCommandInput) {
     const client = new SSMClient({ region: this.region });
     try {
@@ -92,4 +115,5 @@ export class ServiceCatalogProduct {
       throw new Error(e.message);
     }
   }
+
 }

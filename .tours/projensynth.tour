@@ -29,7 +29,7 @@
     },
     {
       "file": ".projenrc.ts",
-      "description": "Setting dummy contexts because otherwise CDK would create tokens which only will be revealed during deployment.\nFor example, in `lambdaFleet.ts` it uses `vpc.fromLookup()` and needs a `vpcId`. But because we retrieve this from the parameter store, CDK placed here tokens in order to retrieve the value during the deployment.\nHowever, `synth` and `test` need an actual value. That is why we fill it with dummy values.\nMore information: https://docs.aws.amazon.com/cdk/latest/guide/tokens.html",
+      "description": "For the synth it locally, we need to set a context. Otherwise CDK would create tokens which only will be replaced during deployment.\nFor example, in `lambdaFleet.ts` it uses `vpc.fromLookup()` and needs a `vpcId`. But because we retrieve this from the parameter store, CDK placed here tokens in order to retrieve the value during the deployment.\nHowever, `synth` and `test` need an actual value. That is why we fill it with dummy values.\nMore information: https://docs.aws.amazon.com/cdk/latest/guide/tokens.html",
       "selection": {
         "start": {
           "line": 23,
@@ -37,7 +37,22 @@
         },
         "end": {
           "line": 23,
-          "character": 135
+          "character": 18
+        }
+      }
+    },
+    {
+      "file": ".projenrc.ts",
+      "description": "For the synth it locally, we need to set a context. Otherwise CDK would create tokens which only will be replaced during deployment.\nFor example, in `lambdaFleet.ts` it uses `vpc.fromLookup()` and needs a `vpcId`. But because we retrieve this from the parameter store, CDK placed here tokens in order to retrieve the value during the deployment.\nHowever, `synth` and `test` need an actual value. That is why we fill it with dummy values.\nMore information: https://docs.aws.amazon.com/cdk/latest/guide/tokens.html",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 1
+        },
+        "end": {
+          "line": 27,
+          "character": 41
         }
       }
     },

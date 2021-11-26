@@ -1,4 +1,13 @@
 import { AwsCdkTypeScriptApp, NodePackageManager } from 'projen';
+import { getNetworkingContext } from './src/utils/getContext';
+
+let context = {};
+
+getNetworkingContext().then(value => {
+  context = value;
+}).catch(error => console.error(error));
+
+
 const project = new AwsCdkTypeScriptApp( {
   cdkVersion: '1.132.0',
   defaultReleaseBranch: 'master',
@@ -8,6 +17,7 @@ const project = new AwsCdkTypeScriptApp( {
   cdkDependencies: ['@aws-cdk/core',
     '@aws-cdk/aws-codepipeline',
     '@aws-cdk/aws-lambda',
+    '@aws-cdk/aws-apigateway',
     '@aws-cdk/aws-codecommit',
     '@aws-cdk/aws-codebuild',
     '@aws-cdk/aws-events-targets',
@@ -16,11 +26,12 @@ const project = new AwsCdkTypeScriptApp( {
     '@aws-cdk/aws-ec2'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
   disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
   github: false, // Because we are not on github
-  deps: ['dotenv', 'esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog'], /* Runtime dependencies of this module. */
+  deps: ['dotenv', 'esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter'], /* Runtime dependencies of this module. */
   description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
   devDeps: ['@tsconfig/recommended', 'husky', 'aws-cdk-local', 'aws-sdk-client-mock'], /* Build dependencies for this module. */
   gitignore: ['.env', 'dist', '.DS_Store'],
-  // context: { vpcId: 'vpc-0cf0f347d9419f482', privateSubnet1: 'subnet-000002e57b2221a06', privateSubnet2: 'subnet-000002e57b2221a07' },
+  context,
+  jestOptions: { jestConfig: { testTimeout: 1000 * 60 * 10 } },
 } );
 project.setScript('local', 'cdklocal');
 project.synth();

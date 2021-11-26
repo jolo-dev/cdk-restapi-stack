@@ -1,7 +1,7 @@
 import { ServiceCatalogClient, ProvisionProductCommand, GetProvisionedProductOutputsCommand } from '@aws-sdk/client-service-catalog';
 import { SSMClient, PutParameterCommand } from '@aws-sdk/client-ssm';
 import { mockClient } from 'aws-sdk-client-mock';
-import { ServiceCatalogProduct } from '../src/ServiceCatalog';
+import { ServiceCatalogProduct } from '../src/ServiceCatalogProduct';
 
 const scMock = mockClient(ServiceCatalogClient);
 const scProduct = new ServiceCatalogProduct({ productId: 'testProductId', provisioningArtifactId: 'testArtifactId', region: 'region' });

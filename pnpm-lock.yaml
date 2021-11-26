@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@aws-cdk/assert': ^1.132.0
+  '@aws-cdk/aws-apigateway': ^1.132.0
   '@aws-cdk/aws-codebuild': ^1.132.0
   '@aws-cdk/aws-codecommit': ^1.132.0
   '@aws-cdk/aws-codepipeline': ^1.132.0
@@ -13,6 +14,7 @@ specifiers:
   '@aws-cdk/core': ^1.132.0
   '@aws-sdk/client-service-catalog': ^3.41.0
   '@aws-sdk/client-ssm': ^3.42.0
+  '@aws-sdk/util-waiter': ^3.40.0
   '@tsconfig/recommended': ^1.0.1
   '@types/jest': ^27.0.2
   '@types/node': ^14.17.0
@@ -39,6 +41,7 @@ specifiers:
 
 dependencies:
   '@aws-cdk/assert': 1.132.0_jest@27.3.1
+  '@aws-cdk/aws-apigateway': 1.132.0
   '@aws-cdk/aws-codebuild': 1.132.0
   '@aws-cdk/aws-codecommit': 1.132.0
   '@aws-cdk/aws-codepipeline': 1.132.0
@@ -50,6 +53,7 @@ dependencies:
   '@aws-cdk/core': 1.132.0
   '@aws-sdk/client-service-catalog': 3.41.0
   '@aws-sdk/client-ssm': 3.42.0
+  '@aws-sdk/util-waiter': 3.40.0
   dotenv: 10.0.0
   esbuild: 0.13.14
 
@@ -3252,7 +3256,6 @@ packages:
     resolution: {integrity: sha512-/27vW3fo0iyb3py4vKI1BduEYmv8vv8uJgLXvI+5F0Jbnn0/E+As2wkGMa7bumhzCd0Ckv/USkAXstGYVXTYQA==}
     engines: {node: '>= 12.7.0'}
     dev: false
-    bundledDependencies: []
 
   /conventional-changelog-config-spec/2.1.0:
     resolution: {integrity: sha512-IpVePh16EbbB02V+UA+HQnnPIohgXvJRxHcS5+Uwk4AT5LjzCZJm5sp/yqs5C6KZJ1jMsV4paEV13BN1pvDuxQ==}
