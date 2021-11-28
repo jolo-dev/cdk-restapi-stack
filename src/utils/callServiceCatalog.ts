@@ -19,13 +19,13 @@ export type VPCInputParams = {
   Value: string | number;
 }
 
-export enum PrivateSubnetValue {
+export enum PrivateSubnetKeyValue {
   VPC_ID = 'VPCId',
   AVAILABILITY_ZONE = 'AvailabilityZone'
 }
 
 export type PrivateSubnetParams = {
-  Key: PrivateSubnetValue;
+  Key: PrivateSubnetKeyValue;
   Value: string | number;
 }
 
@@ -53,12 +53,12 @@ async <T extends ProductValue.VPC | ProductValue.PRIVATE_SUBNET>
     }
 
     const productId = getServiceCatalogParams.Parameters.filter(value => {
-      if (!value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
+      if (!value.Value && value.Name?.includes('product-id')) throw new Error(`Error when retrieving value for ${value.Name}`);
       return value.Name === `/servicecatalog/${product}/product-id`;
     })[0].Value!;
 
     const provisioningArtifactId = getServiceCatalogParams.Parameters.filter(value => {
-      if (!value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
+      if (!value.Value && value.Name?.includes('provisioning-artifact-id')) throw new Error(`Error when retrieving value for ${value.Name}`);
       return value.Name === `/servicecatalog/${product}/provisioning-artifact-id`;
     })[0].Value!;
 

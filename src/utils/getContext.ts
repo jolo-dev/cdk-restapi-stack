@@ -1,4 +1,4 @@
-import { callServiceCatalogProduct, ProductValue, PrivateSubnetValue, VpcInputKeyValue } from './callServiceCatalog';
+import { callServiceCatalogProduct, ProductValue, PrivateSubnetKeyValue, VpcInputKeyValue } from './callServiceCatalog';
 import { getSsmParams } from './getSsmParams';
 
 export const toCamelCase = (str: string) => {
@@ -44,8 +44,8 @@ export const getNetworkingContext = async () => {
       } else {
         if (vpcId !== '') {
           value = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET,
-            [{ Key: PrivateSubnetValue.VPC_ID, Value: vpcId },
-              { Key: PrivateSubnetValue.AVAILABILITY_ZONE, Value: availabilityZone[(countSubnets - 1) % 3] }],
+            [{ Key: PrivateSubnetKeyValue.VPC_ID, Value: vpcId },
+              { Key: PrivateSubnetKeyValue.AVAILABILITY_ZONE, Value: availabilityZone[(countSubnets - 1) % 3] }],
             countSubnets++);
         }
       }

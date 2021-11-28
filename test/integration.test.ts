@@ -1,6 +1,6 @@
 import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
 import { ServiceCatalogProduct } from '../src/stacks/lambda-fleet/ServiceCatalogProduct';
-import { callServiceCatalogProduct, PrivateSubnetValue, ProductValue } from '../src/utils/callServiceCatalog';
+import { callServiceCatalogProduct, PrivateSubnetKeyValue, ProductValue } from '../src/utils/callServiceCatalog';
 describe('integration', () => {
   const region = 'eu-west-1';
   const ssmClient = new SSMClient({ region });
@@ -53,7 +53,7 @@ describe('integration', () => {
 
 
   it.skip('get all the parameters', async () => {
-    const product = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET, [{ Key: PrivateSubnetValue.VPC_ID, Value: 'bla' }, { Key: PrivateSubnetValue.VPC_ID, Value: 'asd' }]);
+    const product = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET, [{ Key: PrivateSubnetKeyValue.VPC_ID, Value: 'bla' }, { Key: PrivateSubnetKeyValue.VPC_ID, Value: 'asd' }]);
     expect(product).not.toBeUndefined();
     expect(product).not.toBe('');
     expect(product).not.toBeNull();
