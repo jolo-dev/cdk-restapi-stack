@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
-import { LambdaFleetStack } from '../src/stacks/lambdaFleet';
+import { LambdaFleetStack } from '../../src/stacks/lambda-fleet/Stack';
 describe('lambdaFleetStack', () => {
 
   const app = new App({

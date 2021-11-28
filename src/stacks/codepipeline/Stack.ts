@@ -2,8 +2,8 @@ import { Repository } from '@aws-cdk/aws-codecommit';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
 import { CodeBuildProject } from '@aws-cdk/aws-events-targets';
 import { NestedStack, Construct, NestedStackProps } from '@aws-cdk/core';
-import { Action } from '../Action';
-import { Source } from '../Source';
+import { Action } from './Action';
+import { Source } from './Source';
 
 export class FourDPipelineStack extends NestedStack {
 

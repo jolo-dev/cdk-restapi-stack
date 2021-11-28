@@ -1,6 +1,6 @@
 import { SSMClient, GetParametersCommand } from '@aws-sdk/client-ssm';
 import { mockClient } from 'aws-sdk-client-mock';
-import { getSsmParams } from '../src/utils/getSsmParams';
+import { getSsmParams } from '../../src/utils/getSsmParams';
 
 const ssmClientMock = mockClient(SSMClient);
 describe('getSsmParams', () => {

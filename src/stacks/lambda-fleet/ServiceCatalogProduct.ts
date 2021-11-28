@@ -79,6 +79,8 @@ export class ServiceCatalogProduct {
       return { state: WaiterState.SUCCESS, reason };
     } catch (exception) {
       console.log(exception);
+      const e = exception as Error;
+      reason = e.message;
     }
     return { state: WaiterState.ABORTED, reason };
   };

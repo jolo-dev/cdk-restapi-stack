@@ -1,5 +1,5 @@
 import { ProvisioningParameter } from '@aws-sdk/client-service-catalog';
-import { ServiceCatalogProduct } from '../ServiceCatalogProduct';
+import { ServiceCatalogProduct } from '../stacks/lambda-fleet/ServiceCatalogProduct';
 import { getSsmParams } from './getSsmParams';
 
 export enum ProductValue {
@@ -14,7 +14,7 @@ export enum VpcInputKeyValue {
   VPC_FLOWLOGS = 'VPCFlowLogs'
 }
 
-type VPCInputParams = {
+export type VPCInputParams = {
   Key: VpcInputKeyValue;
   Value: string | number;
 }
@@ -24,7 +24,7 @@ export enum PrivateSubnetValue {
   AVAILABILITY_ZONE = 'AvailabilityZone'
 }
 
-type PrivateSubnetParams = {
+export type PrivateSubnetParams = {
   Key: PrivateSubnetValue;
   Value: string | number;
 }
@@ -44,19 +44,21 @@ export const callServiceCatalogProduct =
 async <T extends ProductValue.VPC | ProductValue.PRIVATE_SUBNET>
 (product: T, provisionParameters: ProvisionParameters<T>, count?: number): Promise<string> => {
   try {
-    const getServiceCatalogParams = await getSsmParams({ Names: [`/servicecatalog/${product}/product-id`, `/servicecatalog/${product}/provisioning-artifact-id`] });
+    const getServiceCatalogParams = await getSsmParams(
+      { Names: [`/servicecatalog/${product}/product-id`, `/servicecatalog/${product}/provisioning-artifact-id`] },
+    );
 
     if (!getServiceCatalogParams.InvalidParameters || getServiceCatalogParams.Parameters === undefined) {
       throw new Error(`Error when fetching Parameters following product: ${product}`);
     }
 
     const productId = getServiceCatalogParams.Parameters.filter(value => {
-      if (!value.Name || !value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
+      if (!value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
       return value.Name === `/servicecatalog/${product}/product-id`;
     })[0].Value!;
 
     const provisioningArtifactId = getServiceCatalogParams.Parameters.filter(value => {
-      if (!value.Name || !value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
+      if (!value.Value) throw new Error(`Error when retrieving value for ${value.Name}`);
       return value.Name === `/servicecatalog/${product}/provisioning-artifact-id`;
     })[0].Value!;
 
@@ -76,6 +78,7 @@ async <T extends ProductValue.VPC | ProductValue.PRIVATE_SUBNET>
     throw new Error(`Error because getting ressource for ${product}. Output value is undefined`);
   } catch (error) {
     console.error(error);
-    throw new Error();
+    const e = error as Error;
+    throw new Error(e.message);
   }
 };
