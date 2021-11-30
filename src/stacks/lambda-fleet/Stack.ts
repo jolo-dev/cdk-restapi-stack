@@ -1,10 +1,10 @@
-import fs from 'fs';
-import { RestApi, EndpointType, LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { Vpc, PrivateSubnet, IVpc, ISubnet } from '@aws-cdk/aws-ec2';
-import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
 import { StringParameter } from '@aws-cdk/aws-ssm';
-import { NestedStack, Construct, CfnOutput } from '@aws-cdk/core';
-import { build } from 'esbuild';
+import { NestedStack, Construct, Stack } from '@aws-cdk/core';
+import { LambdaFleet, Method } from './LambdaFleet';
+
+import { PrivateApiGateway } from './PrivateApiGateway';
+import { VpcEndpoint, VpcEndpointServiceName } from './VpcEndpoint';
 
 
 export class LambdaFleetStack extends NestedStack {
@@ -18,90 +18,52 @@ export class LambdaFleetStack extends NestedStack {
 
     // Networking
     let vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
-
-    this.vpc = this.getVpc(vpcId);
-
     let subnet1 = this.node.tryGetContext('privateSubnet1') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-1/id');
     let subnet2 = this.node.tryGetContext('privateSubnet2') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-2/id');
-    this.subnets = [this.getPrivateSubnet(subnet1), this.getPrivateSubnet(subnet2)];
 
-    // API Gateway
-    const api = new RestApi(this, 'api', {
-      description: 'Gateway for Adidas 4d',
-      deployOptions: {
-        stageName: 'dev',
-      },
-      endpointConfiguration: {
-        types: [EndpointType.PRIVATE],
+    this.vpc = this.getVpc(vpcId);
+    this.subnets = [this.getPrivateSubnet(subnet1), this.getPrivateSubnet(subnet2)];
+    this.lambdaFolder = lambdaFolder;
+
+    const methods = [Method.GET, Method.POST, Method.PUT, Method.DELETE];
+    const region = Stack.of(this).region;
+
+    const apiGatewayVpcEndpoint = new VpcEndpoint(scope, 'ApiGatewayEndpoint', {
+      region,
+      serviceName: 'ApiGatewayVpcEndpoint',
+      vpc: this.vpc,
+      service: {
+        name: `com.amazonaws.${region}.${VpcEndpointServiceName.EXECUTE_API}`,
+        port: 443,
       },
     });
 
-    // 👇 create an Output for the API URL
-    new CfnOutput(this, 'apiUrl', { value: api.url });
+    const dynamoDbEndpoint = new VpcEndpoint(scope, 'DynamoDbEndpoint', {
+      region,
+      serviceName: 'DynamoDbEndpoint',
+      vpc: this.vpc,
+      service: {
+        name: `com.amazonaws.${region}.${VpcEndpointServiceName.DYNAMO_DB}`,
+        port: 443,
+      },
+    });
+
+    const api = new PrivateApiGateway(scope, 'PrivateApiGateway', {
+      region, vpsEndpoint: [apiGatewayVpcEndpoint, dynamoDbEndpoint],
+    });
 
     // Bundling all the Lambdas
-    this.lambdaFolder = lambdaFolder;
-    void this.bundlingLambdas();
-    const lambdas = this.getAllLambdasFromFolder(`${this.lambdaFolder}/dist`);
-
-    lambdas.forEach(lambda => {
-      const lambdaName = lambda.replace('.js', '');
-      let lambdaFunction = new Function(this, `${lambdaName}Function`, {
-        runtime: Runtime.NODEJS_14_X,
-        handler: `${lambdaName}.handler`,
-        code: Code.fromAsset(`${this.lambdaFolder}/dist`),
-        tracing: Tracing.ACTIVE,
+    methods.forEach(async (method) => {
+      new LambdaFleet(scope, `${method.toUpperCase()}LambdaFleet`, {
+        api,
+        lambdaFolder: this.lambdaFolder,
+        method,
+        subnets: this.subnets,
         vpc: this.vpc,
-        vpcSubnets: {
-          subnets: this.subnets,
-        },
       });
-      let restEndpoint = api.root.addResource(lambdaName);
-      restEndpoint.addMethod('GET', new LambdaIntegration(lambdaFunction, { proxy: true }));
     });
   }
 
-  /**
-   * Bundling Typescript Lambdas with esbuild to Node 14.7 code
-   */
-  public async bundlingLambdas() {
-    const lambdas = this.getAllLambdasFromFolder(`${this.lambdaFolder}/src`);
-    try {
-      if (lambdas.length > 0) {
-        lambdas.forEach(async (lambda) => {
-
-          await build({
-            bundle: true,
-            minify: true,
-            platform: 'node',
-            target: 'node14.7',
-            outdir: `${this.lambdaFolder}/dist`,
-            entryPoints: [`${this.lambdaFolder}/src/${lambda}`],
-          });
-
-        });
-      } else {
-        throw new Error(`Error while bundling Lambda in: ${this.lambdaFolder}`);
-      }
-    } catch (error) {
-      console.error(error);
-      throw new Error;
-    };
-  }
-
-  /**
-   * Utility Method to read the content of the folder
-   * @param folder string to read the content of the given director
-   * @returns string[]
-   */
-  public getAllLambdasFromFolder(folder: string) {
-    try {
-      return fs.readdirSync(folder);
-    } catch (error) {
-      console.error(error);
-      throw Error(`Cannot find folder: ${folder}`);
-    }
-  }
 
   public getVpc(vpcId: string) {
     return Vpc.fromLookup(this, vpcId, { vpcId });

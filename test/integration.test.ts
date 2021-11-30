@@ -52,8 +52,11 @@ describe('integration', () => {
   });
 
 
-  it.skip('get all the parameters', async () => {
-    const product = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET, [{ Key: PrivateSubnetKeyValue.VPC_ID, Value: 'bla' }, { Key: PrivateSubnetKeyValue.VPC_ID, Value: 'asd' }]);
+  it.skip('should provision a private subnet ', async () => {
+    const product = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET, [
+      { Key: PrivateSubnetKeyValue.VPC_ID, Value: 'vpc-043323e1114864a11' },
+      { Key: PrivateSubnetKeyValue.AVAILABILITY_ZONE, Value: 'eu-west-1c' },
+    ], 3);
     expect(product).not.toBeUndefined();
     expect(product).not.toBe('');
     expect(product).not.toBeNull();

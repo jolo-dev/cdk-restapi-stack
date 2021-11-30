@@ -1,16 +1,7 @@
-import fs from 'fs';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
 import { LambdaFleetStack } from '../../src/stacks/lambda-fleet/Stack';
-describe('lambdaFleetStack', () => {
-
-  const app = new App({
-    context: {
-      vpcId: 'vpc-123456789',
-      privateSubnet1: 'private-subnet-1',
-      privateSubnet2: 'private-subnet-2',
-    },
-  });
+describe('lambdaFleet', () => {
 
   const env = {
     account: '123456789010',
@@ -35,38 +26,8 @@ describe('lambdaFleetStack', () => {
     }
   }
 
-  const ps = new ParentStack(app, 'ParentTest', 'lambdas', { env });
-  const lambdaFleetStack = ps.getLambdaFleetStack();
-
-  beforeAll(() => {
-    if (fs.existsSync(`test/${ps.getLambdaFolder()}/dist`)) {
-      fs.rmSync(`test/${ps.getLambdaFolder()}/dist`, { recursive: true });
-    }
-  });
-
-  it('should bundle the code', async () => {
-    await lambdaFleetStack.bundlingLambdas();
-    // Need to put a timeout otherwise race condition.
-    setTimeout(() => {
-      expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/dist`))
-        .toEqual(['assets.js']);
-    }, 3000);
-  });
-  it('should return the folder of the built Lambdas', () => {
-    expect(lambdaFleetStack.getAllLambdasFromFolder(`${ps.getLambdaFolder()}/src`))
-      .toEqual(['assets.ts']);
-  });
-
-  it('should throw when trying to bundle the folder', async () => {
-    const spy = jest.spyOn(lambdaFleetStack, 'getAllLambdasFromFolder').mockReturnValue([]);
-    await expect(lambdaFleetStack.bundlingLambdas()).rejects.toThrowError();
-    spy.mockRestore();
-  });
-
-  it('should throw when folder not exists', () => {
-    expect(() => lambdaFleetStack.getAllLambdasFromFolder('foo'))
-      .toThrowError('Cannot find folder: foo');
-  });
+  // const ps = new ParentStack(app, 'ParentTest', 'lambdas', { env });
+  // const lambdaFleetStack = ps.getLambdaFleetStack();
 
   it('should stub SSM Parameter Store when no context', async () => {
     const noContext = new App();

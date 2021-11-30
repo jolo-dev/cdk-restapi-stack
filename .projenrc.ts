@@ -5,7 +5,7 @@ import { getNetworkingContext } from './src/utils/getContext';
 const getOptions = async() => {
   const context = await getNetworkingContext();
   return {
-    cdkVersion: '1.132.0',
+    cdkVersion: '1.134.0',
     defaultReleaseBranch: 'master',
     name: '4dt-api-node',
     packageManager: NodePackageManager.PNPM,
@@ -19,7 +19,8 @@ const getOptions = async() => {
       '@aws-cdk/aws-events-targets',
       '@aws-cdk/aws-codepipeline-actions',
       '@aws-cdk/aws-ssm',
-      '@aws-cdk/aws-ec2'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
+      '@aws-cdk/aws-ec2',
+      '@aws-cdk/aws-iam'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
     deps: ['dotenv', 'esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter'], /* Runtime dependencies of this module. */

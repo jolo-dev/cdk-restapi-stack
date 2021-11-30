@@ -2,7 +2,83 @@
 
 exports[`InfraStack 1`] = `
 Object {
+  "Outputs": Object {
+    "ApiGatewayEndpointCfnvpcEndpointReferenceB7955460": Object {
+      "Description": "VPCEndpoint with Service [object Object] for VPC: vpc-12345",
+      "Export": Object {
+        "Name": "VPCEndpoint[object Object]",
+      },
+      "Value": Object {
+        "Ref": "ApiGatewayEndpoint7D908680",
+      },
+    },
+    "DynamoDbEndpointCfnvpcEndpointReference1B43EEBC": Object {
+      "Description": "VPCEndpoint with Service [object Object] for VPC: vpc-12345",
+      "Export": Object {
+        "Name": "VPCEndpoint[object Object]",
+      },
+      "Value": Object {
+        "Ref": "DynamoDbEndpointBF7E74F2",
+      },
+    },
+    "PrivateApiGatewayCfnApiUrl952172FA": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "PrivateApiGateway618B725A",
+            },
+            ".execute-api.eu-west-1.",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "PrivateApiGatewayEndpointA74AF0A0": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "PrivateApiGateway618B725A",
+            },
+            ".execute-api.eu-west-1.",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
   "Parameters": Object {
+    "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aArtifactHash9770C79A": Object {
+      "Description": "Artifact hash for asset \\"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\\"",
+      "Type": "String",
+    },
+    "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aS3Bucket2C4CA032": Object {
+      "Description": "S3 bucket for asset \\"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\\"",
+      "Type": "String",
+    },
+    "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aS3VersionKeyF0C529DD": Object {
+      "Description": "S3 key for asset version \\"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\\"",
+      "Type": "String",
+    },
     "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615ArtifactHashD944D272": Object {
       "Description": "Artifact hash for asset \\"56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615\\"",
       "Type": "String",
@@ -27,20 +103,184 @@ Object {
       "Description": "S3 key for asset version \\"b018189d0aa33ed6ed6e4851dcf06c32d460f85d7ce6688c77987352a4afa5ca\\"",
       "Type": "String",
     },
-    "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6ArtifactHash83014A1D": Object {
-      "Description": "Artifact hash for asset \\"ff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6\\"",
-      "Type": "String",
-    },
-    "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6S3BucketBD08C9D3": Object {
-      "Description": "S3 bucket for asset \\"ff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6\\"",
-      "Type": "String",
-    },
-    "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6S3VersionKey114817F5": Object {
-      "Description": "S3 key for asset version \\"ff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6\\"",
-      "Type": "String",
-    },
   },
   "Resources": Object {
+    "ApiGatewayEndpoint7D908680": Object {
+      "Properties": Object {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "ApiGatewayEndpointSecurityGroup23EEE7E3",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.eu-west-1.execute-api",
+        "SubnetIds": Array [
+          "p-12345",
+          "p-67890",
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "ApiGatewayEndpointSecurityGroup23EEE7E3": Object {
+      "Properties": Object {
+        "GroupDescription": "test-stack/ApiGatewayEndpoint/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "1.2.3.4/5",
+            "Description": "from 1.2.3.4/5:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ApiGatewayEndpointVPCEndpointApiGatewayVpcEndpoint20A36851": Object {
+      "Properties": Object {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "ApiGatewayEndpointVPCEndpointApiGatewayVpcEndpointSecurityGroupED5F84B9",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.eu-west-1.execute-api",
+        "SubnetIds": Array [
+          "p-12345",
+          "p-67890",
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "ApiGatewayEndpointVPCEndpointApiGatewayVpcEndpointSecurityGroupED5F84B9": Object {
+      "Properties": Object {
+        "GroupDescription": "test-stack/ApiGatewayEndpoint/VPCEndpointApiGatewayVpcEndpoint/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "1.2.3.4/5",
+            "Description": "from 1.2.3.4/5:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DynamoDbEndpointBF7E74F2": Object {
+      "Properties": Object {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "DynamoDbEndpointSecurityGroup7D943F7B",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.eu-west-1.dynamodb",
+        "SubnetIds": Array [
+          "p-12345",
+          "p-67890",
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "DynamoDbEndpointSecurityGroup7D943F7B": Object {
+      "Properties": Object {
+        "GroupDescription": "test-stack/DynamoDbEndpoint/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "1.2.3.4/5",
+            "Description": "from 1.2.3.4/5:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DynamoDbEndpointVPCEndpointDynamoDbEndpointC80CC56B": Object {
+      "Properties": Object {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "DynamoDbEndpointVPCEndpointDynamoDbEndpointSecurityGroupB197E021",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.eu-west-1.dynamodb",
+        "SubnetIds": Array [
+          "p-12345",
+          "p-67890",
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "DynamoDbEndpointVPCEndpointDynamoDbEndpointSecurityGroupB197E021": Object {
+      "Properties": Object {
+        "GroupDescription": "test-stack/DynamoDbEndpoint/VPCEndpointDynamoDbEndpoint/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "1.2.3.4/5",
+            "Description": "from 1.2.3.4/5:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
     "FourDPipelineStackNestedStackFourDPipelineStackNestedStackResourceCC0A20CE": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
@@ -93,14 +333,6 @@ Object {
     "LambdaFleetStackNestedStackLambdaFleetStackNestedStackResource438355F9": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
-        "Parameters": Object {
-          "referencetoteststackAssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3BucketFD256717Ref": Object {
-            "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3BucketBC8F7C7A",
-          },
-          "referencetoteststackAssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey41992936Ref": Object {
-            "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
-          },
-        },
         "TemplateURL": Object {
           "Fn::Join": Array [
             "",
@@ -111,7 +343,7 @@ Object {
               },
               "/",
               Object {
-                "Ref": "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6S3BucketBD08C9D3",
+                "Ref": "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aS3Bucket2C4CA032",
               },
               "/",
               Object {
@@ -121,7 +353,7 @@ Object {
                     "Fn::Split": Array [
                       "||",
                       Object {
-                        "Ref": "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6S3VersionKey114817F5",
+                        "Ref": "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aS3VersionKeyF0C529DD",
                       },
                     ],
                   },
@@ -134,7 +366,7 @@ Object {
                     "Fn::Split": Array [
                       "||",
                       Object {
-                        "Ref": "AssetParametersff86a9ccac1270080e7b2640ec2bb1006c76c99b6efdf23f3293931f053e93f6S3VersionKey114817F5",
+                        "Ref": "AssetParameters44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8aS3VersionKeyF0C529DD",
                       },
                     ],
                   },
@@ -146,6 +378,384 @@ Object {
       },
       "Type": "AWS::CloudFormation::Stack",
       "UpdateReplacePolicy": "Delete",
+    },
+    "PrivateApiGateway618B725A": Object {
+      "Properties": Object {
+        "EndpointConfiguration": Object {
+          "Types": Array [
+            "PRIVATE",
+          ],
+          "VpcEndpointIds": Array [
+            Object {
+              "Ref": "ApiGatewayEndpoint7D908680",
+            },
+            Object {
+              "Ref": "DynamoDbEndpointBF7E74F2",
+            },
+          ],
+        },
+        "Name": "PrivateApiGateway",
+        "Policy": Object {
+          "Statement": Array [
+            Object {
+              "Action": "execute-api:Invoke",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": "*",
+              },
+              "Resource": "execute-api:/*/*/*",
+              "Sid": "apiGatewayRole",
+            },
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": "*",
+              },
+              "Resource": "lambda.amazonaws.com",
+              "Sid": "apiGatewayRole",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "PrivateApiGatewayAccountE06D5DCF": Object {
+      "DependsOn": Array [
+        "PrivateApiGateway618B725A",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGatewayCloudWatchRoleDCA8DC6A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "PrivateApiGatewayCloudWatchRoleDCA8DC6A": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PrivateApiGatewayDeployment8BFAB2AAf2a11e16caeec05f438c47d2698b4eee": Object {
+      "DependsOn": Array [
+        "PrivateApiGatewayassetsgetD87638FB",
+        "PrivateApiGatewayassets071E3A6E",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "PrivateApiGatewayDeploymentStageeuwest14DE26235": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AAf2a11e16caeec05f438c47d2698b4eee",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+        "StageName": "eu-west-1",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "PrivateApiGatewayassets071E3A6E": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "assets",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayassetsgetApiPermissionTestteststackPrivateApiGatewayF839E401GETassetsC70B9A8A": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "getassetsFunction4C7467A3",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/GET/assets",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayassetsgetApiPermissionteststackPrivateApiGatewayF839E401GETassets86C68BC9": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "getassetsFunction4C7467A3",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+              },
+              "/GET/assets",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayassetsgetD87638FB": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "getassetsFunction4C7467A3",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayassets071E3A6E",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "getassetsFunction4C7467A3": Object {
+      "DependsOn": Array [
+        "getassetsFunctionServiceRoleDefaultPolicyD5B11438",
+        "getassetsFunctionServiceRole0EB615B4",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3BucketBC8F7C7A",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "assets.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "getassetsFunctionServiceRole0EB615B4",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "getassetsFunctionSecurityGroup74226B83",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "getassetsFunctionSecurityGroup74226B83": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function teststackgetassetsFunctionC1B94EE3",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "getassetsFunctionServiceRole0EB615B4": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "getassetsFunctionServiceRoleDefaultPolicyD5B11438": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "getassetsFunctionServiceRoleDefaultPolicyD5B11438",
+        "Roles": Array [
+          Object {
+            "Ref": "getassetsFunctionServiceRole0EB615B4",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
     },
   },
 }
