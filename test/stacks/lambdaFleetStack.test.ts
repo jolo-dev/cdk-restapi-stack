@@ -26,9 +26,6 @@ describe('lambdaFleet', () => {
     }
   }
 
-  // const ps = new ParentStack(app, 'ParentTest', 'lambdas', { env });
-  // const lambdaFleetStack = ps.getLambdaFleetStack();
-
   it('should stub SSM Parameter Store when no context', async () => {
     const noContext = new App();
     const spyStringparameter =

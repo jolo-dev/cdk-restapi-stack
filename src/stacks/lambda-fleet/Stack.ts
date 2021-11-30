@@ -49,18 +49,19 @@ export class LambdaFleetStack extends NestedStack {
     });
 
     const api = new PrivateApiGateway(scope, 'PrivateApiGateway', {
-      region, vpsEndpoint: [apiGatewayVpcEndpoint, dynamoDbEndpoint],
+      region, vpcEndpoint: [apiGatewayVpcEndpoint, dynamoDbEndpoint],
     });
 
     // Bundling all the Lambdas
     methods.forEach(async (method) => {
-      new LambdaFleet(scope, `${method.toUpperCase()}LambdaFleet`, {
+      const lambda = new LambdaFleet(scope, `${method.toUpperCase()}LambdaFleet`, {
         api,
         lambdaFolder: this.lambdaFolder,
         method,
         subnets: this.subnets,
         vpc: this.vpc,
       });
+      await lambda.createLambdaFunctions();
     });
   }
 

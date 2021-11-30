@@ -23,29 +23,39 @@ interface LambdaFleetProps {
 
 export class LambdaFleet extends Construct {
   private lambdaFolder: string;
+  private api: PrivateApiGateway;
+  private method: Method;
+  private vpc: IVpc;
+  private subnets: ISubnet[];
 
   constructor(scope: Construct, id: string, props: LambdaFleetProps) {
     super(scope, id);
     this.lambdaFolder = props.lambdaFolder;
+    this.api = props.api;
+    this.method = props.method;
+    this.vpc = props.vpc;
+    this.subnets = props.subnets;
+    void this.bundlingLambdas(this.method);
+  }
 
-    void this.bundlingLambdas(props.method);
-    const lambdaFolder = `${this.lambdaFolder}/dist/${props.method}`;
+  public async createLambdaFunctions() {
+    const lambdaFolder = `${this.lambdaFolder}/dist/${this.method}`;
     if (fs.existsSync(lambdaFolder)) {
       const lambdas = this.getAllLambdasFromFolder(lambdaFolder);
       lambdas.forEach(lambda => {
         const lambdaName = lambda.replace('.js', '');
-        const lambdaFunction = new Function(scope, `${props.method}${lambdaName}Function`, {
+        const lambdaFunction = new Function(this, `${this.method}${lambdaName}Function`, {
           runtime: Runtime.NODEJS_14_X,
           handler: `${lambdaName}.handler`,
           code: Code.fromAsset(lambdaFolder),
           tracing: Tracing.ACTIVE,
-          vpc: props.vpc,
+          vpc: this.vpc,
           vpcSubnets: {
-            subnets: props.subnets,
+            subnets: this.subnets,
           },
         });
-        const restEndpoint = props.api.root.addResource(lambdaName);
-        restEndpoint.addMethod(props.method, new LambdaIntegration(lambdaFunction, { proxy: true }));
+        const restEndpoint = this.api.root.addResource(lambdaName);
+        restEndpoint.addMethod(this.method, new LambdaIntegration(lambdaFunction, { proxy: false }));
       });
     }
   }

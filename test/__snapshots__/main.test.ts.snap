@@ -4,18 +4,18 @@ exports[`InfraStack 1`] = `
 Object {
   "Outputs": Object {
     "ApiGatewayEndpointCfnvpcEndpointReferenceB7955460": Object {
-      "Description": "VPCEndpoint with Service [object Object] for VPC: vpc-12345",
+      "Description": "VPCEndpoint with Service ApiGatewayVpcEndpoint for VPC: vpc-12345",
       "Export": Object {
-        "Name": "VPCEndpoint[object Object]",
+        "Name": "VPCEndpointApiGatewayVpcEndpoint",
       },
       "Value": Object {
         "Ref": "ApiGatewayEndpoint7D908680",
       },
     },
     "DynamoDbEndpointCfnvpcEndpointReference1B43EEBC": Object {
-      "Description": "VPCEndpoint with Service [object Object] for VPC: vpc-12345",
+      "Description": "VPCEndpoint with Service DynamoDbEndpoint for VPC: vpc-12345",
       "Export": Object {
-        "Name": "VPCEndpoint[object Object]",
+        "Name": "VPCEndpointDynamoDbEndpoint",
       },
       "Value": Object {
         "Ref": "DynamoDbEndpointBF7E74F2",
@@ -330,6 +330,159 @@ Object {
       "Type": "AWS::CloudFormation::Stack",
       "UpdateReplacePolicy": "Delete",
     },
+    "GETLambdaFleetgetassetsFunctionCB153BDE": Object {
+      "DependsOn": Array [
+        "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE",
+        "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3BucketBC8F7C7A",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "assets.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "GETLambdaFleetgetassetsFunctionSecurityGroup9099F13C",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GETLambdaFleetgetassetsFunctionSecurityGroup9099F13C": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function teststackGETLambdaFleetgetassetsFunction5E68DF26",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE",
+        "Roles": Array [
+          Object {
+            "Ref": "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
     "LambdaFleetStackNestedStackLambdaFleetStackNestedStackResource438355F9": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
@@ -466,7 +619,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AAf2a11e16caeec05f438c47d2698b4eee": Object {
+    "PrivateApiGatewayDeployment8BFAB2AA558e73bd5e64d567310db127a524bfb6": Object {
       "DependsOn": Array [
         "PrivateApiGatewayassetsgetD87638FB",
         "PrivateApiGatewayassets071E3A6E",
@@ -482,7 +635,7 @@ Object {
     "PrivateApiGatewayDeploymentStageeuwest14DE26235": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AAf2a11e16caeec05f438c47d2698b4eee",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AA558e73bd5e64d567310db127a524bfb6",
         },
         "RestApiId": Object {
           "Ref": "PrivateApiGateway618B725A",
@@ -511,7 +664,7 @@ Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "getassetsFunction4C7467A3",
+            "GETLambdaFleetgetassetsFunctionCB153BDE",
             "Arn",
           ],
         },
@@ -540,7 +693,7 @@ Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "getassetsFunction4C7467A3",
+            "GETLambdaFleetgetassetsFunctionCB153BDE",
             "Arn",
           ],
         },
@@ -574,7 +727,7 @@ Object {
         "HttpMethod": "GET",
         "Integration": Object {
           "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
+          "Type": "AWS",
           "Uri": Object {
             "Fn::Join": Array [
               "",
@@ -586,7 +739,7 @@ Object {
                 ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 Object {
                   "Fn::GetAtt": Array [
-                    "getassetsFunction4C7467A3",
+                    "GETLambdaFleetgetassetsFunctionCB153BDE",
                     "Arn",
                   ],
                 },
@@ -603,159 +756,6 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Method",
-    },
-    "getassetsFunction4C7467A3": Object {
-      "DependsOn": Array [
-        "getassetsFunctionServiceRoleDefaultPolicyD5B11438",
-        "getassetsFunctionServiceRole0EB615B4",
-      ],
-      "Properties": Object {
-        "Code": Object {
-          "S3Bucket": Object {
-            "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3BucketBC8F7C7A",
-          },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters56ff781865cb28e850ba89eb90a0aa9b48f31ad4ff3bf2231db34f87cbb01615S3VersionKey4A69B7BE",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
-        },
-        "Handler": "assets.handler",
-        "Role": Object {
-          "Fn::GetAtt": Array [
-            "getassetsFunctionServiceRole0EB615B4",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs14.x",
-        "TracingConfig": Object {
-          "Mode": "Active",
-        },
-        "VpcConfig": Object {
-          "SecurityGroupIds": Array [
-            Object {
-              "Fn::GetAtt": Array [
-                "getassetsFunctionSecurityGroup74226B83",
-                "GroupId",
-              ],
-            },
-          ],
-          "SubnetIds": Array [
-            "private-subnet-1",
-            "private-subnet-2",
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "getassetsFunctionSecurityGroup74226B83": Object {
-      "Properties": Object {
-        "GroupDescription": "Automatic security group for Lambda Function teststackgetassetsFunctionC1B94EE3",
-        "SecurityGroupEgress": Array [
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
-          },
-        ],
-        "VpcId": "vpc-12345",
-      },
-      "Type": "AWS::EC2::SecurityGroup",
-    },
-    "getassetsFunctionServiceRole0EB615B4": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-              ],
-            ],
-          },
-          Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "getassetsFunctionServiceRoleDefaultPolicyD5B11438": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
-                "xray:PutTraceSegments",
-                "xray:PutTelemetryRecords",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "getassetsFunctionServiceRoleDefaultPolicyD5B11438",
-        "Roles": Array [
-          Object {
-            "Ref": "getassetsFunctionServiceRole0EB615B4",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
     },
   },
 }

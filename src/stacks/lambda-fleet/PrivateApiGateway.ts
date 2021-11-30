@@ -5,7 +5,7 @@ import { CfnOutput, Construct } from '@aws-cdk/core';
 
 interface PrivateApiGatewayProps {
   description?: string;
-  vpsEndpoint: IVpcEndpoint[];
+  vpcEndpoint: IVpcEndpoint[];
   region: string;
 }
 
@@ -39,7 +39,7 @@ export class PrivateApiGateway extends RestApi {
       },
       endpointConfiguration: {
         types: [EndpointType.PRIVATE],
-        vpcEndpoints: props.vpsEndpoint,
+        vpcEndpoints: props.vpcEndpoint,
       },
       policy: apiResourcePolicy,
     });

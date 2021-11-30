@@ -14,12 +14,11 @@ type VpcEndpointProps = InterfaceVpcEndpointProps & {
 }
 
 export class VpcEndpoint extends InterfaceVpcEndpoint {
-  readonly vpcEndpoint: InterfaceVpcEndpoint;
-  readonly props: VpcEndpointProps;
+  private props: VpcEndpointProps;
   constructor(scope: Construct, id: string, props: VpcEndpointProps) {
     super(scope, id, props);
     this.props = props;
-    this.vpcEndpoint = new InterfaceVpcEndpoint(this, `VPCEndpoint${this.props.serviceName}`, {
+    new InterfaceVpcEndpoint(this, `VPCEndpoint${this.props.serviceName}`, {
       vpc: props.vpc,
       service: props.service,
       privateDnsEnabled: true,
@@ -28,15 +27,11 @@ export class VpcEndpoint extends InterfaceVpcEndpoint {
     this.createCfnOutputs();
   }
 
-  public getVpcEndpoint() {
-    return this.vpcEndpoint;
-  }
-
   private createCfnOutputs() {
     new CfnOutput(this, 'CfnvpcEndpointReference', {
       value: this.vpcEndpointId,
-      description: `VPCEndpoint with Service ${this.props.service} for VPC: ${this.props.vpc.vpcId}`,
-      exportName: `VPCEndpoint${this.props.service}`,
+      description: `VPCEndpoint with Service ${this.props.serviceName} for VPC: ${this.props.vpc.vpcId}`,
+      exportName: `VPCEndpoint${this.props.serviceName}`,
     });
   }
 }
