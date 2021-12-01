@@ -1,12 +1,21 @@
-import { Vpc, PrivateSubnet, IVpc, ISubnet } from '@aws-cdk/aws-ec2';
+import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint } from '@aws-cdk/aws-ec2';
 import { StringParameter } from '@aws-cdk/aws-ssm';
-import { NestedStack, Construct, Stack } from '@aws-cdk/core';
+import { NestedStack, Construct, Stack, CfnOutput } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';
 
 import { PrivateApiGateway } from './PrivateApiGateway';
-import { VpcEndpoint, VpcEndpointServiceName } from './VpcEndpoint';
 
+export enum VpcEndpointServiceName {
+  EXECUTE_API = 'execute-api',
+  DYNAMO_DB = 'dynamodb',
+  S3 = 's3'
+}
 
+type VpcEndpointProps = {
+  vpcEndpointId: string;
+  serviceName: string;
+  vpcId: string;
+}
 export class LambdaFleetStack extends NestedStack {
 
   private lambdaFolder: string;
@@ -28,28 +37,41 @@ export class LambdaFleetStack extends NestedStack {
     const methods = [Method.GET, Method.POST, Method.PUT, Method.DELETE];
     const region = Stack.of(this).region;
 
-    const apiGatewayVpcEndpoint = new VpcEndpoint(scope, 'ApiGatewayEndpoint', {
-      region,
-      serviceName: 'ApiGatewayVpcEndpoint',
+
+    const apiGatewayVpcEndpoint = new InterfaceVpcEndpoint(this, 'VPCEndpointApiGW', {
       vpc: this.vpc,
       service: {
         name: `com.amazonaws.${region}.${VpcEndpointServiceName.EXECUTE_API}`,
         port: 443,
       },
+      privateDnsEnabled: true,
     });
 
-    const dynamoDbEndpoint = new VpcEndpoint(scope, 'DynamoDbEndpoint', {
-      region,
-      serviceName: 'DynamoDbEndpoint',
+    this.createCfnOutputs(
+      {
+        vpcEndpointId: apiGatewayVpcEndpoint.vpcEndpointId,
+        serviceName: VpcEndpointServiceName.EXECUTE_API,
+        vpcId: this.vpc.vpcId,
+      },
+    );
+
+    const dynamoDbEndpoint = new GatewayVpcEndpoint(this, 'VPCEndpointDynamoDb', {
       vpc: this.vpc,
       service: {
         name: `com.amazonaws.${region}.${VpcEndpointServiceName.DYNAMO_DB}`,
-        port: 443,
       },
     });
 
+    this.createCfnOutputs(
+      {
+        vpcEndpointId: dynamoDbEndpoint.vpcEndpointId,
+        serviceName: VpcEndpointServiceName.DYNAMO_DB,
+        vpcId: this.vpc.vpcId,
+      },
+    );
+
     const api = new PrivateApiGateway(scope, 'PrivateApiGateway', {
-      region, vpcEndpoint: [apiGatewayVpcEndpoint, dynamoDbEndpoint],
+      region, vpcEndpoint: [apiGatewayVpcEndpoint],
     });
 
     // Bundling all the Lambdas
@@ -72,5 +94,13 @@ export class LambdaFleetStack extends NestedStack {
 
   public getPrivateSubnet(subnetId: string) {
     return PrivateSubnet.fromSubnetId(this, subnetId, subnetId);
+  }
+
+  private createCfnOutputs<T extends VpcEndpointProps>(values: T) {
+    new CfnOutput(this, `CfnVpcEndpoint${values.serviceName}`, {
+      value: values.vpcEndpointId,
+      description: `VPCEndpoint with Service ${values.serviceName} for VPC: ${values.vpcId}`,
+      exportName: `VPCEndpoint${values.serviceName}`,
+    });
   }
 }

@@ -34,6 +34,7 @@ dist
 !/.projenrc.js
 /test-reports/
 junit.xml
+!/./jest.config.json
 /coverage/
 !/test/
 !/tsconfig.dev.json

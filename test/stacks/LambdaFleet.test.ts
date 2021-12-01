@@ -1,22 +1,15 @@
 import fs from 'fs';
-import { Vpc } from '@aws-cdk/aws-ec2';
+import { Vpc, InterfaceVpcEndpoint } from '@aws-cdk/aws-ec2';
 import { App } from '@aws-cdk/core';
 import { LambdaFleet, Method } from '../../src/stacks/lambda-fleet/LambdaFleet';
 import { PrivateApiGateway } from '../../src/stacks/lambda-fleet/PrivateApiGateway';
-import { VpcEndpoint } from '../../src/stacks/lambda-fleet/VpcEndpoint';
 
 jest.mock('../../src/stacks/lambda-fleet/PrivateApiGateway');
-
-jest.mock('../../src/stacks/lambda-fleet/VpcEndpoint', () => {
-  // Works and lets you check for constructor calls:
-  return {
-    VpcEndpoint: jest.fn(),
-  };
-});
 
 jest.mock('@aws-cdk/aws-ec2', () => {
   return {
     Vpc: jest.fn(),
+    InterfaceVpcEndpoint: jest.fn(),
   };
 });
 
@@ -42,13 +35,11 @@ describe('LambdaFleet', () => {
   const region = 'Buxtehude';
   const lambdaFolder = 'test/lambdas';
   const vpc = new Vpc(app, 'testVpc');
-  const vpcEndpoint = [new VpcEndpoint(app, 'VpcEndpoint', {
-    region,
+  const vpcEndpoint = [new InterfaceVpcEndpoint(app, 'VpcEndpoint', {
     service: {
       name: 'Foo',
       port: 443,
     },
-    serviceName: 'testendpoint',
     vpc,
   })];
   const api = new PrivateApiGateway(app, 'privateApiGatewayTest', { region, vpcEndpoint });

@@ -1,7 +1,7 @@
-version: "2.1"
+version: "3.0"
 services:
   localstack:
-    image: localstack/localstack
+    image: localstack/localstack:latest
     ports:
       - "53:53"
       - "443:443"
@@ -9,13 +9,13 @@ services:
       - "4566-4620:4566-4620"
       - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
     environment:
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY}
       - HOSTNAME_EXTERNAL=localstack
       - DEBUG=1
       - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
       - LAMBDA_EXECUTOR=docker
       - LAMBDA_NETWORK=bridge
+      - SERVICES=lambda,dynamodb
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     tmpfs:

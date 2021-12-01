@@ -1,0 +1,13 @@
+{
+    "extends": "../.eslintrc.json",
+    "root": false,
+    "settings": {
+        "import/resolver": {
+            "node": {},
+            "typescript": {
+                "project": "./tsconfig.dev.json",
+                "alwaysTryTypes": true
+            }
+        }
+    }
+}

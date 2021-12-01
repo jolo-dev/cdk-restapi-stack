@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable */
 import { Callback, Context, Handler } from 'aws-lambda';
 
 interface TriggerEvent {

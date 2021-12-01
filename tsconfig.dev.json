@@ -28,6 +28,7 @@
     ".projenrc.js",
     "src/**/*.ts",
     "test/**/*.ts",
+    "**/*.ts",
     ".projenrc.ts",
     "projenrc/**/*.ts"
   ],
