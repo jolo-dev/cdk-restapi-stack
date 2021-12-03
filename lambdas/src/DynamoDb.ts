@@ -3,12 +3,14 @@ import {
   DynamoDBClientConfig,
   CreateTableCommand,
   CreateTableCommandInput,
+  DeleteTableCommand,
+  DeleteTableCommandInput,
   PutItemCommand,
   PutItemCommandInput,
   ListTablesCommand,
   ScanCommand,
-  ScanCommandInput,
 } from '@aws-sdk/client-dynamodb';
+import { I4DProject, Project } from '../../models/Project';
 
 class DynamoDb {
   private client: DynamoDBClient;
@@ -22,26 +24,48 @@ class DynamoDb {
     return response;
   }
 
+  public async deleteTable(input: DeleteTableCommandInput) {
+    const command = new DeleteTableCommand(input);
+    const response = await this.client.send(command);
+    return response;
+  }
+
   public async listTables() {
     const command = new ListTablesCommand({});
     const response = await this.client.send(command);
     return response;
   }
 
-  public async listEntries(input: ScanCommandInput) {
+  public async listEntries(tableName: string): Promise<Project[]> {
     try {
-      const command = new ScanCommand(input);
+      const command = new ScanCommand({ TableName: tableName });
       const response = await this.client.send(command);
       if (response.Items) {
-        return response.Items;
+        return response.Items.map(attributes => {
+          const props: I4DProject = this.attributesMapper(attributes);
+          return new Project(props);
+        });
       }
-      throw new Error(`No Items in the table: ${input.TableName}`);
+      throw new Error(`No Items in the table: ${tableName}`);
     } catch (error) {
       console.log(error);
       const e = error as Error;
       throw new Error(e.message);
     }
 
+  }
+
+  // public create<Type>(c: new (props: AttributeValue[]) => Type ): Type {
+  //   return new c(props);
+  // }
+
+  public attributesMapper(attributes: any) {
+    const keys = Object.keys(attributes);
+    let result: any;
+    keys.forEach(value => {
+      result = { ...result, [value]: attributes[value].S };
+    });
+    return result;
   }
 
   public async addEntry(input:PutItemCommandInput ) {

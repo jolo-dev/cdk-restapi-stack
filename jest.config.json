@@ -1,4 +1,8 @@
 {
+  "projects": [
+    "<rootDir>/lambdas",
+    "<rootDir>/src"
+  ],
   "testMatch": [
     "**/__tests__/**/*.ts?(x)",
     "**/?(*.)+(spec|test).ts?(x)"

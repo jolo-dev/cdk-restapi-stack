@@ -14,11 +14,19 @@
       "type": "build"
     },
     {
+      "name": "@types/uuid",
+      "type": "build"
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
+      "type": "build"
+    },
+    {
+      "name": "aws-cdk-local",
       "type": "build"
     },
     {
@@ -116,6 +124,11 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-dynamodb",
+      "version": "^1.134.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/aws-ec2",
       "version": "^1.134.0",
       "type": "runtime"
@@ -163,6 +176,14 @@
     },
     {
       "name": "esbuild",
+      "type": "runtime"
+    },
+    {
+      "name": "moment",
+      "type": "runtime"
+    },
+    {
+      "name": "uuid",
       "type": "runtime"
     }
   ],

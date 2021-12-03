@@ -10,6 +10,7 @@ importers:
       '@aws-cdk/aws-codecommit': ^1.134.0
       '@aws-cdk/aws-codepipeline': ^1.134.0
       '@aws-cdk/aws-codepipeline-actions': ^1.134.0
+      '@aws-cdk/aws-dynamodb': ^1.134.0
       '@aws-cdk/aws-ec2': ^1.134.0
       '@aws-cdk/aws-events-targets': ^1.134.0
       '@aws-cdk/aws-iam': ^1.134.0
@@ -22,9 +23,11 @@ importers:
       '@tsconfig/recommended': ^1.0.1
       '@types/jest': '*'
       '@types/node': ^14.17.0
+      '@types/uuid': '*'
       '@typescript-eslint/eslint-plugin': ^5.3.1
       '@typescript-eslint/parser': ^5.3.1
       aws-cdk: ^1.134.0
+      aws-cdk-local: ^1.65.8
       aws-sdk-client-mock: ^0.5.6
       dotenv: ^10.0.0
       esbuild: ^0.13.14
@@ -36,11 +39,13 @@ importers:
       jest: ^27.4.3
       jest-junit: ^12
       json-schema: ^0.2.3
+      moment: ^2.29.1
       npm-check-updates: ^11
       projen: ^0.33.6
       ts-jest: ^27.0.7
       ts-node: ^9
       typescript: ^4.4.4
+      uuid: ^8.3.2
     dependencies:
       '@aws-cdk/assert': 1.134.0_jest@27.4.3
       '@aws-cdk/aws-apigateway': 1.134.0
@@ -48,6 +53,7 @@ importers:
       '@aws-cdk/aws-codecommit': 1.134.0
       '@aws-cdk/aws-codepipeline': 1.134.0
       '@aws-cdk/aws-codepipeline-actions': 1.134.0
+      '@aws-cdk/aws-dynamodb': 1.134.0
       '@aws-cdk/aws-ec2': 1.134.0
       '@aws-cdk/aws-events-targets': 1.134.0
       '@aws-cdk/aws-iam': 1.134.0
@@ -59,13 +65,17 @@ importers:
       '@aws-sdk/util-waiter': 3.40.0
       dotenv: 10.0.0
       esbuild: 0.13.14
+      moment: 2.29.1
+      uuid: 8.3.2
     devDependencies:
       '@tsconfig/recommended': 1.0.1
       '@types/jest': 27.0.3
       '@types/node': 14.17.33
+      '@types/uuid': 8.3.3
       '@typescript-eslint/eslint-plugin': 5.4.0_b983626bd16070d34b18187cb6bde052
       '@typescript-eslint/parser': 5.4.0_eslint@8.2.0+typescript@4.4.4
       aws-cdk: 1.134.0
+      aws-cdk-local: 1.65.8
       aws-sdk-client-mock: 0.5.6
       eslint: 8.2.0
       eslint-import-resolver-node: 0.3.6
@@ -85,18 +95,12 @@ importers:
     specifiers:
       '@aws-sdk/client-dynamodb': ^3.43.0
       '@types/aws-lambda': ^8.10.85
-      '@types/uuid': ^8.3.3
       aws-lambda: ^1.0.7
-      moment: ^2.29.1
-      uuid: ^8.3.2
     dependencies:
       '@aws-sdk/client-dynamodb': 3.43.0
       aws-lambda: 1.0.7
-      moment: 2.29.1
-      uuid: 8.3.2
     devDependencies:
       '@types/aws-lambda': 8.10.85
-      '@types/uuid': 8.3.3
 
 packages:
 
@@ -150,7 +154,7 @@ packages:
     dev: false
 
   /@aws-cdk/aws-applicationautoscaling/1.134.0:
-    resolution: {integrity: sha1-D+ge1kvD1fqjG/S/q9yu3icrkmc=}
+    resolution: {integrity: sha512-1LvSK5WWTaW2id+KQgfFfHHo7uoBXzuyfGWgv2YwUpKu1JUQwdTcTi0Bljbfzk4tG0gYenNxOFnzxhhV1Fe+Ww==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-autoscaling-common': 1.134.0
@@ -161,7 +165,7 @@ packages:
     dev: false
 
   /@aws-cdk/aws-autoscaling-common/1.134.0:
-    resolution: {integrity: sha1-KBZIXpi+8pPFYZAf9/RbVwtZHyg=}
+    resolution: {integrity: sha512-Ret8dHpdPko5OZSJk4d4ejVEKRdabHHPpnxR4QFaJJC+V+88kshQ6SB764HDKm6+14/uQnruubspKmlq3XAhuQ==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-iam': 1.134.0
@@ -243,7 +247,7 @@ packages:
     dev: false
 
   /@aws-cdk/aws-cloudwatch/1.134.0:
-    resolution: {integrity: sha1-1FQGnRKI++EfWAG5YH0pFQEGOZw=}
+    resolution: {integrity: sha512-LdnRXLHVHBYDa2CSCZc4jzB+89hUjt5xI1SWmhY9vIqXvNLp7Xt2wq3gYzCJG1Gq+jwpTG69S0B3TzFLKL988A==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-iam': 1.134.0
@@ -377,6 +381,21 @@ packages:
     dev: false
     bundledDependencies:
       - punycode
+
+  /@aws-cdk/aws-dynamodb/1.134.0:
+    resolution: {integrity: sha512-WPxrtUVMvlt73dfrlvQnC+DdR8xrsqfT/fZ4xvP604jRtM2UlGIuXrURSWL34ozwBIazs3IrlWyLWXaYC5kdGg==}
+    engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
+    dependencies:
+      '@aws-cdk/aws-applicationautoscaling': 1.134.0
+      '@aws-cdk/aws-cloudwatch': 1.134.0
+      '@aws-cdk/aws-iam': 1.134.0
+      '@aws-cdk/aws-kinesis': 1.134.0
+      '@aws-cdk/aws-kms': 1.134.0
+      '@aws-cdk/aws-lambda': 1.134.0
+      '@aws-cdk/core': 1.134.0
+      '@aws-cdk/custom-resources': 1.134.0
+      constructs: 3.3.161
+    dev: false
 
   /@aws-cdk/aws-ec2/1.134.0:
     resolution: {integrity: sha1-JdOCQ6oE/SSYwKdoLOfNN1dg1B0=}
@@ -548,7 +567,7 @@ packages:
     dev: false
 
   /@aws-cdk/aws-kinesis/1.134.0:
-    resolution: {integrity: sha1-rvQH/MjVlWy8xiRC5ofSjv9q7QY=}
+    resolution: {integrity: sha512-JWHP+LJfqt9/pqVjXnoQkWGZEoAJuPLTb0RHibEyFMd+dq/bFjWbfxTHPbxmFdm2NLqG6dI05EzHwx9IfcaYuw==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-cloudwatch': 1.134.0
@@ -577,7 +596,7 @@ packages:
     dev: false
 
   /@aws-cdk/aws-kms/1.134.0:
-    resolution: {integrity: sha1-/ZKdAq0Noc12JvLIhrrjSs9THg4=}
+    resolution: {integrity: sha512-nuXWE/lHnR9PzZdjCN9cbhT5IAHS593JVrS889v+O/9l3jLCgdSaElQ6EAjmr7WHne2npRbTo/Qw7ebT31BIRQ==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-iam': 1.134.0
@@ -833,7 +852,7 @@ packages:
       - ignore
 
   /@aws-cdk/custom-resources/1.134.0:
-    resolution: {integrity: sha1-mrR6WkyYpXPdsnR/c7h+MeJCTlA=}
+    resolution: {integrity: sha512-BfVq0IsXpPV6Eyzt0kLzNzLHKZvslNzQexSXY3yN5E2NHqXucqCem4X+qN+xp8p5eO0R83pmsPKUW9OT9SyEqg==}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
     dependencies:
       '@aws-cdk/aws-cloudformation': 1.134.0
@@ -2839,6 +2858,13 @@ packages:
     resolution: {integrity: sha1-YCzUtG6EStTv/JKoARo8RuAjjcI=}
     engines: {node: '>= 4.0.0'}
 
+  /aws-cdk-local/1.65.8:
+    resolution: {integrity: sha512-xUPxazw4HEhJYhzsQg+TJYJjCzuja5WH3folSy3ir9nrhF4l8JirsQeji49rNLGAs4tmBq3mOFOMY89pIeAaDg==}
+    hasBin: true
+    dependencies:
+      diff: 5.0.0
+    dev: true
+
   /aws-cdk/1.134.0:
     resolution: {integrity: sha1-wl6Pn94QpXMuA2p8EhREFx7n+HI=}
     engines: {node: '>= 10.13.0 <13 || >=13.7.0'}
@@ -3377,10 +3403,9 @@ packages:
     dev: true
 
   /constructs/3.3.161:
-    resolution: {integrity: sha1-lyax1FDzuaynkHIw8iSOP9QFjOQ=}
+    resolution: {integrity: sha512-/27vW3fo0iyb3py4vKI1BduEYmv8vv8uJgLXvI+5F0Jbnn0/E+As2wkGMa7bumhzCd0Ckv/USkAXstGYVXTYQA==}
     engines: {node: '>= 12.7.0'}
     dev: false
-    bundledDependencies: []
 
   /conventional-changelog-config-spec/2.1.0:
     resolution: {integrity: sha512-IpVePh16EbbB02V+UA+HQnnPIohgXvJRxHcS5+Uwk4AT5LjzCZJm5sp/yqs5C6KZJ1jMsV4paEV13BN1pvDuxQ==}

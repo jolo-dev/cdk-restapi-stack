@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="55" failures="0" errors="0" time="10.804">
-  <testsuite name="dynamoDb" errors="0" failures="0" skipped="2" timestamp="2021-12-01T23:01:53" time="7.895" tests="3">
-    <testcase classname="dynamoDb should create the tables" name="dynamoDb should create the tables" time="0">
-      <skipped/>
-    </testcase>
-    <testcase classname="dynamoDb should scan the whole table" name="dynamoDb should scan the whole table" time="0.067">
-    </testcase>
-    <testcase classname="dynamoDb should add a new entry to the table" name="dynamoDb should add a new entry to the table" time="0">
-      <skipped/>
-    </testcase>
-  </testsuite>
-  <testsuite name="getSsmParams" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.205" tests="3">
-    <testcase classname="getSsmParams should get all the requested params" name="getSsmParams should get all the requested params" time="0.047">
-    </testcase>
-    <testcase classname="getSsmParams should throw when error in getSsmParams" name="getSsmParams should throw when error in getSsmParams" time="0.032">
-    </testcase>
-    <testcase classname="getSsmParams should throw when region name is set not correctly" name="getSsmParams should throw when region name is set not correctly" time="0.004">
-    </testcase>
-  </testsuite>
-  <testsuite name="LambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.238" tests="4">
-    <testcase classname="LambdaFleet should bundle the code" name="LambdaFleet should bundle the code" time="0.003">
-    </testcase>
-    <testcase classname="LambdaFleet should return the folder of the built Lambdas" name="LambdaFleet should return the folder of the built Lambdas" time="0.003">
-    </testcase>
-    <testcase classname="LambdaFleet should throw when trying to bundle the folder" name="LambdaFleet should throw when trying to bundle the folder" time="0.044">
-    </testcase>
-    <testcase classname="LambdaFleet should throw when folder not exists" name="LambdaFleet should throw when folder not exists" time="0.008">
-    </testcase>
-  </testsuite>
-  <testsuite name="integration" errors="0" failures="0" skipped="3" timestamp="2021-12-01T23:01:53" time="8.255" tests="3">
+<testsuites name="jest tests" tests="56" failures="1" errors="0" time="17.294">
+  <testsuite name="integration" errors="0" failures="0" skipped="3" timestamp="2021-12-03T07:08:31" time="11.311" tests="3">
     <testcase classname="integration should launch a private subnet in the service catalog" name="integration should launch a private subnet in the service catalog" time="0">
       <skipped/>
     </testcase>
@@ -39,100 +11,144 @@
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="lambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.623" tests="1">
-    <testcase classname="lambdaFleet should stub SSM Parameter Store when no context" name="lambdaFleet should stub SSM Parameter Store when no context" time="0.345">
+  <testsuite name="callServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="11.545" tests="20">
+    <testcase classname="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the ID" name="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the ID" time="0.109">
     </testcase>
-  </testsuite>
-  <testsuite name="callServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.732" tests="20">
-    <testcase classname="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the ID" name="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the ID" time="0.049">
+    <testcase classname="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" name="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" time="0.066">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" name="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" time="0.038">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.004">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.001">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.003">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.002">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.004">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.001">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.003">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
+    <testcase classname="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" time="0.005">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" time="0.003">
+    <testcase classname="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" time="0.006">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" time="0.002">
+    <testcase classname="callServiceCatalog vpc should throw when `OutputValue === undefined`" name="callServiceCatalog vpc should throw when `OutputValue === undefined`" time="0.008">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when `OutputValue === undefined`" name="callServiceCatalog vpc should throw when `OutputValue === undefined`" time="0.006">
+    <testcase classname="callServiceCatalog vpc should throw when region is set wrongly" name="callServiceCatalog vpc should throw when region is set wrongly" time="0.006">
     </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when region is set wrongly" name="callServiceCatalog vpc should throw when region is set wrongly" time="0.003">
+    <testcase classname="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the ID" name="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the ID" time="0.008">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the ID" name="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the ID" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" name="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" time="0.001">
+    <testcase classname="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" name="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" time="0.002">
     </testcase>
     <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.002">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.001">
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.002">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.001">
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
     </testcase>
     <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.001">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" time="0.003">
+    <testcase classname="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" time="0.004">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" time="0.003">
+    <testcase classname="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" time="0.005">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" name="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" time="0.002">
+    <testcase classname="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" name="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" time="0.004">
     </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when region is set wrongly" name="callServiceCatalog private-subnet should throw when region is set wrongly" time="0.002">
+    <testcase classname="callServiceCatalog private-subnet should throw when region is set wrongly" name="callServiceCatalog private-subnet should throw when region is set wrongly" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="getNetworkingContext" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.867" tests="6">
-    <testcase classname="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" name="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" time="0.04">
+  <testsuite name="getSsmParams" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="11.792" tests="3">
+    <testcase classname="getSsmParams should get all the requested params" name="getSsmParams should get all the requested params" time="0.082">
     </testcase>
-    <testcase classname="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" name="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" time="0.004">
+    <testcase classname="getSsmParams should throw when error in getSsmParams" name="getSsmParams should throw when error in getSsmParams" time="0.065">
     </testcase>
-    <testcase classname="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" name="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" time="0.003">
+    <testcase classname="getSsmParams should throw when region name is set not correctly" name="getSsmParams should throw when region name is set not correctly" time="0.013">
     </testcase>
-    <testcase classname="getNetworkingContext should return vpcId with three subnets" name="getNetworkingContext should return vpcId with three subnets" time="0.003">
+  </testsuite>
+  <testsuite name="LambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="11.849" tests="4">
+    <testcase classname="LambdaFleet should bundle the code" name="LambdaFleet should bundle the code" time="0.002">
     </testcase>
-    <testcase classname="toCamelCase should convert camel-case to camelCase " name="toCamelCase should convert camel-case to camelCase " time="0">
+    <testcase classname="LambdaFleet should return the folder of the built Lambdas" name="LambdaFleet should return the folder of the built Lambdas" time="0.01">
+    </testcase>
+    <testcase classname="LambdaFleet should throw when trying to bundle the folder" name="LambdaFleet should throw when trying to bundle the folder" time="0.111">
+    </testcase>
+    <testcase classname="LambdaFleet should throw when folder not exists" name="LambdaFleet should throw when folder not exists" time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="ServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="11.905" tests="13">
+    <testcase classname="ServiceCatalog should launch a product" name="ServiceCatalog should launch a product" time="0.009">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when error in launching a product" name="ServiceCatalog should throw when error in launching a product" time="0.121">
+    </testcase>
+    <testcase classname="ServiceCatalog should get resource by ProvisionedProductName" name="ServiceCatalog should get resource by ProvisionedProductName" time="0.006">
+    </testcase>
+    <testcase classname="ServiceCatalog should get resource by ProvisionedProductId" name="ServiceCatalog should get resource by ProvisionedProductId" time="0.004">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when getting ressource" name="ServiceCatalog should throw when getting ressource" time="0.006">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" time="0.006">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" time="0.004">
+    </testcase>
+    <testcase classname="ServiceCatalog should set a parameter" name="ServiceCatalog should set a parameter" time="0.007">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because name of parameter does not follow the convention" name="ServiceCatalog should throw because name of parameter does not follow the convention" time="0.012">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because name is not undefined" name="ServiceCatalog should throw because name is not undefined" time="0.005">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because value is not undefined" name="ServiceCatalog should throw because value is not undefined" time="0.006">
+    </testcase>
+    <testcase classname="ServiceCatalog should check state" name="ServiceCatalog should check state" time="0.004">
+    </testcase>
+    <testcase classname="ServiceCatalog should abort state" name="ServiceCatalog should abort state" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="getNetworkingContext" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="12.267" tests="6">
+    <testcase classname="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" name="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" time="0.068">
+    </testcase>
+    <testcase classname="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" name="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" time="0.011">
+    </testcase>
+    <testcase classname="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" name="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" time="0.005">
+    </testcase>
+    <testcase classname="getNetworkingContext should return vpcId with three subnets" name="getNetworkingContext should return vpcId with three subnets" time="0.004">
+    </testcase>
+    <testcase classname="toCamelCase should convert camel-case to camelCase " name="toCamelCase should convert camel-case to camelCase " time="0.002">
     </testcase>
     <testcase classname="toCamelCase should not camelCase because its already camelCased" name="toCamelCase should not camelCase because its already camelCased" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="ServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="8.876" tests="13">
-    <testcase classname="ServiceCatalog should launch a product" name="ServiceCatalog should launch a product" time="0.006">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when error in launching a product" name="ServiceCatalog should throw when error in launching a product" time="0.035">
-    </testcase>
-    <testcase classname="ServiceCatalog should get resource by ProvisionedProductName" name="ServiceCatalog should get resource by ProvisionedProductName" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should get resource by ProvisionedProductId" name="ServiceCatalog should get resource by ProvisionedProductId" time="0.001">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource" name="ServiceCatalog should throw when getting ressource" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should set a parameter" name="ServiceCatalog should set a parameter" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because name of parameter does not follow the convention" name="ServiceCatalog should throw because name of parameter does not follow the convention" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because name is not undefined" name="ServiceCatalog should throw because name is not undefined" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because value is not undefined" name="ServiceCatalog should throw because value is not undefined" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should check state" name="ServiceCatalog should check state" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should abort state" name="ServiceCatalog should abort state" time="0.002">
+  <testsuite name="lambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="12.429" tests="1">
+    <testcase classname="lambdaFleet should stub SSM Parameter Store when no context" name="lambdaFleet should stub SSM Parameter Store when no context" time="0.542">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="9.58" tests="1">
-    <testcase classname=" CodePipeline" name=" CodePipeline" time="0.323">
+  <testsuite name="DynamoDBStack" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="12.891" tests="1">
+    <testcase classname="DynamoDBStack should create a DynamoDbStack" name="DynamoDBStack should create a DynamoDbStack" time="0.13">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-01T23:01:53" time="9.742" tests="1">
-    <testcase classname=" InfraStack" name=" InfraStack" time="0.439">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="14.418" tests="1">
+    <testcase classname=" CodePipeline" name=" CodePipeline" time="1.356">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-03T07:08:31" time="15.195" tests="1">
+    <testcase classname=" InfraStack" name=" InfraStack" time="0.872">
+    </testcase>
+  </testsuite>
+  <testsuite name="dynamoDb" errors="0" failures="1" skipped="2" timestamp="2021-12-03T07:08:31" time="16.147" tests="3">
+    <testcase classname="dynamoDb should create the tables" name="dynamoDb should create the tables" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="dynamoDb should scan the whole table" name="dynamoDb should scan the whole table" time="5.002">
+      <failure>Error: thrown: &quot;Exceeded timeout of 5000 ms for a test.
+Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test.&quot;
+    at /Users/jolo/Development/4dt-api-node/lambdas/test/dynamoDb.test.ts:32:6
+    at _dispatchDescribe (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-circus@27.4.2/node_modules/jest-circus/build/index.js:97:26)
+    at describe (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-circus@27.4.2/node_modules/jest-circus/build/index.js:60:5)
+    at Object.&lt;anonymous&gt; (/Users/jolo/Development/4dt-api-node/lambdas/test/dynamoDb.test.ts:5:1)
+    at Runtime._execModule (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-runtime@27.4.2/node_modules/jest-runtime/build/index.js:1646:24)
+    at Runtime._loadModule (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-runtime@27.4.2/node_modules/jest-runtime/build/index.js:1185:12)
+    at Runtime.requireModule (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-runtime@27.4.2/node_modules/jest-runtime/build/index.js:1009:12)
+    at jestAdapter (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-circus@27.4.2/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at runTestInternal (/Users/jolo/Development/4dt-api-node/node_modules/.pnpm/jest-runner@27.4.3/node_modules/jest-runner/build/runTest.js:389:16)</failure>
+    </testcase>
+    <testcase classname="dynamoDb should add a new entry to the table" name="dynamoDb should add a new entry to the table" time="0">
+      <skipped/>
     </testcase>
   </testsuite>
 </testsuites>

@@ -1,5 +1,6 @@
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
 import { FourDPipelineStack } from './codepipeline/Stack';
+import { DynamoDbStack } from './dynamodb/Stack';
 import { LambdaFleetStack } from './lambda-fleet/Stack';
 
 export class CdkParentStack extends Stack {
@@ -8,5 +9,6 @@ export class CdkParentStack extends Stack {
 
     new FourDPipelineStack(this, 'FourDPipelineStack', repositoryName);
     new LambdaFleetStack(this, 'LambdaFleetStack', 'lambdas');
+    new DynamoDbStack(this, 'DynamoDB');
   }
 }

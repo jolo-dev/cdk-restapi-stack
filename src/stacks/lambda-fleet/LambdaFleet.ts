@@ -1,8 +1,9 @@
 import fs from 'fs';
 import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { ISubnet, IVpc } from '@aws-cdk/aws-ec2';
+import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
-import { Construct } from '@aws-cdk/core';
+import { Construct, Stack } from '@aws-cdk/core';
 import { build } from 'esbuild';
 import { PrivateApiGateway } from './PrivateApiGateway';
 
@@ -54,6 +55,17 @@ export class LambdaFleet extends Construct {
             subnets: this.subnets,
           },
         });
+
+        const region = Stack.of(this).region;
+        const account = Stack.of(this).account;
+        const policy = new PolicyStatement({
+          actions: ['*'],
+          resources: [`arn:aws:dynamodb:${region}:${account}:table/*`],
+          effect: Effect.ALLOW,
+        });
+        lambdaFunction.addToRolePolicy(policy);
+
+        // Add Lambda to API Gateway
         const restEndpoint = this.api.root.addResource(lambdaName);
         restEndpoint.addMethod(this.method, new LambdaIntegration(lambdaFunction, { proxy: false }));
       });

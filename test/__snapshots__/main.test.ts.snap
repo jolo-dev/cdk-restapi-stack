@@ -61,6 +61,18 @@ Object {
       "Description": "S3 key for asset version \\"51ecc92cb863dc5531098e807c2222a5bc911d65e8c1f4407a13f7f2ada697ac\\"",
       "Type": "String",
     },
+    "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3ArtifactHash10FD7334": Object {
+      "Description": "Artifact hash for asset \\"75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3\\"",
+      "Type": "String",
+    },
+    "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3S3Bucket5B77B720": Object {
+      "Description": "S3 bucket for asset \\"75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3\\"",
+      "Type": "String",
+    },
+    "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3S3VersionKey8DFC2A43": Object {
+      "Description": "S3 key for asset version \\"75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3\\"",
+      "Type": "String",
+    },
     "AssetParametersb018189d0aa33ed6ed6e4851dcf06c32d460f85d7ce6688c77987352a4afa5caArtifactHashFB552854": Object {
       "Description": "Artifact hash for asset \\"b018189d0aa33ed6ed6e4851dcf06c32d460f85d7ce6688c77987352a4afa5ca\\"",
       "Type": "String",
@@ -73,20 +85,69 @@ Object {
       "Description": "S3 key for asset version \\"b018189d0aa33ed6ed6e4851dcf06c32d460f85d7ce6688c77987352a4afa5ca\\"",
       "Type": "String",
     },
-    "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eArtifactHash15CBE088": Object {
-      "Description": "Artifact hash for asset \\"ba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8e\\"",
+    "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587ArtifactHashC22C4200": Object {
+      "Description": "Artifact hash for asset \\"d4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587\\"",
       "Type": "String",
     },
-    "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eS3Bucket1E7BDFC4": Object {
-      "Description": "S3 bucket for asset \\"ba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8e\\"",
+    "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587S3BucketBB497D94": Object {
+      "Description": "S3 bucket for asset \\"d4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587\\"",
       "Type": "String",
     },
-    "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eS3VersionKeyD1C7FF98": Object {
-      "Description": "S3 key for asset version \\"ba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8e\\"",
+    "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587S3VersionKeyB63BE508": Object {
+      "Description": "S3 key for asset version \\"d4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587\\"",
       "Type": "String",
     },
   },
   "Resources": Object {
+    "DynamoDBNestedStackDynamoDBNestedStackResource6E119793": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "TemplateURL": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "https://s3.eu-west-1.",
+              Object {
+                "Ref": "AWS::URLSuffix",
+              },
+              "/",
+              Object {
+                "Ref": "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587S3BucketBB497D94",
+              },
+              "/",
+              Object {
+                "Fn::Select": Array [
+                  0,
+                  Object {
+                    "Fn::Split": Array [
+                      "||",
+                      Object {
+                        "Ref": "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587S3VersionKeyB63BE508",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "Fn::Select": Array [
+                  1,
+                  Object {
+                    "Fn::Split": Array [
+                      "||",
+                      Object {
+                        "Ref": "AssetParametersd4727b7caf429a059dbc82a1965512e64ed5f0bbfefcb6716fb7410e1b893587S3VersionKeyB63BE508",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::CloudFormation::Stack",
+      "UpdateReplacePolicy": "Delete",
+    },
     "FourDPipelineStackNestedStackFourDPipelineStackNestedStackResourceCC0A20CE": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
@@ -136,15 +197,15 @@ Object {
       "Type": "AWS::CloudFormation::Stack",
       "UpdateReplacePolicy": "Delete",
     },
-    "GETLambdaFleetgetassetsFunctionCB153BDE": Object {
+    "GETLambdaFleetgetprojectsFunctionBD9C53AD": Object {
       "DependsOn": Array [
-        "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE",
-        "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+        "GETLambdaFleetgetprojectsFunctionServiceRoleDefaultPolicyB4AEADA6",
+        "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eS3Bucket1E7BDFC4",
+            "Ref": "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3S3Bucket5B77B720",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -157,7 +218,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eS3VersionKeyD1C7FF98",
+                          "Ref": "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3S3VersionKey8DFC2A43",
                         },
                       ],
                     },
@@ -170,7 +231,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersba3b605cce1b01827f4c0f8718dd00d481652bc96be7716e481f5fcc31f80a8eS3VersionKeyD1C7FF98",
+                          "Ref": "AssetParameters75be569642e9965b82a23cd7919859171b040dfd6632baca9e642f58e281b5a3S3VersionKey8DFC2A43",
                         },
                       ],
                     },
@@ -180,10 +241,10 @@ Object {
             ],
           },
         },
-        "Handler": "assets.handler",
+        "Handler": "projects.handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+            "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F",
             "Arn",
           ],
         },
@@ -195,7 +256,7 @@ Object {
           "SecurityGroupIds": Array [
             Object {
               "Fn::GetAtt": Array [
-                "GETLambdaFleetgetassetsFunctionSecurityGroup9099F13C",
+                "GETLambdaFleetgetprojectsFunctionSecurityGroup7F218189",
                 "GroupId",
               ],
             },
@@ -208,9 +269,9 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "GETLambdaFleetgetassetsFunctionSecurityGroup9099F13C": Object {
+    "GETLambdaFleetgetprojectsFunctionSecurityGroup7F218189": Object {
       "Properties": Object {
-        "GroupDescription": "Automatic security group for Lambda Function teststackGETLambdaFleetgetassetsFunction5E68DF26",
+        "GroupDescription": "Automatic security group for Lambda Function teststackGETLambdaFleetgetprojectsFunction71982A4A",
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
@@ -222,7 +283,7 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469": Object {
+    "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -265,7 +326,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE": Object {
+    "GETLambdaFleetgetprojectsFunctionServiceRoleDefaultPolicyB4AEADA6": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -280,10 +341,10 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "GETLambdaFleetgetassetsFunctionServiceRoleDefaultPolicy5ECB35DE",
+        "PolicyName": "GETLambdaFleetgetprojectsFunctionServiceRoleDefaultPolicyB4AEADA6",
         "Roles": Array [
           Object {
-            "Ref": "GETLambdaFleetgetassetsFunctionServiceRole8DE7B469",
+            "Ref": "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F",
           },
         ],
       },
@@ -425,10 +486,10 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AA7d2ad79a604ee5c607d235bbd7c11383": Object {
+    "PrivateApiGatewayDeployment8BFAB2AA045c75d3b239190cca32a58b8cf78e72": Object {
       "DependsOn": Array [
-        "PrivateApiGatewayassetsgetD87638FB",
-        "PrivateApiGatewayassets071E3A6E",
+        "PrivateApiGatewayprojectsget15711F53",
+        "PrivateApiGatewayprojects94902F3C",
       ],
       "Properties": Object {
         "Description": "Automatically created by the RestApi construct",
@@ -441,7 +502,7 @@ Object {
     "PrivateApiGatewayDeploymentStageeuwest14DE26235": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AA7d2ad79a604ee5c607d235bbd7c11383",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AA045c75d3b239190cca32a58b8cf78e72",
         },
         "RestApiId": Object {
           "Ref": "PrivateApiGateway618B725A",
@@ -450,7 +511,7 @@ Object {
       },
       "Type": "AWS::ApiGateway::Stage",
     },
-    "PrivateApiGatewayassets071E3A6E": Object {
+    "PrivateApiGatewayprojects94902F3C": Object {
       "Properties": Object {
         "ParentId": Object {
           "Fn::GetAtt": Array [
@@ -458,19 +519,55 @@ Object {
             "RootResourceId",
           ],
         },
-        "PathPart": "assets",
+        "PathPart": "projects",
         "RestApiId": Object {
           "Ref": "PrivateApiGateway618B725A",
         },
       },
       "Type": "AWS::ApiGateway::Resource",
     },
-    "PrivateApiGatewayassetsgetApiPermissionTestteststackPrivateApiGatewayF839E401GETassetsC70B9A8A": Object {
+    "PrivateApiGatewayprojectsget15711F53": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "GETLambdaFleetgetprojectsFunctionBD9C53AD",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayprojects94902F3C",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayprojectsgetApiPermissionTestteststackPrivateApiGatewayF839E401GETprojectsAB6DEC38": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "GETLambdaFleetgetassetsFunctionCB153BDE",
+            "GETLambdaFleetgetprojectsFunctionBD9C53AD",
             "Arn",
           ],
         },
@@ -487,19 +584,19 @@ Object {
               Object {
                 "Ref": "PrivateApiGateway618B725A",
               },
-              "/test-invoke-stage/GET/assets",
+              "/test-invoke-stage/GET/projects",
             ],
           ],
         },
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "PrivateApiGatewayassetsgetApiPermissionteststackPrivateApiGatewayF839E401GETassets86C68BC9": Object {
+    "PrivateApiGatewayprojectsgetApiPermissionteststackPrivateApiGatewayF839E401GETprojects1DC4E947": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "GETLambdaFleetgetassetsFunctionCB153BDE",
+            "GETLambdaFleetgetprojectsFunctionBD9C53AD",
             "Arn",
           ],
         },
@@ -520,48 +617,12 @@ Object {
               Object {
                 "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
               },
-              "/GET/assets",
+              "/GET/projects",
             ],
           ],
         },
       },
       "Type": "AWS::Lambda::Permission",
-    },
-    "PrivateApiGatewayassetsgetD87638FB": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "GET",
-        "Integration": Object {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS",
-          "Uri": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
-                Object {
-                  "Fn::GetAtt": Array [
-                    "GETLambdaFleetgetassetsFunctionCB153BDE",
-                    "Arn",
-                  ],
-                },
-                "/invocations",
-              ],
-            ],
-          },
-        },
-        "ResourceId": Object {
-          "Ref": "PrivateApiGatewayassets071E3A6E",
-        },
-        "RestApiId": Object {
-          "Ref": "PrivateApiGateway618B725A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
     },
   },
 }

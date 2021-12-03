@@ -4,7 +4,7 @@
   "steps": [
     {
       "file": ".projenrc.ts",
-      "description": "In projen, you manage `packages.json` and other project setup such as `.gitignore` in this `.projenrc.ts`- File.\nWhenever you change something, you need to execute `pnpm projen`.\n\n>> pnpm projen",
+      "description": "In projen, you manage `packages.json` and other project setup such as `.gitignore` in this `.projenrc.ts`- File.\nWhenever you change something, you need to execute `pnpm projen`.\n\n>> pnpm projen\n\nIt might happen that you get `ExpiredTokenException: The security token included in the request is expired`.\nThat is because your Session Token has expired.\nGo to your AWS SSO page and copy the first option and paste it in your terminal:\n![Expired Token](./.tours/expired-token.gif \"SSO to renew Session Token\" =100x20)\n",
       "line": 2
     },
     {

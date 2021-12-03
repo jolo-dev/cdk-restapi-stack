@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="0" failures="0" errors="0" time="0.369">
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="4.225">
+  <testsuite name="DynamoDb" errors="0" failures="0" skipped="3" timestamp="2021-12-03T23:02:23" time="3.674" tests="4">
+    <testcase classname="DynamoDb should create the tables" name="DynamoDb should create the tables" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="DynamoDb should scan the whole table" name="DynamoDb should scan the whole table" time="0.038">
+    </testcase>
+    <testcase classname="DynamoDb should map the attributes coming from DynamoDB" name="DynamoDb should map the attributes coming from DynamoDB" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="DynamoDb should add a new entry to the table" name="DynamoDb should add a new entry to the table" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
 </testsuites>
