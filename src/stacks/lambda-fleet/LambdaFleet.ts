@@ -67,7 +67,10 @@ export class LambdaFleet extends Construct {
 
         // Add Lambda to API Gateway
         const restEndpoint = this.api.root.addResource(lambdaName);
-        restEndpoint.addMethod(this.method, new LambdaIntegration(lambdaFunction, { proxy: false }));
+        restEndpoint.addMethod(this.method,
+          new LambdaIntegration(lambdaFunction, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }] }),
+          { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }] },
+        );
       });
     }
   }

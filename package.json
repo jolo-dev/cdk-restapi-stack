@@ -6,7 +6,6 @@
     "clobber": "npx projen clobber",
     "compile": "npx projen compile",
     "default": "npx projen default",
-    "deploy": "npx projen deploy",
     "destroy": "npx projen destroy",
     "diff": "npx projen diff",
     "eslint": "npx projen eslint",
@@ -20,7 +19,8 @@
     "upgrade": "npx projen upgrade",
     "upgrade-projen": "npx projen upgrade-projen",
     "projen": "npx projen",
-    "local": "cdklocal"
+    "local": "cdklocal",
+    "deploy": "npx cdk deploy --all"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",

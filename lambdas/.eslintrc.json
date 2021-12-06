@@ -3,11 +3,13 @@
     "root": false,
     "settings": {
         "import/resolver": {
-            "node": {},
             "typescript": {
                 "project": "./tsconfig.dev.json",
                 "alwaysTryTypes": true
             }
         }
+    },
+    "rules": {
+        "import/no-extraneous-dependencies": 0
     }
 }

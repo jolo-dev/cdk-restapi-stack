@@ -3,14 +3,13 @@ import {
   DynamoDBClientConfig,
   CreateTableCommand,
   CreateTableCommandInput,
-  DeleteTableCommand,
-  DeleteTableCommandInput,
   PutItemCommand,
-  PutItemCommandInput,
-  ListTablesCommand,
   ScanCommand,
 } from '@aws-sdk/client-dynamodb';
+import moment from 'moment';
+import { v4 as uuid } from 'uuid';
 import { I4DProject, Project } from '../../models/Project';
+import { Standard, StandardAttribute } from '../../models/StandardAttribute';
 
 class DynamoDb {
   private client: DynamoDBClient;
@@ -19,21 +18,14 @@ class DynamoDb {
   }
 
   public async createTable(input: CreateTableCommandInput) {
-    const command = new CreateTableCommand(input);
-    const response = await this.client.send(command);
-    return response;
-  }
-
-  public async deleteTable(input: DeleteTableCommandInput) {
-    const command = new DeleteTableCommand(input);
-    const response = await this.client.send(command);
-    return response;
-  }
-
-  public async listTables() {
-    const command = new ListTablesCommand({});
-    const response = await this.client.send(command);
-    return response;
+    try {
+      const command = new CreateTableCommand(input);
+      const response = await this.client.send(command);
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error when creating a table');
+    }
   }
 
   public async listEntries(tableName: string): Promise<Project[]> {
@@ -55,11 +47,23 @@ class DynamoDb {
 
   }
 
-  // public create<Type>(c: new (props: AttributeValue[]) => Type ): Type {
-  //   return new c(props);
-  // }
+  public async addEntry<T extends Standard>(tableEntry: T) {
+    try {
+      const input = {
+        TableName: tableEntry.getName(),
+        Item: this.dynamoDbDataBuilder(tableEntry.getProps()),
+      };
+      const command = new PutItemCommand(input);
+      const response = await this.client.send(command);
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw new Error(`Entry with ID ${tableEntry.getId()} could not be saved in ${tableEntry.getName()}`);
+    }
 
-  public attributesMapper(attributes: any) {
+  }
+
+  public attributesMapper<P>(attributes: any): P {
     const keys = Object.keys(attributes);
     let result: any;
     keys.forEach(value => {
@@ -68,10 +72,30 @@ class DynamoDb {
     return result;
   }
 
-  public async addEntry(input:PutItemCommandInput ) {
-    const command = new PutItemCommand(input);
-    const response = await this.client.send(command);
-    return response;
+  public dynamoDbDataBuilder<P extends StandardAttribute>(props: P) {
+    let result = {
+      ID: {
+        S: props.ID ?? uuid(),
+      },
+      CreationDateTime: {
+        S: props.CreationDateTime ?? moment().format(),
+      },
+    };
+    for (const key in props) {
+      let type = 'S';
+      if (typeof props[key] === 'number') {
+        type = 'N';
+      }
+      if (typeof props[key] === 'boolean') {
+        type = 'B';
+      }
+      result = { ...result, [key]: { [type]: props[key] } };
+    }
+    return result;
+  }
+
+  public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {
+    return new c(props);
   }
 }
 

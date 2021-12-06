@@ -29,7 +29,7 @@ const getOptions = async() : Promise<AwsCdkTypeScriptAppOptions> => {
     devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', 'aws-cdk-local', '@types/uuid'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store'],
     context,
-    jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/lambdas', '<rootDir>/src'] } },
+    jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/src'] } },
     tsconfigDev: {
       compilerOptions: {},
       include: ['**/*.ts'],
@@ -39,7 +39,9 @@ const getOptions = async() : Promise<AwsCdkTypeScriptAppOptions> => {
 
 getOptions().then(options => {
   const project = new AwsCdkTypeScriptApp(options);
+  project.removeTask('deploy');
   project.setScript('local', 'cdklocal');
+  project.setScript('deploy', 'npx cdk deploy --all');
   project.synth();
 }).catch(error => {
   console.log(error);

@@ -15,8 +15,10 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - LAMBDA_EXECUTOR=docker
       - LAMBDA_NETWORK=bridge
+      - DYNAMODB_SHARE_DB=1
       - SERVICES=s3,lambda,cloudformation,apigateway,dynamodb,ec2
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./init_db.sh:/init.sh"
     tmpfs:
       - /tmp/localstack:exec,mode=600

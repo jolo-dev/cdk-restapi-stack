@@ -1,10 +1,4 @@
-import moment from 'moment';
-import { v4 as uuid } from 'uuid';
-
-export interface StandardAttribute {
-  id?: string;
-  creationDateTime?: string;
-}
+import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface I4DProject extends StandardAttribute {
   ProjectName: string;
@@ -15,22 +9,12 @@ export interface I4DProject extends StandardAttribute {
   Phase?: string;
 }
 
-export class Project {
+export class Project extends Standard {
+
   readonly props: I4DProject;
-  private id: string;
-  private creationDateTime: string;
   constructor(props: I4DProject) {
+    super('Projects', props.ID, props.CreationDateTime);
     this.props = props;
-    this.id = props.id ?? uuid();
-    this.creationDateTime = props.creationDateTime ?? moment().format();
-  }
-
-  public getId() {
-    return this.id;
-  }
-
-  public getCreationDateTime() {
-    return this.creationDateTime;
   }
 
   public getProps() {

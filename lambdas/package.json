@@ -6,7 +6,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "esbuild ./src/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build",
-    "dev": "docker-compose up",
+    "dev": "docker-compose up -d && ./init_db.sh",
     "lint": "eslint . --fix --ext .ts"
   },
   "author": "John Nguyen <john@globaldatanet.com>",

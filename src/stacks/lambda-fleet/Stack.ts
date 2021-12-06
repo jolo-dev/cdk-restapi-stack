@@ -1,6 +1,6 @@
 import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint } from '@aws-cdk/aws-ec2';
 import { StringParameter } from '@aws-cdk/aws-ssm';
-import { NestedStack, Construct, Stack, CfnOutput } from '@aws-cdk/core';
+import { Stack, Construct, CfnOutput, StackProps } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';
 
 import { PrivateApiGateway } from './PrivateApiGateway';
@@ -16,14 +16,14 @@ type VpcEndpointProps = {
   serviceName: string;
   vpcId: string;
 }
-export class LambdaFleetStack extends NestedStack {
+export class LambdaFleetStack extends Stack {
 
   private lambdaFolder: string;
   private vpc: IVpc;
   private subnets: ISubnet[];
 
-  constructor(scope: Construct, id: string, lambdaFolder = 'lambdas') {
-    super(scope, id);
+  constructor(scope: Construct, id: string, lambdaFolder = 'lambdas', props: StackProps) {
+    super(scope, id, props);
 
     // Networking
     let vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
@@ -70,13 +70,13 @@ export class LambdaFleetStack extends NestedStack {
       },
     );
 
-    const api = new PrivateApiGateway(scope, 'PrivateApiGateway', {
+    const api = new PrivateApiGateway(this, 'PrivateApiGateway', {
       region, vpcEndpoint: [apiGatewayVpcEndpoint],
     });
 
     // Bundling all the Lambdas
     methods.forEach(async (method) => {
-      const lambda = new LambdaFleet(scope, `${method.toUpperCase()}LambdaFleet`, {
+      const lambda = new LambdaFleet(this, `${method.toUpperCase()}LambdaFleet`, {
         api,
         lambdaFolder: this.lambdaFolder,
         method,

@@ -12,7 +12,10 @@ export const handler: APIGatewayProxyHandler = async () => {
       };
       return result;
     } else {
-      throw new Error();
+      return {
+        statusCode: 400,
+        body: 'No Entries',
+      };
     }
   } catch (error) {
     console.error(error);

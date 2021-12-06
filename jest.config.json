@@ -1,6 +1,5 @@
 {
   "projects": [
-    "<rootDir>/lambdas",
     "<rootDir>/src"
   ],
   "testMatch": [
