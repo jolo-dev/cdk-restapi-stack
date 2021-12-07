@@ -1,0 +1,73 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Creating a Lambda function",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "# Structure\n\nAll Lambdas are saved in `lambdas/src`- folder.\nIn order to create a new Lambda, you need to put it in one of the existing folder which are named after HTTP-Method or you need to create a new folder within `lambdas/src`- folder.\n\nRecommended HTTP-Method are\n* `get`\n* `post`\n* `put`\n* `delete`\n\nFor example, if you want to list data from the database, you should put or create the lambda in a `get`- folder.\n\nCDK will check all the folder within `lambdas/src`, so it is not recommended to create another folder besides HTTP-method named one.\n\n# Filename\n\nThe filename is also important for naming the endpoint.\nFor example, `projects.ts` in `lambdas/src/get/` would create a `projects`- endpoint with HTTP GET-Method."
+    },
+    {
+      "title": "Tutorial",
+      "description": "# How to create a new endpoint\n\nFor creating a new endpoint, we need to put the Lambda either in one of the existing folders in `lambdas/src` (`get` or `post`) or create a new folder which we will name after a not yet existing HTTP-method (`put` or `delete`).\n\nIn this tutorial, we create `tags`- endpoint which will list all the tags (HTTP GET-Method).\nSo we create `tags.ts` within `lambdas/src/get`.\n\n# Modeling\n\nBecause we are creating a new endpoint for a new ressource, we have to create a new model within the `models`- folder.\nIn this case, we create a `Tag.ts` inside it.\n\n**Note: Please use the name in singular.**\n\nThe model will look as followed:\n\n```ts\nimport { StandardAttribute, Standard } from './StandardAttribute';\n\nexport interface ITag extends StandardAttribute {\n  Name: string;\n}\n\nexport class Tag extends Standard {\n\n  readonly props: ITag;\n  constructor(props: ITag) {\n    super('Tags', props.ID, props.CreationDateTime);\n    this.props = props;\n  }\n\n  public getProps() {\n    return this.props;\n  }\n}\n```\n\n# Scaffolding\n\nThe scaffold of the lambda is pretty straight forward:\n\n```ts\nimport { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';\nimport DynamoDb from '../DynamoDb';\n\nconst dynamo = new DynamoDb({});\nexport const handler: APIGatewayProxyHandler = async () => {\n  const entries = await dynamo.listEntries('Tags');\n  try {\n    if (entries.length > 0) {\n      const result: APIGatewayProxyResult = {\n        statusCode: 200,\n        body: JSON.stringify(entries),\n      };\n      return result;\n    } else {\n      return {\n        statusCode: 404,\n        body: 'No Tag-Entries',\n      };\n    }\n  } catch (error) {\n    console.error(error);\n    const e = error as Error;\n    return {\n      statusCode: 400,\n      body: `Error in Getting Tags ${e.message}`,\n    };\n  }\n};\n```"
+    },
+    {
+      "file": "models/Tag.ts",
+      "description": "There are some common or standard attributes (`ID` and `CreationDateTime`) which will be extended.",
+      "line": 3
+    },
+    {
+      "file": "models/Tag.ts",
+      "description": "We have defined a new interface for our class. In this case, we define only `Name` as an attribute for `Tag`.",
+      "line": 4
+    },
+    {
+      "file": "models/Tag.ts",
+      "description": "The new model `Tag` extends from the abstract class `Standard` because it will have getter and setter for the `ID` and `CreationDateTime`.",
+      "line": 7
+    },
+    {
+      "file": "models/Tag.ts",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 3
+        },
+        "end": {
+          "line": 17,
+          "character": 4
+        }
+      },
+      "description": "This model then is simply having the standard props and its custom properties."
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "Since we are using Typescript for our Lambda and we know it is attached to an API Gateway, we can use the `APIGatewayProxyHandler` as a Handler-type and `APIGatewayProxyResult` to type the result correctly.",
+      "line": 1
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "Here we define an DynamoDB- instance outside the handler for connectivity and performance reasons.\nThis object will be reused whenever the same request is triggered as long as the lambda is \"hot\".",
+      "line": 4
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "All Lambdas should be wrapped within a `try/catch`- block to gain visibility if something breaks.",
+      "line": 6
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "We use the `dynamo`- instance for scanning the `Tags`- Table of DynamoDB and list them as TS-Class objects.",
+      "line": 7
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "If there entries, we return them with a statusCode `200`. If not, we return still return `200` but a custom body that there are no entries.",
+      "line": 8
+    },
+    {
+      "file": "lambdas/src/get/tags.ts",
+      "description": "We catch and log all the errors when something went wrong when retrieving the data and return a status code `400`.",
+      "line": 20
+    }
+  ]
+}

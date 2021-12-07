@@ -1,14 +1,14 @@
-import { AwsCdkTypeScriptApp, AwsCdkTypeScriptAppOptions, NodePackageManager } from 'projen';
+import { awscdk, javascript as js } from 'projen';
 import { getNetworkingContext } from './src/utils/getContext';
 
 
-const getOptions = async() : Promise<AwsCdkTypeScriptAppOptions> => {
+const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
   const context = await getNetworkingContext();
   return {
     cdkVersion: '1.134.0',
     defaultReleaseBranch: 'master',
     name: '4dt-api-node',
-    packageManager: NodePackageManager.PNPM,
+    packageManager: js.NodePackageManager.PNPM,
     projenrcTs: true,
     cdkDependencies: ['@aws-cdk/core',
       '@aws-cdk/aws-codepipeline',
@@ -27,21 +27,23 @@ const getOptions = async() : Promise<AwsCdkTypeScriptAppOptions> => {
     deps: ['dotenv', 'esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
     description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
     devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', 'aws-cdk-local', '@types/uuid'], /* Build dev dependencies for this module. */
-    gitignore: ['.env', 'dist', '.DS_Store'],
+    gitignore: ['.env', 'dist', '.DS_Store', 'test-reports'],
     context,
     jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/src'] } },
     tsconfigDev: {
       compilerOptions: {},
       include: ['**/*.ts'],
     },
+    watchIncludes: ['src/**', 'lambdas/src/**', 'models/**'],
   };
 };
 
 getOptions().then(options => {
-  const project = new AwsCdkTypeScriptApp(options);
+  const project = new awscdk.AwsCdkTypeScriptApp(options);
   project.removeTask('deploy');
-  project.setScript('local', 'cdklocal');
   project.setScript('deploy', 'npx cdk deploy --all');
+  project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDB');
+  project.setScript('local', 'cdklocal watch');
   project.synth();
 }).catch(error => {
   console.log(error);

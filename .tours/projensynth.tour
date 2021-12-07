@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "ProjenSynth",
+  "title": "Projen - How to Use",
   "steps": [
     {
       "file": ".projenrc.ts",
@@ -60,6 +60,34 @@
       "file": ".projenrc.ts",
       "description": "If you need to put something into the `.gitignore`- File, you need to add that here.\nAgain, you need to run\n\n> pnpm projen",
       "line": 22
+    },
+    {
+      "file": "package.json",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 5
+        },
+        "end": {
+          "line": 19,
+          "character": 37
+        }
+      },
+      "description": "In order to upgrade packages such as `eslint`, `typescript` and its plugins, use command below\n\n>> pnpm upgrade-projen"
+    },
+    {
+      "file": "package.json",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 5
+        },
+        "end": {
+          "line": 20,
+          "character": 51
+        }
+      },
+      "description": "[projen](https://github.com/projen/projen) is releasing frequently. Use the command below to update.\n\n>> pnpm upgrade-projen"
     }
   ]
 }

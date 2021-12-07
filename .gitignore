@@ -31,6 +31,7 @@ jspm_packages/
 .env
 dist
 .DS_Store
+test-reports
 !/.projenrc.js
 /test-reports/
 junit.xml

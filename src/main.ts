@@ -9,7 +9,7 @@ config();
 // for development, use account/region from cdk cli
 const env = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION ?? 'eu-west-1',
+  region: 'eu-west-1',
 };
 const prefix = 'FourD';
 const repositoryName = process.env.GIT_REPOSITORY ?? '4dt-api-node';

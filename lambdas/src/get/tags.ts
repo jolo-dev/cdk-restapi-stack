@@ -4,7 +4,7 @@ import DynamoDb from '../DynamoDb';
 const dynamo = new DynamoDb({});
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries('Projects');
+    const entries = await dynamo.listEntries('Tags');
     if (entries.length > 0) {
       const result: APIGatewayProxyResult = {
         statusCode: 200,
@@ -14,7 +14,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     } else {
       return {
         statusCode: 200,
-        body: 'No Project-Entries',
+        body: 'No Tag-Entries',
       };
     }
   } catch (error) {
@@ -22,8 +22,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     const e = error as Error;
     return {
       statusCode: 400,
-      body: `Error in Getting Projects: ${e.message}`,
+      body: `Error in Getting Tags: ${e.message}`,
     };
   }
-
 };

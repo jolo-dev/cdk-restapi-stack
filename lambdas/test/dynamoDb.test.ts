@@ -32,12 +32,12 @@ describe('DynamoDb', () => {
 
   const attributes = {
     CoverImage: { S: 's3://url' },
-    CreationDateTime: { S: 'a few seconds ago' },
+    CreationDateTime: { S: '2020-01-01T00:00:00+01:00' },
     Description: { S: 'This is a Description' },
     ProjectName: { S: 'TestProject' },
-    State: { S: 'Available' },
+    Phase: { S: 'Available' },
     Author: { S: 'TestAuthor' },
-    ID: { S: '381181da-0f2c-430f-a47e-c07f5284c245' },
+    ID: { S: '123456789' },
     Season: { S: 'Winter' },
   };
   const KeySchema = [
@@ -126,19 +126,19 @@ describe('DynamoDb', () => {
   it('should throw when adding new Project entry was not successful', async () => {
     ddbMock.on(PutItemCommand).rejects();
     const project = dynamo.create(Project, props);
-    await expect(dynamo.addEntry(project)).rejects.toThrowError('Entry with ID 123456789 could not be saved in Projects');
+    await expect(dynamo.addEntry(project))
+      .rejects
+      .toThrowError('Entry with ID 123456789 at 2020-01-01T00:00:00+01:00 could not be saved in Projects');
   });
 
   it('should map the attributes coming from DynamoDB', () => {
     const projectProps = dynamo.attributesMapper<I4DProject>(attributes);
     expect(projectProps).toEqual({
       CoverImage: 's3://url',
-      CreationDateTime: 'a few seconds ago',
       ProjectName: 'TestProject',
       Description: 'This is a Description',
-      State: 'Available',
+      Phase: 'Available',
       Author: 'TestAuthor',
-      ID: '381181da-0f2c-430f-a47e-c07f5284c245',
       Season: 'Winter',
     });
   });
@@ -170,5 +170,11 @@ describe('DynamoDb', () => {
       TestNumber: { N: 2 },
       TestBoolean: { B: true },
     });
+  });
+
+  it('should build the attributes for DynamoDB after Entity is created', () => {
+    const project = new Project(props);
+    const dynamoData = dynamo.dynamoDbDataBuilder(project.getProps());
+    expect(dynamoData).toEqual(attributes);
   });
 });

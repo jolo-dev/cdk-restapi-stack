@@ -12,3 +12,7 @@ pnpm dev
 ```
 
 ### Test
+
+```bash
+pnpm test # or pnpm test:watch to do TDD
+```

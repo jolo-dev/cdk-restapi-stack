@@ -44,7 +44,6 @@ class DynamoDb {
       const e = error as Error;
       throw new Error(e.message);
     }
-
   }
 
   public async addEntry<T extends Standard>(tableEntry: T) {
@@ -58,7 +57,7 @@ class DynamoDb {
       return response;
     } catch (error) {
       console.error(error);
-      throw new Error(`Entry with ID ${tableEntry.getId()} could not be saved in ${tableEntry.getName()}`);
+      throw new Error(`Entry with ID ${tableEntry.getId()} at ${tableEntry.getCreationDateTime()} could not be saved in ${tableEntry.getName()}`);
     }
 
   }
@@ -69,6 +68,9 @@ class DynamoDb {
     keys.forEach(value => {
       result = { ...result, [value]: attributes[value].S };
     });
+    // Deleting ID and CreationDateTime because those are standard attributes
+    delete result.ID;
+    delete result.CreationDateTime;
     return result;
   }
 
