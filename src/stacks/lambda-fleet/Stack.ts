@@ -22,7 +22,7 @@ export class LambdaFleetStack extends Stack {
   private vpc: IVpc;
   private subnets: ISubnet[];
 
-  constructor(scope: Construct, id: string, lambdaFolder = 'lambdas', props: StackProps) {
+  constructor(scope: Construct, id: string, lambdaFolder: string, props: StackProps) {
     super(scope, id, props);
 
     // Networking

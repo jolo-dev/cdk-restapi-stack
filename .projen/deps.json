@@ -28,10 +28,6 @@
       "type": "build"
     },
     {
-      "name": "aws-cdk-local",
-      "type": "build"
-    },
-    {
       "name": "aws-cdk",
       "version": "^1.134.0",
       "type": "build"

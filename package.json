@@ -20,8 +20,7 @@
     "upgrade-projen": "npx projen upgrade-projen",
     "watch": "npx cdk watch FourD-LambdaFleetStack FourD-DynamoDB",
     "projen": "npx projen",
-    "deploy": "npx cdk deploy --all",
-    "local": "cdklocal watch"
+    "deploy": "npx cdk deploy --all"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
@@ -31,7 +30,6 @@
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk": "^1.134.0",
-    "aws-cdk-local": "^1.65.8",
     "aws-sdk-client-mock": "^0.5.6",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",

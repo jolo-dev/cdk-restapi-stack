@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "esbuild ./src/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build",
+    "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build",
+    "watch": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build --watch",
     "dev": "docker-compose up -d && ./init_db.sh",
     "lint": "eslint . --fix --ext .ts"
   },

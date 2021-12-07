@@ -14,7 +14,9 @@ For local development, please follow the instructions [here](#development).
 ## Structure
 
 This project is scaffolded by using `npx projen new awscdk-app-ts` and is purely in Typescript.
-We go for a [Monorepo](https://www.atlassian.com/git/tutorials/monorepos) approach, because the environment and tooling such as Eslint, `pnpm`, Typescript are identically for infrastructure and Lambda-Development.
+We go for a [Monorepo](https://www.atlassian.com/git/tutorials/monorepos) approach, because the environment and tooling such as `typescript`, `eslint`, `jest` are identically for infrastructure and Lambda-Development.
+We use [`pnpm`](https://pnpm.io/) as the Package Manager.
+
 Furthermore, `pnpm` is supporting Monorepo development out-of-the-box.
 
 ### What does that mean?
@@ -62,10 +64,29 @@ We use [localstack](https://github.com/localstack/localstack) for the local deve
 Open a new terminal and run.
 
 ```bash
+cd lambdas
 docker-compose up
 ```
 
 It's recommended to have the `awscli-local` installed.
+
+### Test
+
+For testing, we use [Jest](https://jestjs.io/).
+It is setup for the Lambda development as well as for the IaC.
+
+```bash
+pnpm test
+```
+
+Since we do Monorepo, the tests for the Lambdas within `lambdas`- folder can be called separately
+
+```bash
+cd lambdas
+pnpm test
+```
+
+Otherwise, by running `pnpm test` in the root it would also trigger the `test`- script defined in the `lambdas/package.json`.
 
 ## CodeTour
 
