@@ -1479,28 +1479,28 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2ArtifactHash7F6CD202": Object {
-      "Description": "Artifact hash for asset \\"5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2\\"",
+    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817ArtifactHash50B6CE67": Object {
+      "Description": "Artifact hash for asset \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
       "Type": "String",
     },
-    "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2S3Bucket7375E3F6": Object {
-      "Description": "S3 bucket for asset \\"5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2\\"",
+    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC": Object {
+      "Description": "S3 bucket for asset \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
       "Type": "String",
     },
-    "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2S3VersionKeyEAF87891": Object {
-      "Description": "S3 key for asset version \\"5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2\\"",
+    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB": Object {
+      "Description": "S3 key for asset version \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
       "Type": "String",
     },
-    "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347ArtifactHashBF4BDDD3": Object {
-      "Description": "Artifact hash for asset \\"f98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347\\"",
+    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dArtifactHashAB446BD6": Object {
+      "Description": "Artifact hash for asset \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
       "Type": "String",
     },
-    "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3Bucket1F2B6165": Object {
-      "Description": "S3 bucket for asset \\"f98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347\\"",
+    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A": Object {
+      "Description": "S3 bucket for asset \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
       "Type": "String",
     },
-    "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3VersionKeyD85D7F97": Object {
-      "Description": "S3 key for asset version \\"f98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347\\"",
+    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3": Object {
+      "Description": "S3 key for asset version \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
       "Type": "String",
     },
   },
@@ -1513,7 +1513,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3Bucket1F2B6165",
+            "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1526,7 +1526,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3VersionKeyD85D7F97",
+                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
                         },
                       ],
                     },
@@ -1539,7 +1539,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3VersionKeyD85D7F97",
+                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
                         },
                       ],
                     },
@@ -1671,7 +1671,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3Bucket1F2B6165",
+            "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1684,7 +1684,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3VersionKeyD85D7F97",
+                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
                         },
                       ],
                     },
@@ -1697,7 +1697,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf98ff098ff61b5342201007e1adcabda4cab50af4110df5cd82b7f4917444347S3VersionKeyD85D7F97",
+                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
                         },
                       ],
                     },
@@ -1829,7 +1829,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2S3Bucket7375E3F6",
+            "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1842,7 +1842,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2S3VersionKeyEAF87891",
+                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
                         },
                       ],
                     },
@@ -1855,7 +1855,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters5cba5a5585bb88bad6a3a026550df6d9938d542015e043ea08da2837956084c2S3VersionKeyEAF87891",
+                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
                         },
                       ],
                     },
@@ -1979,6 +1979,164 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
+    "POSTLambdaFleetposttagFunctionF3AE6045": Object {
+      "DependsOn": Array [
+        "POSTLambdaFleetposttagFunctionServiceRoleDefaultPolicy932B0243",
+        "POSTLambdaFleetposttagFunctionServiceRoleF662751E",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "tag.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetposttagFunctionServiceRoleF662751E",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "POSTLambdaFleetposttagFunctionSecurityGroupA16EB349",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "POSTLambdaFleetposttagFunctionSecurityGroupA16EB349": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPOSTLambdaFleetposttagFunctionF28C4CFF",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "POSTLambdaFleetposttagFunctionServiceRoleDefaultPolicy932B0243": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "POSTLambdaFleetposttagFunctionServiceRoleDefaultPolicy932B0243",
+        "Roles": Array [
+          Object {
+            "Ref": "POSTLambdaFleetposttagFunctionServiceRoleF662751E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "POSTLambdaFleetposttagFunctionServiceRoleF662751E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "PrivateApiGateway618B725A": Object {
       "Properties": Object {
         "EndpointConfiguration": Object {
@@ -1996,12 +2154,17 @@ Object {
           "Statement": Array [
             Object {
               "Action": "execute-api:Invoke",
+              "Condition": Object {
+                "StringEquals": Object {
+                  "aws:sourceVpce": "vpce-01988d3d83bebbf0e",
+                },
+              },
               "Effect": "Allow",
               "Principal": Object {
                 "AWS": "*",
               },
               "Resource": "execute-api:/*/*/*",
-              "Sid": "apiGatewayRole",
+              "Sid": "AllowVPCEndpointToInvoke",
             },
             Object {
               "Action": "lambda:InvokeFunction",
@@ -2010,7 +2173,7 @@ Object {
                 "AWS": "*",
               },
               "Resource": "lambda.amazonaws.com",
-              "Sid": "apiGatewayRole",
+              "Sid": "InvokeLambda",
             },
           ],
           "Version": "2012-10-17",
@@ -2063,12 +2226,14 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AA39101cea1e1a5243f1c0bf5d761213ad": Object {
+    "PrivateApiGatewayDeployment8BFAB2AA8aa9e111890561e5cfdb8963dbe0be2a": Object {
       "DependsOn": Array [
         "PrivateApiGatewayprojectpost39313EE5",
         "PrivateApiGatewayproject915840A4",
         "PrivateApiGatewayprojectsget15711F53",
         "PrivateApiGatewayprojects94902F3C",
+        "PrivateApiGatewaytagpostC1BA149B",
+        "PrivateApiGatewaytag70A3959A",
         "PrivateApiGatewaytagsget6E6A6807",
         "PrivateApiGatewaytags67126F69",
       ],
@@ -2083,7 +2248,7 @@ Object {
     "PrivateApiGatewayDeploymentStageeuwest14DE26235": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AA39101cea1e1a5243f1c0bf5d761213ad",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AA8aa9e111890561e5cfdb8963dbe0be2a",
         },
         "RestApiId": Object {
           "Ref": "PrivateApiGateway618B725A",
@@ -2362,6 +2527,141 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
+    "PrivateApiGatewaytag70A3959A": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "tag",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewaytagpostApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744POSTtag81EB1CF4": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetposttagFunctionF3AE6045",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/POST/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewaytagpostApiPermissiontestlambdafleetPrivateApiGatewayC62DC744POSTtag16CD9487": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetposttagFunctionF3AE6045",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+              },
+              "/POST/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewaytagpostC1BA149B": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "POSTLambdaFleetposttagFunctionF3AE6045",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewaytag70A3959A",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
     "PrivateApiGatewaytags67126F69": Object {
       "Properties": Object {
         "ParentId": Object {
@@ -2497,13 +2797,43 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
+    "VPCESg511F1255": Object {
+      "Properties": Object {
+        "GroupDescription": "Security Group for VPC Endpoint",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "10.0.0.0/8",
+            "Description": "Access to let all Adidas machines in",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+          Object {
+            "CidrIp": "1.2.3.4/5",
+            "Description": "from 1.2.3.4/5:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
     "VPCEndpointApiGWDCDB87C3": Object {
       "Properties": Object {
         "PrivateDnsEnabled": true,
         "SecurityGroupIds": Array [
           Object {
             "Fn::GetAtt": Array [
-              "VPCEndpointApiGWSecurityGroup54AFB44D",
+              "VPCESg511F1255",
               "GroupId",
             ],
           },
@@ -2517,29 +2847,6 @@ Object {
         "VpcId": "vpc-12345",
       },
       "Type": "AWS::EC2::VPCEndpoint",
-    },
-    "VPCEndpointApiGWSecurityGroup54AFB44D": Object {
-      "Properties": Object {
-        "GroupDescription": "test-lambda-fleet/VPCEndpointApiGW/SecurityGroup",
-        "SecurityGroupEgress": Array [
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
-          },
-        ],
-        "SecurityGroupIngress": Array [
-          Object {
-            "CidrIp": "1.2.3.4/5",
-            "Description": "from 1.2.3.4/5:443",
-            "FromPort": 443,
-            "IpProtocol": "tcp",
-            "ToPort": 443,
-          },
-        ],
-        "VpcId": "vpc-12345",
-      },
-      "Type": "AWS::EC2::SecurityGroup",
     },
     "VPCEndpointDynamoDbEA9E54C2": Object {
       "Properties": Object {

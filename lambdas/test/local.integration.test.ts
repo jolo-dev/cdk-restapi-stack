@@ -1,4 +1,4 @@
-import { Project } from '../../models/Project';
+import { I4DProject, Project } from '../../models/Project';
 import DynamoDb from '../src/DynamoDb';
 
 Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
@@ -19,7 +19,7 @@ describe('POST', () => {
     const entries = await dynamo.addEntry(project);
     expect(entries.$metadata.httpStatusCode).toBe(200);
 
-    const result = await dynamo.listEntries('Projects');
+    const result = await dynamo.listEntries<Project, I4DProject>('Projects', Project);
     expect(result[0]).toEqual(project);
   });
 });

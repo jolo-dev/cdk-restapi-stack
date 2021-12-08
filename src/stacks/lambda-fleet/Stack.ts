@@ -1,4 +1,4 @@
-import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint } from '@aws-cdk/aws-ec2';
+import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint, SecurityGroup, Peer, Port } from '@aws-cdk/aws-ec2';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { Stack, Construct, CfnOutput, StackProps } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';
@@ -37,6 +37,16 @@ export class LambdaFleetStack extends Stack {
     const methods = [Method.GET, Method.POST, Method.PUT, Method.DELETE];
     const region = Stack.of(this).region;
 
+    const vpceSecurityGroup = new SecurityGroup(this, 'VPCE-Sg', {
+      vpc: this.vpc,
+      description: 'Security Group for VPC Endpoint',
+    });
+
+    vpceSecurityGroup.addIngressRule(
+      Peer.ipv4('10.0.0.0/8'),
+      Port.tcp(443),
+      'Access to let all Adidas machines in',
+    );
 
     const apiGatewayVpcEndpoint = new InterfaceVpcEndpoint(this, 'VPCEndpointApiGW', {
       vpc: this.vpc,
@@ -45,6 +55,7 @@ export class LambdaFleetStack extends Stack {
         port: 443,
       },
       privateDnsEnabled: true,
+      securityGroups: [vpceSecurityGroup],
     });
 
     this.createCfnOutputs(

@@ -101,7 +101,7 @@ describe('DynamoDb', () => {
     ddbMock.on(ScanCommand).resolves({
       Items: [attributes],
     });
-    const entries = await dynamo.listEntries('Projects');
+    const entries = await dynamo.listEntries<Project, I4DProject>('Projects', Project);
     expect(entries.length).toBeGreaterThan(0);
   });
 
@@ -109,7 +109,8 @@ describe('DynamoDb', () => {
     ddbMock.on(ScanCommand).resolves({
       Count: 0,
     });
-    await expect(dynamo.listEntries('Projects')).rejects.toThrowError('No Items in the table: Projects');
+    await expect(dynamo.listEntries<Project, I4DProject>('Projects', Project))
+      .rejects.toThrowError('No Items in the table: Projects');
   });
 
   it('should add a new Project entry to Projects table', async () => {

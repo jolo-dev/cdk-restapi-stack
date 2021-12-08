@@ -6,9 +6,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build",
-    "watch": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build --watch",
-    "dev": "docker-compose up -d && ./init_db.sh",
-    "lint": "eslint . --fix --ext .ts"
+    "watch": "cdklocal watch LocalStack & esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./build --watch",
+    "dev": "docker-compose up -d && ./init_db.sh && pnpm watch",
+    "lint": "eslint . --fix --ext .ts",
+    "local": "cdklocal"
   },
   "author": "John Nguyen <john@globaldatanet.com>",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "aws-lambda": "^1.0.7"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.85"
+    "@types/aws-lambda": "^8.10.85",
+    "aws-cdk-local": "^1.65.8"
   }
 }

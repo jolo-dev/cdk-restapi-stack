@@ -41,8 +41,10 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
 getOptions().then(options => {
   const project = new awscdk.AwsCdkTypeScriptApp(options);
   project.removeTask('deploy');
+  project.removeTask('destroy');
   project.setScript('deploy', 'npx cdk deploy --all');
-  project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDB');
+  project.setScript('destroy', 'npx cdk destroy FourD-LambdaFleetStack');
+  project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack');
   project.synth();
 }).catch(error => {
   console.log(error);

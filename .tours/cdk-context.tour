@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "CDK Context",
+  "steps": [
+    {
+      "title": "Notes",
+      "description": "## Context is wrong\n\nIf you cannot use `pnpm synth` or you get an Error `[Error at /FourD-LambdaFleetStack] Could not find any VPCs matching`, it might that you need to delete `cdk.context.json` and then run `pnpm synth` again.\n\nHere we will create a new `cdk.context.json` and set new contexts.\n\n## Parameter Store has wrong values\n\nThe context could also be corrupt because the values from the [SSM Parameter Store](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/?region=eu-west-1&tab=Table) might be false.\n\nPlease verify that `/networking/vpc/id`, `/networking/private-subnet-1/id`, and `/networking/private-subnet-2/id` are set correctly. Double check either from the Service Catalog or Cloudformation or run the command below to see the output value of the `OutputKey: VpcId` (assuming your SSO-profile name is `adidas` and AWS-Cli is installed)\n\nFor VPC:\n\n>> aws servicecatalog get-provisioned-product-outputs --provisioned-product-name vpc --profile adidas --region eu-west-1\n\nFor Private-Subnet-1:\n\n>> aws servicecatalog get-provisioned-product-outputs --provisioned-product-name private-subnet-1 --profile adidas --region eu-west-1\n\nFor Private-Subnet-2:\n\n>> aws servicecatalog get-provisioned-product-outputs --provisioned-product-name private-subnet-2 --profile adidas --region eu-west-1"
+    }
+  ]
+}

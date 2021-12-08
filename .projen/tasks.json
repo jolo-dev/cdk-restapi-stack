@@ -69,15 +69,6 @@
         }
       ]
     },
-    "destroy": {
-      "name": "destroy",
-      "description": "Destroys your cdk app in the AWS cloud",
-      "steps": [
-        {
-          "exec": "cdk destroy"
-        }
-      ]
-    },
     "diff": {
       "name": "diff",
       "description": "Diffs the currently deployed app against your code",

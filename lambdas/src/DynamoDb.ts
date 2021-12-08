@@ -8,7 +8,6 @@ import {
 } from '@aws-sdk/client-dynamodb';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { I4DProject, Project } from '../../models/Project';
 import { Standard, StandardAttribute } from '../../models/StandardAttribute';
 
 class DynamoDb {
@@ -28,14 +27,14 @@ class DynamoDb {
     }
   }
 
-  public async listEntries(tableName: string): Promise<Project[]> {
+  public async listEntries<T, P>(tableName: string, entity: any): Promise<T[]> {
     try {
       const command = new ScanCommand({ TableName: tableName });
       const response = await this.client.send(command);
       if (response.Items) {
         return response.Items.map(attributes => {
-          const props: I4DProject = this.attributesMapper(attributes);
-          return new Project(props);
+          const props: P = this.attributesMapper(attributes);
+          return this.create(entity, props);
         });
       }
       throw new Error(`No Items in the table: ${tableName}`);

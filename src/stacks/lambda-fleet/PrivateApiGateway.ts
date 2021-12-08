@@ -15,14 +15,19 @@ export class PrivateApiGateway extends RestApi {
     const apiResourcePolicy = new PolicyDocument({
       statements: [
         new PolicyStatement({
-          sid: 'apiGatewayRole',
+          sid: 'AllowVPCEndpointToInvoke',
           effect: Effect.ALLOW,
           actions: ['execute-api:Invoke'],
           principals: [new AnyPrincipal()],
           resources: ['execute-api:/*/*/*'],
+          conditions: {
+            StringEquals: {
+              'aws:sourceVpce': 'vpce-01988d3d83bebbf0e',
+            },
+          },
         }),
         new PolicyStatement({
-          sid: 'apiGatewayRole',
+          sid: 'InvokeLambda',
           effect: Effect.ALLOW,
           actions: ['lambda:InvokeFunction'],
           principals: [new AnyPrincipal()],

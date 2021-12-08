@@ -39,13 +39,19 @@ export const getNetworkingContext = async () => {
       const key = product === 'vpc' ? 'vpcId' : toCamelCase(product);
       let value: string = '';
       if (product === 'vpc') {
-        vpcId = await callServiceCatalogProduct(ProductValue.VPC, [{ Key: VpcInputKeyValue.APPLICATION_NAME, Value: 'VPCFor4d' }]);
+        vpcId = await callServiceCatalogProduct(ProductValue.VPC,
+          [
+            { Key: VpcInputKeyValue.APPLICATION_NAME, Value: 'VPCFor4d' },
+            { Key: VpcInputKeyValue.CIDR_BLOCK, Value: '26' },
+          ]);
         value = vpcId;
       } else {
         if (vpcId !== '') {
           value = await callServiceCatalogProduct(ProductValue.PRIVATE_SUBNET,
-            [{ Key: PrivateSubnetKeyValue.VPC_ID, Value: vpcId },
-              { Key: PrivateSubnetKeyValue.AVAILABILITY_ZONE, Value: availabilityZone[(countSubnets - 1) % 3] }],
+            [
+              { Key: PrivateSubnetKeyValue.VPC_ID, Value: vpcId },
+              { Key: PrivateSubnetKeyValue.AVAILABILITY_ZONE, Value: availabilityZone[(countSubnets - 1) % 3] },
+            ],
             countSubnets++);
         }
       }

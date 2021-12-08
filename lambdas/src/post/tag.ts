@@ -1,5 +1,5 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
-import { Project } from '../../../models/Project';
+import { Tag } from '../../../models/Tag';
 import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
@@ -8,17 +8,17 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   try {
     if (event.body) {
       const props = JSON.parse(event.body);
-      const project = new Project(props);
+      const project = new Tag(props);
       const entries = await dynamo.addEntry(project);
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {
         const result: APIGatewayProxyResult = {
           statusCode,
-          body: `${project.getProps().ProjectName} has been successfully added`,
+          body: `Tag with Name: ${project.getProps().Name} has been successfully added`,
         };
         return result;
       } else {
-        throw new Error(`Error in adding Entry to Projects ${event.body}`);
+        throw new Error(`Error in adding Entry to Tags ${event.body}`);
       }
     } else {
       throw new Error(`The post body is empty or corrupt ${event.body}`);

@@ -21,7 +21,8 @@ export type VPCInputParams = {
 
 export enum PrivateSubnetKeyValue {
   VPC_ID = 'VPCId',
-  AVAILABILITY_ZONE = 'AvailabilityZone'
+  AVAILABILITY_ZONE = 'AvailabilityZone',
+  CIDR_BLOCK = 'CIDRBlock'
 }
 
 export type PrivateSubnetParams = {

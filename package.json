@@ -6,7 +6,6 @@
     "clobber": "npx projen clobber",
     "compile": "npx projen compile",
     "default": "npx projen default",
-    "destroy": "npx projen destroy",
     "diff": "npx projen diff",
     "eslint": "npx projen eslint",
     "package": "npx projen package",
@@ -18,9 +17,10 @@
     "test:watch": "npx projen test:watch",
     "upgrade": "npx projen upgrade",
     "upgrade-projen": "npx projen upgrade-projen",
-    "watch": "npx cdk watch FourD-LambdaFleetStack FourD-DynamoDB",
+    "watch": "npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack",
     "projen": "npx projen",
-    "deploy": "npx cdk deploy --all"
+    "deploy": "npx cdk deploy --all",
+    "destroy": "npx cdk destroy FourD-LambdaFleetStack"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
