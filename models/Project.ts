@@ -1,16 +1,16 @@
-import { Phase } from './Phase';
-import { Season } from './Season';
+import { IPhase } from './Phase';
+import { ISeason } from './Season';
 import { StandardAttribute, Standard } from './StandardAttribute';
-import { Tag } from './Tag';
+import { ITag } from './Tag';
 
 export interface I4DProject extends StandardAttribute {
   ProjectName: string;
   Author: string;
   Description: string;
   CoverImage: string;
-  Season?: Season;
-  Phase?: Phase;
-  Tags?: Tag[];
+  Season?: ISeason;
+  Phase?: IPhase;
+  Tags?: ITag[];
 }
 
 export class Project extends Standard {

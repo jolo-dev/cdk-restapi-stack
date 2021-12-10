@@ -3,11 +3,29 @@
 exports[`DynamoDbStack 1`] = `
 Object {
   "Outputs": Object {
+    "TableArnPhases": Object {
+      "Description": "DynamoDB TableArn for Phases",
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "PhasesTable80079352",
+          "Arn",
+        ],
+      },
+    },
     "TableArnProjects": Object {
       "Description": "DynamoDB TableArn for Projects",
       "Value": Object {
         "Fn::GetAtt": Array [
           "ProjectsTableAA0A2089",
+          "Arn",
+        ],
+      },
+    },
+    "TableArnSeasons": Object {
+      "Description": "DynamoDB TableArn for Seasons",
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "SeasonsTable65FDA5E0",
           "Arn",
         ],
       },
@@ -21,10 +39,22 @@ Object {
         ],
       },
     },
+    "TableNamePhases": Object {
+      "Description": "DynamoDB TableName for Phases",
+      "Value": Object {
+        "Ref": "PhasesTable80079352",
+      },
+    },
     "TableNameProjects": Object {
       "Description": "DynamoDB TableName for Projects",
       "Value": Object {
         "Ref": "ProjectsTableAA0A2089",
+      },
+    },
+    "TableNameSeasons": Object {
+      "Description": "DynamoDB TableName for Seasons",
+      "Value": Object {
+        "Ref": "SeasonsTable65FDA5E0",
       },
     },
     "TableNameTags": Object {
@@ -35,6 +65,49 @@ Object {
     },
   },
   "Resources": Object {
+    "PhasesTable80079352": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "ID",
+            "AttributeType": "S",
+          },
+          Object {
+            "AttributeName": "CreationDateTime",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "GlobalSecondaryIndexes": Array [
+          Object {
+            "IndexName": "PhasesGSI",
+            "KeySchema": Array [
+              Object {
+                "AttributeName": "ID",
+                "KeyType": "HASH",
+              },
+            ],
+            "Projection": Object {
+              "ProjectionType": "KEYS_ONLY",
+            },
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "ID",
+            "KeyType": "HASH",
+          },
+          Object {
+            "AttributeName": "CreationDateTime",
+            "KeyType": "RANGE",
+          },
+        ],
+        "TableName": "Phases",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
     "ProjectsTableAA0A2089": Object {
       "DeletionPolicy": "Retain",
       "Properties": Object {
@@ -74,6 +147,49 @@ Object {
           },
         ],
         "TableName": "Projects",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "SeasonsTable65FDA5E0": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "ID",
+            "AttributeType": "S",
+          },
+          Object {
+            "AttributeName": "CreationDateTime",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "GlobalSecondaryIndexes": Array [
+          Object {
+            "IndexName": "SeasonsGSI",
+            "KeySchema": Array [
+              Object {
+                "AttributeName": "ID",
+                "KeyType": "HASH",
+              },
+            ],
+            "Projection": Object {
+              "ProjectionType": "KEYS_ONLY",
+            },
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "ID",
+            "KeyType": "HASH",
+          },
+          Object {
+            "AttributeName": "CreationDateTime",
+            "KeyType": "RANGE",
+          },
+        ],
+        "TableName": "Seasons",
       },
       "Type": "AWS::DynamoDB::Table",
       "UpdateReplacePolicy": "Retain",
@@ -1448,7 +1564,7 @@ Object {
             },
             "/",
             Object {
-              "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+              "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
             },
             "/",
           ],
@@ -1470,7 +1586,7 @@ Object {
             },
             "/",
             Object {
-              "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+              "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
             },
             "/",
           ],
@@ -1479,41 +1595,41 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817ArtifactHash50B6CE67": Object {
-      "Description": "Artifact hash for asset \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
+    "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6ArtifactHash2EA31541": Object {
+      "Description": "Artifact hash for asset \\"0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6\\"",
       "Type": "String",
     },
-    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC": Object {
-      "Description": "S3 bucket for asset \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
+    "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3Bucket3B873D57": Object {
+      "Description": "S3 bucket for asset \\"0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6\\"",
       "Type": "String",
     },
-    "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB": Object {
-      "Description": "S3 key for asset version \\"0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817\\"",
+    "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10": Object {
+      "Description": "S3 key for asset version \\"0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6\\"",
       "Type": "String",
     },
-    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dArtifactHashAB446BD6": Object {
-      "Description": "Artifact hash for asset \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
+    "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eArtifactHash258CF3ED": Object {
+      "Description": "Artifact hash for asset \\"b2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2e\\"",
       "Type": "String",
     },
-    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A": Object {
-      "Description": "S3 bucket for asset \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
+    "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3Bucket4E0318F7": Object {
+      "Description": "S3 bucket for asset \\"b2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2e\\"",
       "Type": "String",
     },
-    "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3": Object {
-      "Description": "S3 key for asset version \\"f4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5d\\"",
+    "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06": Object {
+      "Description": "S3 key for asset version \\"b2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2e\\"",
       "Type": "String",
     },
   },
   "Resources": Object {
-    "GETLambdaFleetgetprojectsFunctionBD9C53AD": Object {
+    "GETLambdaFleetgetphasesFunction8B21C598": Object {
       "DependsOn": Array [
-        "GETLambdaFleetgetprojectsFunctionServiceRoleDefaultPolicyB4AEADA6",
-        "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F",
+        "GETLambdaFleetgetphasesFunctionServiceRoleDefaultPolicy111483D5",
+        "GETLambdaFleetgetphasesFunctionServiceRole2CC98956",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC",
+            "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3Bucket4E0318F7",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1526,7 +1642,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
                         },
                       ],
                     },
@@ -1539,7 +1655,252 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "phases.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetphasesFunctionServiceRole2CC98956",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "GETLambdaFleetgetphasesFunctionSecurityGroup100E8DA3",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GETLambdaFleetgetphasesFunctionSecurityGroup100E8DA3": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetGETLambdaFleetgetphasesFunction8CDA925F",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GETLambdaFleetgetphasesFunctionServiceRole2CC98956": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GETLambdaFleetgetphasesFunctionServiceRoleDefaultPolicy111483D5": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GETLambdaFleetgetphasesFunctionServiceRoleDefaultPolicy111483D5",
+        "Roles": Array [
+          Object {
+            "Ref": "GETLambdaFleetgetphasesFunctionServiceRole2CC98956",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GETLambdaFleetgetphasesMethodDoc64922571": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/phases",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"GET-Method for Getting a list of phasess\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetphasesResourceDoc546A042B": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/phases",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: phases\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetphasesResponseBodyFailedDocDCD2E12D": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/phases",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"Error in Getting phases\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetphasesResponseBodySuccessDoc5DF6A6DB": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/phases",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"success\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetphasesResponseFailedDocEE8EA540": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/phases",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of phasess has failed\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetphasesResponseSuccessDocD38EC0C2": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/phases",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of phasess successfully\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsFunctionBD9C53AD": Object {
+      "DependsOn": Array [
+        "GETLambdaFleetgetprojectsFunctionServiceRoleDefaultPolicyB4AEADA6",
+        "GETLambdaFleetgetprojectsFunctionServiceRole7C13A49F",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3Bucket4E0318F7",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
                         },
                       ],
                     },
@@ -1663,15 +2024,102 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "GETLambdaFleetgettagsFunctionFFE814CA": Object {
+    "GETLambdaFleetgetprojectsMethodDoc8D9ACC24": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/projects",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"GET-Method for Getting a list of projectss\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsResourceDocBCD10FEC": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/projects",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: projects\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsResponseBodyFailedDoc7B83CD7B": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/projects",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"Error in Getting projects\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsResponseBodySuccessDoc0DCA3DFD": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/projects",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"success\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsResponseFailedDoc4F7A28E6": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/projects",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of projectss has failed\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetprojectsResponseSuccessDoc17A3D82A": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/projects",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of projectss successfully\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsFunctionD4216CA6": Object {
       "DependsOn": Array [
-        "GETLambdaFleetgettagsFunctionServiceRoleDefaultPolicy3A741BB2",
-        "GETLambdaFleetgettagsFunctionServiceRoleFC4F98AA",
+        "GETLambdaFleetgetseasonsFunctionServiceRoleDefaultPolicyCA39B1BF",
+        "GETLambdaFleetgetseasonsFunctionServiceRole6A8F6A56",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3Bucket7A4C54BC",
+            "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3Bucket4E0318F7",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1684,7 +2132,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
                         },
                       ],
                     },
@@ -1697,7 +2145,252 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters0aa8929747f4df4bdd4764130059b3892883780156d212dde1eb2dd3838c2817S3VersionKey9A3813EB",
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "seasons.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetseasonsFunctionServiceRole6A8F6A56",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "GETLambdaFleetgetseasonsFunctionSecurityGroup8047EFD6",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GETLambdaFleetgetseasonsFunctionSecurityGroup8047EFD6": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetGETLambdaFleetgetseasonsFunction16C075D6",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GETLambdaFleetgetseasonsFunctionServiceRole6A8F6A56": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GETLambdaFleetgetseasonsFunctionServiceRoleDefaultPolicyCA39B1BF": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GETLambdaFleetgetseasonsFunctionServiceRoleDefaultPolicyCA39B1BF",
+        "Roles": Array [
+          Object {
+            "Ref": "GETLambdaFleetgetseasonsFunctionServiceRole6A8F6A56",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GETLambdaFleetgetseasonsMethodDoc966FC69C": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/seasons",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"GET-Method for Getting a list of seasonss\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsResourceDoc5BCDBD75": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/seasons",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: seasons\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsResponseBodyFailedDoc8C9665B1": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/seasons",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"Error in Getting seasons\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsResponseBodySuccessDocDC18EF83": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/seasons",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"success\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsResponseFailedDocAE6A9B18": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/seasons",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of seasonss has failed\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgetseasonsResponseSuccessDoc12DDE3B0": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/seasons",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of seasonss successfully\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsFunctionFFE814CA": Object {
+      "DependsOn": Array [
+        "GETLambdaFleetgettagsFunctionServiceRoleDefaultPolicy3A741BB2",
+        "GETLambdaFleetgettagsFunctionServiceRoleFC4F98AA",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3Bucket4E0318F7",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb2705487aa392a6fefa2f9b2cb5594567764e2e830c4399912fdc0b86cff1f2eS3VersionKeyAC477E06",
                         },
                       ],
                     },
@@ -1821,15 +2514,102 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "POSTLambdaFleetpostprojectFunction11E1F9F4": Object {
+    "GETLambdaFleetgettagsMethodDoc0EB911EF": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/tags",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"GET-Method for Getting a list of tagss\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsResourceDoc3F44D519": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/tags",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: tags\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsResponseBodyFailedDoc470A104D": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/tags",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"Error in Getting tags\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsResponseBodySuccessDoc0815F8AD": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/tags",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"success\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsResponseFailedDoc5F78563A": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/tags",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of tagss has failed\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "GETLambdaFleetgettagsResponseSuccessDoc32C0AD21": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "get",
+          "Path": "/tags",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when Getting a list of tagss successfully\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseFunctionBD17A7A6": Object {
       "DependsOn": Array [
-        "POSTLambdaFleetpostprojectFunctionServiceRoleDefaultPolicyD0AFF5A3",
-        "POSTLambdaFleetpostprojectFunctionServiceRole964E8986",
+        "POSTLambdaFleetpostphaseFunctionServiceRoleDefaultPolicy013A1203",
+        "POSTLambdaFleetpostphaseFunctionServiceRoleCB9CA822",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A",
+            "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3Bucket3B873D57",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1842,7 +2622,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
                         },
                       ],
                     },
@@ -1855,7 +2635,252 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "phase.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostphaseFunctionServiceRoleCB9CA822",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "POSTLambdaFleetpostphaseFunctionSecurityGroupE1CDA1D5",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "POSTLambdaFleetpostphaseFunctionSecurityGroupE1CDA1D5": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPOSTLambdaFleetpostphaseFunctionB34F88BD",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "POSTLambdaFleetpostphaseFunctionServiceRoleCB9CA822": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "POSTLambdaFleetpostphaseFunctionServiceRoleDefaultPolicy013A1203": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "POSTLambdaFleetpostphaseFunctionServiceRoleDefaultPolicy013A1203",
+        "Roles": Array [
+          Object {
+            "Ref": "POSTLambdaFleetpostphaseFunctionServiceRoleCB9CA822",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "POSTLambdaFleetpostphaseMethodDoc293A2D5F": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/phase",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"POST-Method for adding phase\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseResourceDoc050B7ECE": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/phase",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: phase\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseResponseBodyFailedDocE2DDEB85": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/phase",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"The post body is empty or corrupt\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseResponseBodySuccessDoc05052267": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/phase",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"phase has been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseResponseFailedDoc6E47893D": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/phase",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when phase was not successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostphaseResponseSuccessDoc2189E059": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/phase",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when phase had been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectFunction11E1F9F4": Object {
+      "DependsOn": Array [
+        "POSTLambdaFleetpostprojectFunctionServiceRoleDefaultPolicyD0AFF5A3",
+        "POSTLambdaFleetpostprojectFunctionServiceRole964E8986",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3Bucket3B873D57",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
                         },
                       ],
                     },
@@ -1979,15 +3004,102 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "POSTLambdaFleetposttagFunctionF3AE6045": Object {
+    "POSTLambdaFleetpostprojectMethodDocDBE20AD6": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/project",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"POST-Method for adding project\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectResourceDocC2FC0F0A": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/project",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: project\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectResponseBodyFailedDocB4A8F8D4": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/project",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"The post body is empty or corrupt\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectResponseBodySuccessDoc97F483CB": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/project",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"project has been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectResponseFailedDocCE8DF743": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/project",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when project was not successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostprojectResponseSuccessDocA4EE1390": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/project",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when project had been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonFunctionE4B7DCA1": Object {
       "DependsOn": Array [
-        "POSTLambdaFleetposttagFunctionServiceRoleDefaultPolicy932B0243",
-        "POSTLambdaFleetposttagFunctionServiceRoleF662751E",
+        "POSTLambdaFleetpostseasonFunctionServiceRoleDefaultPolicy9BD14089",
+        "POSTLambdaFleetpostseasonFunctionServiceRole97046C5C",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3BucketA1D5806A",
+            "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3Bucket3B873D57",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2000,7 +3112,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
                         },
                       ],
                     },
@@ -2013,7 +3125,252 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf4a8af87d409d7b0384000d5eb354e29a409f8dc758e4c84122272a26c0a0b5dS3VersionKey76998BA3",
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "season.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostseasonFunctionServiceRole97046C5C",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "POSTLambdaFleetpostseasonFunctionSecurityGroup00CD22EE",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "POSTLambdaFleetpostseasonFunctionSecurityGroup00CD22EE": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPOSTLambdaFleetpostseasonFunction97290444",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "POSTLambdaFleetpostseasonFunctionServiceRole97046C5C": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "POSTLambdaFleetpostseasonFunctionServiceRoleDefaultPolicy9BD14089": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "POSTLambdaFleetpostseasonFunctionServiceRoleDefaultPolicy9BD14089",
+        "Roles": Array [
+          Object {
+            "Ref": "POSTLambdaFleetpostseasonFunctionServiceRole97046C5C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "POSTLambdaFleetpostseasonMethodDocE8A02151": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/season",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"POST-Method for adding season\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonResourceDoc69DC6BE4": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/season",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: season\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonResponseBodyFailedDoc67200B4C": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/season",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"The post body is empty or corrupt\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonResponseBodySuccessDoc5D30098A": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/season",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"season has been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonResponseFailedDoc86877852": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/season",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when season was not successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetpostseasonResponseSuccessDoc675BBD45": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/season",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when season had been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagFunctionF3AE6045": Object {
+      "DependsOn": Array [
+        "POSTLambdaFleetposttagFunctionServiceRoleDefaultPolicy932B0243",
+        "POSTLambdaFleetposttagFunctionServiceRoleF662751E",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3Bucket3B873D57",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0591e014d9f9546432f83bb8bf1362f7780f824ebd3c8d0e97f6a55215530df6S3VersionKey3037ED10",
                         },
                       ],
                     },
@@ -2137,6 +3494,93 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
+    "POSTLambdaFleetposttagMethodDoc4CE93953": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/tag",
+          "Type": "METHOD",
+        },
+        "Properties": "{\\"description\\": \\"POST-Method for adding tag\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagResourceDoc0F01E220": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Path": "/tag",
+          "Type": "RESOURCE",
+        },
+        "Properties": "{\\"description\\": \\"Ressource: tag\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagResponseBodyFailedDoc23BF3A9C": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/tag",
+          "StatusCode": "400",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"The post body is empty or corrupt\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagResponseBodySuccessDocEFB8473C": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/tag",
+          "StatusCode": "200",
+          "Type": "RESPONSE_BODY",
+        },
+        "Properties": "{\\"description\\": \\"tag has been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagResponseFailedDocD51AC532": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/tag",
+          "StatusCode": "400",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when tag was not successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
+    "POSTLambdaFleetposttagResponseSuccessDoc1FF9BF20": Object {
+      "Properties": Object {
+        "Location": Object {
+          "Method": "post",
+          "Path": "/tag",
+          "StatusCode": "200",
+          "Type": "RESPONSE",
+        },
+        "Properties": "{\\"description\\": \\"Status code when tag had been successfully added\\"}",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::DocumentationPart",
+    },
     "PrivateApiGateway618B725A": Object {
       "Properties": Object {
         "EndpointConfiguration": Object {
@@ -2226,15 +3670,32 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AA8aa9e111890561e5cfdb8963dbe0be2a": Object {
+    "PrivateApiGatewayDeployment8BFAB2AA11f21151440a012cf670e31ac48ff8c5": Object {
       "DependsOn": Array [
+        "PrivateApiGatewayOPTIONSE59A3A5D",
+        "PrivateApiGatewayphaseOPTIONSCA2496AC",
+        "PrivateApiGatewayphasepost377D8B7F",
+        "PrivateApiGatewayphaseB72A91F5",
+        "PrivateApiGatewayphasesget10F99EF2",
+        "PrivateApiGatewayphasesOPTIONS7365ECC2",
+        "PrivateApiGatewayphases8AAA28C3",
+        "PrivateApiGatewayprojectOPTIONS1CD18735",
         "PrivateApiGatewayprojectpost39313EE5",
         "PrivateApiGatewayproject915840A4",
         "PrivateApiGatewayprojectsget15711F53",
+        "PrivateApiGatewayprojectsOPTIONS1836A009",
         "PrivateApiGatewayprojects94902F3C",
+        "PrivateApiGatewayseasonOPTIONS62D42098",
+        "PrivateApiGatewayseasonpost401889DA",
+        "PrivateApiGatewayseason995346FD",
+        "PrivateApiGatewayseasonsget8DD31586",
+        "PrivateApiGatewayseasonsOPTIONS4A9945CA",
+        "PrivateApiGatewayseasonsFFE4D1FD",
+        "PrivateApiGatewaytagOPTIONS77553232",
         "PrivateApiGatewaytagpostC1BA149B",
         "PrivateApiGatewaytag70A3959A",
         "PrivateApiGatewaytagsget6E6A6807",
+        "PrivateApiGatewaytagsOPTIONSE846F9A2",
         "PrivateApiGatewaytags67126F69",
       ],
       "Properties": Object {
@@ -2245,17 +3706,413 @@ Object {
       },
       "Type": "AWS::ApiGateway::Deployment",
     },
-    "PrivateApiGatewayDeploymentStageeuwest14DE26235": Object {
+    "PrivateApiGatewayDeploymentStagedevBF01358E": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AA8aa9e111890561e5cfdb8963dbe0be2a",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AA11f21151440a012cf670e31ac48ff8c5",
         },
         "RestApiId": Object {
           "Ref": "PrivateApiGateway618B725A",
         },
-        "StageName": "eu-west-1",
+        "StageName": "dev",
       },
       "Type": "AWS::ApiGateway::Stage",
+    },
+    "PrivateApiGatewayOPTIONSE59A3A5D": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphaseB72A91F5": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "phase",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayphaseOPTIONSCA2496AC": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphaseB72A91F5",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphasepost377D8B7F": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "POSTLambdaFleetpostphaseFunctionBD17A7A6",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphaseB72A91F5",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphasepostApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744POSTphase0D208344": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostphaseFunctionBD17A7A6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/POST/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphasepostApiPermissiontestlambdafleetPrivateApiGatewayC62DC744POSTphase2416ED84": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostphaseFunctionBD17A7A6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/POST/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphases8AAA28C3": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "phases",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayphasesOPTIONS7365ECC2": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphases8AAA28C3",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphasesget10F99EF2": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "GETLambdaFleetgetphasesFunction8B21C598",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphases8AAA28C3",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphasesgetApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744GETphasesD34091A9": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetphasesFunction8B21C598",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/GET/phases",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphasesgetApiPermissiontestlambdafleetPrivateApiGatewayC62DC744GETphases3283E0B4": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetphasesFunction8B21C598",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/GET/phases",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
     },
     "PrivateApiGatewayproject915840A4": Object {
       "Properties": Object {
@@ -2271,6 +4128,47 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayprojectOPTIONS1CD18735": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayproject915840A4",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
     },
     "PrivateApiGatewayprojectpost39313EE5": Object {
       "Properties": Object {
@@ -2383,7 +4281,7 @@ Object {
               },
               "/",
               Object {
-                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/POST/project",
             ],
@@ -2406,6 +4304,47 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayprojectsOPTIONS1836A009": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayprojects94902F3C",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
     },
     "PrivateApiGatewayprojectsget15711F53": Object {
       "Properties": Object {
@@ -2518,9 +4457,361 @@ Object {
               },
               "/",
               Object {
-                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/GET/projects",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseason995346FD": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "season",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayseasonOPTIONS62D42098": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseason995346FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasonpost401889DA": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "POSTLambdaFleetpostseasonFunctionE4B7DCA1",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseason995346FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasonpostApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744POSTseason26B79171": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostseasonFunctionE4B7DCA1",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/POST/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasonpostApiPermissiontestlambdafleetPrivateApiGatewayC62DC744POSTseason82FD3B1F": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "POSTLambdaFleetpostseasonFunctionE4B7DCA1",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/POST/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasonsFFE4D1FD": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "PrivateApiGateway618B725A",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "seasons",
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewayseasonsOPTIONS4A9945CA": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseasonsFFE4D1FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasonsget8DD31586": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "GETLambdaFleetgetseasonsFunctionD4216CA6",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseasonsFFE4D1FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasonsgetApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744GETseasons093A802F": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetseasonsFunctionD4216CA6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/GET/seasons",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasonsgetApiPermissiontestlambdafleetPrivateApiGatewayC62DC744GETseasons6B273036": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "GETLambdaFleetgetseasonsFunctionD4216CA6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/GET/seasons",
             ],
           ],
         },
@@ -2541,6 +4832,47 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewaytagOPTIONS77553232": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewaytag70A3959A",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
     },
     "PrivateApiGatewaytagpostApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744POSTtag81EB1CF4": Object {
       "Properties": Object {
@@ -2595,7 +4927,7 @@ Object {
               },
               "/",
               Object {
-                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/POST/tag",
             ],
@@ -2676,6 +5008,47 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
+    },
+    "PrivateApiGatewaytagsOPTIONSE846F9A2": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewaytags67126F69",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
     },
     "PrivateApiGatewaytagsget6E6A6807": Object {
       "Properties": Object {
@@ -2788,7 +5161,7 @@ Object {
               },
               "/",
               Object {
-                "Ref": "PrivateApiGatewayDeploymentStageeuwest14DE26235",
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/GET/tags",
             ],

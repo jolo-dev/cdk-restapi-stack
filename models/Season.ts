@@ -2,7 +2,6 @@ import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface ISeason extends StandardAttribute {
   SeasonName: string;
-  AnotherAttribute: string;
 }
 
 export class Season extends Standard {

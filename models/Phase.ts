@@ -2,7 +2,6 @@ import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface IPhase extends StandardAttribute {
   PhaseName: string;
-  AnotherAttribute: string;
 }
 
 export class Phase extends Standard {
