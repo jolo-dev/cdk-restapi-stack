@@ -45,7 +45,8 @@ Within the `lambdas`- folder is also a `src` where the development in Typescript
 
 ## Recommendation
 
-It is recommended to use [VS Code](https://code.visualstudio.com/) as an IDE.
+It is recommended to use [VS Code](https://code.visualstudio.com/) as an IDE.<br/>
+We use [Codesnippets](#codesnippets) for faster development.
 This project uses three VS Code extensions (see `.vscode/extensions.json`).
 
 - [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
@@ -53,6 +54,16 @@ This project uses three VS Code extensions (see `.vscode/extensions.json`).
 - [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
 
 Follow [the CodeTour](#codetour) for a better Onboarding to this project.
+
+### Codesnippets
+
+Use Codesnippets for faster Development by enter e.g. `getLambda` 👇
+
+![Using Codesnippet for creating GET Lambda](.vscode/getLambda.gif "Using Codesnippet for creating GET Lambda")
+
+- Model `model`
+- GET Lambda `getLambda`
+- POST Lambda `postLambda`
 
 ## Development
 
@@ -88,6 +99,16 @@ pnpm test
 
 Otherwise, by running `pnpm test` in the root it would also trigger the `test`- script defined in the `lambdas/package.json`.
 
+### Codesnippets
+
+Use Codesnippets for faster Development
+
+![Using Codesnippet for creating GET Lambda](.vscode/getLambda.gif "Using Codesnippet for creating GET Lambda")
+
+- GET Lambda `getLambda`
+- POST Lambda `postLambda`
+- Model `model`
+
 ## CodeTour
 
 CodeTour is a VS Code Extension which allows to document the code where "traditional" code comment is too less.
@@ -96,3 +117,19 @@ After activating it, you should be able to see *CodeTour* on the left side of th
 In general, it would be good if you document your code when you think it needs more expression by using CodeTour.
 
 [Learn more](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
+
+## Troubleshooting
+
+### Singular vs Plural (Unique Lambda Names)
+
+Each Lambda should be unique therefore its naming.
+Verify that Lambdas in the `get`- Folder have different names than in the `post`, or `put`- folder.
+
+### Bundling was stucked
+
+It could happen that you bundled a code which got stucked.
+Simply delete `lambdas/dist`- Folder
+
+### Too many assets/CFN
+
+In order to have a clean development environment, it might be good to delete `cdk.out` which has old synthesized CFN.

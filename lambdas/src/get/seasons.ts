@@ -1,29 +1,27 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
-import { ITag, Tag } from '../../../models/Tag';
+import { ISeason, Season } from '../../../models/Season';
 import DynamoDb from '../DynamoDb';
-
-type TagsResult = APIGatewayProxyResult & {
-  results: Tag[];
+type SeasonsResult = APIGatewayProxyResult & {
+  results: Season[];
 }
-
 const dynamo = new DynamoDb({});
 /**
  * @openapi
- * /tags:
+ * /seasons:
  *   get:
  *     tags:
- *       - Tags
+ *       - Seasons
  *     responses:
  *       "400":
- *         description: "Error in getting Tags"
+ *         description: "Error in getting Seasons"
  *       "200":
- *         description: "A list of Tags"
+ *         description: "A list of Seasons"
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries<Tag, ITag>('Tags', Tag);
+    const entries = await dynamo.listEntries<Season, ISeason>('Seasons', Season);
     if (entries.length > 0) {
-      const result: TagsResult = {
+      const result: SeasonsResult = {
         statusCode: 200,
         body: JSON.stringify(entries),
         results: entries,
@@ -32,7 +30,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     } else {
       return {
         statusCode: 200,
-        body: 'No Tag-Entries',
+        body: 'No Season-Entries',
       };
     }
   } catch (error) {
@@ -40,7 +38,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     const e = error as Error;
     return {
       statusCode: 400,
-      body: `Error in Getting Tags: ${e.message}`,
+      body: `Error in Getting Seasons: ${e.message}`,
     };
   }
 };

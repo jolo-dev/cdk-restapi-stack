@@ -40,13 +40,25 @@ export class PrivateApiGateway extends RestApi {
       cloudWatchRole: true,
       description: props.description,
       deployOptions: {
-        stageName: props.region,
+        stageName: process.env.STAGE ?? 'dev',
       },
       endpointConfiguration: {
         types: [EndpointType.PRIVATE],
         vpcEndpoints: props.vpcEndpoint,
       },
       policy: apiResourcePolicy,
+      // 👇 set up CORS
+      defaultCorsPreflightOptions: {
+        allowHeaders: [
+          'Content-Type',
+          'X-Amz-Date',
+          'Authorization',
+          'X-Api-Key',
+        ],
+        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        allowCredentials: true,
+        allowOrigins: ['*'],
+      },
     });
 
     this.createCfnOutputs();

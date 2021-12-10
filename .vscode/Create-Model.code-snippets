@@ -1,0 +1,27 @@
+{
+	"Add a GET Lambda": {
+		"scope": "typescript",
+		"prefix": "model",
+		"body": [
+			"import { StandardAttribute, Standard } from './StandardAttribute';",
+			" ",
+			"export interface I$1 extends StandardAttribute {",
+			"  $1Name: string;",
+			"  AnotherAttribute: string;",
+			"}",
+			" ",
+			"export class $1 extends Standard {",
+			" ",
+			"  readonly props: I$1;",
+			"  constructor(props: I$1) {",
+			"    super('$1s', props.ID, props.CreationDateTime);",
+			"    this.props = props;",
+			"  };",
+			"  public getProps() {",
+			"    return this.props;",
+			"  }",
+			"}"
+		],
+		"description": "For Creating a Model"
+	}
+}

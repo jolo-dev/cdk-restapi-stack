@@ -5,7 +5,9 @@ import {
   PutItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import { mockClient } from 'aws-sdk-client-mock';
+import { IPhase } from '../../models/Phase';
 import { I4DProject, Project } from '../../models/Project';
+import { ISeason } from '../../models/Season';
 import DynamoDb from '../src/DynamoDb';
 
 Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
@@ -21,13 +23,19 @@ const ddbMock = mockClient(DynamoDBClient);
 
 describe('DynamoDb', () => {
   const dynamo = new DynamoDb({ endpoint: 'http://localhost:4566', region: 'eu-west-1' });
+  const Phase: IPhase = {
+    PhaseName: 'Available',
+  };
+  const Season: ISeason = {
+    SeasonName: 'Winter',
+  };
   const props: I4DProject = {
     CoverImage: 's3://url',
     Description: 'This is a Description',
     ProjectName: 'TestProject',
-    Phase: 'Available',
+    Phase,
     Author: 'TestAuthor',
-    Season: 'Winter',
+    Season,
   };
 
   const attributes = {
@@ -177,5 +185,24 @@ describe('DynamoDb', () => {
     const project = new Project(props);
     const dynamoData = dynamo.dynamoDbDataBuilder(project.getProps());
     expect(dynamoData).toEqual(attributes);
+  });
+
+  it('should return the correct type of an object', () => {
+    const object = { Season: { SeasonName: 'Season' } };
+    expect(dynamo.dynamoAttributeKeyValue(object, 'Season')).toEqual({ Season: { S: 'Season' } });
+  });
+
+  it('should return the correct type of a really nested object', () => {
+    const object = {
+      TopLevel:
+        {
+          Level:
+          {
+            Project:
+            { Season: { SeasonNumber: 100 } },
+          },
+        },
+    };
+    expect(dynamo.dynamoAttributeKeyValue(object, 'TopLevel')).toEqual({ TopLevel: { N: 100 } });
   });
 });

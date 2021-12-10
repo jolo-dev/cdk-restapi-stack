@@ -1,49 +1,47 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
-import { I4DProject, Project } from '../../../models/Project';
+import { IPhase, Phase } from '../../../models/Phase';
 import DynamoDb from '../DynamoDb';
-
-type ProjectsResult = APIGatewayProxyResult & {
-  results: Project[];
+type PhasesResult = APIGatewayProxyResult & {
+  results: Phase[];
 }
-
 const dynamo = new DynamoDb({});
 /**
  * @openapi
- * /projects:
+ * /phases:
  *   get:
- *     projects:
- *       - Projects
+ *     phases:
+ *       - Phases
  *     responses:
  *       "400":
- *         description: "Error in getting projects"
+ *         description: "Error in getting phases"
  *         content:
  *           application/json:
  *             examples:
- *               projects:
- *                 value: Error in getting projects
+ *               phases:
+ *                 value: Error in Getting Phases
  *       "200":
- *         description: "A list of projects"
+ *         description: "A list of phases"
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/project_data'
+ *                 $ref: '#/components/schemas/phase_data'
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries<Project, I4DProject>('Projects', Project);
+    const entries = await dynamo.listEntries<Phase, IPhase>('Phases', Phase);
     if (entries.length > 0) {
-      const result: ProjectsResult = {
+      const result: PhasesResult = {
         statusCode: 200,
-        body: 'success',
+        body: JSON.stringify(entries),
         results: entries,
       };
       return result;
     } else {
       return {
         statusCode: 200,
-        body: 'No Project-Entries',
+        body: 'No Phase-Entries',
       };
     }
   } catch (error) {
@@ -51,8 +49,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     const e = error as Error;
     return {
       statusCode: 400,
-      body: `Error in getting projects: ${e.message}`,
+      body: `Error in Getting Phases: ${e.message}`,
     };
   }
-
 };

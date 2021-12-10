@@ -24,9 +24,9 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
       '@aws-cdk/aws-dynamodb'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
-    deps: ['dotenv', 'esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
+    deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
     description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
-    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid'], /* Build dev dependencies for this module. */
+    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid', 'swagger-jsdoc'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store', 'test-reports', 'cdk.out'],
     context,
     jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/src'] } },

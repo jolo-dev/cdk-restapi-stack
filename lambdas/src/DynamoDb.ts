@@ -83,16 +83,26 @@ class DynamoDb {
       },
     };
     for (const key in props) {
-      let type = 'S';
-      if (typeof props[key] === 'number') {
-        type = 'N';
-      }
-      if (typeof props[key] === 'boolean') {
-        type = 'B';
-      }
-      result = { ...result, [key]: { [type]: props[key] } };
+      const attributeKeyValue = this.dynamoAttributeKeyValue({ [key]: props[key] }, key);
+      result = { ...result, ...attributeKeyValue };
     }
     return result;
+  }
+
+  public dynamoAttributeKeyValue(object: any, topLevelName: string): { [key: string]: {[key: string]: string}} {
+    for (const key in object) {
+      switch (typeof object[key]) {
+        case 'number':
+          return { [topLevelName]: { N: object[key] } };
+        case 'boolean':
+          return { [topLevelName]: { B: object[key] } };
+        case 'object':
+          return this.dynamoAttributeKeyValue(object[key], topLevelName);
+        default:
+          return { [topLevelName]: { S: object[key] } };
+      }
+    }
+    return { dummy: { S: '' } };
   }
 
   public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
+import { CfnDocumentationPart, LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { ISubnet, IVpc } from '@aws-cdk/aws-ec2';
 import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
@@ -65,12 +65,86 @@ export class LambdaFleet extends Construct {
         });
         lambdaFunction.addToRolePolicy(policy);
 
-        // Add Lambda to API Gateway
+        // // Add Lambda to API Gateway
         const restEndpoint = this.api.root.addResource(lambdaName);
         restEndpoint.addMethod(this.method,
           new LambdaIntegration(lambdaFunction, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
           { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] },
         );
+
+        /////// FOR OPENAPI
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}ResourceDoc`, {
+          location: {
+            path: `/${lambdaName}`,
+            type: 'RESOURCE',
+          },
+          properties: `{\"description\": \"Ressource: ${lambdaName}\"}`,
+          restApiId: this.api.restApiId,
+        });
+
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}MethodDoc`, {
+          location: {
+            method: this.method,
+            path: `/${lambdaName}`,
+            type: 'METHOD',
+          },
+          properties: this.method === 'post'
+            ? `{\"description\": \"${this.method.toUpperCase()}-Method for adding ${lambdaName}\"}`
+            : `{\"description\": \"${this.method.toUpperCase()}-Method for Getting a list of ${lambdaName}s\"}`,
+          restApiId: this.api.restApiId,
+        });
+
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}ResponseBodySuccessDoc`, {
+          location: {
+            method: this.method,
+            path: `/${lambdaName}`,
+            type: 'RESPONSE_BODY',
+            statusCode: '200',
+          },
+          properties: this.method === 'post'
+            ? `{\"description\": \"${lambdaName} has been successfully added\"}`
+            : '{\"description\": \"success\"}',
+          restApiId: this.api.restApiId,
+        });
+
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}ResponseSuccessDoc`, {
+          location: {
+            method: this.method,
+            path: `/${lambdaName}`,
+            type: 'RESPONSE',
+            statusCode: '200',
+          },
+          properties: this.method === 'post'
+            ? `{\"description\": \"Status code when ${lambdaName} had been successfully added\"}`
+            : `{\"description\": \"Status code when Getting a list of ${lambdaName}s successfully\"}`,
+          restApiId: this.api.restApiId,
+        });
+
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}ResponseBodyFailedDoc`, {
+          location: {
+            method: this.method,
+            path: `/${lambdaName}`,
+            type: 'RESPONSE_BODY',
+            statusCode: '400',
+          },
+          properties: this.method === 'post'
+            ? '{\"description\": \"The post body is empty or corrupt\"}'
+            : `{\"description\": \"Error in Getting ${lambdaName}\"}`,
+          restApiId: this.api.restApiId,
+        });
+
+        new CfnDocumentationPart(this, `${this.method}${lambdaName}ResponseFailedDoc`, {
+          location: {
+            method: this.method,
+            path: `/${lambdaName}`,
+            type: 'RESPONSE',
+            statusCode: '400',
+          },
+          properties: this.method === 'post'
+            ? `{\"description\": \"Status code when ${lambdaName} was not successfully added\"}`
+            : `{\"description\": \"Status code when Getting a list of ${lambdaName}s has failed\"}`,
+          restApiId: this.api.restApiId,
+        });
       });
     }
   }

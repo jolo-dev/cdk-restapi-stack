@@ -3,6 +3,20 @@ import { Project } from '../../../models/Project';
 import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
+/**
+ * @openapi
+ * /project:
+ *   post:
+ *    projects:
+ *      - Projects
+ *    requestBody:
+ *      $ref: "#/components/requestBodies/project_data"
+ *    responses:
+ *      "400":
+ *         description: "Error in adding a new project"
+ *      "200":
+ *         description: "Project has been added successfully"
+ */
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
   let statusCode = 200;
   try {
@@ -31,5 +45,4 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
       body: e.message,
     };
   }
-
 };

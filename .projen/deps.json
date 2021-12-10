@@ -80,6 +80,10 @@
       "type": "build"
     },
     {
+      "name": "swagger-jsdoc",
+      "type": "build"
+    },
+    {
       "name": "ts-jest",
       "type": "build"
     },
@@ -167,10 +171,6 @@
     },
     {
       "name": "@aws-sdk/util-waiter",
-      "type": "runtime"
-    },
-    {
-      "name": "dotenv",
       "type": "runtime"
     },
     {

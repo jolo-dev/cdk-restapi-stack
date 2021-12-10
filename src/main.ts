@@ -1,10 +1,7 @@
 import { App } from '@aws-cdk/core';
-import { config } from 'dotenv';
 import { FourDPipelineStack } from './stacks/codepipeline/Stack';
 import { DynamoDbStack } from './stacks/dynamodb/Stack';
 import { LambdaFleetStack } from './stacks/lambda-fleet/Stack';
-
-config();
 
 // for development, use account/region from cdk cli
 const env = {
