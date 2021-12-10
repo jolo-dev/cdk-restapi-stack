@@ -89,7 +89,8 @@ class DynamoDb {
     return result;
   }
 
-  public dynamoAttributeKeyValue(object: any, topLevelName: string): { [key: string]: {[key: string]: string}} {
+  public dynamoAttributeKeyValue(object: any, topLevelName: string):
+  { [key: string]: {[key: string]: string}} | undefined {
     for (const key in object) {
       switch (typeof object[key]) {
         case 'number':
@@ -102,7 +103,7 @@ class DynamoDb {
           return { [topLevelName]: { S: object[key] } };
       }
     }
-    return { dummy: { S: '' } };
+    return undefined;
   }
 
   public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {
