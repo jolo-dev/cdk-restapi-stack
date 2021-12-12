@@ -1,10 +1,10 @@
 import fs from 'fs';
 import { Vpc, InterfaceVpcEndpoint } from '@aws-cdk/aws-ec2';
 import { App } from '@aws-cdk/core';
-import { LambdaFleet, Method } from '../../src/stacks/lambda-fleet/LambdaFleet';
-import { PrivateApiGateway } from '../../src/stacks/lambda-fleet/PrivateApiGateway';
+import { LambdaFleet, Method } from '../../infrastructure/stacks/lambda-fleet/LambdaFleet';
+import { PrivateApiGateway } from '../../infrastructure/stacks/lambda-fleet/PrivateApiGateway';
 
-jest.mock('../../src/stacks/lambda-fleet/PrivateApiGateway');
+jest.mock('../../infrastructure/stacks/lambda-fleet/PrivateApiGateway');
 
 jest.mock('@aws-cdk/aws-ec2', () => {
   return {

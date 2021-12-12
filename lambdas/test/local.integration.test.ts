@@ -12,7 +12,7 @@ jest.mock('uuid', () => {
 
 describe('POST', () => {
   const dynamo = new DynamoDb({ endpoint: 'http://localhost:4566', region: 'eu-west-1' });
-  test('add Project', async () => {
+  test.skip('add Project', async () => {
     const body = JSON.stringify({ CoverImage: 's3://url', Description: 'This is a Description', ProjectName: 'TestProject', Phase: 'Available', Author: 'TestAuthor', Season: 'Winter' });
     const props = JSON.parse(body);
     const project = new Project(props);

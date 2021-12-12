@@ -1,6 +1,6 @@
 {
   "projects": [
-    "<rootDir>/src"
+    "<rootDir>/infrastructure"
   ],
   "testMatch": [
     "**/__tests__/**/*.ts?(x)",

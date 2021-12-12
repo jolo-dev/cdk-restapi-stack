@@ -1,8 +1,8 @@
 import '@aws-cdk/assert/jest';
 import { App } from '@aws-cdk/core';
-import { FourDPipelineStack } from '../src/stacks/codepipeline/Stack';
-import { DynamoDbStack } from '../src/stacks/dynamodb/Stack';
-import { LambdaFleetStack } from '../src/stacks/lambda-fleet/Stack';
+import { FourDPipelineStack } from '../infrastructure/stacks/codepipeline/Stack';
+import { DynamoDbStack } from '../infrastructure/stacks/dynamodb/Stack';
+import { LambdaFleetStack } from '../infrastructure/stacks/lambda-fleet/Stack';
 
 const env = {
   account: process.env.CDK_DEFAULT_ACCOUNT ?? '123456789010',

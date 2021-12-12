@@ -1,6 +1,6 @@
 import '@aws-cdk/assert/jest';
 import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
-import { FourDPipelineStack } from '../../src/stacks/codepipeline/Stack';
+import { FourDPipelineStack } from '../../infrastructure/stacks/codepipeline/Stack';
 
 test('CodePipeline', () => {
   const app = new App();

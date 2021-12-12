@@ -1,6 +1,6 @@
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { App } from '@aws-cdk/core';
-import { LambdaFleetStack } from '../../src/stacks/lambda-fleet/Stack';
+import { LambdaFleetStack } from '../../infrastructure/stacks/lambda-fleet/Stack';
 describe('lambdaFleet', () => {
 
   const env = {

@@ -1,5 +1,5 @@
 import { awscdk, javascript as js } from 'projen';
-import { getNetworkingContext } from './src/utils/getContext';
+import { getNetworkingContext } from './infrastructure/utils/getContext';
 
 
 const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
@@ -25,16 +25,17 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
     deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
-    description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
+    description: 'Backend for 4dt including Backend APIs and Infrastructure all in Typescript', /* The description is just a string that helps people understand the purpose of the package. */
     devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store', 'test-reports', 'cdk.out'],
     context,
-    jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/src'] } },
+    jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/infrastructure'] } },
     tsconfigDev: {
       compilerOptions: {},
       include: ['**/*.ts'],
     },
-    watchIncludes: ['src/**', 'lambdas/src/**', 'models/**'],
+    watchIncludes: ['infrastructure/**', 'lambdas/src/**', 'models/**'],
+    srcdir: 'infrastructure', // CDK code is located here
   };
 };
 

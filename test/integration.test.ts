@@ -1,6 +1,6 @@
 import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
-import { ServiceCatalogProduct } from '../src/stacks/lambda-fleet/ServiceCatalogProduct';
-import { callServiceCatalogProduct, PrivateSubnetKeyValue, ProductValue, VpcInputKeyValue } from '../src/utils/callServiceCatalog';
+import { ServiceCatalogProduct } from '../infrastructure/stacks/lambda-fleet/ServiceCatalogProduct';
+import { callServiceCatalogProduct, PrivateSubnetKeyValue, ProductValue, VpcInputKeyValue } from '../infrastructure/utils/callServiceCatalog';
 describe('integration', () => {
   const region = 'eu-west-1';
   const ssmClient = new SSMClient({ region });

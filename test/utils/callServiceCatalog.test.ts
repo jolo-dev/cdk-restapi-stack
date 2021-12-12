@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-import { ServiceCatalogProduct } from '../../src/stacks/lambda-fleet/ServiceCatalogProduct';
-import { callServiceCatalogProduct, ProductValue, VpcInputKeyValue, PrivateSubnetKeyValue } from '../../src/utils/callServiceCatalog';
-const getSsmParams = require('../../src/utils/getSsmParams');
+import { ServiceCatalogProduct } from '../../infrastructure/stacks/lambda-fleet/ServiceCatalogProduct';
+import { callServiceCatalogProduct, ProductValue, VpcInputKeyValue, PrivateSubnetKeyValue } from '../../infrastructure/utils/callServiceCatalog';
+const getSsmParams = require('../../infrastructure/utils/getSsmParams');
 
 describe('callServiceCatalog', () => {
 

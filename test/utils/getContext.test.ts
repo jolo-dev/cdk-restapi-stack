@@ -1,11 +1,11 @@
 import { SSMClient, GetParametersCommand } from '@aws-sdk/client-ssm';
 import { mockClient } from 'aws-sdk-client-mock';
-import { getNetworkingContext, toCamelCase } from '../../src/utils/getContext';
+import { getNetworkingContext, toCamelCase } from '../../infrastructure/utils/getContext';
 
 const ssmClientMock = mockClient(SSMClient);
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const callServiceCatalogProduct = require('../../src/utils/callServiceCatalog');
+const callServiceCatalogProduct = require('../../infrastructure/utils/callServiceCatalog');
 
 describe('getNetworkingContext', () => {
   it('should return the correct context for networking when all parameters in SSM Parameter Store', async () => {

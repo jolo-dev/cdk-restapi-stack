@@ -5,7 +5,7 @@ junit.xml
 /coverage/
 /test/
 /tsconfig.dev.json
-/src/
+/infrastructure/
 !/lib/
 !/lib/**/*.js
 !/lib/**/*.d.ts

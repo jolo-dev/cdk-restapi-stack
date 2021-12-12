@@ -3,12 +3,12 @@
   "title": "Codepipeline Stack",
   "steps": [
     {
-      "file": "src/main.ts",
+      "file": "infrastructure/main.ts",
       "description": "`CDK_DEFAULT_ACCOUNT` is automagically fetches your `default`- Account in your `~/.aws/credentials`.\nUnfortunately, [CDK does not support SSO yet](https://github.com/aws/aws-cdk/issues/5455), so here are the steps you should do:\n1. Go to [https://3stripes.awsapps.com/start](https://3stripes.awsapps.com/start)\n2. Click on **Command line or programmatic access**\n3. Copy the first Option (*Set AWS environment variables*)\n4. Open the terminal where you want to deploy and paste the above option\n\nNow, you should be fine to execute `pnpm synth` or `pnpm deploy`.",
       "line": 11
     },
     {
-      "file": "src/main.ts",
+      "file": "infrastructure/main.ts",
       "description": "For now we are using Codecommit in `eu-west-1` and the repository is named `4dt-api-node`.\nFor a different Git-repository, create a `.env` and add `GIT_REPOSITORY=name-of-my-repo`.\n\n**NOTE:** This stack only supports Codecommit for now.",
       "selection": {
         "start": {
@@ -44,7 +44,7 @@
     },
     {
       "file": "stacks/codepipeline.ts",
-      "description": "Here we define a new `build`- [Action](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-actions).\n`Action` is a class which takes the name of the action as second parameter and an [Object of Commands](./src/Action.ts).",
+      "description": "Here we define a new `build`- [Action](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-actions).\n`Action` is a class which takes the name of the action as second parameter and an [Object of Commands](./infrastructure/Action.ts).",
       "line": 36,
       "selection": {
         "start": {
@@ -58,12 +58,12 @@
       }
     },
     {
-      "file": "src/Action.ts",
+      "file": "infrastructure/Action.ts",
       "description": "Each Action (`PipelineProject`) is a Codebuild and is refered by Codepipeline.\n",
       "line": 19
     },
     {
-      "file": "src/Action.ts",
+      "file": "infrastructure/Action.ts",
       "description": "Here we create a new Codebuild-service which becomes part of a Codepipeline.\nThe Codebuild-service spins up a [`BuildEnvironment`](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-codebuild.BuildEnvironment.html).\nThe `id` defines the name of the Service, e.g. `build`. And the `command` can only from type `Command`(line 13), e.g.\n\n```ts\n{\n    install: {\n        commands: ['pnpm install'],\n    },\n}\n```",
       "line": 36,
       "selection": {
@@ -78,7 +78,7 @@
       }
     },
     {
-      "file": "src/Action.ts",
+      "file": "infrastructure/Action.ts",
       "description": "We decided on a `LinuxBuildImage` from standard version 5.0 because it uses [`Node` version 14.17.x](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/standard/5.0)",
       "line": 29
     },

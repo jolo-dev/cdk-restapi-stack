@@ -1,6 +1,6 @@
 {
   "name": "4dt-api-node",
-  "description": "Infrastructure written in CDK",
+  "description": "Backend for 4dt including Backend APIs and Infrastructure all in Typescript",
   "scripts": {
     "build": "npx projen build",
     "clobber": "npx projen clobber",
@@ -41,7 +41,7 @@
     "jest-junit": "^13",
     "json-schema": "^0.2.5",
     "npm-check-updates": "^11",
-    "projen": "^0.39.3",
+    "projen": "^0.40.4",
     "ts-jest": "^27.1.0",
     "ts-node": "^9",
     "typescript": "^4.5.2"

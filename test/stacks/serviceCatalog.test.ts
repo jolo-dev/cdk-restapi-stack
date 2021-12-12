@@ -2,7 +2,7 @@ import { ServiceCatalogClient, ProvisionProductCommand, GetProvisionedProductOut
 import { SSMClient, PutParameterCommand } from '@aws-sdk/client-ssm';
 import { WaiterState } from '@aws-sdk/util-waiter';
 import { mockClient } from 'aws-sdk-client-mock';
-import { ServiceCatalogProduct } from '../../src/stacks/lambda-fleet/ServiceCatalogProduct';
+import { ServiceCatalogProduct } from '../../infrastructure/stacks/lambda-fleet/ServiceCatalogProduct';
 
 const scMock = mockClient(ServiceCatalogClient);
 const scProduct = new ServiceCatalogProduct({ productId: 'testProductId', provisioningArtifactId: 'testArtifactId', region: 'region' });
