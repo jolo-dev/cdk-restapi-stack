@@ -4,17 +4,17 @@ import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /project:
  *   post:
- *    projects:
- *      - Projects
- *    requestBody:
- *      $ref: "#/components/requestBodies/project_data"
- *    responses:
- *      "400":
+ *     tags:
+ *       - Projects
+ *     requestBody:
+ *       $ref: "#/components/requestBodies/Project_data"
+ *     responses:
+ *       "400":
  *         description: "Error in adding a new project"
- *      "200":
+ *       "200":
  *         description: "Project has been added successfully"
  */
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {

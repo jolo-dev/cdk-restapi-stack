@@ -4,17 +4,17 @@ import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /season:
  *   post:
- *    seasons:
- *      - Seasons
- *    requestBody:
- *      $ref: "#/components/requestBodies/season_data"
- *    responses:
- *      "400":
+ *     tags:
+ *       - Seasons
+ *     requestBody:
+ *       $ref: "#/components/requestBodies/Season_data"
+ *     responses:
+ *       "400":
  *         description: "Error in adding a new season"
- *      "200":
+ *       "200":
  *         description: "Season has been added successfully"
  */
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {

@@ -26,7 +26,7 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
     github: false, // Because we are not on github
     deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
     description: 'Infrastructure written in CDK', /* The description is just a string that helps people understand the purpose of the package. */
-    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid', 'swagger-jsdoc'], /* Build dev dependencies for this module. */
+    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store', 'test-reports', 'cdk.out'],
     context,
     jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/src'] } },
@@ -42,9 +42,10 @@ getOptions().then(options => {
   const project = new awscdk.AwsCdkTypeScriptApp(options);
   project.removeTask('deploy');
   project.removeTask('destroy');
-  project.setScript('deploy', 'npx cdk deploy --all');
+  project.setScript('deploy', 'pnpm doc && npx cdk deploy --all');
   project.setScript('destroy', 'npx cdk destroy FourD-LambdaFleetStack');
   project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack');
+  project.setScript('doc', 'npx swagger-jsdoc -d openApi.definition.yaml ./lambdas/src/**/*.ts ./models/*.ts -o openapi.json');
   project.synth();
 }).catch(error => {
   console.log(error);

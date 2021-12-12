@@ -4,17 +4,17 @@ import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /phase:
  *   post:
- *    phases:
- *      - Phases
- *    requestBody:
- *      $ref: "#/components/requestBodies/phase_data"
- *    responses:
- *      "400":
+ *     tags:
+ *       - Phases
+ *     requestBody:
+ *       $ref: "#/components/requestBodies/Phase_data"
+ *     responses:
+ *       "400":
  *         description: "Error in adding a new phase"
- *      "200":
+ *       "200":
  *         description: "Phase has been added successfully"
  */
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {

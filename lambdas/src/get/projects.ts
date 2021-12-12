@@ -8,10 +8,10 @@ type ProjectsResult = APIGatewayProxyResult & {
 
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /projects:
  *   get:
- *     projects:
+ *     tags:
  *       - Projects
  *     responses:
  *       "400":
@@ -28,7 +28,7 @@ const dynamo = new DynamoDb({});
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/project_data'
+ *                 $ref: "#/components/schemas/Project"
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {

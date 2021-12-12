@@ -6,7 +6,7 @@ type SeasonsResult = APIGatewayProxyResult & {
 }
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /seasons:
  *   get:
  *     tags:
@@ -14,8 +14,19 @@ const dynamo = new DynamoDb({});
  *     responses:
  *       "400":
  *         description: "Error in getting Seasons"
+ *         content:
+ *           application/json:
+ *             examples:
+ *               seasons:
+ *                 value: Error in getting Seasons
  *       "200":
  *         description: "A list of Seasons"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: "#/components/schemas/Season"
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {

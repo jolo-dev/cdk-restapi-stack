@@ -8,7 +8,7 @@ type TagsResult = APIGatewayProxyResult & {
 
 const dynamo = new DynamoDb({});
 /**
- * @openapi
+ * @swagger
  * /tags:
  *   get:
  *     tags:
@@ -18,6 +18,12 @@ const dynamo = new DynamoDb({});
  *         description: "Error in getting Tags"
  *       "200":
  *         description: "A list of Tags"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: "#/components/schemas/Tag"
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
