@@ -1,4 +1,7 @@
+import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint, SecurityGroup, Peer, Port } from '@aws-cdk/aws-ec2';
+import { AnyPrincipal, Effect, PolicyStatement } from '@aws-cdk/aws-iam';
+import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { Stack, Construct, CfnOutput, StackProps } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';
@@ -81,6 +84,34 @@ export class LambdaFleetStack extends Stack {
       },
     );
 
+    const s3Endpoint = new GatewayVpcEndpoint(this, 'VPCEndpointS3', {
+      vpc: this.vpc,
+      service: {
+        name: `com.amazonaws.${region}.${VpcEndpointServiceName.S3}`,
+      },
+    });
+
+    s3Endpoint.addToPolicy(new PolicyStatement({
+      sid: 'Access-To-4d-Bucket',
+      actions: [
+        's3:GetObject',
+        's3:PutObject',
+        's3:DeleteObject',
+        's3:ListBucket',
+      ],
+      principals: [new AnyPrincipal()],
+      effect: Effect.ALLOW,
+      resources: [`arn:aws:s3:${region}:${this.account}:*`],
+    }));
+
+    this.createCfnOutputs(
+      {
+        vpcEndpointId: s3Endpoint.vpcEndpointId,
+        serviceName: VpcEndpointServiceName.S3,
+        vpcId: this.vpc.vpcId,
+      },
+    );
+
     const api = new PrivateApiGateway(this, 'PrivateApiGateway', {
       region, vpcEndpoint: [apiGatewayVpcEndpoint],
     });
@@ -95,6 +126,20 @@ export class LambdaFleetStack extends Stack {
         vpc: this.vpc,
       });
       await lambda.createLambdaFunctions();
+    });
+
+    const openApi = new Function(this, 'OpenapiDocLambda', {
+      runtime: Runtime.NODEJS_14_X,
+      handler: 'docs.handler',
+      code: Code.fromAsset('docs', { exclude: ['node_modules', '*.ts', 'package.json'] }),
+      vpc: this.vpc,
+      vpcSubnets: {
+        subnets: this.subnets,
+      },
+    });
+
+    api.root.addProxy({
+      defaultIntegration: new LambdaIntegration(openApi, { integrationResponses: [{ statusCode: '200' }, { statusCode: '404' }] }),
     });
   }
 

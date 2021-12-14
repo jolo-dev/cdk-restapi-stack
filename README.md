@@ -27,9 +27,11 @@ Within the `lambdas`- folder is also a `src` where the development in Typescript
 
 ```bash
 .
+├── docs
+│   └── openapi
 ├── lambdas
 │   └── src
-├── src
+├── infrastructure
 │   ├── stacks
 │   │   ├── codepipeline
 │   │   └── lambda-fleet
@@ -133,3 +135,8 @@ Simply delete `lambdas/dist`- Folder
 ### Too many assets/CFN
 
 In order to have a clean development environment, it might be good to delete `cdk.out` which has old synthesized CFN.
+
+### S3 already exists
+
+Make sure an S3 with its name within account and region does not exists yet.
+If necessary, delete that Bucket if you want to keep the name.

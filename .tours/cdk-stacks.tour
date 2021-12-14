@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "CDK Stacks",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "# Introduction\n\nEven though the project is on top of `projen`, you can still run and write any [CDK](https://docs.aws.amazon.com/cdk/latest/guide/cli.html)-commands\n\n## Commands\n\n## Stacks"
+    }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "4D- Asset Management",
+    "version": "2021-12"
+  },
+  "servers": [
+    {
+      "url": "https://x7z5ah9pv8-vpce-0192333536a74d7cd.execute-api.eu-west-1.amazonaws.com/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "dev"
+        }
+      },
+      "x-amazon-apigateway-endpoint-configuration": {
+        "vpcEndpointIds": [
+          "vpce-0192333536a74d7cd"
+        ]
+      }
+    }
+  ],
+  "x-amazon-apigateway-policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "AllowVPCEndpointToInvoke",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "*"
+        },
+        "Action": "execute-api:Invoke",
+        "Resource": "arn:aws:execute-api:eu-west-1:989486103510:x7z5ah9pv8/*/*/*",
+        "Condition": {
+          "StringEquals": {
+            "aws:sourceVpce": "vpce-0192333536a74d7cd"
+          }
+        }
+      },
+      {
+        "Sid": "InvokeLambda",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "*"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "lambda.amazonaws.com"
+      }
+    ]
+  },
+  "paths": {
+    "/phases": {
+      "get": {
+        "tags": [
+          "Phases"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Phases",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Phase"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error in getting Phases",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "phases": {
+                    "value": "Error in Getting Phases"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error in getting projects",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "projects": {
+                    "value": "Error in getting projects"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seasons": {
+      "get": {
+        "tags": [
+          "Seasons"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Seasons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Season"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error in getting Seasons",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "seasons": {
+                    "value": "Error in getting Seasons"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tag"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error in getting Tags"
+          }
+        }
+      }
+    },
+    "/phase": {
+      "post": {
+        "tags": [
+          "Phases"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Phase_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Phase has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new phase"
+          }
+        }
+      }
+    },
+    "/project": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Project has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new project"
+          }
+        }
+      }
+    },
+    "/season": {
+      "post": {
+        "tags": [
+          "Seasons"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Season_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Season has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new season"
+          }
+        }
+      }
+    },
+    "/tag": {
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Tag_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Tag has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new Tag"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "requestBodies": {
+      "Phase_data": {
+        "description": "Request to add a new Phase.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Phase"
+            }
+          }
+        }
+      },
+      "Project_data": {
+        "description": "Request to add a new Project.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        }
+      },
+      "Season_data": {
+        "description": "Request to add a new Season.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Season"
+            }
+          }
+        }
+      },
+      "Tag_data": {
+        "description": "Request to add a new Tag.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Phase": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "CreationDateTime": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "PhaseName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "CreationDateTime": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "ProjectName": {
+                "type": "string"
+              },
+              "Author": {
+                "type": "string"
+              },
+              "Description": {
+                "type": "string"
+              },
+              "CoverImage": {
+                "type": "string"
+              },
+              "Season": {
+                "$ref": "#/components/schemas/Season"
+              },
+              "Phase": {
+                "$ref": "#/components/schemas/Phase"
+              },
+              "Tag": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Season": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "CreationDateTime": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "SeasonName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "CreationDateTime": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}

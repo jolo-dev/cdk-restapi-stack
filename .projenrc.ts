@@ -5,7 +5,7 @@ import { getNetworkingContext } from './infrastructure/utils/getContext';
 const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
   const context = await getNetworkingContext();
   return {
-    cdkVersion: '1.134.0',
+    cdkVersion: '1.135.0',
     defaultReleaseBranch: 'master',
     name: '4dt-api-node',
     packageManager: js.NodePackageManager.PNPM,
@@ -21,7 +21,9 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
       '@aws-cdk/aws-ssm',
       '@aws-cdk/aws-ec2',
       '@aws-cdk/aws-iam',
-      '@aws-cdk/aws-dynamodb'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
+      '@aws-cdk/aws-dynamodb',
+      '@aws-cdk/aws-s3',
+      '@aws-cdk/aws-s3-deployment'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
     deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
@@ -46,7 +48,7 @@ getOptions().then(options => {
   project.setScript('deploy', 'pnpm doc && npx cdk deploy --all');
   project.setScript('destroy', 'npx cdk destroy FourD-LambdaFleetStack');
   project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack');
-  project.setScript('doc', 'npx swagger-jsdoc -d openApi.definition.yaml ./lambdas/src/**/*.ts ./models/*.ts -o openapi.json');
+  project.setScript('doc', 'npx swagger-jsdoc -d openApi.definition.yaml ./lambdas/src/**/*.ts ./models/*.ts -o ./docs/openapi/openapi.json');
   project.synth();
 }).catch(error => {
   console.log(error);

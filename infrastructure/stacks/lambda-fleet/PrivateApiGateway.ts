@@ -1,4 +1,4 @@
-import { EndpointType, RestApi } from '@aws-cdk/aws-apigateway';
+import { EndpointType, MethodLoggingLevel, RestApi } from '@aws-cdk/aws-apigateway';
 import { IVpcEndpoint } from '@aws-cdk/aws-ec2';
 import { PolicyDocument, PolicyStatement, AnyPrincipal, Effect } from '@aws-cdk/aws-iam';
 import { CfnOutput, Construct } from '@aws-cdk/core';
@@ -22,7 +22,7 @@ export class PrivateApiGateway extends RestApi {
           resources: ['execute-api:/*/*/*'],
           conditions: {
             StringEquals: {
-              'aws:sourceVpce': 'vpce-01988d3d83bebbf0e',
+              'aws:sourceVpce': props.vpcEndpoint[0].vpcEndpointId, // should be just one VPC Endpoint for API GW
             },
           },
         }),
@@ -41,6 +41,8 @@ export class PrivateApiGateway extends RestApi {
       description: props.description,
       deployOptions: {
         stageName: process.env.STAGE ?? 'dev',
+        loggingLevel: MethodLoggingLevel.INFO,
+        dataTraceEnabled: true,
       },
       endpointConfiguration: {
         types: [EndpointType.PRIVATE],
@@ -61,10 +63,7 @@ export class PrivateApiGateway extends RestApi {
       },
     });
 
-    this.createCfnOutputs();
-  }
-
-  private createCfnOutputs() {
     new CfnOutput(this, 'CfnApiUrl', { value: this.url });
+    new CfnOutput(this, 'CfnPrivateRestApi', { value: this.restApiId });
   }
 }
