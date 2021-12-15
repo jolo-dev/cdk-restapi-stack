@@ -1,7 +1,7 @@
 import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface IPhase extends StandardAttribute {
-  PhaseName: string;
+  phaseName: string;
 }
 /**
  * @swagger
@@ -18,21 +18,21 @@ export interface IPhase extends StandardAttribute {
  *     Phase:
  *       type: object
  *       properties:
- *         ID:
+ *         id:
  *           type: string
- *         CreationDateTime:
+ *         creationDateTime:
  *           type: string
  *         props:
  *           type: object
  *           properties:
- *             PhaseName:
+ *             phaseName:
  *               type: string
  */
 export class Phase extends Standard {
 
   readonly props: IPhase;
   constructor(props: IPhase) {
-    super('Phases', props.ID, props.CreationDateTime);
+    super('Phases', props.id, props.creationDateTime);
     this.props = props;
   };
   public getProps() {

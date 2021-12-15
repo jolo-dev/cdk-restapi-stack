@@ -1,10 +1,9 @@
-import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint, SecurityGroup, Peer, Port } from '@aws-cdk/aws-ec2';
 import { AnyPrincipal, Effect, PolicyStatement } from '@aws-cdk/aws-iam';
-import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { Stack, Construct, CfnOutput, StackProps } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';
+import { OpenApiDocumentation } from './OpenApiDocumentation';
 
 import { PrivateApiGateway } from './PrivateApiGateway';
 
@@ -40,7 +39,7 @@ export class LambdaFleetStack extends Stack {
     const methods = [Method.GET, Method.POST, Method.PUT, Method.DELETE];
     const region = Stack.of(this).region;
 
-    const vpceSecurityGroup = new SecurityGroup(this, 'VPCE-Sg', {
+    const vpceSecurityGroup = new SecurityGroup(this, 'FourD-VPCE-Sg', {
       vpc: this.vpc,
       description: 'Security Group for VPC Endpoint',
     });
@@ -116,6 +115,9 @@ export class LambdaFleetStack extends Stack {
       region, vpcEndpoint: [apiGatewayVpcEndpoint],
     });
 
+    // CreateOpenApi
+    const openApi = new OpenApiDocumentation(this, 'OpenApiDoc', api, this.vpc, this.subnets, apiGatewayVpcEndpoint.vpcEndpointId);
+
     // Bundling all the Lambdas
     methods.forEach(async (method) => {
       const lambda = new LambdaFleet(this, `${method.toUpperCase()}LambdaFleet`, {
@@ -125,21 +127,7 @@ export class LambdaFleetStack extends Stack {
         subnets: this.subnets,
         vpc: this.vpc,
       });
-      await lambda.createLambdaFunctions();
-    });
-
-    const openApi = new Function(this, 'OpenapiDocLambda', {
-      runtime: Runtime.NODEJS_14_X,
-      handler: 'docs.handler',
-      code: Code.fromAsset('docs', { exclude: ['node_modules', '*.ts', 'package.json'] }),
-      vpc: this.vpc,
-      vpcSubnets: {
-        subnets: this.subnets,
-      },
-    });
-
-    api.root.addProxy({
-      defaultIntegration: new LambdaIntegration(openApi, { integrationResponses: [{ statusCode: '200' }, { statusCode: '404' }] }),
+      await lambda.createLambdaFunctions(openApi);
     });
   }
 

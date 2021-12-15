@@ -12,7 +12,7 @@ import DynamoDb from '../src/DynamoDb';
 
 Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
 
-// ID will be mocked unless you put your own ID
+// id will be mocked unless you put your own id
 jest.mock('uuid', () => {
   return {
     v4: jest.fn().mockReturnValue('123456789'),
@@ -23,34 +23,34 @@ const ddbMock = mockClient(DynamoDBClient);
 
 describe('DynamoDb', () => {
   const dynamo = new DynamoDb({ endpoint: 'http://localhost:4566', region: 'eu-west-1' });
-  const Phase: IPhase = {
-    PhaseName: 'Available',
+  const phase: IPhase = {
+    phaseName: 'Available',
   };
-  const Season: ISeason = {
-    SeasonName: 'Winter',
+  const season: ISeason = {
+    seasonName: 'Winter',
   };
   const props: I4DProject = {
-    CoverImage: 's3://url',
-    Description: 'This is a Description',
-    ProjectName: 'TestProject',
-    Phase,
-    Author: 'TestAuthor',
-    Season,
+    coverImage: 's3://url',
+    description: 'This is a Description',
+    projectName: 'TestProject',
+    phase,
+    author: 'TestAuthor',
+    season,
   };
 
   const attributes = {
-    CoverImage: { S: 's3://url' },
-    CreationDateTime: { S: '2020-01-01T00:00:00+01:00' },
-    Description: { S: 'This is a Description' },
-    ProjectName: { S: 'TestProject' },
-    Phase: { S: 'Available' },
-    Author: { S: 'TestAuthor' },
-    ID: { S: '123456789' },
-    Season: { S: 'Winter' },
+    coverImage: { S: 's3://url' },
+    creationDateTime: { S: '2020-01-01T00:00:00+01:00' },
+    description: { S: 'This is a Description' },
+    projectName: { S: 'TestProject' },
+    phase: { S: 'Available' },
+    author: { S: 'TestAuthor' },
+    id: { S: '123456789' },
+    season: { S: 'Winter' },
   };
   const KeySchema = [
-    { AttributeName: 'ID', KeyType: 'HASH' },
-    { AttributeName: 'CreationDateTime', KeyType: 'RANGE' },
+    { AttributeName: 'id', KeyType: 'HASH' },
+    { AttributeName: 'creationDateTime', KeyType: 'RANGE' },
   ];
   it('should create the tables', async () => {
 
@@ -66,16 +66,16 @@ describe('DynamoDb', () => {
       TableName: 'Projects',
       KeySchema,
       AttributeDefinitions: [
-        { AttributeName: 'ID', AttributeType: 'S' },
-        { AttributeName: 'CreationDateTime', AttributeType: 'S' },
+        { AttributeName: 'id', AttributeType: 'S' },
+        { AttributeName: 'creationDateTime', AttributeType: 'S' },
       ],
       BillingMode: 'PAY_PER_REQUEST',
       GlobalSecondaryIndexes: [
         {
           IndexName: 'ProjectGSI',
           KeySchema: [
-            { AttributeName: 'ID', KeyType: 'HASH' },
-            { AttributeName: 'CreationDateTime', KeyType: 'RANGE' },
+            { AttributeName: 'id', KeyType: 'HASH' },
+            { AttributeName: 'creationDateTime', KeyType: 'RANGE' },
           ],
           Projection: { ProjectionType: 'KEYS_ONLY' },
         },
@@ -91,8 +91,8 @@ describe('DynamoDb', () => {
     ddbMock.on(CreateTableCommand).rejects();
     await expect(dynamo.createTable({
       AttributeDefinitions: [
-        { AttributeName: 'ID', AttributeType: 'S' },
-        { AttributeName: 'CreationDateTime', AttributeType: 'S' },
+        { AttributeName: 'id', AttributeType: 'S' },
+        { AttributeName: 'creationDateTime', AttributeType: 'S' },
       ],
       TableName: 'Projects',
       KeySchema,
@@ -143,41 +143,43 @@ describe('DynamoDb', () => {
   it('should map the attributes coming from DynamoDB', () => {
     const projectProps = dynamo.attributesMapper<I4DProject>(attributes);
     expect(projectProps).toEqual({
-      CoverImage: 's3://url',
-      ProjectName: 'TestProject',
-      Description: 'This is a Description',
-      Phase: 'Available',
-      Author: 'TestAuthor',
-      Season: 'Winter',
+      coverImage: 's3://url',
+      projectName: 'TestProject',
+      description: 'This is a Description',
+      phase: 'Available',
+      author: 'TestAuthor',
+      season: 'Winter',
+      creationDateTime: '2020-01-01T00:00:00+01:00',
+      id: '123456789',
     });
   });
 
   it('should build the attributes for DynamoDB', () => {
     const dynamoData = dynamo.dynamoDbDataBuilder<I4DProject>(props);
     expect(dynamoData).toEqual({
-      CoverImage: { S: 's3://url' },
-      CreationDateTime: { S: '2020-01-01T00:00:00+01:00' },
-      Description: { S: 'This is a Description' },
-      ProjectName: { S: 'TestProject' },
-      Phase: { S: 'Available' },
-      Author: { S: 'TestAuthor' },
-      ID: { S: '123456789' },
-      Season: { S: 'Winter' },
+      coverImage: { S: 's3://url' },
+      creationDateTime: { S: '2020-01-01T00:00:00+01:00' },
+      description: { S: 'This is a Description' },
+      projectName: { S: 'TestProject' },
+      phase: { S: 'Available' },
+      author: { S: 'TestAuthor' },
+      id: { S: '123456789' },
+      season: { S: 'Winter' },
     });
   });
 
   it('should build the attributes for DynamoDB when props contains Numbers and Boolean', () => {
     const dynamoData = dynamo.dynamoDbDataBuilder({
-      ID: '123456789',
-      CreationDateTime: '2020-01-01T00:00:00+00:00',
-      TestNumber: 2,
-      TestBoolean: true,
+      id: '123456789',
+      creationDateTime: '2020-01-01T00:00:00+00:00',
+      testNumber: 2,
+      testBoolean: true,
     });
     expect(dynamoData).toEqual({
-      ID: { S: '123456789' },
-      CreationDateTime: { S: '2020-01-01T00:00:00+00:00' },
-      TestNumber: { N: 2 },
-      TestBoolean: { B: true },
+      id: { S: '123456789' },
+      creationDateTime: { S: '2020-01-01T00:00:00+00:00' },
+      testNumber: { N: 2 },
+      testBoolean: { B: true },
     });
   });
 
@@ -188,8 +190,8 @@ describe('DynamoDb', () => {
   });
 
   it('should return the correct type of an object', () => {
-    const object = { Season: { SeasonName: 'Season' } };
-    expect(dynamo.dynamoAttributeKeyValue(object, 'Season')).toEqual({ Season: { S: 'Season' } });
+    const object = { season: { seasonName: 'Season' } };
+    expect(dynamo.dynamoAttributeKeyValue(object, 'season')).toEqual({ season: { S: 'Season' } });
   });
 
   it('should return the correct type of a really nested object', () => {
@@ -199,10 +201,15 @@ describe('DynamoDb', () => {
           Level:
           {
             Project:
-            { Season: { SeasonNumber: 100 } },
+            { season: { seasonNumber: 100 } },
           },
         },
     };
     expect(dynamo.dynamoAttributeKeyValue(object, 'TopLevel')).toEqual({ TopLevel: { N: 100 } });
+  });
+
+  it('should return undefined when object is undefined as well', () => {
+    expect(() => dynamo.dynamoAttributeKeyValue(undefined, 'Foo'))
+      .toThrowError('Error in dynamoAttributeKeyValue: object cannot be undefined');
   });
 });

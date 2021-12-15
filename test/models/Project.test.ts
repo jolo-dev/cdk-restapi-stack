@@ -10,10 +10,10 @@ jest.mock('uuid', () => {
 });
 describe('Project', () => {
   const props: I4DProject = {
-    Author: 'Test',
-    CoverImage: 'TestCover',
-    Description: 'Test Description',
-    ProjectName: 'Test ProjectName',
+    author: 'Test',
+    coverImage: 'TestCover',
+    description: 'Test Description',
+    projectName: 'Test ProjectName',
   };
   const project = new Project(props);
   it('should return props', () => {

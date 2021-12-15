@@ -10,14 +10,14 @@ export class DynamoDbStack extends Stack {
       .forEach(value => {
         const tableName = value.replace('.ts', '') + 's'; // Appending an 's' to name it in Plural
         const table = new Table(this, `${tableName}Table`, {
-          partitionKey: { name: 'ID', type: AttributeType.STRING },
-          sortKey: { name: 'CreationDateTime', type: AttributeType.STRING },
+          partitionKey: { name: 'id', type: AttributeType.STRING },
+          sortKey: { name: 'creationDateTime', type: AttributeType.STRING },
           billingMode: BillingMode.PAY_PER_REQUEST,
           tableName,
         });
         table.addGlobalSecondaryIndex({
           indexName: `${tableName}GSI`,
-          partitionKey: { name: 'ID', type: AttributeType.STRING },
+          partitionKey: { name: 'id', type: AttributeType.STRING },
           projectionType: ProjectionType.KEYS_ONLY,
         });
         new CfnOutput(this, `TableName${tableName}`, {

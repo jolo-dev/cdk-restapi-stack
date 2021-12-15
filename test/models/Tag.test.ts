@@ -9,9 +9,9 @@ jest.mock('uuid', () => {
 });
 describe('Tag', () => {
   const tagProps: ITag = {
-    ID: '123456789',
-    CreationDateTime: '2020-01-01T00:00:00+01:00',
-    Name: 'Test',
+    id: '123456789',
+    creationDateTime: '2020-01-01T00:00:00+01:00',
+    name: 'Test',
   };
   const tag = new Tag(tagProps);
 

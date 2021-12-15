@@ -19,14 +19,14 @@
     "upgrade-projen": "npx projen upgrade-projen",
     "watch": "npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack",
     "projen": "npx projen",
-    "deploy": "pnpm doc && npx cdk deploy --all",
-    "destroy": "npx cdk destroy FourD-LambdaFleetStack",
-    "doc": "npx swagger-jsdoc -d openApi.definition.yaml ./lambdas/src/**/*.ts ./models/*.ts -o ./docs/openapi/openapi.json"
+    "deploy": "npx cdk deploy --all",
+    "destroy": "npx cdk destroy FourD-LambdaFleetStack"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "*",
     "@types/node": "^14.17.0",
+    "@types/swagger-jsdoc": "^6.0.1",
     "@types/uuid": "*",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
@@ -67,6 +67,7 @@
     "@aws-sdk/util-waiter": "^3.40.0",
     "esbuild": "^0.13.15",
     "moment": "^2.29.1",
+    "swagger-jsdoc": "^6.1.0",
     "uuid": "^8.3.2"
   },
   "bundledDependencies": [],

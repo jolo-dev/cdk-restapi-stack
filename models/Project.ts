@@ -4,13 +4,13 @@ import { StandardAttribute, Standard } from './StandardAttribute';
 import { ITag } from './Tag';
 
 export interface I4DProject extends StandardAttribute {
-  ProjectName: string;
-  Author: string;
-  Description: string;
-  CoverImage: string;
-  Season?: ISeason;
-  Phase?: IPhase;
-  Tags?: ITag[];
+  projectName: string;
+  author: string;
+  description: string;
+  coverImage: string;
+  season?: ISeason;
+  phase?: IPhase;
+  tags?: ITag[];
 }
 
 /**
@@ -28,26 +28,26 @@ export interface I4DProject extends StandardAttribute {
  *     Project:
  *       type: object
  *       properties:
- *         ID:
+ *         id:
  *           type: string
- *         CreationDateTime:
+ *         creationDateTime:
  *           type: string
  *         props:
  *           type: object
  *           properties:
- *             ProjectName:
+ *             projectName:
  *               type: string
- *             Author:
+ *             author:
  *               type: string
- *             Description:
+ *             description:
  *               type: string
- *             CoverImage:
+ *             coverImage:
  *               type: string
- *             Season:
+ *             season:
  *               $ref: "#/components/schemas/Season"
- *             Phase:
+ *             phase:
  *               $ref: "#/components/schemas/Phase"
- *             Tag:
+ *             tag:
  *               type: array
  *               items:
  *                 $ref: "#/components/schemas/Tag"
@@ -56,7 +56,7 @@ export class Project extends Standard {
 
   readonly props: I4DProject;
   constructor(props: I4DProject) {
-    super('Projects', props.ID, props.CreationDateTime);
+    super('Projects', props.id, props.creationDateTime);
     this.props = props;
   }
 

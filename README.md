@@ -2,6 +2,8 @@
 
 This project uses [`projen`](https://github.com/projen/projen) which is on top of [AWS CDK](https://aws.amazon.com/cdk/) as Infrastructure to Code.
 
+![Infrastructure Architecture](.drawio/infra-architecure.png)
+
 ## Prerequisite
 
 - Node v14.x
@@ -124,13 +126,13 @@ In general, it would be good if you document your code when you think it needs m
 
 ### Singular vs Plural (Unique Lambda Names)
 
-Each Lambda should be unique therefore its naming.
+Each Lambda should be unique and thus its naming.
 Verify that Lambdas in the `get`- Folder have different names than in the `post`, or `put`- folder.
 
 ### Bundling was stucked
 
 It could happen that you bundled a code which got stucked.
-Simply delete `lambdas/dist`- Folder
+Simply delete `lambdas/dist`- Folder because it will get rebundled again.
 
 ### Too many assets/CFN
 

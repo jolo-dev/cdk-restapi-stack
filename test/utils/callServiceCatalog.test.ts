@@ -24,21 +24,21 @@ describe('callServiceCatalog', () => {
         ? [{ Key: VpcInputKeyValue.APPLICATION_NAME, Value: 'Bla' }]
         : [{ Key: PrivateSubnetKeyValue.VPC_ID, Value: 'vpc-1234567' }, { Key: PrivateSubnetKeyValue.AVAILABILITY_ZONE, Value: 'Buxtehude' }];
 
-      it('should call SSM Parameter store, launch product, get the new launched product and return the ID', async () => {
+      it('should call SSM Parameter store, launch product, get the new launched product and return the id', async () => {
         jest.spyOn(ServiceCatalogProduct.prototype, 'launchProduct')
           .mockResolvedValue({ $metadata: {}, RecordDetail: { ProvisionedProductName: 'foo' } });
         jest.spyOn(ServiceCatalogProduct.prototype, 'getRessource')
-          .mockResolvedValue([{ OutputValue: 'ID' }]);
+          .mockResolvedValue([{ OutputValue: 'id' }]);
         jest.spyOn(ServiceCatalogProduct.prototype, 'setSSMParameter')
           .mockResolvedValue({ $metadata: {} });
 
         const provisionProduct = await callServiceCatalogProduct(product, provisionParams);
         expect(mockGetSsmParams).toBeCalledTimes(1);
-        expect(provisionProduct).toEqual('ID');
+        expect(provisionProduct).toEqual('id');
 
         // Also Test when we set a `count`- value
         const launchedProduct = await callServiceCatalogProduct(product, provisionParams, 1);
-        expect(launchedProduct).toEqual('ID');
+        expect(launchedProduct).toEqual('id');
       });
 
       it('should throw when getting SSM Parameters are undefined', async () => {

@@ -1,115 +1,6 @@
 <mxfile host="65bd71144e" pages="3">
-    <diagram id="QwVIei0FKTs7k6ZOIdU4" name="Projen Workflows">
-        <mxGraphModel dx="582" dy="274" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            <root>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-0"/>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-1" parent="-oZsJlIxqXxBhoyra-R_-0"/>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-22" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
-                    <mxGeometry x="640" y="50" width="280" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-20" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#d5e8d4;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
-                    <mxGeometry width="280" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-15" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm synth&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
-                    <mxGeometry x="77.5" y="120" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-16" value="&lt;font face=&quot;monospace&quot;&gt;Create Cloudformation&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
-                    <mxGeometry x="73.5" y="260" width="128" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-17" value="&lt;font face=&quot;monospace&quot;&gt;Update Diagram&lt;br&gt;(planned)&lt;br&gt;&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
-                    <mxGeometry x="73.5" y="400" width="133" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-21" value="2. Create CFN" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
-                    <mxGeometry x="77.5" width="100" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-18" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" source="-oZsJlIxqXxBhoyra-R_-15" target="-oZsJlIxqXxBhoyra-R_-16" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-19" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" source="-oZsJlIxqXxBhoyra-R_-16" target="-oZsJlIxqXxBhoyra-R_-17" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-25" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
-                    <mxGeometry x="60" y="50" width="560" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-13" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#dae8fc;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry width="560" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-2" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm projen&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="120" y="40" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-24" value="" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-4" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="180" y="340" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-4" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot; face=&quot;monospace&quot;&gt;Projen Project tryToSetContext(&lt;br&gt;&quot;vpcId&quot;,&lt;br&gt;&quot;privateSubnet1&quot;,&lt;br&gt;&quot;privateSubnet2&quot;)&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="75" y="180" width="210" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-3" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-2" target="-oZsJlIxqXxBhoyra-R_-4" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="180" y="170" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-6" value="Check SSM Parameter Store each value" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="120" y="310" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-5" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-4" target="-oZsJlIxqXxBhoyra-R_-6" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="240" y="360" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-7" value="setContext(&lt;br&gt;&quot;vpcId&quot;,&lt;br&gt;&quot;privateSubnet1&quot;,&lt;br&gt;&quot;privateSubnet2&quot;)" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="354" y="450" width="176" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-8" value="in Store" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-6" target="-oZsJlIxqXxBhoyra-R_-7" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="442" y="350"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-12" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-9" target="-oZsJlIxqXxBhoyra-R_-7" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-9" value="launching missing products" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="92" y="450" width="176" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-14" value="1. Setting and Getting Context" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
-                    <mxGeometry x="230" width="100" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-10" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-6" target="-oZsJlIxqXxBhoyra-R_-9" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-11" value="not in store" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=monospace;" parent="-oZsJlIxqXxBhoyra-R_-10" vertex="1" connectable="0">
-                    <mxGeometry x="-0.2056" y="1" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-26" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
-                    <mxGeometry x="961" y="50" width="280" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-27" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#f8cecc;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
-                    <mxGeometry width="280" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-28" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm deploy&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
-                    <mxGeometry x="77.5" y="120" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-31" value="3. Deploy" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
-                    <mxGeometry x="77.5" width="100" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-32" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-26" source="-oZsJlIxqXxBhoyra-R_-28" target="-oZsJlIxqXxBhoyra-R_-34" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="137.5" y="260" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="-oZsJlIxqXxBhoyra-R_-34" value="&lt;font face=&quot;monospace&quot;&gt;Deploy Ressources&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
-                    <mxGeometry x="73.5" y="270" width="128" height="80" as="geometry"/>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
     <diagram id="pyeY230ZBR-7Wyc-Nqf3" name="Goal Architecture">
-        <mxGraphModel dx="810" dy="255" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1315" dy="924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="gHm7drAUSJH3i6NlRPnt-0"/>
                 <mxCell id="gHm7drAUSJH3i6NlRPnt-1" parent="gHm7drAUSJH3i6NlRPnt-0"/>
@@ -325,8 +216,117 @@
             </root>
         </mxGraphModel>
     </diagram>
+    <diagram id="QwVIei0FKTs7k6ZOIdU4" name="Projen Workflows">
+        <mxGraphModel dx="1315" dy="924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-0"/>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-1" parent="-oZsJlIxqXxBhoyra-R_-0"/>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-22" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
+                    <mxGeometry x="640" y="50" width="280" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-20" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#d5e8d4;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
+                    <mxGeometry width="280" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-15" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm synth&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
+                    <mxGeometry x="77.5" y="120" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-16" value="&lt;font face=&quot;monospace&quot;&gt;Create Cloudformation&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
+                    <mxGeometry x="73.5" y="260" width="128" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-17" value="&lt;font face=&quot;monospace&quot;&gt;Update Diagram&lt;br&gt;(planned)&lt;br&gt;&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
+                    <mxGeometry x="73.5" y="400" width="133" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-21" value="2. Create CFN" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" vertex="1">
+                    <mxGeometry x="77.5" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-18" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" source="-oZsJlIxqXxBhoyra-R_-15" target="-oZsJlIxqXxBhoyra-R_-16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-19" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-22" source="-oZsJlIxqXxBhoyra-R_-16" target="-oZsJlIxqXxBhoyra-R_-17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-25" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
+                    <mxGeometry x="60" y="50" width="560" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-13" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#dae8fc;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry width="560" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-2" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm projen&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="120" y="40" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-24" value="" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="180" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-4" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot; face=&quot;monospace&quot;&gt;Projen Project tryToSetContext(&lt;br&gt;&quot;vpcId&quot;,&lt;br&gt;&quot;privateSubnet1&quot;,&lt;br&gt;&quot;privateSubnet2&quot;)&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="75" y="180" width="210" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-3" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-2" target="-oZsJlIxqXxBhoyra-R_-4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="180" y="170" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-6" value="Check SSM Parameter Store each value" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="120" y="310" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-5" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-4" target="-oZsJlIxqXxBhoyra-R_-6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="360" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-7" value="setContext(&lt;br&gt;&quot;vpcId&quot;,&lt;br&gt;&quot;privateSubnet1&quot;,&lt;br&gt;&quot;privateSubnet2&quot;)" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="354" y="450" width="176" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-8" value="in Store" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-6" target="-oZsJlIxqXxBhoyra-R_-7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="442" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-12" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-9" target="-oZsJlIxqXxBhoyra-R_-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-9" value="launching missing products" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="92" y="450" width="176" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-14" value="1. Setting and Getting Context" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" vertex="1">
+                    <mxGeometry x="230" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-10" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-25" source="-oZsJlIxqXxBhoyra-R_-6" target="-oZsJlIxqXxBhoyra-R_-9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-11" value="not in store" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=monospace;" parent="-oZsJlIxqXxBhoyra-R_-10" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2056" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-26" value="" style="group" parent="-oZsJlIxqXxBhoyra-R_-1" vertex="1" connectable="0">
+                    <mxGeometry x="961" y="50" width="280" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-27" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;fillColor=#f8cecc;strokeColor=none;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
+                    <mxGeometry width="280" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-28" value="&lt;font face=&quot;monospace&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=monospace&quot;&gt;pnpm deploy&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
+                    <mxGeometry x="77.5" y="120" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-31" value="3. Deploy" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
+                    <mxGeometry x="77.5" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-32" style="edgeStyle=none;html=1;fontFamily=monospace;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3Dmonospace;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="-oZsJlIxqXxBhoyra-R_-26" source="-oZsJlIxqXxBhoyra-R_-28" target="-oZsJlIxqXxBhoyra-R_-34" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="137.5" y="260" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-oZsJlIxqXxBhoyra-R_-34" value="&lt;font face=&quot;monospace&quot;&gt;Deploy Ressources&lt;/font&gt;" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" parent="-oZsJlIxqXxBhoyra-R_-26" vertex="1">
+                    <mxGeometry x="73.5" y="270" width="128" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
     <diagram id="cogB-JAur1HY-oK6gicI" name="Current Architecture - 11.11.21">
-        <mxGraphModel dx="842" dy="924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1315" dy="924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -364,7 +364,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="p_t2fZDhTogstTMZbH8m" name="Data Model">
-        <mxGraphModel dx="582" dy="1443" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1315" dy="2093" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="BQMMqfx_kg-tFiaun_-N-0"/>
                 <mxCell id="BQMMqfx_kg-tFiaun_-N-1" parent="BQMMqfx_kg-tFiaun_-N-0"/>
@@ -674,7 +674,7 @@
                 <mxCell id="5rtv3nZ-ln15q7c1a40d-56" value="*" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BQMMqfx_kg-tFiaun_-N-1" vertex="1">
                     <mxGeometry x="490" y="280" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="-XLI3alM28TJ2zTjAUff-3" value="Add a row by&lt;br&gt;Ctrl + Enter (or CMD + Enter)" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;" vertex="1" parent="BQMMqfx_kg-tFiaun_-N-1">
+                <mxCell id="-XLI3alM28TJ2zTjAUff-3" value="Add a row by&lt;br&gt;Ctrl + Enter (or CMD + Enter)" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;" parent="BQMMqfx_kg-tFiaun_-N-1" vertex="1">
                     <mxGeometry x="100" y="-70" width="140" height="105" as="geometry"/>
                 </mxCell>
             </root>

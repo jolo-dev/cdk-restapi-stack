@@ -26,9 +26,9 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
       '@aws-cdk/aws-s3-deployment'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
-    deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid'], /* Runtime dependencies of this module. */
+    deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid', 'swagger-jsdoc'], /* Runtime dependencies of this module. */
     description: 'Backend for 4dt including Backend APIs and Infrastructure all in Typescript', /* The description is just a string that helps people understand the purpose of the package. */
-    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid'], /* Build dev dependencies for this module. */
+    devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid', '@types/swagger-jsdoc'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store', 'test-reports', 'cdk.out'],
     context,
     jestOptions: { configFilePath: './jest.config.json', jestConfig: { projects: ['<rootDir>/infrastructure'] } },
@@ -36,7 +36,8 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
       compilerOptions: {},
       include: ['**/*.ts'],
     },
-    watchIncludes: ['infrastructure/**', 'lambdas/src/**', 'models/**'],
+    watchIncludes: ['infrastructure/**', 'lambdas/src/**', 'models/**', 'docs/**'],
+    watchExcludes: ['docs/openapi/**'],
     srcdir: 'infrastructure', // CDK code is located here
   };
 };
@@ -45,10 +46,9 @@ getOptions().then(options => {
   const project = new awscdk.AwsCdkTypeScriptApp(options);
   project.removeTask('deploy');
   project.removeTask('destroy');
-  project.setScript('deploy', 'pnpm doc && npx cdk deploy --all');
+  project.setScript('deploy', 'npx cdk deploy --all');
   project.setScript('destroy', 'npx cdk destroy FourD-LambdaFleetStack');
   project.setScript('watch', 'npx cdk watch FourD-LambdaFleetStack FourD-DynamoDbStack');
-  project.setScript('doc', 'npx swagger-jsdoc -d openApi.definition.yaml ./lambdas/src/**/*.ts ./models/*.ts -o ./docs/openapi/openapi.json');
   project.synth();
 }).catch(error => {
   console.log(error);

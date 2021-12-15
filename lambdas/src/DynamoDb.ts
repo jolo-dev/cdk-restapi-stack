@@ -75,11 +75,11 @@ class DynamoDb {
 
   public dynamoDbDataBuilder<P extends StandardAttribute>(props: P) {
     let result = {
-      ID: {
-        S: props.ID ?? uuid(),
+      id: {
+        S: props.id ?? uuid(),
       },
-      CreationDateTime: {
-        S: props.CreationDateTime ?? moment().format(),
+      creationDateTime: {
+        S: props.creationDateTime ?? moment().format(),
       },
     };
     for (const key in props) {
@@ -91,19 +91,25 @@ class DynamoDb {
 
   public dynamoAttributeKeyValue(object: any, topLevelName: string):
   { [key: string]: {[key: string]: string}} | undefined {
-    for (const key in object) {
-      switch (typeof object[key]) {
-        case 'number':
-          return { [topLevelName]: { N: object[key] } };
-        case 'boolean':
-          return { [topLevelName]: { B: object[key] } };
-        case 'object':
-          return this.dynamoAttributeKeyValue(object[key], topLevelName);
-        default:
-          return { [topLevelName]: { S: object[key] } };
+    try {
+      for (const key in object) {
+        switch (typeof object[key]) {
+          case 'number':
+            return { [topLevelName]: { N: object[key] } };
+          case 'boolean':
+            return { [topLevelName]: { B: object[key] } };
+          case 'object':
+            return this.dynamoAttributeKeyValue(object[key], topLevelName);
+          default:
+            return { [topLevelName]: { S: object[key] } };
+        }
       }
+      throw new Error('Error in dynamoAttributeKeyValue: object cannot be undefined');
+    } catch (error) {
+      console.error(error);
+      const e = error as Error;
+      throw new Error(e.message);
     }
-    return undefined;
   }
 
   public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {

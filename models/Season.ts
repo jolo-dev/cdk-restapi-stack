@@ -1,7 +1,7 @@
 import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface ISeason extends StandardAttribute {
-  SeasonName: string;
+  seasonName: string;
 }
 
 /**
@@ -19,9 +19,9 @@ export interface ISeason extends StandardAttribute {
  *     Season:
  *       type: object
  *       properties:
- *         ID:
+ *         id:
  *           type: string
- *         CreationDateTime:
+ *         creationDateTime:
  *           type: string
  *         props:
  *           type: object
@@ -33,7 +33,7 @@ export class Season extends Standard {
 
   readonly props: ISeason;
   constructor(props: ISeason) {
-    super('Seasons', props.ID, props.CreationDateTime);
+    super('Seasons', props.id, props.creationDateTime);
     this.props = props;
   };
   public getProps() {

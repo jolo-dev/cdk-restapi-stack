@@ -1,7 +1,7 @@
 import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface ITag extends StandardAttribute {
-  Name: string;
+  name: string;
 }
 
 /**
@@ -19,21 +19,21 @@ export interface ITag extends StandardAttribute {
  *     Tag:
  *       type: object
  *       properties:
- *         ID:
+ *         id:
  *           type: string
- *         CreationDateTime:
+ *         creationDateTime:
  *           type: string
  *         props:
  *           type: object
  *           properties:
- *             Name:
+ *             name:
  *               type: string
  */
 export class Tag extends Standard {
 
   readonly props: ITag;
   constructor(props: ITag) {
-    super('Tags', props.ID, props.CreationDateTime);
+    super('Tags', props.id, props.creationDateTime);
     this.props = props;
   }
 

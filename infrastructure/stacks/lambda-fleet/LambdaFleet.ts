@@ -5,7 +5,7 @@ import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
 import { Construct, Stack } from '@aws-cdk/core';
 import { build } from 'esbuild';
-import { DocumentationPart } from './DocumentationPart';
+import { OpenApiDocumentation } from './OpenApiDocumentation';
 import { PrivateApiGateway } from './PrivateApiGateway';
 
 export enum Method {
@@ -40,7 +40,7 @@ export class LambdaFleet extends Construct {
     void this.bundlingLambdas(this.method);
   }
 
-  public async createLambdaFunctions() {
+  public async createLambdaFunctions(docs: OpenApiDocumentation) {
     const lambdaFolder = `${this.lambdaFolder}/dist/${this.method}`;
     if (fs.existsSync(lambdaFolder)) {
       const lambdas = this.getAllLambdasFromFolder(lambdaFolder);
@@ -49,7 +49,7 @@ export class LambdaFleet extends Construct {
         const lambdaFunction = new Function(this, `${this.method}${lambdaName}Function`, {
           runtime: Runtime.NODEJS_14_X,
           handler: `${lambdaName}.handler`,
-          code: Code.fromAsset(lambdaFolder, { exclude: [`**/(!${lambda})`] }),
+          code: Code.fromAsset(lambdaFolder, { exclude: [`**/!(${lambda})`] }),
           tracing: Tracing.ACTIVE,
           vpc: this.vpc,
           vpcSubnets: {
@@ -67,17 +67,27 @@ export class LambdaFleet extends Construct {
         lambdaFunction.addToRolePolicy(policy);
 
         // // Add Lambda to API Gateway
-        const restEndpoint = this.api.root.addResource(lambdaName);
+        const restEndpoint = this.api.root.addResource(lambdaName, {
+          defaultCorsPreflightOptions: {
+            allowHeaders: [
+              'Content-Type',
+              'X-Amz-Date',
+              'Authorization',
+              'X-Api-Key',
+            ],
+            allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+            allowCredentials: true,
+            allowOrigins: ['*'],
+          },
+        });
         restEndpoint.addMethod(this.method,
           new LambdaIntegration(lambdaFunction, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
           { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] },
         );
-
-        /////// FOR OPENAPI
-        new DocumentationPart(this, `${lambdaName}DocumentationPart`, {
+        // For API GW Documentation Par
+        docs.createCfnDocumentationParts({
           lambdaName,
           method: this.method,
-          restApiId: this.api.restApiId,
         });
       });
     }

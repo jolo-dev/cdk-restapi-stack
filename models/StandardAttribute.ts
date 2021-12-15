@@ -2,18 +2,18 @@ import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 
 export interface StandardAttribute {
-  ID?: string;
-  CreationDateTime?: string;
+  id?: string;
+  creationDateTime?: string;
 }
 
 export abstract class Standard {
   private name: string;
-  private ID: string;
-  private CreationDateTime: string;
+  private id: string;
+  private creationDateTime: string;
   constructor(name: string, id?: string, creationDateTime?: string) {
     this.name = name;
-    this.ID = id ?? uuid();
-    this.CreationDateTime = creationDateTime ?? moment().format();
+    this.id = id ?? uuid();
+    this.creationDateTime = creationDateTime ?? moment().format();
   }
 
   public getName() {
@@ -21,11 +21,11 @@ export abstract class Standard {
   }
 
   public getId() {
-    return this.ID;
+    return this.id;
   }
 
   public getCreationDateTime() {
-    return this.CreationDateTime;
+    return this.creationDateTime;
   }
 
   abstract getProps(): any;
