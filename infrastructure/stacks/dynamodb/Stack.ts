@@ -3,9 +3,9 @@ import { AttributeType, BillingMode, ProjectionType, Table } from '@aws-cdk/aws-
 import { CfnOutput, Construct, Stack, StackProps } from '@aws-cdk/core';
 
 export class DynamoDbStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps) {
+  constructor(scope: Construct, id: string, props: StackProps, modelsFolder: string = 'models') {
     super(scope, id, props);
-    fs.readdirSync('models')
+    fs.readdirSync(modelsFolder)
       .filter(model => model !== 'StandardAttribute.ts') // Is a standard attribute
       .forEach(value => {
         const tableName = value.replace('.ts', '') + 's'; // Appending an 's' to name it in Plural

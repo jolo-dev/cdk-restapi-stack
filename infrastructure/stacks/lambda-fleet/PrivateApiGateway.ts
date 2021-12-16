@@ -49,18 +49,6 @@ export class PrivateApiGateway extends RestApi {
         vpcEndpoints: props.vpcEndpoint,
       },
       policy: apiResourcePolicy,
-      // 👇 set up CORS
-      defaultCorsPreflightOptions: {
-        allowHeaders: [
-          'Content-Type',
-          'X-Amz-Date',
-          'Authorization',
-          'X-Api-Key',
-        ],
-        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-        allowCredentials: true,
-        allowOrigins: ['*'],
-      },
     });
 
     new CfnOutput(this, 'CfnApiUrl', { value: this.url });

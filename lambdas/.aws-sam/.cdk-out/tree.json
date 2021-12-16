@@ -1,0 +1,3598 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.135.0"
+        }
+      },
+      "LocalStack": {
+        "id": "LocalStack",
+        "path": "LocalStack",
+        "children": {
+          "TestRestApi": {
+            "id": "TestRestApi",
+            "path": "LocalStack/TestRestApi",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/TestRestApi/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "TestRestApi"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-apigateway.CfnRestApi",
+                  "version": "1.135.0"
+                }
+              },
+              "CloudWatchRole": {
+                "id": "CloudWatchRole",
+                "path": "LocalStack/TestRestApi/CloudWatchRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/TestRestApi/CloudWatchRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "apigateway.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Account": {
+                "id": "Account",
+                "path": "LocalStack/TestRestApi/Account",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Account",
+                  "aws:cdk:cloudformation:props": {
+                    "cloudWatchRoleArn": {
+                      "Fn::GetAtt": [
+                        "TestRestApiCloudWatchRole00F6FF01",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-apigateway.CfnAccount",
+                  "version": "1.135.0"
+                }
+              },
+              "Deployment": {
+                "id": "Deployment",
+                "path": "LocalStack/TestRestApi/Deployment",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/TestRestApi/Deployment/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "TestRestApiB7B4EFDA"
+                        },
+                        "description": "Automatically created by the RestApi construct"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.CfnDeployment",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-apigateway.Deployment",
+                  "version": "1.135.0"
+                }
+              },
+              "DeploymentStage.prod": {
+                "id": "DeploymentStage.prod",
+                "path": "LocalStack/TestRestApi/DeploymentStage.prod",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/TestRestApi/DeploymentStage.prod/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "TestRestApiB7B4EFDA"
+                        },
+                        "deploymentId": {
+                          "Ref": "TestRestApiDeploymentE31B1265c18483414276e04b31b4062330338127"
+                        },
+                        "stageName": "prod"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.CfnStage",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-apigateway.Stage",
+                  "version": "1.135.0"
+                }
+              },
+              "Endpoint": {
+                "id": "Endpoint",
+                "path": "LocalStack/TestRestApi/Endpoint",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnOutput",
+                  "version": "1.135.0"
+                }
+              },
+              "Default": {
+                "id": "Default",
+                "path": "LocalStack/TestRestApi/Default",
+                "children": {
+                  "phases": {
+                    "id": "phases",
+                    "path": "LocalStack/TestRestApi/Default/phases",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/phases/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "phases",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "get": {
+                        "id": "get",
+                        "path": "LocalStack/TestRestApi/Default/phases/get",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.GET..phases": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.GET..phases",
+                            "path": "LocalStack/TestRestApi/Default/phases/get/ApiPermission.LocalStackTestRestApiA0058C69.GET..phases",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getphasesFunctionB81E8DA3",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/GET/phases"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..phases": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..phases",
+                            "path": "LocalStack/TestRestApi/Default/phases/get/ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..phases",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getphasesFunctionB81E8DA3",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/GET/phases"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/phases/get/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "TestRestApiphasesA4813094"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "getphasesFunctionB81E8DA3",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "projects": {
+                    "id": "projects",
+                    "path": "LocalStack/TestRestApi/Default/projects",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/projects/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "projects",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "get": {
+                        "id": "get",
+                        "path": "LocalStack/TestRestApi/Default/projects/get",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.GET..projects": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.GET..projects",
+                            "path": "LocalStack/TestRestApi/Default/projects/get/ApiPermission.LocalStackTestRestApiA0058C69.GET..projects",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getprojectsFunction3357E987",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/GET/projects"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..projects": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..projects",
+                            "path": "LocalStack/TestRestApi/Default/projects/get/ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..projects",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getprojectsFunction3357E987",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/GET/projects"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/projects/get/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "TestRestApiprojects13007DA8"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "getprojectsFunction3357E987",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "seasons": {
+                    "id": "seasons",
+                    "path": "LocalStack/TestRestApi/Default/seasons",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/seasons/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "seasons",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "get": {
+                        "id": "get",
+                        "path": "LocalStack/TestRestApi/Default/seasons/get",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.GET..seasons": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.GET..seasons",
+                            "path": "LocalStack/TestRestApi/Default/seasons/get/ApiPermission.LocalStackTestRestApiA0058C69.GET..seasons",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getseasonsFunction9B378D61",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/GET/seasons"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..seasons": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..seasons",
+                            "path": "LocalStack/TestRestApi/Default/seasons/get/ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..seasons",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "getseasonsFunction9B378D61",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/GET/seasons"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/seasons/get/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "TestRestApiseasonsD3B8C7C0"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "getseasonsFunction9B378D61",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "tags": {
+                    "id": "tags",
+                    "path": "LocalStack/TestRestApi/Default/tags",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/tags/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "tags",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "get": {
+                        "id": "get",
+                        "path": "LocalStack/TestRestApi/Default/tags/get",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.GET..tags": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.GET..tags",
+                            "path": "LocalStack/TestRestApi/Default/tags/get/ApiPermission.LocalStackTestRestApiA0058C69.GET..tags",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "gettagsFunction7F1ACCEF",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/GET/tags"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..tags": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..tags",
+                            "path": "LocalStack/TestRestApi/Default/tags/get/ApiPermission.Test.LocalStackTestRestApiA0058C69.GET..tags",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "gettagsFunction7F1ACCEF",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/GET/tags"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/tags/get/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "TestRestApitagsC1F64B83"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "gettagsFunction7F1ACCEF",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "phase": {
+                    "id": "phase",
+                    "path": "LocalStack/TestRestApi/Default/phase",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/phase/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "phase",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "post": {
+                        "id": "post",
+                        "path": "LocalStack/TestRestApi/Default/phase/post",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.POST..phase": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.POST..phase",
+                            "path": "LocalStack/TestRestApi/Default/phase/post/ApiPermission.LocalStackTestRestApiA0058C69.POST..phase",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postphaseFunction47FB85E1",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/POST/phase"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..phase": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..phase",
+                            "path": "LocalStack/TestRestApi/Default/phase/post/ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..phase",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postphaseFunction47FB85E1",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/POST/phase"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/phase/post/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "POST",
+                                "resourceId": {
+                                  "Ref": "TestRestApiphase87E526A9"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "postphaseFunction47FB85E1",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "project": {
+                    "id": "project",
+                    "path": "LocalStack/TestRestApi/Default/project",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/project/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "project",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "post": {
+                        "id": "post",
+                        "path": "LocalStack/TestRestApi/Default/project/post",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.POST..project": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.POST..project",
+                            "path": "LocalStack/TestRestApi/Default/project/post/ApiPermission.LocalStackTestRestApiA0058C69.POST..project",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postprojectFunctionF80C30E6",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/POST/project"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..project": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..project",
+                            "path": "LocalStack/TestRestApi/Default/project/post/ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..project",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postprojectFunctionF80C30E6",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/POST/project"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/project/post/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "POST",
+                                "resourceId": {
+                                  "Ref": "TestRestApiproject61FB5D50"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "postprojectFunctionF80C30E6",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "season": {
+                    "id": "season",
+                    "path": "LocalStack/TestRestApi/Default/season",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/season/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "season",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "post": {
+                        "id": "post",
+                        "path": "LocalStack/TestRestApi/Default/season/post",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.POST..season": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.POST..season",
+                            "path": "LocalStack/TestRestApi/Default/season/post/ApiPermission.LocalStackTestRestApiA0058C69.POST..season",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postseasonFunction6F4F0AA0",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/POST/season"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..season": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..season",
+                            "path": "LocalStack/TestRestApi/Default/season/post/ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..season",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "postseasonFunction6F4F0AA0",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/POST/season"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/season/post/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "POST",
+                                "resourceId": {
+                                  "Ref": "TestRestApiseasonCD3D15A4"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "postseasonFunction6F4F0AA0",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "tag": {
+                    "id": "tag",
+                    "path": "LocalStack/TestRestApi/Default/tag",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LocalStack/TestRestApi/Default/tag/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "TestRestApiB7B4EFDA",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "tag",
+                            "restApiId": {
+                              "Ref": "TestRestApiB7B4EFDA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.CfnResource",
+                          "version": "1.135.0"
+                        }
+                      },
+                      "post": {
+                        "id": "post",
+                        "path": "LocalStack/TestRestApi/Default/tag/post",
+                        "children": {
+                          "ApiPermission.LocalStackTestRestApiA0058C69.POST..tag": {
+                            "id": "ApiPermission.LocalStackTestRestApiA0058C69.POST..tag",
+                            "path": "LocalStack/TestRestApi/Default/tag/post/ApiPermission.LocalStackTestRestApiA0058C69.POST..tag",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "posttagFunctionB546BDCF",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "TestRestApiDeploymentStageprod714523E6"
+                                      },
+                                      "/POST/tag"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..tag": {
+                            "id": "ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..tag",
+                            "path": "LocalStack/TestRestApi/Default/tag/post/ApiPermission.Test.LocalStackTestRestApiA0058C69.POST..tag",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "posttagFunctionB546BDCF",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "TestRestApiB7B4EFDA"
+                                      },
+                                      "/test-invoke-stage/POST/tag"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LocalStack/TestRestApi/Default/tag/post/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "POST",
+                                "resourceId": {
+                                  "Ref": "TestRestApitagE127DF72"
+                                },
+                                "restApiId": {
+                                  "Ref": "TestRestApiB7B4EFDA"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "posttagFunctionB546BDCF",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST",
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "200"
+                                    },
+                                    {
+                                      "statusCode": "400"
+                                    },
+                                    {
+                                      "statusCode": "404"
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "200"
+                                  },
+                                  {
+                                    "statusCode": "400"
+                                  },
+                                  {
+                                    "statusCode": "404"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-apigateway.Resource",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-apigateway.ResourceBase",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-apigateway.RestApi",
+              "version": "1.135.0"
+            }
+          },
+          "getphasesFunction": {
+            "id": "getphasesFunction",
+            "path": "LocalStack/getphasesFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/getphasesFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/getphasesFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/getphasesFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/getphasesFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/getphasesFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/getphasesFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/getphasesFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "getphasesFunctionServiceRoleB3C35CF2",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "phases.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "AssetParameters": {
+            "id": "AssetParameters",
+            "path": "LocalStack/AssetParameters",
+            "children": {
+              "8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732": {
+                "id": "8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732",
+                "path": "LocalStack/AssetParameters/8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "LocalStack/AssetParameters/8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "LocalStack/AssetParameters/8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "LocalStack/AssetParameters/8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.135.0"
+                }
+              },
+              "b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70": {
+                "id": "b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70",
+                "path": "LocalStack/AssetParameters/b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "LocalStack/AssetParameters/b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "LocalStack/AssetParameters/b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "LocalStack/AssetParameters/b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.135.0"
+            }
+          },
+          "getprojectsFunction": {
+            "id": "getprojectsFunction",
+            "path": "LocalStack/getprojectsFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/getprojectsFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/getprojectsFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/getprojectsFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/getprojectsFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/getprojectsFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/getprojectsFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/getprojectsFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "getprojectsFunctionServiceRole1D546F41",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "projects.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "getseasonsFunction": {
+            "id": "getseasonsFunction",
+            "path": "LocalStack/getseasonsFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/getseasonsFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/getseasonsFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/getseasonsFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/getseasonsFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/getseasonsFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/getseasonsFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/getseasonsFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "getseasonsFunctionServiceRole804AD161",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "seasons.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "gettagsFunction": {
+            "id": "gettagsFunction",
+            "path": "LocalStack/gettagsFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/gettagsFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/gettagsFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/gettagsFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/gettagsFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/gettagsFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/gettagsFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/gettagsFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "gettagsFunctionServiceRoleC78F138D",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "tags.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "postphaseFunction": {
+            "id": "postphaseFunction",
+            "path": "LocalStack/postphaseFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/postphaseFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/postphaseFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/postphaseFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/postphaseFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/postphaseFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/postphaseFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/postphaseFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3Bucket4366E335"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "postphaseFunctionServiceRoleF729A5ED",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "phase.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "postprojectFunction": {
+            "id": "postprojectFunction",
+            "path": "LocalStack/postprojectFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/postprojectFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/postprojectFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/postprojectFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/postprojectFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/postprojectFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/postprojectFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/postprojectFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3Bucket4366E335"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "postprojectFunctionServiceRole33CBAB40",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "project.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "postseasonFunction": {
+            "id": "postseasonFunction",
+            "path": "LocalStack/postseasonFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/postseasonFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/postseasonFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/postseasonFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/postseasonFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/postseasonFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/postseasonFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/postseasonFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3Bucket4366E335"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "postseasonFunctionServiceRoleED12AD60",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "season.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "posttagFunction": {
+            "id": "posttagFunction",
+            "path": "LocalStack/posttagFunction",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "LocalStack/posttagFunction/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LocalStack/posttagFunction/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "LocalStack/posttagFunction/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "LocalStack/posttagFunction/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "LocalStack/posttagFunction/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "LocalStack/posttagFunction/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LocalStack/posttagFunction/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3Bucket4366E335"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3VersionKey973FC105"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "posttagFunctionServiceRoleDA2716EC",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "LOCAL": "http://localhost:4566"
+                      }
+                    },
+                    "handler": "tag.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.135.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LocalStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LocalStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.135.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "LocalStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.135.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.135.0"
+        }
+      },
+      "DynamoDbLocal": {
+        "id": "DynamoDbLocal",
+        "path": "DynamoDbLocal",
+        "children": {
+          "PhasesTable": {
+            "id": "PhasesTable",
+            "path": "DynamoDbLocal/PhasesTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "DynamoDbLocal/PhasesTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [
+                      {
+                        "indexName": "PhasesGSI",
+                        "keySchema": [
+                          {
+                            "attributeName": "id",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "projection": {
+                          "projectionType": "KEYS_ONLY"
+                        }
+                      }
+                    ],
+                    "tableName": "Phases"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.135.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "DynamoDbLocal/PhasesTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.135.0"
+            }
+          },
+          "TableNamePhases": {
+            "id": "TableNamePhases",
+            "path": "DynamoDbLocal/TableNamePhases",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "TableArnPhases": {
+            "id": "TableArnPhases",
+            "path": "DynamoDbLocal/TableArnPhases",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "ProjectsTable": {
+            "id": "ProjectsTable",
+            "path": "DynamoDbLocal/ProjectsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "DynamoDbLocal/ProjectsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [
+                      {
+                        "indexName": "ProjectsGSI",
+                        "keySchema": [
+                          {
+                            "attributeName": "id",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "projection": {
+                          "projectionType": "KEYS_ONLY"
+                        }
+                      }
+                    ],
+                    "tableName": "Projects"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.135.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "DynamoDbLocal/ProjectsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.135.0"
+            }
+          },
+          "TableNameProjects": {
+            "id": "TableNameProjects",
+            "path": "DynamoDbLocal/TableNameProjects",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "TableArnProjects": {
+            "id": "TableArnProjects",
+            "path": "DynamoDbLocal/TableArnProjects",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "SeasonsTable": {
+            "id": "SeasonsTable",
+            "path": "DynamoDbLocal/SeasonsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "DynamoDbLocal/SeasonsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [
+                      {
+                        "indexName": "SeasonsGSI",
+                        "keySchema": [
+                          {
+                            "attributeName": "id",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "projection": {
+                          "projectionType": "KEYS_ONLY"
+                        }
+                      }
+                    ],
+                    "tableName": "Seasons"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.135.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "DynamoDbLocal/SeasonsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.135.0"
+            }
+          },
+          "TableNameSeasons": {
+            "id": "TableNameSeasons",
+            "path": "DynamoDbLocal/TableNameSeasons",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "TableArnSeasons": {
+            "id": "TableArnSeasons",
+            "path": "DynamoDbLocal/TableArnSeasons",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "TagsTable": {
+            "id": "TagsTable",
+            "path": "DynamoDbLocal/TagsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "DynamoDbLocal/TagsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "creationDateTime",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [
+                      {
+                        "indexName": "TagsGSI",
+                        "keySchema": [
+                          {
+                            "attributeName": "id",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "projection": {
+                          "projectionType": "KEYS_ONLY"
+                        }
+                      }
+                    ],
+                    "tableName": "Tags"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.135.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "DynamoDbLocal/TagsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.135.0"
+            }
+          },
+          "TableNameTags": {
+            "id": "TableNameTags",
+            "path": "DynamoDbLocal/TableNameTags",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "TableArnTags": {
+            "id": "TableArnTags",
+            "path": "DynamoDbLocal/TableArnTags",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.135.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "DynamoDbLocal/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "DynamoDbLocal/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.135.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "DynamoDbLocal/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.135.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.135.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.135.0"
+    }
+  }
+}

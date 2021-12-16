@@ -14,7 +14,7 @@ const vpcEndpointId = process.env.VPC_ENDPOINT_ID ?? '';
 const account = process.env.ACCOUNT ?? '';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const definition = require('./openapi.json');
+const definition = require('./openapi/openapi.json');
 const serverDefinition = {
   'servers': [{
     'url': `https://${restApiId}-${vpcEndpointId}.execute-api.${region}.amazonaws.com/{basePath}`,

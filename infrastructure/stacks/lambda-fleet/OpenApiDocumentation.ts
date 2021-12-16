@@ -62,7 +62,7 @@ export class OpenApiDocumentation extends Construct {
         openapi: '3.0.1',
         info: {
           title: '4D- Asset Management',
-          version: '2021-12',
+          version: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
           description: 'Assetmanagement for 4d',
         },
       },
@@ -71,7 +71,7 @@ export class OpenApiDocumentation extends Construct {
       apis: ['./lambdas/src/**/*.ts', './models/*.ts'],
     };
     const openapi = swaggerJsdoc(options);
-    fs.writeFileSync('docs/openapi.json', JSON.stringify(openapi, null, 2));
+    fs.writeFileSync('docs/openapi/openapi.json', JSON.stringify(openapi, null, 2));
   };
 
   public createCfnDocumentationParts(props: DocumentationProps) {

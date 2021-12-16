@@ -1,0 +1,81 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Code Structure",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "# Code Structure\n\nSince this project is bootstrapped in Typescript, it goes with a [Monorepo](https://semaphoreci.com/blog/what-is-monorepo) approach.<br/>\nThe main idea is to have everything related to this project in one single place.<br/>\nOn the top level, it has all the config-files for CDK, Typescript, Test, Linting, VS Code, Drawings, git, and shared NPM-Packages such as `eslint` and `jest`.\n\n```bash\n.\n├── docs\n│   └── openapi\n├── lambdas\n│   └── src\n├── infrastructure\n│   ├── stacks\n│   │   ├── codepipeline\n│   │   └── lambda-fleet\n│   └── utils\n├── test\n│   ├── __snapshots__\n│   ├── lambdas\n│   │   └── src\n│   ├── stacks\n│   └── utils\n└── test-reports\n└── node_modules\n```\n\n## pnpm Workspaces\n\nIt is recommended to use [`pnpm`](https://pnpm.io/) because it supports Monorepo out-of-the-box. However, it is best practice to define the packages within the `pnpm-workspace.yaml` [#2].\n\n## docs\n\nIn here, it defines the OpenApi Documentation and any other documentation related to this project. It's a minimal [ExpressJs](https://expressjs.com/)- app and deployed via [`serverless-express`](https://github.com/vendia/serverless-express), [`swagger-jsdocs`](https://github.com/Surnet/swagger-jsdoc/), and [`swagger-ui-express`](https://github.com/scottie1984/swagger-ui-express) [#3], [#4], [#5], [#6].\n\n## infrastructure\n\nAs the name assumes, it defines the Infrastructure to Code powered by AWS CDK.<br/>\nWe define each Stack in the `stacks`- folder and put them all in the `main.ts`.\nThe package structure is as it defined in the architecture diagram (without the Client/Frontend).<br/>\n`utils`- folder are helper methods which interacts with AWS via the SDK e.g. retrieving values from SSM Parameter Store.\n\n```sh\n.\n├── stacks\n│   ├── codepipeline\n│   ├── dynamodb\n│   ├── lambda-fleet\n│   └── s3\n└── utils\n```\n\n## lambdas\n\nAll the Lambdas for the backend, we put them in here.<br/>\n\n```sh\n.\n├── dist\n│   ├── get\n│   └── post\n├── node_modules\n├── src\n│   ├── get\n│   └── post\n└── test\n```"
+    },
+    {
+      "file": "pnpm-workspace.yaml",
+      "description": "Define your packages here.<br/>\n**Notice that we didn't put the `infrastructure`- folder in here because it is our entrypoint of `projen`.**",
+      "line": 1,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 1,
+          "character": 9
+        }
+      }
+    },
+    {
+      "file": "docs/docs.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 5,
+          "character": 1
+        }
+      },
+      "description": "This mainly for running an Express-App inside a Lambda"
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 17,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 54
+        }
+      },
+      "description": "When deploying the `LambdaFleet`, it also deploys an additional lambda for the documentation.<br/>\nThat lambda bundles the definition all marked as `@openapi` in the `lambdas` and `models` directories and creates an `openapi/openapi.json`.<br/>"
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 56,
+          "character": 3
+        }
+      },
+      "description": "Because we get information such as `vpcEndpointId`, or `restApiId` after deployment, we add the `serverdefinition` to the `openapi`- definition.<br/>\nThis is necessary to let swagger interact with the API."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 57,
+          "character": 1
+        },
+        "end": {
+          "line": 65,
+          "character": 57
+        }
+      },
+      "description": "We serve the two definition at `/` in the ExpressJs-App but in the `openapi` in the API Gateway."
+    }
+  ]
+}

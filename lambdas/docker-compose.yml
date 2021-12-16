@@ -2,12 +2,10 @@ version: "3.0"
 services:
   localstack:
     image: localstack/localstack:latest
+    network_mode: bridge
     ports:
-      - "53:53"
-      - "443:443"
-      - "4510-4520:4510-4520"
-      - "4566-4620:4566-4620"
-      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4571:4571"
     environment:
       - HOSTNAME_EXTERNAL=localstack
       - DEBUG=1
@@ -16,9 +14,8 @@ services:
       - LAMBDA_EXECUTOR=docker
       - LAMBDA_NETWORK=bridge
       - DYNAMODB_SHARE_DB=1
-      - SERVICES=s3,lambda,cloudformation,apigateway,dynamodb,ec2
+      - SERVICES=s3,lambda,cloudformation,apigateway,dynamodb,ec2,iam
+      - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
     volumes:
+      - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./init_db.sh:/init.sh"
-    tmpfs:
-      - /tmp/localstack:exec,mode=600

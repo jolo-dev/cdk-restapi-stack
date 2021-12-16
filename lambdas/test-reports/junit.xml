@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="15" failures="0" errors="0" time="4.692">
-  <testsuite name="POST" errors="0" failures="0" skipped="1" timestamp="2021-12-15T14:06:36" time="3.698" tests="1">
+<testsuites name="jest tests" tests="18" failures="0" errors="0" time="4.891">
+  <testsuite name="POST" errors="0" failures="0" skipped="4" timestamp="2021-12-16T08:44:18" time="4.315" tests="4">
     <testcase classname="POST add Project" name="POST add Project" time="0">
       <skipped/>
     </testcase>
+    <testcase classname="POST add Season" name="POST add Season" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="POST get all Projects" name="POST get all Projects" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="POST get all Seasons" name="POST get all Seasons" time="0">
+      <skipped/>
+    </testcase>
   </testsuite>
-  <testsuite name="DynamoDb" errors="0" failures="0" skipped="0" timestamp="2021-12-15T14:06:36" time="4.228" tests="14">
-    <testcase classname="DynamoDb should create the tables" name="DynamoDb should create the tables" time="0.003">
+  <testsuite name="DynamoDb" errors="0" failures="0" skipped="0" timestamp="2021-12-16T08:44:18" time="4.483" tests="14">
+    <testcase classname="DynamoDb should create the tables" name="DynamoDb should create the tables" time="0.004">
     </testcase>
-    <testcase classname="DynamoDb should throw when creating table was not successful" name="DynamoDb should throw when creating table was not successful" time="0.019">
+    <testcase classname="DynamoDb should throw when creating table was not successful" name="DynamoDb should throw when creating table was not successful" time="0.025">
     </testcase>
-    <testcase classname="DynamoDb should create a Project object" name="DynamoDb should create a Project object" time="0.001">
+    <testcase classname="DynamoDb should create a Project object" name="DynamoDb should create a Project object" time="0.002">
     </testcase>
-    <testcase classname="DynamoDb should scan the whole table" name="DynamoDb should scan the whole table" time="0.002">
+    <testcase classname="DynamoDb should scan the whole table" name="DynamoDb should scan the whole table" time="0.001">
     </testcase>
-    <testcase classname="DynamoDb should throw when no items in table" name="DynamoDb should throw when no items in table" time="0.001">
+    <testcase classname="DynamoDb should throw when no items in table" name="DynamoDb should throw when no items in table" time="0.005">
     </testcase>
-    <testcase classname="DynamoDb should add a new Project entry to Projects table" name="DynamoDb should add a new Project entry to Projects table" time="0.001">
+    <testcase classname="DynamoDb should add a new Project entry to Projects table" name="DynamoDb should add a new Project entry to Projects table" time="0.002">
     </testcase>
     <testcase classname="DynamoDb should throw when adding new Project entry was not successful" name="DynamoDb should throw when adding new Project entry was not successful" time="0.002">
     </testcase>
@@ -30,7 +39,7 @@
     </testcase>
     <testcase classname="DynamoDb should return the correct type of an object" name="DynamoDb should return the correct type of an object" time="0">
     </testcase>
-    <testcase classname="DynamoDb should return the correct type of a really nested object" name="DynamoDb should return the correct type of a really nested object" time="0">
+    <testcase classname="DynamoDb should return the correct type of a really nested object" name="DynamoDb should return the correct type of a really nested object" time="0.001">
     </testcase>
     <testcase classname="DynamoDb should return undefined when object is undefined as well" name="DynamoDb should return undefined when object is undefined as well" time="0.004">
     </testcase>
