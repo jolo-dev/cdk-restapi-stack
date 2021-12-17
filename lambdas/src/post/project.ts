@@ -1,5 +1,8 @@
 import { APIGatewayProxyResult } from 'aws-lambda';
+import { Phase } from '../../../models/Phase';
 import { I4DProject, Project } from '../../../models/Project';
+import { Season } from '../../../models/Season';
+import { Tag } from '../../../models/Tag';
 import DynamoDb from '../DynamoDb';
 
 const dynamo = new DynamoDb({});
@@ -22,6 +25,17 @@ export const handler = async (props: I4DProject) => {
   try {
     if (props) {
       const project = new Project(props);
+      if (props.season) {
+        await dynamo.addEntry(new Season({ seasonName: props.season.seasonName }));
+      }
+      if (props.phase) {
+        await dynamo.addEntry(new Phase({ phaseName: props.phase.phaseName }));
+      }
+      if (props.tags) {
+        props.tags.forEach(async (tag) => {
+          await dynamo.addEntry(new Tag({ name: tag.name }));
+        });
+      }
       const entries = await dynamo.addEntry(project);
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {

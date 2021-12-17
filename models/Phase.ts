@@ -13,7 +13,7 @@ export interface IPhase extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Phase"
+ *             $ref: "#/components/schemas/Phase/properties/props"
  *   schemas:
  *     Phase:
  *       type: object
@@ -32,7 +32,7 @@ export class Phase extends Standard {
 
   readonly props: IPhase;
   constructor(props: IPhase) {
-    super('Phases', props.id, props.creationDateTime);
+    super('Phases', props.id);
     this.props = props;
   };
   public getProps() {

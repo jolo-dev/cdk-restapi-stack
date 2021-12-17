@@ -1,13 +1,12 @@
-import { DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
 import { I4DProject, Project } from '../../../models/Project';
+import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
 type ProjectsResult = APIGatewayProxyResult & {
   results: Project[];
 }
 
-const config: DynamoDBClientConfig = process.env.LOCAL ? { endpoint: process.env.LOCAL, region: 'eu-west-1' } : {};
 const dynamo = new DynamoDb(config);
 /**
  * @swagger
@@ -38,7 +37,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     if (entries.length > 0) {
       const result: ProjectsResult = {
         statusCode: 200,
-        body: 'success',
+        body: JSON.stringify(entries),
         results: entries,
       };
       return result;
@@ -53,7 +52,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     const e = error as Error;
     return {
       statusCode: 400,
-      body: `Error in getting projects: ${e.message}, ${process.env.LOCAL}`,
+      body: `Error in getting projects: ${e.message}, endpoint: ${process.env.LOCALSTACK_HOSTNAME}}, region: ${config.region}`,
     };
   }
 

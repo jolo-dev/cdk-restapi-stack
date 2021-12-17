@@ -68,6 +68,7 @@ export class LambdaFleet extends Construct {
 
         // // Add Lambda to API Gateway
         const restEndpoint = this.api.root.addResource(lambdaName, {
+          // 👇 set up CORS
           defaultCorsPreflightOptions: {
             allowHeaders: [
               'Content-Type',

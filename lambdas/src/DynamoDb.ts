@@ -45,6 +45,16 @@ class DynamoDb {
     }
   }
 
+  // public async queryEntries<T, P>(tableName: string, entity: any): Promise<T[]> {
+  //   try {
+  //     return;
+  //   } catch (error) {
+  //     console.log(error);
+  //     const e = error as Error;
+  //     throw new Error(e.message);
+  //   }
+  // }
+
   public async addEntry<T extends Standard>(tableEntry: T) {
     try {
       const input = {
@@ -112,6 +122,12 @@ class DynamoDb {
     }
   }
 
+  /**
+   * Entity Class Factory by using Generics
+   * @param c The class you want to generate
+   * @param props the properties the class contains
+   * @returns a new created class
+   */
   public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {
     return new c(props);
   }

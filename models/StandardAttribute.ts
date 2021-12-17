@@ -10,10 +10,10 @@ export abstract class Standard {
   private name: string;
   private id: string;
   private creationDateTime: string;
-  constructor(name: string, id?: string, creationDateTime?: string) {
+  constructor(name: string, id?: string) {
     this.name = name;
     this.id = id ?? uuid();
-    this.creationDateTime = creationDateTime ?? moment().format();
+    this.creationDateTime = moment().format();
   }
 
   public getName() {

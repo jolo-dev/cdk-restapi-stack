@@ -14,7 +14,7 @@ export interface ISeason extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Season"
+ *             $ref: "#/components/schemas/Season/properties/props"
  *   schemas:
  *     Season:
  *       type: object
@@ -26,14 +26,14 @@ export interface ISeason extends StandardAttribute {
  *         props:
  *           type: object
  *           properties:
- *             SeasonName:
+ *             seasonName:
  *               type: string
  */
 export class Season extends Standard {
 
   readonly props: ISeason;
   constructor(props: ISeason) {
-    super('Seasons', props.id, props.creationDateTime);
+    super('Seasons', props.id);
     this.props = props;
   };
   public getProps() {

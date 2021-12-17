@@ -1,15 +1,8 @@
+import { Phase } from '../../models/Phase';
 import { I4DProject, Project } from '../../models/Project';
 import { ISeason, Season } from '../../models/Season';
+import { Tag } from '../../models/Tag';
 import DynamoDb from '../src/DynamoDb';
-
-Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
-
-// ID will be mocked unless you put your own ID
-jest.mock('uuid', () => {
-  return {
-    v4: jest.fn().mockReturnValue('123456789'),
-  };
-});
 
 // This should be run against your local DynamoDB
 // That is why they are skipped in the global tests
@@ -45,6 +38,42 @@ describe('POST', () => {
 
   test.skip('get all Seasons', async () => {
     const entries = await dynamo.listEntries('Seasons', Season);
+    console.log(entries);
+  });
+
+  test('add a new Project with storing Season, Phase, and multiple Tags', async () => {
+    const props: I4DProject = {
+      author: 'TestAuthor5',
+      coverImage: 's3://',
+      description: 'Foobar',
+      projectName: 'ProjectName2',
+      tags: [{ name: 'tags2' }, { name: 'name2' }],
+    };
+    const project = new Project(props);
+    if (props.season) {
+      const entry = await dynamo.addEntry(new Season({ seasonName: props.season.seasonName }));
+      const statusCode = entry.$metadata.httpStatusCode ?? 400;
+      expect(statusCode).toBe(200);
+    }
+    if (props.phase) {
+      const entry = await dynamo.addEntry(new Phase({ phaseName: props.phase.phaseName }));
+      const statusCode = entry.$metadata.httpStatusCode ?? 400;
+      expect(statusCode).toBe(200);
+    }
+    if (props.tags) {
+      for (const tag of props.tags) {
+        const entry = await dynamo.addEntry(new Tag({ name: tag.name }));
+        const statusCode = entry.$metadata.httpStatusCode ?? 400;
+        expect(statusCode).toBe(200);
+      }
+    }
+    const entry = await dynamo.addEntry(project);
+    const statusCode = entry.$metadata.httpStatusCode ?? 400;
+    expect(statusCode).toBe(200);
+  });
+
+  test('get all Tags', async () => {
+    const entries = await dynamo.listEntries('Tags', Tag);
     console.log(entries);
   });
 });

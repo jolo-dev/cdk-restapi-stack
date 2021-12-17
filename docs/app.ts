@@ -9,15 +9,17 @@ app.use(express.static(__dirname + '/openapi'));
 
 const region = process.env.REGION ?? 'eu-west-1';
 const stage = process.env.STAGE ?? 'dev';
-const restApiId = process.env.API_GW_ID ?? 'localhost';
+const restApiId = process.env.API_GW_ID ?? '';
 const vpcEndpointId = process.env.VPC_ENDPOINT_ID ?? '';
 const account = process.env.ACCOUNT ?? '';
-
+const url = region && restApiId && vpcEndpointId
+  ? `https://${restApiId}-${vpcEndpointId}.execute-api.${region}.amazonaws.com/{basePath}`
+  : `http://localhost:4566/restapis/${restApiId}/${stage}/_user_request_`;
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const definition = require('./openapi/openapi.json');
 const serverDefinition = {
   'servers': [{
-    'url': `https://${restApiId}-${vpcEndpointId}.execute-api.${region}.amazonaws.com/{basePath}`,
+    'url': url,
     'variables': {
       basePath: {
         default: stage,

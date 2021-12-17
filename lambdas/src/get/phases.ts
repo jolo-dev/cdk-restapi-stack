@@ -1,11 +1,11 @@
-import { DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
 import { IPhase, Phase } from '../../../models/Phase';
+import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 type PhasesResult = APIGatewayProxyResult & {
   results: Phase[];
 }
-const config: DynamoDBClientConfig = process.env.LOCAL ? { endpoint: process.env.LOCAL, region: 'eu-west-1' } : {};
+
 const dynamo = new DynamoDb(config);
 /**
  * @swagger

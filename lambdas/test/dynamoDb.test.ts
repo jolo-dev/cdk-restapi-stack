@@ -8,6 +8,7 @@ import { mockClient } from 'aws-sdk-client-mock';
 import { IPhase } from '../../models/Phase';
 import { I4DProject, Project } from '../../models/Project';
 import { ISeason } from '../../models/Season';
+import { Tag } from '../../models/Tag';
 import DynamoDb from '../src/DynamoDb';
 
 Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
@@ -130,6 +131,27 @@ describe('DynamoDb', () => {
     const project = dynamo.create(Project, props);
     const response = await dynamo.addEntry(project);
     expect(response.$metadata.httpStatusCode).toBe(200);
+  });
+
+  it.only('should add a list of tags to the dynamodb', () => {
+    ddbMock.on(PutItemCommand).resolves({
+      $metadata: {
+        httpStatusCode: 200,
+      },
+    });
+    const manyTags: I4DProject = {
+      author: 'TestAuthor',
+      coverImage: 's3://',
+      description: 'test',
+      projectName: 'ProjectName',
+      tags: [{ name: 'tags' }, { name: 'name' }],
+    };
+    if (manyTags.tags) {
+      manyTags.tags?.forEach(async (tag) => {
+        const response = await dynamo.addEntry(new Tag({ name: tag.name }));
+        expect(response.$metadata.httpStatusCode).toBe(200);
+      });
+    }
   });
 
   it('should throw when adding new Project entry was not successful', async () => {

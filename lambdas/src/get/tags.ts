@@ -1,13 +1,12 @@
-import { DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
 import { ITag, Tag } from '../../../models/Tag';
+import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
 type TagsResult = APIGatewayProxyResult & {
   results: Tag[];
 }
 
-const config: DynamoDBClientConfig = process.env.ENDPOINT ? { endpoint: process.env.ENDPOINT, region: 'eu-west-1' } : {};
 const dynamo = new DynamoDb(config);
 /**
  * @swagger
@@ -32,7 +31,7 @@ export const handler: APIGatewayProxyHandler = async () => {
     const entries = await dynamo.listEntries<Tag, ITag>('Tags', Tag);
     if (entries.length > 0) {
       const result: TagsResult = {
-        statusCode: 201,
+        statusCode: 200,
         body: JSON.stringify(entries),
         results: entries,
       };

@@ -23,7 +23,7 @@ export interface I4DProject extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Project"
+ *             $ref: "#/components/schemas/Project/properties/props"
  *   schemas:
  *     Project:
  *       type: object
@@ -44,19 +44,19 @@ export interface I4DProject extends StandardAttribute {
  *             coverImage:
  *               type: string
  *             season:
- *               $ref: "#/components/schemas/Season"
+ *               $ref: "#/components/schemas/Season/properties/props"
  *             phase:
- *               $ref: "#/components/schemas/Phase"
+ *               $ref: "#/components/schemas/Phase/properties/props"
  *             tag:
  *               type: array
  *               items:
- *                 $ref: "#/components/schemas/Tag"
+ *                 $ref: "#/components/schemas/Tag/properties/props"
  */
 export class Project extends Standard {
 
   readonly props: I4DProject;
   constructor(props: I4DProject) {
-    super('Projects', props.id, props.creationDateTime);
+    super('Projects', props.id);
     this.props = props;
   }
 

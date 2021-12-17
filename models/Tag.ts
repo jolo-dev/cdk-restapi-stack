@@ -14,7 +14,7 @@ export interface ITag extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Tag"
+ *             $ref: "#/components/schemas/Tag/properties/props"
  *   schemas:
  *     Tag:
  *       type: object
@@ -33,7 +33,7 @@ export class Tag extends Standard {
 
   readonly props: ITag;
   constructor(props: ITag) {
-    super('Tags', props.id, props.creationDateTime);
+    super('Tags', props.id);
     this.props = props;
   }
 

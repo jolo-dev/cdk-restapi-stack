@@ -1621,16 +1621,16 @@ Object {
       "Description": "S3 key for asset version \\"10fa82ce7b128d2166bf9705d6c48952c91d05978ec4d4acd7828740c1067b1f\\"",
       "Type": "String",
     },
-    "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32ArtifactHash47341341": Object {
-      "Description": "Artifact hash for asset \\"1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32\\"",
+    "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603ArtifactHashB7E049E0": Object {
+      "Description": "Artifact hash for asset \\"15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603\\"",
       "Type": "String",
     },
-    "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32S3Bucket5CD02EF4": Object {
-      "Description": "S3 bucket for asset \\"1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32\\"",
+    "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603S3BucketB6618DEA": Object {
+      "Description": "S3 bucket for asset \\"15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603\\"",
       "Type": "String",
     },
-    "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32S3VersionKey5945D4AE": Object {
-      "Description": "S3 key for asset version \\"1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32\\"",
+    "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603S3VersionKey889A00EE": Object {
+      "Description": "S3 key for asset version \\"15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603\\"",
       "Type": "String",
     },
     "AssetParameters374a460b261a9b6da1ddefeee9a9adaa9bc982bfd966f7414369d5472fa4ae06ArtifactHash44E55DAF": Object {
@@ -1645,16 +1645,16 @@ Object {
       "Description": "S3 key for asset version \\"374a460b261a9b6da1ddefeee9a9adaa9bc982bfd966f7414369d5472fa4ae06\\"",
       "Type": "String",
     },
-    "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cArtifactHash731BE1BB": Object {
-      "Description": "Artifact hash for asset \\"428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13c\\"",
+    "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41ArtifactHash40566922": Object {
+      "Description": "Artifact hash for asset \\"65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41\\"",
       "Type": "String",
     },
-    "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cS3Bucket16D196BD": Object {
-      "Description": "S3 bucket for asset \\"428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13c\\"",
+    "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41S3Bucket986360CC": Object {
+      "Description": "S3 bucket for asset \\"65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41\\"",
       "Type": "String",
     },
-    "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cS3VersionKeyE855A404": Object {
-      "Description": "S3 key for asset version \\"428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13c\\"",
+    "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41S3VersionKey99D24060": Object {
+      "Description": "S3 key for asset version \\"65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41\\"",
       "Type": "String",
     },
     "AssetParametersb4adb0c5468d51eb588f47596df70a0d3eeafd70bc826407850582a595cc7391ArtifactHashEA66E47B": Object {
@@ -1681,6 +1681,18 @@ Object {
       "Description": "S3 key for asset version \\"b6a80987b5aa07022e845f6dbdfa1010a79e0e9ab9c281119b6fd244b8a7f2d0\\"",
       "Type": "String",
     },
+    "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5ArtifactHash215E4BC9": Object {
+      "Description": "Artifact hash for asset \\"c517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5\\"",
+      "Type": "String",
+    },
+    "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5S3BucketE705DCBA": Object {
+      "Description": "S3 bucket for asset \\"c517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5\\"",
+      "Type": "String",
+    },
+    "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5S3VersionKey64B84323": Object {
+      "Description": "S3 key for asset version \\"c517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5\\"",
+      "Type": "String",
+    },
     "AssetParametersebf2ec8dcdbf8963c2932a9219c6e87630c6e1de26d3643652d12992ee6c175eArtifactHashA85D897A": Object {
       "Description": "Artifact hash for asset \\"ebf2ec8dcdbf8963c2932a9219c6e87630c6e1de26d3643652d12992ee6c175e\\"",
       "Type": "String",
@@ -1703,18 +1715,6 @@ Object {
     },
     "AssetParametersec463dc4f6cb72810e75033b14ac2cac582c2dd4ed76c914e4778ed2c2172107S3VersionKey93AC62EB": Object {
       "Description": "S3 key for asset version \\"ec463dc4f6cb72810e75033b14ac2cac582c2dd4ed76c914e4778ed2c2172107\\"",
-      "Type": "String",
-    },
-    "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3ArtifactHashFC0DADB8": Object {
-      "Description": "Artifact hash for asset \\"f1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3\\"",
-      "Type": "String",
-    },
-    "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3S3Bucket4D745640": Object {
-      "Description": "S3 bucket for asset \\"f1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3\\"",
-      "Type": "String",
-    },
-    "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3S3VersionKeyD7E91270": Object {
-      "Description": "S3 key for asset version \\"f1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3\\"",
       "Type": "String",
     },
   },
@@ -1915,7 +1915,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3S3Bucket4D745640",
+            "Ref": "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41S3Bucket986360CC",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1928,7 +1928,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3S3VersionKeyD7E91270",
+                          "Ref": "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41S3VersionKey99D24060",
                         },
                       ],
                     },
@@ -1941,7 +1941,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersf1f45d1bbabbf2c0d3cc13d7c91bead4392ea825c7f0a21f829de637bb7b35d3S3VersionKeyD7E91270",
+                          "Ref": "AssetParameters65523e0220c1cb8355315a2e7a6776783937717e1fef945f48c9a51333174e41S3VersionKey99D24060",
                         },
                       ],
                     },
@@ -2231,7 +2231,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cS3Bucket16D196BD",
+            "Ref": "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5S3BucketE705DCBA",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2244,7 +2244,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cS3VersionKeyE855A404",
+                          "Ref": "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5S3VersionKey64B84323",
                         },
                       ],
                     },
@@ -2257,7 +2257,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters428cfbc9912521b6c89649be9ccdbfefb05724cc78b7ee0b1ab947786bcfa13cS3VersionKeyE855A404",
+                          "Ref": "AssetParametersc517ed200e7b0a43e9ea568a73067d943ddeb0c132a6dcd3dd4045a4edca65a5S3VersionKey64B84323",
                         },
                       ],
                     },
@@ -2388,7 +2388,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32S3Bucket5CD02EF4",
+            "Ref": "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603S3BucketB6618DEA",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2401,7 +2401,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32S3VersionKey5945D4AE",
+                          "Ref": "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603S3VersionKey889A00EE",
                         },
                       ],
                     },
@@ -2414,7 +2414,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters1f9addbcbfc1ab39efb59c32c0963969c7c9c7713d1ea873d13daeaacdff3f32S3VersionKey5945D4AE",
+                          "Ref": "AssetParameters15575917b1470bf67a3803281b3a335ba7e5a6079c78dca6a815dc3fd289d603S3VersionKey889A00EE",
                         },
                       ],
                     },
@@ -3938,14 +3938,11 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AAa2238336040d75b4c483b4f385f4678a": Object {
+    "PrivateApiGatewayDeployment8BFAB2AA20524e65b95f22045e8fd2ecadc3aa37": Object {
       "DependsOn": Array [
         "PrivateApiGatewayopenapiproxyANYB6223D91",
-        "PrivateApiGatewayopenapiproxyOPTIONS8ED20A8B",
         "PrivateApiGatewayopenapiproxy791F6048",
-        "PrivateApiGatewayopenapiOPTIONSD0F8283A",
         "PrivateApiGatewayopenapi5C21A45C",
-        "PrivateApiGatewayOPTIONSE59A3A5D",
         "PrivateApiGatewayphaseOPTIONSCA2496AC",
         "PrivateApiGatewayphasepost377D8B7F",
         "PrivateApiGatewayphaseB72A91F5",
@@ -3982,7 +3979,7 @@ Object {
     "PrivateApiGatewayDeploymentStagedevBF01358E": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AAa2238336040d75b4c483b4f385f4678a",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AA20524e65b95f22045e8fd2ecadc3aa37",
         },
         "MethodSettings": Array [
           Object {
@@ -3999,50 +3996,6 @@ Object {
       },
       "Type": "AWS::ApiGateway::Stage",
     },
-    "PrivateApiGatewayOPTIONSE59A3A5D": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "OPTIONS",
-        "Integration": Object {
-          "IntegrationResponses": Array [
-            Object {
-              "ResponseParameters": Object {
-                "method.response.header.Access-Control-Allow-Credentials": "'true'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-              },
-              "StatusCode": "204",
-            },
-          ],
-          "RequestTemplates": Object {
-            "application/json": "{ statusCode: 200 }",
-          },
-          "Type": "MOCK",
-        },
-        "MethodResponses": Array [
-          Object {
-            "ResponseParameters": Object {
-              "method.response.header.Access-Control-Allow-Credentials": true,
-              "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Origin": true,
-            },
-            "StatusCode": "204",
-          },
-        ],
-        "ResourceId": Object {
-          "Fn::GetAtt": Array [
-            "PrivateApiGateway618B725A",
-            "RootResourceId",
-          ],
-        },
-        "RestApiId": Object {
-          "Ref": "PrivateApiGateway618B725A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
-    },
     "PrivateApiGatewayopenapi5C21A45C": Object {
       "Properties": Object {
         "ParentId": Object {
@@ -4057,47 +4010,6 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
-    },
-    "PrivateApiGatewayopenapiOPTIONSD0F8283A": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "OPTIONS",
-        "Integration": Object {
-          "IntegrationResponses": Array [
-            Object {
-              "ResponseParameters": Object {
-                "method.response.header.Access-Control-Allow-Credentials": "'true'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-              },
-              "StatusCode": "204",
-            },
-          ],
-          "RequestTemplates": Object {
-            "application/json": "{ statusCode: 200 }",
-          },
-          "Type": "MOCK",
-        },
-        "MethodResponses": Array [
-          Object {
-            "ResponseParameters": Object {
-              "method.response.header.Access-Control-Allow-Credentials": true,
-              "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Origin": true,
-            },
-            "StatusCode": "204",
-          },
-        ],
-        "ResourceId": Object {
-          "Ref": "PrivateApiGatewayopenapi5C21A45C",
-        },
-        "RestApiId": Object {
-          "Ref": "PrivateApiGateway618B725A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
     },
     "PrivateApiGatewayopenapiproxy791F6048": Object {
       "Properties": Object {
@@ -4208,47 +4120,6 @@ Object {
             ],
           },
         },
-        "ResourceId": Object {
-          "Ref": "PrivateApiGatewayopenapiproxy791F6048",
-        },
-        "RestApiId": Object {
-          "Ref": "PrivateApiGateway618B725A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
-    },
-    "PrivateApiGatewayopenapiproxyOPTIONS8ED20A8B": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "OPTIONS",
-        "Integration": Object {
-          "IntegrationResponses": Array [
-            Object {
-              "ResponseParameters": Object {
-                "method.response.header.Access-Control-Allow-Credentials": "'true'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-              },
-              "StatusCode": "204",
-            },
-          ],
-          "RequestTemplates": Object {
-            "application/json": "{ statusCode: 200 }",
-          },
-          "Type": "MOCK",
-        },
-        "MethodResponses": Array [
-          Object {
-            "ResponseParameters": Object {
-              "method.response.header.Access-Control-Allow-Credentials": true,
-              "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Origin": true,
-            },
-            "StatusCode": "204",
-          },
-        ],
         "ResourceId": Object {
           "Ref": "PrivateApiGatewayopenapiproxy791F6048",
         },

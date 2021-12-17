@@ -214,7 +214,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Phase"
+              "$ref": "#/components/schemas/Phase/properties/props"
             }
           }
         }
@@ -225,7 +225,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Project"
+              "$ref": "#/components/schemas/Project/properties/props"
             }
           }
         }
@@ -236,7 +236,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Season"
+              "$ref": "#/components/schemas/Season/properties/props"
             }
           }
         }
@@ -247,7 +247,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Tag"
+              "$ref": "#/components/schemas/Tag/properties/props"
             }
           }
         }
@@ -298,15 +298,15 @@
                 "type": "string"
               },
               "season": {
-                "$ref": "#/components/schemas/Season"
+                "$ref": "#/components/schemas/Season/properties/props"
               },
               "phase": {
-                "$ref": "#/components/schemas/Phase"
+                "$ref": "#/components/schemas/Phase/properties/props"
               },
               "tag": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Tag"
+                  "$ref": "#/components/schemas/Tag/properties/props"
                 }
               }
             }
@@ -325,7 +325,7 @@
           "props": {
             "type": "object",
             "properties": {
-              "SeasonName": {
+              "seasonName": {
                 "type": "string"
               }
             }

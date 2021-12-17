@@ -60,7 +60,7 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Account"
       }
     },
-    "TestRestApiDeploymentE31B1265c18483414276e04b31b4062330338127": {
+    "TestRestApiDeploymentE31B12656c92abf510a26a55126ede7509bc95bb": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -69,21 +69,29 @@
         "Description": "Automatically created by the RestApi construct"
       },
       "DependsOn": [
+        "TestRestApiphaseOPTIONS89F37413",
         "TestRestApiphasepost0A76D630",
         "TestRestApiphase87E526A9",
         "TestRestApiphasesget6A10845D",
+        "TestRestApiphasesOPTIONS5BEA033F",
         "TestRestApiphasesA4813094",
+        "TestRestApiprojectOPTIONS8F3A1937",
         "TestRestApiprojectpost22FD3AA9",
         "TestRestApiproject61FB5D50",
         "TestRestApiprojectsgetAA01889C",
+        "TestRestApiprojectsOPTIONS0BBC0532",
         "TestRestApiprojects13007DA8",
+        "TestRestApiseasonOPTIONS0BD3256B",
         "TestRestApiseasonpost3AA9AF5A",
         "TestRestApiseasonCD3D15A4",
         "TestRestApiseasonsget38C0C152",
+        "TestRestApiseasonsOPTIONS653ECEC8",
         "TestRestApiseasonsD3B8C7C0",
+        "TestRestApitagOPTIONSF26DFEE4",
         "TestRestApitagpostDB21CF82",
         "TestRestApitagE127DF72",
         "TestRestApitagsget220B4E0C",
+        "TestRestApitagsOPTIONSD413FCB2",
         "TestRestApitagsC1F64B83"
       ],
       "Metadata": {
@@ -97,7 +105,7 @@
           "Ref": "TestRestApiB7B4EFDA"
         },
         "DeploymentId": {
-          "Ref": "TestRestApiDeploymentE31B1265c18483414276e04b31b4062330338127"
+          "Ref": "TestRestApiDeploymentE31B12656c92abf510a26a55126ede7509bc95bb"
         },
         "StageName": "prod"
       },
@@ -123,6 +131,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/phases/Resource"
       }
     },
+    "TestRestApiphasesOPTIONS5BEA033F": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiphasesA4813094"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/phases/OPTIONS/Resource"
+      }
+    },
     "TestRestApiphasesgetApiPermissionLocalStackTestRestApiA0058C69GETphases39B857CE": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -142,15 +194,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -186,15 +230,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -240,11 +276,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "getphasesFunctionB81E8DA3",
@@ -290,6 +322,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/projects/Resource"
       }
     },
+    "TestRestApiprojectsOPTIONS0BBC0532": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiprojects13007DA8"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/projects/OPTIONS/Resource"
+      }
+    },
     "TestRestApiprojectsgetApiPermissionLocalStackTestRestApiA0058C69GETprojects2DABAA43": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -309,15 +385,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -353,15 +421,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -407,11 +467,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "getprojectsFunction3357E987",
@@ -457,6 +513,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/seasons/Resource"
       }
     },
+    "TestRestApiseasonsOPTIONS653ECEC8": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiseasonsD3B8C7C0"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/seasons/OPTIONS/Resource"
+      }
+    },
     "TestRestApiseasonsgetApiPermissionLocalStackTestRestApiA0058C69GETseasonsBF553AFF": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -476,15 +576,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -520,15 +612,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -574,11 +658,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "getseasonsFunction9B378D61",
@@ -624,6 +704,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/tags/Resource"
       }
     },
+    "TestRestApitagsOPTIONSD413FCB2": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApitagsC1F64B83"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/tags/OPTIONS/Resource"
+      }
+    },
     "TestRestApitagsgetApiPermissionLocalStackTestRestApiA0058C69GETtagsF6667CB4": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -643,15 +767,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -687,15 +803,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -741,11 +849,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "gettagsFunction7F1ACCEF",
@@ -791,6 +895,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/phase/Resource"
       }
     },
+    "TestRestApiphaseOPTIONS89F37413": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiphase87E526A9"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/phase/OPTIONS/Resource"
+      }
+    },
     "TestRestApiphasepostApiPermissionLocalStackTestRestApiA0058C69POSTphase246627A6": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -810,15 +958,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -854,15 +994,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -908,11 +1040,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "postphaseFunction47FB85E1",
@@ -958,6 +1086,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/project/Resource"
       }
     },
+    "TestRestApiprojectOPTIONS8F3A1937": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiproject61FB5D50"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/project/OPTIONS/Resource"
+      }
+    },
     "TestRestApiprojectpostApiPermissionLocalStackTestRestApiA0058C69POSTproject4682B4F1": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -977,15 +1149,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1021,15 +1185,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1075,11 +1231,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "postprojectFunctionF80C30E6",
@@ -1125,6 +1277,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/season/Resource"
       }
     },
+    "TestRestApiseasonOPTIONS0BD3256B": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApiseasonCD3D15A4"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/season/OPTIONS/Resource"
+      }
+    },
     "TestRestApiseasonpostApiPermissionLocalStackTestRestApiA0058C69POSTseason19C1F13F": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -1144,15 +1340,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1188,15 +1376,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1242,11 +1422,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "postseasonFunction6F4F0AA0",
@@ -1292,6 +1468,50 @@
         "aws:cdk:path": "LocalStack/TestRestApi/Default/tag/Resource"
       }
     },
+    "TestRestApitagOPTIONSF26DFEE4": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "TestRestApitagE127DF72"
+        },
+        "RestApiId": {
+          "Ref": "TestRestApiB7B4EFDA"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "LocalStack/TestRestApi/Default/tag/OPTIONS/Resource"
+      }
+    },
     "TestRestApitagpostApiPermissionLocalStackTestRestApiA0058C69POSTtagDCE259C6": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -1311,15 +1531,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1355,15 +1567,7 @@
               {
                 "Ref": "AWS::Partition"
               },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
+              ":execute-api:eu-west-1:000000000000:",
               {
                 "Ref": "TestRestApiB7B4EFDA"
               },
@@ -1409,11 +1613,7 @@
                 {
                   "Ref": "AWS::Partition"
                 },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
                     "posttagFunctionB546BDCF",
@@ -1480,7 +1680,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+            "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3Bucket45C8A34E"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1493,7 +1693,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1506,7 +1706,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1579,7 +1779,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+            "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3Bucket45C8A34E"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1592,7 +1792,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1605,7 +1805,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1678,7 +1878,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+            "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3Bucket45C8A34E"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1691,7 +1891,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1704,7 +1904,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1777,7 +1977,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761"
+            "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3Bucket45C8A34E"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1790,7 +1990,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -1803,7 +2003,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E"
+                          "Ref": "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877"
                         }
                       ]
                     }
@@ -2236,12 +2436,11 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VQ0U7DMAz8Ft7TjGqCZ7oh3hBofIFJTcnaJFXsME1R/p24pQKefGed7fO1ut3f6dubB7hQY/pxl02IqPMbgxnV8cO/JJ4Tq44IuTYH6wd1DJ44JsMieIUIDhmjkBNSSNGg4KrqLdvgi5LlGWY7AOMFrjpXHXez/RnZYGdMSJ7VI85TuDr0y4E/TAwsu1ewXTsA/ZJ/Np6RP0MvrRUVZcHV82FadbUWNYF770FneQajs0TVtHpK3oh70W24KNo3IFGQXhKpXB+SGZHFQynKhx71mXZf7X1NtgZ7JmubWL+yDvVprd+s8HEJdQEAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/01Q0U7DMAz8Ft7djGoaz3RDvCHQ+AKTmpK1SarY2TRF+XeSlYo9+e588tluVbvdqceHZ7xwo/txk7QPpNKnoB7h8O3eo8xRoGMmKeJg3AAH71hC1FINHxjQklCo5EjsY9CUoc5LOJsBhS54Vam0pJvNn2uFndY+OoEXmid/teRuM+9YzaSqLWAN2CP/k/tkeCP58X2VFpTBoC3xflp8pWaY0H71qFLdn4I1zMY7eI1OSwVFXnEG3jZYr2d1e0Lhah/1SFJ3yBmc70mdeHNun8ozyy9PbEwTylXGkjou9RfNLwFzaAEAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "LocalStack/CDKMetadata/Default"
-      },
-      "Condition": "CDKMetadataAvailable"
+      }
     }
   },
   "Outputs": {
@@ -2254,11 +2453,7 @@
             {
               "Ref": "TestRestApiB7B4EFDA"
             },
-            ".execute-api.",
-            {
-              "Ref": "AWS::Region"
-            },
-            ".",
+            ".execute-api.eu-west-1.",
             {
               "Ref": "AWS::URLSuffix"
             },
@@ -2273,17 +2468,17 @@
     }
   },
   "Parameters": {
-    "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3Bucket3F46A761": {
+    "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3Bucket45C8A34E": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732\""
+      "Description": "S3 bucket for asset \"bb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97\""
     },
-    "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732S3VersionKey8B4C603E": {
+    "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97S3VersionKey419C8877": {
       "Type": "String",
-      "Description": "S3 key for asset version \"8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732\""
+      "Description": "S3 key for asset version \"bb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97\""
     },
-    "AssetParameters8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732ArtifactHashD4D1D5EF": {
+    "AssetParametersbb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97ArtifactHash037949BC": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"8770002393d8292780bc00ebabbeb2a3b61043ab344a25dbef7f01f374a79732\""
+      "Description": "Artifact hash for asset \"bb5a653024b9ac87dedbab03371dfeea89b81f96ba448d85fc05aeafef13ce97\""
     },
     "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70S3Bucket4366E335": {
       "Type": "String",
@@ -2296,200 +2491,6 @@
     "AssetParametersb4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70ArtifactHash484DC08A": {
       "Type": "String",
       "Description": "Artifact hash for asset \"b4f445c83e2594567bce26ed4fa3adeae9f1ea8880e782b423dc7ac9675b8e70\""
-    }
-  },
-  "Conditions": {
-    "CDKMetadataAvailable": {
-      "Fn::Or": [
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "af-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ca-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-northwest-1"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-3"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "me-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "sa-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-2"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-2"
-              ]
-            }
-          ]
-        }
-      ]
     }
   }
 }
