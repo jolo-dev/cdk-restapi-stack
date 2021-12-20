@@ -3,25 +3,26 @@
   "version": "0.0.1",
   "description": "This is a package for Lambdas written in Typescript",
   "scripts": {
+    "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist",
+    "build:docs": "esbuild ../docs/docs.ts --bundle --minify --platform=node --target=node14.7 --outfile=../docs/docs.js",
+    "dev": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && pnpm build:docs && pnpm watch",
+    "eslint": "eslint . --fix --ext .ts",
+    "local": "cdklocal",
+    "local:bootstrap": "export STAGE=local && export LAMBDA_MOUNT_CWD=$(pwd)/dist && cdklocal bootstrap",
+    "local:deploy": "export STAGE=local && export LAMBDA_MOUNT_CWD=$(pwd)/dist && cdklocal deploy --all --require-approval never",
     "test": "jest --silent",
     "test:watch": "jest --watch",
-    "test:integration": "jest -- test/local.integration.test.ts",
-    "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist",
-    "watch": "cdklocal watch & esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist --watch",
-    "local:bootstrap": "cdklocal bootstrap",
-    "local:deploy": "cdklocal deploy --all --require-approval never",
-    "dev": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && pnpm watch",
-    "eslint": "eslint . --fix --ext .ts",
-    "local": "cdklocal"
+    "test:integration": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && jest -- test/local.integration.test.ts",
+    "watch": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist --watch"
   },
   "author": "John Nguyen <john@globaldatanet.com>",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.43.0",
+    "@aws-sdk/client-dynamodb": "^3.44.0",
     "aws-lambda": "^1.0.7"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.85",
+    "@types/aws-lambda": "^8.10.88",
     "aws-cdk-local": "^1.65.8"
   }
 }

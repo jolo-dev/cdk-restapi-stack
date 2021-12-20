@@ -1,5 +1,6 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
-import { IPhase, Phase } from '../../../models/Phase';
+import { Phase } from '../../../models/Phase';
+import { StandardAttribute } from '../../../models/StandardAttribute';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 type PhasesResult = APIGatewayProxyResult & {
@@ -32,7 +33,7 @@ const dynamo = new DynamoDb(config);
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries<Phase, IPhase>('Phases', Phase);
+    const entries = await dynamo.listEntries<Phase, StandardAttribute>('Phases', Phase);
     if (entries.length > 0) {
       const result: PhasesResult = {
         statusCode: 200,

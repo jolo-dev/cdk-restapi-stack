@@ -13,6 +13,8 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - LAMBDA_EXECUTOR=docker
       - LAMBDA_NETWORK=bridge
+      - LAMBDA_REMOTE_DOCKER=0
+      - LAMBDA_MOUNT_CODE=1
       - DYNAMODB_SHARE_DB=1
       - SERVICES=s3,lambda,cloudformation,apigateway,dynamodb,ec2,iam
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack

@@ -1,8 +1,5 @@
-import { StandardAttribute, Standard } from './StandardAttribute';
+import { Standard } from './StandardAttribute';
 
-export interface ITag extends StandardAttribute {
-  name: string;
-}
 
 /**
  * @swagger
@@ -14,26 +11,23 @@ export interface ITag extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Tag/properties/props"
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
  *   schemas:
  *     Tag:
  *       type: object
  *       properties:
- *         id:
+ *         name:
  *           type: string
  *         creationDateTime:
  *           type: string
- *         props:
- *           type: object
- *           properties:
- *             name:
- *               type: string
  */
 export class Tag extends Standard {
-
-  readonly props: ITag;
-  constructor(props: ITag) {
-    super('Tags', props.id);
+  private props: any;
+  constructor(name: string, props?: any, creationDateTime?: string) {
+    super('Tags', name, creationDateTime);
     this.props = props;
   }
 

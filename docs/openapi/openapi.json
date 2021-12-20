@@ -214,7 +214,12 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Phase/properties/props"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -236,7 +241,12 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Season/properties/props"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -247,7 +257,12 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Tag/properties/props"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -257,26 +272,18 @@
       "Phase": {
         "type": "object",
         "properties": {
-          "id": {
+          "name": {
             "type": "string"
           },
           "creationDateTime": {
             "type": "string"
-          },
-          "props": {
-            "type": "object",
-            "properties": {
-              "phaseName": {
-                "type": "string"
-              }
-            }
           }
         }
       },
       "Project": {
         "type": "object",
         "properties": {
-          "id": {
+          "name": {
             "type": "string"
           },
           "creationDateTime": {
@@ -285,7 +292,7 @@
           "props": {
             "type": "object",
             "properties": {
-              "projectName": {
+              "name": {
                 "type": "string"
               },
               "author": {
@@ -298,15 +305,15 @@
                 "type": "string"
               },
               "season": {
-                "$ref": "#/components/schemas/Season/properties/props"
+                "$ref": "#/components/schemas/Season/properties/name"
               },
               "phase": {
-                "$ref": "#/components/schemas/Phase/properties/props"
+                "$ref": "#/components/schemas/Phase/properties/name"
               },
-              "tag": {
+              "tags": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Tag/properties/props"
+                  "$ref": "#/components/schemas/Tag/properties/name"
                 }
               }
             }
@@ -316,38 +323,22 @@
       "Season": {
         "type": "object",
         "properties": {
-          "id": {
+          "name": {
             "type": "string"
           },
           "creationDateTime": {
             "type": "string"
-          },
-          "props": {
-            "type": "object",
-            "properties": {
-              "seasonName": {
-                "type": "string"
-              }
-            }
           }
         }
       },
       "Tag": {
         "type": "object",
         "properties": {
-          "id": {
+          "name": {
             "type": "string"
           },
           "creationDateTime": {
             "type": "string"
-          },
-          "props": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              }
-            }
           }
         }
       }

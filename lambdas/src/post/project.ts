@@ -3,9 +3,10 @@ import { Phase } from '../../../models/Phase';
 import { I4DProject, Project } from '../../../models/Project';
 import { Season } from '../../../models/Season';
 import { Tag } from '../../../models/Tag';
+import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
-const dynamo = new DynamoDb({});
+const dynamo = new DynamoDb(config);
 /**
  * @swagger
  * /project:
@@ -24,24 +25,25 @@ export const handler = async (props: I4DProject) => {
   let statusCode = 200;
   try {
     if (props) {
-      const project = new Project(props);
+
+      const project = new Project(props.name, props);
       if (props.season) {
-        await dynamo.addEntry(new Season({ seasonName: props.season.seasonName }));
+        await dynamo.addEntry(new Season(props.season));
       }
       if (props.phase) {
-        await dynamo.addEntry(new Phase({ phaseName: props.phase.phaseName }));
+        await dynamo.addEntry(new Phase(props.phase));
       }
       if (props.tags) {
-        props.tags.forEach(async (tag) => {
-          await dynamo.addEntry(new Tag({ name: tag.name }));
-        });
+        for (const tag of props.tags) {
+          await dynamo.addEntry(new Tag(tag));
+        }
       }
       const entries = await dynamo.addEntry(project);
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {
         const result: APIGatewayProxyResult = {
           statusCode,
-          body: `${project.getProps().projectName} has been successfully added`,
+          body: `${project.getName()} has been successfully added`,
         };
         return result;
       } else {
@@ -54,7 +56,7 @@ export const handler = async (props: I4DProject) => {
     console.error(error);
     const e = error as Error;
     return {
-      statusCode,
+      statusCode: 400,
       body: e.message,
     };
   }

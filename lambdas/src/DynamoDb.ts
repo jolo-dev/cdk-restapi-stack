@@ -6,8 +6,6 @@ import {
   PutItemCommand,
   ScanCommand,
 } from '@aws-sdk/client-dynamodb';
-import moment from 'moment';
-import { v4 as uuid } from 'uuid';
 import { Standard, StandardAttribute } from '../../models/StandardAttribute';
 
 class DynamoDb {
@@ -27,14 +25,18 @@ class DynamoDb {
     }
   }
 
-  public async listEntries<T, P>(tableName: string, entity: any): Promise<T[]> {
+  public async listEntries<T extends Standard, P extends StandardAttribute>(tableName: string, entity: any): Promise<T[]> {
     try {
       const command = new ScanCommand({ TableName: tableName });
       const response = await this.client.send(command);
       if (response.Items) {
         return response.Items.map(attributes => {
-          const props: P = this.attributesMapper(attributes);
-          return this.create(entity, props);
+          const attr: P = this.attributesMapper(attributes);
+          // This check is needed because there are some Models which only have the Standardattributes
+          if (Object.keys(attr).length > 2) {
+            return this.create<T, P>(entity, attr.name, attr, attr.creationDateTime);
+          }
+          return this.create<T, P>(entity, attr.name, undefined, attr.creationDateTime);
         });
       }
       throw new Error(`No Items in the table: ${tableName}`);
@@ -57,41 +59,39 @@ class DynamoDb {
 
   public async addEntry<T extends Standard>(tableEntry: T) {
     try {
+      const Item = {
+        name: {
+          S: tableEntry.getName(),
+        },
+        creationDateTime: {
+          S: tableEntry.getCreationDateTime(),
+        },
+      };
       const input = {
-        TableName: tableEntry.getName(),
-        Item: this.dynamoDbDataBuilder(tableEntry.getProps()),
+        TableName: tableEntry.getTableName(),
+        Item: { ...Item, ...this.dynamoDbDataBuilder(tableEntry.getProps()) },
       };
       const command = new PutItemCommand(input);
       const response = await this.client.send(command);
       return response;
     } catch (error) {
       console.error(error);
-      throw new Error(`Entry with ID ${tableEntry.getId()} at ${tableEntry.getCreationDateTime()} could not be saved in ${tableEntry.getName()}`);
+      throw new Error(`Entry '${tableEntry.getName()}' at ${tableEntry.getCreationDateTime()} could not be saved in ${tableEntry.getTableName()}`);
     }
 
   }
 
-  public attributesMapper<P>(attributes: any): P {
+  public attributesMapper<P extends StandardAttribute>(attributes: any): P {
     const keys = Object.keys(attributes);
     let result: any;
     keys.forEach(value => {
       result = { ...result, [value]: attributes[value].S };
     });
-    // Deleting ID and CreationDateTime because those are standard attributes
-    delete result.ID;
-    delete result.CreationDateTime;
     return result;
   }
 
   public dynamoDbDataBuilder<P extends StandardAttribute>(props: P) {
-    let result = {
-      id: {
-        S: props.id ?? uuid(),
-      },
-      creationDateTime: {
-        S: props.creationDateTime ?? moment().format(),
-      },
-    };
+    let result = {};
     for (const key in props) {
       const attributeKeyValue = this.dynamoAttributeKeyValue({ [key]: props[key] }, key);
       result = { ...result, ...attributeKeyValue };
@@ -128,8 +128,10 @@ class DynamoDb {
    * @param props the properties the class contains
    * @returns a new created class
    */
-  public create<Type, Params>(c: new (props: Params) => Type, props: Params ): Type {
-    return new c(props);
+  public create<Type extends Standard, Props>
+  (c: new (name: string, props?: any, creationDateTime?: string) => Type,
+    name: string, props?: Props, creationDateTime?: string): Type {
+    return new c(name, props, creationDateTime);
   }
 }
 

@@ -5,8 +5,8 @@
     "availabilityZones": [],
     "subnetGroups": [
       {
-        "name": "Private",
-        "type": "Private",
+        "name": "Isolated",
+        "type": "Isolated",
         "subnets": [
           {
             "subnetId": "subnet-01c41e75a943fa23b",

@@ -1,5 +1,6 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
-import { ITag, Tag } from '../../../models/Tag';
+import { StandardAttribute } from '../../../models/StandardAttribute';
+import { Tag } from '../../../models/Tag';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
@@ -28,7 +29,7 @@ const dynamo = new DynamoDb(config);
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries<Tag, ITag>('Tags', Tag);
+    const entries = await dynamo.listEntries<Tag, StandardAttribute>('Tags', Tag);
     if (entries.length > 0) {
       const result: TagsResult = {
         statusCode: 200,

@@ -1,8 +1,5 @@
-import { StandardAttribute, Standard } from './StandardAttribute';
+import { Standard } from './StandardAttribute';
 
-export interface IPhase extends StandardAttribute {
-  phaseName: string;
-}
 /**
  * @swagger
  * components:
@@ -13,28 +10,26 @@ export interface IPhase extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Phase/properties/props"
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
  *   schemas:
  *     Phase:
  *       type: object
  *       properties:
- *         id:
+ *         name:
  *           type: string
  *         creationDateTime:
  *           type: string
- *         props:
- *           type: object
- *           properties:
- *             phaseName:
- *               type: string
  */
 export class Phase extends Standard {
-
-  readonly props: IPhase;
-  constructor(props: IPhase) {
-    super('Phases', props.id);
+  private props: any;
+  constructor(name: string, props?: any, creationDateTime?: string) {
+    super('Phases', name, creationDateTime);
     this.props = props;
   };
+
   public getProps() {
     return this.props;
   }

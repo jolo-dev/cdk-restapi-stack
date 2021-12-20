@@ -1,5 +1,6 @@
 import { APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda';
-import { ISeason, Season } from '../../../models/Season';
+import { Season } from '../../../models/Season';
+import { StandardAttribute } from '../../../models/StandardAttribute';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 type SeasonsResult = APIGatewayProxyResult & {
@@ -32,7 +33,7 @@ const dynamo = new DynamoDb(config);
  */
 export const handler: APIGatewayProxyHandler = async () => {
   try {
-    const entries = await dynamo.listEntries<Season, ISeason>('Seasons', Season);
+    const entries = await dynamo.listEntries<Season, StandardAttribute>('Seasons', Season);
     if (entries.length > 0) {
       const result: SeasonsResult = {
         statusCode: 200,

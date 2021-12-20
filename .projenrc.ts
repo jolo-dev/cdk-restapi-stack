@@ -1,9 +1,11 @@
+import fs from 'fs';
 import { awscdk, javascript as js } from 'projen';
 import { getNetworkingContext } from './infrastructure/utils/getContext';
 
-
 const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
-  const context = await getNetworkingContext();
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const context = !fs.existsSync('./cdk.context.json') ? await getNetworkingContext() : require('./cdk.context.json');
+
   return {
     cdkVersion: '1.135.0',
     defaultReleaseBranch: 'master',
@@ -39,6 +41,7 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
     watchIncludes: ['infrastructure/**', 'lambdas/src/**', 'models/**', 'docs/**'],
     watchExcludes: ['docs/openapi/**'],
     srcdir: 'infrastructure', // CDK code is located here
+    licensed: false,
   };
 };
 

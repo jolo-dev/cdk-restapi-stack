@@ -1,16 +1,12 @@
-import { IPhase } from './Phase';
-import { ISeason } from './Season';
 import { StandardAttribute, Standard } from './StandardAttribute';
-import { ITag } from './Tag';
 
 export interface I4DProject extends StandardAttribute {
-  projectName: string;
   author: string;
   description: string;
   coverImage: string;
-  season?: ISeason;
-  phase?: IPhase;
-  tags?: ITag[];
+  season?: string;
+  phase?: string;
+  tags?: string[];
 }
 
 /**
@@ -28,14 +24,14 @@ export interface I4DProject extends StandardAttribute {
  *     Project:
  *       type: object
  *       properties:
- *         id:
+ *         name:
  *           type: string
  *         creationDateTime:
  *           type: string
  *         props:
  *           type: object
  *           properties:
- *             projectName:
+ *             name:
  *               type: string
  *             author:
  *               type: string
@@ -44,19 +40,19 @@ export interface I4DProject extends StandardAttribute {
  *             coverImage:
  *               type: string
  *             season:
- *               $ref: "#/components/schemas/Season/properties/props"
+ *               $ref: "#/components/schemas/Season/properties/name"
  *             phase:
- *               $ref: "#/components/schemas/Phase/properties/props"
- *             tag:
+ *               $ref: "#/components/schemas/Phase/properties/name"
+ *             tags:
  *               type: array
  *               items:
- *                 $ref: "#/components/schemas/Tag/properties/props"
+ *                 $ref: "#/components/schemas/Tag/properties/name"
  */
 export class Project extends Standard {
 
   readonly props: I4DProject;
-  constructor(props: I4DProject) {
-    super('Projects', props.id);
+  constructor(name: string, props: I4DProject, creationDateTime?: string) {
+    super('Projects', name, creationDateTime);
     this.props = props;
   }
 

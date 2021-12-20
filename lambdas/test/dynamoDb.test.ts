@@ -5,9 +5,7 @@ import {
   PutItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import { mockClient } from 'aws-sdk-client-mock';
-import { IPhase } from '../../models/Phase';
 import { I4DProject, Project } from '../../models/Project';
-import { ISeason } from '../../models/Season';
 import { Tag } from '../../models/Tag';
 import DynamoDb from '../src/DynamoDb';
 
@@ -24,35 +22,34 @@ const ddbMock = mockClient(DynamoDBClient);
 
 describe('DynamoDb', () => {
   const dynamo = new DynamoDb({ endpoint: 'http://localhost:4566', region: 'eu-west-1' });
-  const phase: IPhase = {
-    phaseName: 'Available',
-  };
-  const season: ISeason = {
-    seasonName: 'Winter',
-  };
   const props: I4DProject = {
     coverImage: 's3://url',
     description: 'This is a Description',
-    projectName: 'TestProject',
-    phase,
+    name: 'TestProject',
+    phase: 'Available',
     author: 'TestAuthor',
-    season,
+    season: 'Winter',
+    creationDateTime: '2020-01-01T00:00:00+01:00',
   };
 
-  const attributes = {
+  const dynamoDbAttributes = {
+    name: { S: 'TestProject' },
     coverImage: { S: 's3://url' },
     creationDateTime: { S: '2020-01-01T00:00:00+01:00' },
     description: { S: 'This is a Description' },
-    projectName: { S: 'TestProject' },
     phase: { S: 'Available' },
     author: { S: 'TestAuthor' },
-    id: { S: '123456789' },
     season: { S: 'Winter' },
   };
   const KeySchema = [
-    { AttributeName: 'id', KeyType: 'HASH' },
+    { AttributeName: 'name', KeyType: 'HASH' },
     { AttributeName: 'creationDateTime', KeyType: 'RANGE' },
   ];
+  const AttributeDefinitions = [
+    { AttributeName: 'name', AttributeType: 'S' },
+    { AttributeName: 'creationDateTime', AttributeType: 'S' },
+  ];
+
   it('should create the tables', async () => {
 
     ddbMock.on(CreateTableCommand).resolves({
@@ -66,16 +63,13 @@ describe('DynamoDb', () => {
     const table = await dynamo.createTable({
       TableName: 'Projects',
       KeySchema,
-      AttributeDefinitions: [
-        { AttributeName: 'id', AttributeType: 'S' },
-        { AttributeName: 'creationDateTime', AttributeType: 'S' },
-      ],
+      AttributeDefinitions,
       BillingMode: 'PAY_PER_REQUEST',
       GlobalSecondaryIndexes: [
         {
           IndexName: 'ProjectGSI',
           KeySchema: [
-            { AttributeName: 'id', KeyType: 'HASH' },
+            { AttributeName: 'name', KeyType: 'HASH' },
             { AttributeName: 'creationDateTime', KeyType: 'RANGE' },
           ],
           Projection: { ProjectionType: 'KEYS_ONLY' },
@@ -91,10 +85,7 @@ describe('DynamoDb', () => {
   it('should throw when creating table was not successful', async () => {
     ddbMock.on(CreateTableCommand).rejects();
     await expect(dynamo.createTable({
-      AttributeDefinitions: [
-        { AttributeName: 'id', AttributeType: 'S' },
-        { AttributeName: 'creationDateTime', AttributeType: 'S' },
-      ],
+      AttributeDefinitions,
       TableName: 'Projects',
       KeySchema,
       BillingMode: 'Foo',
@@ -102,13 +93,13 @@ describe('DynamoDb', () => {
   });
 
   it('should create a Project object', () => {
-    const project = dynamo.create(Project, props);
-    expect(project).toEqual(new Project(props));
+    const project = dynamo.create<Project, I4DProject>(Project, props.name, props);
+    expect(project).toEqual(new Project(props.name, props));
   });
 
   it('should scan the whole table', async () => {
     ddbMock.on(ScanCommand).resolves({
-      Items: [attributes],
+      Items: [dynamoDbAttributes],
     });
     const entries = await dynamo.listEntries<Project, I4DProject>('Projects', Project);
     expect(entries.length).toBeGreaterThan(0);
@@ -128,12 +119,13 @@ describe('DynamoDb', () => {
         httpStatusCode: 200,
       },
     });
-    const project = dynamo.create(Project, props);
+    const project = dynamo.create<Project, I4DProject>(Project, props.name, props);
+
     const response = await dynamo.addEntry(project);
     expect(response.$metadata.httpStatusCode).toBe(200);
   });
 
-  it.only('should add a list of tags to the dynamodb', () => {
+  it('should add a list of tags to the dynamodb', () => {
     ddbMock.on(PutItemCommand).resolves({
       $metadata: {
         httpStatusCode: 200,
@@ -143,12 +135,12 @@ describe('DynamoDb', () => {
       author: 'TestAuthor',
       coverImage: 's3://',
       description: 'test',
-      projectName: 'ProjectName',
-      tags: [{ name: 'tags' }, { name: 'name' }],
+      name: 'ProjectName',
+      tags: ['tags', 'name'],
     };
     if (manyTags.tags) {
       manyTags.tags?.forEach(async (tag) => {
-        const response = await dynamo.addEntry(new Tag({ name: tag.name }));
+        const response = await dynamo.addEntry(new Tag(tag));
         expect(response.$metadata.httpStatusCode).toBe(200);
       });
     }
@@ -156,59 +148,59 @@ describe('DynamoDb', () => {
 
   it('should throw when adding new Project entry was not successful', async () => {
     ddbMock.on(PutItemCommand).rejects();
-    const project = dynamo.create(Project, props);
+    const project = dynamo.create(Project, props.name, props);
     await expect(dynamo.addEntry(project))
       .rejects
-      .toThrowError('Entry with ID 123456789 at 2020-01-01T00:00:00+01:00 could not be saved in Projects');
+      .toThrowError('Entry \'TestProject\' at 2020-01-01T00:00:00+01:00 could not be saved in Projects');
   });
 
-  it('should map the attributes coming from DynamoDB', () => {
-    const projectProps = dynamo.attributesMapper<I4DProject>(attributes);
+  it('should map the dynamoDbAttributes coming from DynamoDB', () => {
+    const projectProps = dynamo.attributesMapper<I4DProject>(dynamoDbAttributes);
     expect(projectProps).toEqual({
       coverImage: 's3://url',
-      projectName: 'TestProject',
+      name: 'TestProject',
       description: 'This is a Description',
       phase: 'Available',
       author: 'TestAuthor',
       season: 'Winter',
       creationDateTime: '2020-01-01T00:00:00+01:00',
-      id: '123456789',
     });
   });
 
-  it('should build the attributes for DynamoDB', () => {
+  it('should build the dynamoDbAttributes for DynamoDB', () => {
     const dynamoData = dynamo.dynamoDbDataBuilder<I4DProject>(props);
     expect(dynamoData).toEqual({
       coverImage: { S: 's3://url' },
       creationDateTime: { S: '2020-01-01T00:00:00+01:00' },
       description: { S: 'This is a Description' },
-      projectName: { S: 'TestProject' },
+      name: { S: 'TestProject' },
       phase: { S: 'Available' },
       author: { S: 'TestAuthor' },
-      id: { S: '123456789' },
       season: { S: 'Winter' },
     });
   });
 
-  it('should build the attributes for DynamoDB when props contains Numbers and Boolean', () => {
+  it('should build the dynamoDbAttributes for DynamoDB when props contains Numbers and Boolean', () => {
     const dynamoData = dynamo.dynamoDbDataBuilder({
-      id: '123456789',
+      name: '123456789',
       creationDateTime: '2020-01-01T00:00:00+00:00',
       testNumber: 2,
       testBoolean: true,
     });
     expect(dynamoData).toEqual({
-      id: { S: '123456789' },
+      name: { S: '123456789' },
       creationDateTime: { S: '2020-01-01T00:00:00+00:00' },
       testNumber: { N: 2 },
       testBoolean: { B: true },
     });
   });
 
-  it('should build the attributes for DynamoDB after Entity is created', () => {
-    const project = new Project(props);
-    const dynamoData = dynamo.dynamoDbDataBuilder(project.getProps());
-    expect(dynamoData).toEqual(attributes);
+  it('should build the dynamoDbAttributes for DynamoDB after Entity is created', () => {
+    const project = new Project(props.name, props);
+    const dynamoData = dynamo.dynamoDbDataBuilder(
+      { ...project.getProps(), ...{ creationDateTime: project.getCreationDateTime() } },
+    );
+    expect(dynamoData).toEqual(dynamoDbAttributes);
   });
 
   it('should return the correct type of an object', () => {

@@ -1,8 +1,4 @@
-import { StandardAttribute, Standard } from './StandardAttribute';
-
-export interface ISeason extends StandardAttribute {
-  seasonName: string;
-}
+import { Standard } from './StandardAttribute';
 
 /**
  * @swagger
@@ -14,28 +10,26 @@ export interface ISeason extends StandardAttribute {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Season/properties/props"
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
  *   schemas:
  *     Season:
  *       type: object
  *       properties:
- *         id:
+ *         name:
  *           type: string
  *         creationDateTime:
  *           type: string
- *         props:
- *           type: object
- *           properties:
- *             seasonName:
- *               type: string
  */
 export class Season extends Standard {
-
-  readonly props: ISeason;
-  constructor(props: ISeason) {
-    super('Seasons', props.id);
+  private props: any;
+  constructor(name: string, props?: any, creationDateTime?: string) {
+    super('Seasons', name, creationDateTime);
     this.props = props;
   };
+
   public getProps() {
     return this.props;
   }

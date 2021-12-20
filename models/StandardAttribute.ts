@@ -1,27 +1,26 @@
 import moment from 'moment';
-import { v4 as uuid } from 'uuid';
 
 export interface StandardAttribute {
-  id?: string;
+  name: string;
   creationDateTime?: string;
 }
 
 export abstract class Standard {
   private name: string;
-  private id: string;
   private creationDateTime: string;
-  constructor(name: string, id?: string) {
+  private tableName: string;
+  constructor(tableName: string, name: string, creationDateTime?: string) {
+    this.tableName = tableName;
     this.name = name;
-    this.id = id ?? uuid();
-    this.creationDateTime = moment().format();
+    this.creationDateTime = creationDateTime ?? moment().format();
+  }
+
+  public getTableName() {
+    return this.tableName;
   }
 
   public getName() {
     return this.name;
-  }
-
-  public getId() {
-    return this.id;
   }
 
   public getCreationDateTime() {

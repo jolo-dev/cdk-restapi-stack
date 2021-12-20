@@ -85,7 +85,7 @@ export class LambdaFleet extends Construct {
           new LambdaIntegration(lambdaFunction, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
           { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] },
         );
-        // For API GW Documentation Par
+        // For API GW Documentation Part
         docs.createCfnDocumentationParts({
           lambdaName,
           method: this.method,

@@ -1,6 +1,7 @@
 import { Phase } from '../../models/Phase';
 import { I4DProject, Project } from '../../models/Project';
-import { ISeason, Season } from '../../models/Season';
+import { Season } from '../../models/Season';
+import { StandardAttribute } from '../../models/StandardAttribute';
 import { Tag } from '../../models/Tag';
 import DynamoDb from '../src/DynamoDb';
 
@@ -9,9 +10,9 @@ import DynamoDb from '../src/DynamoDb';
 describe('POST', () => {
   const dynamo = new DynamoDb({ endpoint: 'http://localhost:4566', region: 'eu-west-1' });
   test.skip('add Project', async () => {
-    const body = JSON.stringify({ coverImage: 's3://url', description: 'This is a Description', projectName: 'TestProject', phase: 'Available', author: 'TestAuthor', season: 'Winter' });
-    const props = JSON.parse(body);
-    const project = new Project(props);
+    const body = JSON.stringify({ coverImage: 's3://url', description: 'This is a Description', name: 'TestProject', phase: 'Available', author: 'TestAuthor', season: 'Winter' });
+    const props: I4DProject = JSON.parse(body);
+    const project = new Project(props.name, props);
     const entries = await dynamo.addEntry(project);
     expect(entries.$metadata.httpStatusCode).toBe(200);
 
@@ -20,14 +21,11 @@ describe('POST', () => {
   });
 
   test.skip('add Season', async () => {
-    const props = {
-      seasonName: 'string',
-    };
-    const season = new Season(props);
+    const season = new Season('Season');
     const entries = await dynamo.addEntry(season);
     expect(entries.$metadata.httpStatusCode).toBe(200);
 
-    const result = await dynamo.listEntries<Season, ISeason>('Seasons', Season);
+    const result = await dynamo.listEntries<Season, StandardAttribute>('Seasons', Season);
     expect(result[0]).toEqual(season);
   });
 
@@ -41,28 +39,28 @@ describe('POST', () => {
     console.log(entries);
   });
 
-  test('add a new Project with storing Season, Phase, and multiple Tags', async () => {
+  test.skip('add a new Project with storing Season, Phase, and multiple Tags', async () => {
     const props: I4DProject = {
       author: 'TestAuthor5',
       coverImage: 's3://',
       description: 'Foobar',
-      projectName: 'ProjectName2',
-      tags: [{ name: 'tags2' }, { name: 'name2' }],
+      name: 'ProjectName2',
+      tags: ['tags2', 'name2'],
     };
-    const project = new Project(props);
+    const project = new Project(props.name, props);
     if (props.season) {
-      const entry = await dynamo.addEntry(new Season({ seasonName: props.season.seasonName }));
+      const entry = await dynamo.addEntry(new Season(props.season));
       const statusCode = entry.$metadata.httpStatusCode ?? 400;
       expect(statusCode).toBe(200);
     }
     if (props.phase) {
-      const entry = await dynamo.addEntry(new Phase({ phaseName: props.phase.phaseName }));
+      const entry = await dynamo.addEntry(new Phase(props.phase));
       const statusCode = entry.$metadata.httpStatusCode ?? 400;
       expect(statusCode).toBe(200);
     }
     if (props.tags) {
       for (const tag of props.tags) {
-        const entry = await dynamo.addEntry(new Tag({ name: tag.name }));
+        const entry = await dynamo.addEntry(new Tag(tag));
         const statusCode = entry.$metadata.httpStatusCode ?? 400;
         expect(statusCode).toBe(200);
       }

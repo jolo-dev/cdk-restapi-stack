@@ -1,17 +1,23 @@
 import fs from 'fs';
 import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Function, AssetCode, Runtime, Code } from '@aws-cdk/aws-lambda';
+import { Bucket, IBucket } from '@aws-cdk/aws-s3';
 import { Stack, App, StackProps, CfnOutput } from '@aws-cdk/core';
 import { DynamoDbStack } from '../../infrastructure/stacks/dynamodb/Stack';
 
 class LocalStack extends Stack {
   constructor(scope: App, id: string, props?: StackProps) {
+
     super(scope, id, props);
     const api = new RestApi(this, 'TestRestApi', {
       deployOptions: {
         stageName: process.env.STAGE ?? 'local',
       },
     });
+
+    // Hot Swapping
+    // const bucket = Bucket.fromBucketName(this, 'HotReloadingBucket', '__local__');
+
     fs.readdirSync('dist').forEach(httpMethod => {
       fs.readdirSync(`dist/${httpMethod}`).forEach(lambda => {
         const lambdaName = lambda.replace('.js', '');
@@ -68,6 +74,13 @@ class LocalStack extends Stack {
       description: 'Use the local Swagger',
       value: `http://localhost:4566/restapis/${api.restApiId}/local/_user_request_/openapi/index.html`,
     });
+  }
+
+  private buildSourceCode(bucket: IBucket, folder: string) {
+    if (process.env.STAGE === undefined && process.env.LAMBDA_MOUNT_CWD) {
+      return Code.fromBucket(bucket, `${process.env.LAMBDA_MOUNT_CWD}/${folder}`);
+    }
+    return new AssetCode(`dist/${folder}`);
   }
 }
 

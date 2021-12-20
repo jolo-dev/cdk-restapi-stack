@@ -1,8 +1,10 @@
 import { APIGatewayProxyResult } from 'aws-lambda';
-import { ITag, Tag } from '../../../models/Tag';
+import { StandardAttribute } from '../../../models/StandardAttribute';
+import { Tag } from '../../../models/Tag';
+import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
-const dynamo = new DynamoDb({});
+const dynamo = new DynamoDb(config);
 /**
  * @swagger
  * /tag:
@@ -17,17 +19,17 @@ const dynamo = new DynamoDb({});
  *       "200":
  *         description: "Tag has been added successfully"
  */
-export const handler = async (props: ITag) => {
+export const handler = async (props: StandardAttribute) => {
   let statusCode = 200;
   try {
     if (props) {
-      const project = new Tag(props);
-      const entries = await dynamo.addEntry(project);
+      const tag = new Tag(props.name);
+      const entries = await dynamo.addEntry(tag);
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {
         const result: APIGatewayProxyResult = {
           statusCode,
-          body: `Tag with Name: ${project.getProps().name} has been successfully added`,
+          body: `Tag with Name: ${tag.getName()} has been successfully added`,
         };
         return result;
       } else {
@@ -40,9 +42,8 @@ export const handler = async (props: ITag) => {
     console.error(error);
     const e = error as Error;
     return {
-      statusCode,
+      statusCode: 400,
       body: e.message,
     };
   }
-
 };
