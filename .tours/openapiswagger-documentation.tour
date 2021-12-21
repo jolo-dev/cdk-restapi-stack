@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "OpenApi/Swagger Documentation",
+  "steps": [
+    {
+      "title": "Overview",
+      "description": "# OpenApi/Swagger Documentation\n\nThe package `docs` contains beside the OpenApi/Swagger also the documentation about this project (see `about`- folder)."
+    }
+  ]
+}

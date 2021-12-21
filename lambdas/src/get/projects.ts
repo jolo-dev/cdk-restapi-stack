@@ -3,10 +3,6 @@ import { I4DProject, Project } from '../../../models/Project';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
-type ProjectsResult = APIGatewayProxyResult & {
-  results: Project[];
-}
-
 const dynamo = new DynamoDb(config);
 /**
  * @swagger
@@ -39,10 +35,12 @@ export const handler: APIGatewayProxyHandler = async () => {
       return value;
     });
     if (entries.length > 0) {
-      const result: ProjectsResult = {
+      const result: APIGatewayProxyResult = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
         statusCode: 200,
         body: JSON.stringify(entries),
-        results,
       };
       return result;
     } else {

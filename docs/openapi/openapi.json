@@ -142,11 +142,14 @@
           "$ref": "#/components/requestBodies/Phase_data"
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Phase has been added successfully"
           },
           "400": {
             "description": "Error in adding a new phase"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt"
           }
         }
       }
@@ -160,11 +163,14 @@
           "$ref": "#/components/requestBodies/Project_data"
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Project has been added successfully"
           },
           "400": {
             "description": "Error in adding a new project"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt"
           }
         }
       }
@@ -178,11 +184,14 @@
           "$ref": "#/components/requestBodies/Season_data"
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Season has been added successfully"
           },
           "400": {
             "description": "Error in adding a new season"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt."
           }
         }
       }
@@ -196,11 +205,14 @@
           "$ref": "#/components/requestBodies/Tag_data"
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Tag has been added successfully"
           },
           "400": {
             "description": "Error in adding a new Tag"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt."
           }
         }
       }

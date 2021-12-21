@@ -74,3 +74,9 @@ Then you need to bootstrap cdklocal again (`pnpm local:bootstrap && pnpm local:d
 
 Make sure you have the correct `rest-api-id` in the URL.
 It might be that you deployed the Stack but still have an old URL.
+
+### CORS
+
+It could happen that CORS appears for some reasons. In the CDK code, the `defaultCorsPreflightOptions` is given (see `LambdaFleet.ts` and `PrivateApiGateway.ts`) but AWS could not deploy or set it correctly.
+If the `pnpm deploy` doesn't work, go to the AWS Console [https://eu-west-1.console.aws.amazon.com/apigateway/](https://eu-west-1.console.aws.amazon.com/apigateway/) (Note: this is for `eu-west-1`) -> Resource left -> click on each Resource -> go to Actions -> Enable CORS -> click bottom left the blue button "Enable CORS and replace existing CORS Header" -> Click "Yes replace existing header".
+![Enable CORS](enable-cors.gif).

@@ -1,4 +1,4 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
 import { Phase } from '../../../models/Phase';
 import { I4DProject, Project } from '../../../models/Project';
 import { Season } from '../../../models/Season';
@@ -16,16 +16,18 @@ const dynamo = new DynamoDb(config);
  *     requestBody:
  *       $ref: "#/components/requestBodies/Project_data"
  *     responses:
+ *       "201":
+ *         description: "Project has been added successfully"
  *       "400":
  *         description: "Error in adding a new project"
- *       "200":
- *         description: "Project has been added successfully"
+ *       "406":
+ *         description: "The post body is empty or corrupt"
  */
-export const handler = async (props: I4DProject) => {
-  let statusCode = 200;
+export const handler = async (event: APIGatewayEvent) => {
   try {
-    if (props) {
-
+    if (event.body) {
+      let statusCode = 200;
+      const props: I4DProject = JSON.parse(event.body);
       const project = new Project(props.name, props);
       if (props.season) {
         await dynamo.addEntry(new Season(props.season));
@@ -42,7 +44,7 @@ export const handler = async (props: I4DProject) => {
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {
         const result: APIGatewayProxyResult = {
-          statusCode,
+          statusCode: 201,
           body: `${project.getName()} has been successfully added`,
         };
         return result;
@@ -50,7 +52,7 @@ export const handler = async (props: I4DProject) => {
         throw new Error(`Error in adding Entry to Projects ${props}`);
       }
     } else {
-      throw new Error(`The post body is empty or corrupt ${props}`);
+      throw new Error('The post body is empty or corrupt.');
     }
   } catch (error) {
     console.error(error);

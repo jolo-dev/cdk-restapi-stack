@@ -1,4 +1,4 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
 import { Phase } from '../../../models/Phase';
 import { StandardAttribute } from '../../../models/StandardAttribute';
 import { config } from '../../config/config';
@@ -14,21 +14,24 @@ const dynamo = new DynamoDb(config);
  *     requestBody:
  *       $ref: "#/components/requestBodies/Phase_data"
  *     responses:
+ *       "201":
+ *         description: "Phase has been added successfully"
  *       "400":
  *         description: "Error in adding a new phase"
- *       "200":
- *         description: "Phase has been added successfully"
+ *       "406":
+ *         description: "The post body is empty or corrupt"
  */
-export const handler = async (props: StandardAttribute) => {
-  let statusCode = 200;
+export const handler = async (event: APIGatewayEvent) => {
   try {
-    if (props) {
+    if (event.body) {
+      let statusCode = 200;
+      const props: StandardAttribute = JSON.parse(event.body);
       const entry = new Phase(props.name);
       const entries = await dynamo.addEntry(entry);
       statusCode = entries.$metadata.httpStatusCode ?? 400;
       if (statusCode === 200) {
         const result: APIGatewayProxyResult = {
-          statusCode,
+          statusCode: 201,
           body: `${entry.getName()} has been successfully added`,
         };
         return result;
@@ -36,7 +39,7 @@ export const handler = async (props: StandardAttribute) => {
         throw new Error(`Error in adding Entry to Phases ${props}`);
       }
     } else {
-      throw new Error(`The post body is empty or corrupt ${props}`);
+      throw new Error('The post body is empty or corrupt');
     }
   } catch (error) {
     console.error(error);

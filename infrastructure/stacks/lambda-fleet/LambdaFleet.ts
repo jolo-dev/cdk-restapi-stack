@@ -81,9 +81,12 @@ export class LambdaFleet extends Construct {
             allowOrigins: ['*'],
           },
         });
+
+        const responseCodes = this.method === 'get' ? [{ statusCode: '200' }, { statusCode: '400' }] : [{ statusCode: '201' }, { statusCode: '400' }, { statusCode: '406' }];
+
         restEndpoint.addMethod(this.method,
-          new LambdaIntegration(lambdaFunction, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
-          { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] },
+          new LambdaIntegration(lambdaFunction, { proxy: true, integrationResponses: responseCodes }),
+          { methodResponses: responseCodes },
         );
         // For API GW Documentation Part
         docs.createCfnDocumentationParts({

@@ -4,10 +4,6 @@ import { Tag } from '../../../models/Tag';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
 
-type TagsResult = APIGatewayProxyResult & {
-  results: Tag[];
-}
-
 const dynamo = new DynamoDb(config);
 /**
  * @swagger
@@ -31,10 +27,12 @@ export const handler: APIGatewayProxyHandler = async () => {
   try {
     const entries = await dynamo.listEntries<Tag, StandardAttribute>('Tags', Tag);
     if (entries.length > 0) {
-      const result: TagsResult = {
+      const result: APIGatewayProxyResult = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
         statusCode: 200,
         body: JSON.stringify(entries),
-        results: entries,
       };
       return result;
     } else {

@@ -3,6 +3,7 @@ import {
   CreateTableCommand,
   ScanCommand,
   PutItemCommand,
+  DeleteItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import { mockClient } from 'aws-sdk-client-mock';
 import { I4DProject, Project } from '../../models/Project';
@@ -10,13 +11,6 @@ import { Tag } from '../../models/Tag';
 import DynamoDb from '../src/DynamoDb';
 
 Date.now = jest.fn().mockReturnValue(new Date('2020-01-01T00:00:00.000'));
-
-// id will be mocked unless you put your own id
-jest.mock('uuid', () => {
-  return {
-    v4: jest.fn().mockReturnValue('123456789'),
-  };
-});
 
 const ddbMock = mockClient(DynamoDBClient);
 
@@ -225,5 +219,29 @@ describe('DynamoDb', () => {
   it('should return undefined when object is undefined as well', () => {
     expect(() => dynamo.dynamoAttributeKeyValue(undefined, 'Foo'))
       .toThrowError('Error in dynamoAttributeKeyValue: object cannot be undefined');
+  });
+
+  it('should delete an entry from table', async () => {
+    ddbMock.on(DeleteItemCommand).resolves({
+      $metadata: {
+        httpStatusCode: 200,
+      },
+    });
+    const result = await dynamo.deleteEntry('Test', 'name');
+    expect(result.$metadata.httpStatusCode).toBe(200);
+  });
+
+  it('should throw when httpStatusCode = 400', async () => {
+    ddbMock.on(DeleteItemCommand).resolves({
+      $metadata: {
+        httpStatusCode: 400,
+      },
+    });
+    await expect(dynamo.deleteEntry('Test', 'name')).rejects.toThrowError('Error in deleting the name in Test');
+  });
+
+  it('should throw when deleting failed', async () => {
+    ddbMock.on(DeleteItemCommand).rejects();
+    await expect(dynamo.deleteEntry('Test', 'name')).rejects.toThrowError();
   });
 });

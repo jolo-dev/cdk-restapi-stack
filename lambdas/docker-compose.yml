@@ -7,7 +7,6 @@ services:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4571:4571"
     environment:
-      - HOSTNAME_EXTERNAL=localstack
       - DEBUG=1
       - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
@@ -18,6 +17,8 @@ services:
       - DYNAMODB_SHARE_DB=1
       - SERVICES=s3,lambda,cloudformation,apigateway,dynamodb,ec2,iam
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
+      - EXTRA_CORS_ALLOWED_ORIGINS=*
+      - EXTRA_CORS_ALLOWED_HEADERS=*
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

@@ -11,7 +11,6 @@ export class DynamoDbStack extends Stack {
         const tableName = value.replace('.ts', '') + 's'; // Appending an 's' to name it in Plural
         const table = new Table(this, `${tableName}Table`, {
           partitionKey: { name: 'name', type: AttributeType.STRING },
-          sortKey: { name: 'creationDateTime', type: AttributeType.STRING },
           billingMode: BillingMode.PAY_PER_REQUEST,
           tableName,
         });

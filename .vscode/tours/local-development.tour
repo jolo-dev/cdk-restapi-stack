@@ -1,0 +1,108 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Local Development",
+  "steps": [
+    {
+      "title": "Overview",
+      "description": "# Local Development\n\nEverything should be setup for a local development (`infrastructure`, `lambdas`, `docs`).<br/>\nPlease find in each package its `README.md` for further instructions but also in the `package.json` within the `scripts`- object available scripts.\n\n## Lambdas\n\nThis is the heart of the project. Lambda development is using [`Localstack`](https://localstack.cloud/) to deploy against it.\nAs a prerequisite, you should have [`docker-compose`](https://docs.docker.com/compose/install/) installed.\n\n>> cd lambdas && pnpm dev\n\n### `docker-compose.yml`\n\nIn Localstack, you can define individual services. We are using [its community edition](https://localstack.cloud/features/) with API Gateway, S3, AWS Lambda, IAM, Cloudformation, and DynamoDB ([#2]).\n\nLocalstack is also used to perform integration tests locally.\n\nWhen running `pnpm dev`, `docker-compose` will run in the background as daemon (`-d`- flag is activated [#3]). Of course, you could also start by yourself `docker-compose up` which also allows to see its logs. Otherwise, you could see logs by running:\n\n>> docker-compose logs\n\n### Watch Mode\n\nIt uses a self implemented watch-mode by using [`esbuild`](https://esbuild.github.io/) which has a [`watch`-API](https://esbuild.github.io/api/#watch) ([#4]) in order to perform automated local deployments to Localstack ([#5]).\nWhen `docker-compose` is running in the background, simply run:\n\n>> pnpm watch\n\n### cdklocal\n\n[`cdklocal`](https://github.com/localstack/aws-cdk-local) is a thin wrapper of [`cdk`-cli](https://docs.aws.amazon.com/cdk/v2/guide/cli.html) for Localstack. \nCurrently, only `bootstrap` and `deploy` works ([#6]).\nNote: It only works when Localstack is running.\n\nDue to that there is a custom CDK-class `LocalStack.ts`. Because the `LambdaFleet.ts` contains VPCs and VPC Endoints but here we want to keep it simple (see [#7]). It also reuses the `DynamoDbStack` from the `infrastructure`- folder ([#8]).\n\n### Start development\n\nAll the commands above a put into `pnpm dev` ([#9]) which [`docker-compose`](#docker-compose), `bootstrap`, and `deploy` and [`watch`](#watch-mode).\n\n>> pnpm dev\n\n![pnpm dev](.vscode/tours/pnpm-dev.gif)"
+    },
+    {
+      "file": "lambdas/package.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 13
+        },
+        "end": {
+          "line": 8,
+          "character": 33
+        }
+      },
+      "description": "`-d` allows to run docker-compose in the background."
+    },
+    {
+      "file": "lambdas/docker-compose.yml",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 7
+        },
+        "end": {
+          "line": 18,
+          "character": 70
+        }
+      },
+      "description": "These services are activated in our Localstack environment."
+    },
+    {
+      "file": "lambdas/watch.ts",
+      "selection": {
+        "start": {
+          "line": 16,
+          "character": 5
+        },
+        "end": {
+          "line": 26,
+          "character": 7
+        }
+      },
+      "description": "Here we are using the `watch`- API of [esbuild](https://esbuild.github.io/api/#watch) in order to watch all the file changes in the `lambdas/src`- folder.\nAfter rebuilding the changes, it automatically deploys the Lambdas to Localstack (see [#5])."
+    },
+    {
+      "file": "lambdas/cdklocal_deploy.sh",
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 2,
+          "character": 85
+        }
+      },
+      "description": "A mini bash-script for automating a local deployment to Localstack."
+    },
+    {
+      "file": "lambdas/package.json",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 12,
+          "character": 92
+        }
+      },
+      "description": "`cdklocal` allows to bootstrap and to deploy to Localstack. It simulates the behaviour of the `cdk`-cli.\nBut `cdklocal watch` does not work, because that triggers `cdk deploy` instead of `cdklocal deploy`. Which is why there is a self-built `watch`-mode ([#4],[#5])."
+    },
+    {
+      "file": "lambdas/src/LocalStack.ts",
+      "selection": {
+        "start": {
+          "line": 85,
+          "character": 1
+        },
+        "end": {
+          "line": 85,
+          "character": 44
+        }
+      },
+      "description": "Created an own `LocalStack`- Class for deployment to Localstack. It also deploys the `DynamoDbStack` from the infrastructure ([#8])."
+    },
+    {
+      "file": "lambdas/src/LocalStack.ts",
+      "selection": {
+        "start": {
+          "line": 86,
+          "character": 1
+        },
+        "end": {
+          "line": 86,
+          "character": 63
+        }
+      },
+      "description": "Reuse of the `DynamoDbStack` from the `infrastructure`- folder."
+    }
+  ]
+}

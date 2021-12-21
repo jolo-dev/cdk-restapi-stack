@@ -5,24 +5,28 @@
   "scripts": {
     "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist",
     "build:docs": "esbuild ../docs/docs.ts --bundle --minify --platform=node --target=node14.7 --outfile=../docs/docs.js",
-    "dev": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && pnpm build:docs && pnpm watch",
+    "dev": "docker-compose up -d && pnpm local:bootstrap && pnpm build:docs && pnpm local:deploy && pnpm watch",
     "eslint": "eslint . --fix --ext .ts",
     "local": "cdklocal",
-    "local:bootstrap": "export STAGE=local && export LAMBDA_MOUNT_CWD=$(pwd)/dist && cdklocal bootstrap",
-    "local:deploy": "export STAGE=local && export LAMBDA_MOUNT_CWD=$(pwd)/dist && cdklocal deploy --all --require-approval never",
+    "local:bootstrap": "export STAGE=local && cdklocal bootstrap",
+    "local:deploy": "export STAGE=local && cdklocal deploy --all --require-approval never",
     "test": "jest --silent",
     "test:watch": "jest --watch",
     "test:integration": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && jest -- test/local.integration.test.ts",
-    "watch": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist --watch"
+    "watch": "npx ts-node watch.ts"
   },
   "author": "John Nguyen <john@globaldatanet.com>",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.44.0",
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "^1.0.7",
+    "glob": "^7.2.0",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.88",
+    "@types/glob": "^7.2.0",
+    "@types/shelljs": "^0.8.10",
     "aws-cdk-local": "^1.65.8"
   }
 }

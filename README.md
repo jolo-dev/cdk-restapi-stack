@@ -124,21 +124,4 @@ In general, it would be good if you document your code when you think it needs m
 
 ## Troubleshooting
 
-### Singular vs Plural (Unique Lambda Names)
-
-Each Lambda should be unique and thus its naming.
-Verify that Lambdas in the `get`- Folder have different names than in the `post`, or `put`- folder.
-
-### Bundling was stucked
-
-It could happen that you bundled a code which got stucked.
-Simply delete `lambdas/dist`- Folder because it will get rebundled again.
-
-### Too many assets/CFN
-
-In order to have a clean development environment, it might be good to delete `cdk.out` which has old synthesized CFN.
-
-### S3 already exists
-
-Make sure an S3 with its name within account and region does not exists yet.
-If necessary, delete that Bucket if you want to keep the name.
+There is a dedicated [`TROUBLESHOOTING.md`](./docs/about/TROUBLESHOOTING.md).

@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Function, AssetCode, Runtime, Code } from '@aws-cdk/aws-lambda';
-import { Bucket, IBucket } from '@aws-cdk/aws-s3';
 import { Stack, App, StackProps, CfnOutput } from '@aws-cdk/core';
 import { DynamoDbStack } from '../../infrastructure/stacks/dynamodb/Stack';
 
@@ -15,9 +14,6 @@ class LocalStack extends Stack {
       },
     });
 
-    // Hot Swapping
-    // const bucket = Bucket.fromBucketName(this, 'HotReloadingBucket', '__local__');
-
     fs.readdirSync('dist').forEach(httpMethod => {
       fs.readdirSync(`dist/${httpMethod}`).forEach(lambda => {
         const lambdaName = lambda.replace('.js', '');
@@ -29,6 +25,9 @@ class LocalStack extends Stack {
             LOCAL: 'http://localhost:4566',
           },
         });
+
+        const responseCodes = httpMethod === 'get' ? [{ statusCode: '200' }, { statusCode: '400' }] : [{ statusCode: '201' }, { statusCode: '400' }, { statusCode: '406' }];
+
         api.root
           .addResource(lambdaName, {
             // 👇 set up CORS
@@ -45,8 +44,7 @@ class LocalStack extends Stack {
             },
           })
           .addMethod(httpMethod,
-            new LambdaIntegration(handler, { proxy: false, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
-            { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] });
+            new LambdaIntegration(handler, { proxy: true, integrationResponses: responseCodes }), { methodResponses: responseCodes });
 
         new CfnOutput(this, `LocalLambdaEndpoint${lambdaName}`, {
           value: `http://localhost:4566/restapis/${api.restApiId}/local/_user_request_/${lambdaName}`,
@@ -74,13 +72,6 @@ class LocalStack extends Stack {
       description: 'Use the local Swagger',
       value: `http://localhost:4566/restapis/${api.restApiId}/local/_user_request_/openapi/index.html`,
     });
-  }
-
-  private buildSourceCode(bucket: IBucket, folder: string) {
-    if (process.env.STAGE === undefined && process.env.LAMBDA_MOUNT_CWD) {
-      return Code.fromBucket(bucket, `${process.env.LAMBDA_MOUNT_CWD}/${folder}`);
-    }
-    return new AssetCode(`dist/${folder}`);
   }
 }
 

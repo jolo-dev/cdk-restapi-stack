@@ -3,9 +3,6 @@ import { Phase } from '../../../models/Phase';
 import { StandardAttribute } from '../../../models/StandardAttribute';
 import { config } from '../../config/config';
 import DynamoDb from '../DynamoDb';
-type PhasesResult = APIGatewayProxyResult & {
-  results: Phase[];
-}
 
 const dynamo = new DynamoDb(config);
 /**
@@ -35,10 +32,12 @@ export const handler: APIGatewayProxyHandler = async () => {
   try {
     const entries = await dynamo.listEntries<Phase, StandardAttribute>('Phases', Phase);
     if (entries.length > 0) {
-      const result: PhasesResult = {
+      const result: APIGatewayProxyResult = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
         statusCode: 200,
         body: JSON.stringify(entries),
-        results: entries,
       };
       return result;
     } else {
