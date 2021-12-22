@@ -1,51 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="7" failures="1" errors="0" time="4.877">
-  <testsuite name="POST" errors="0" failures="1" skipped="5" timestamp="2021-12-21T23:11:00" time="4.709" tests="7">
-    <testcase classname="POST add Project" name="POST add Project" time="0.126">
-      <failure>Error: expect(received).toEqual(expected) // deep equality
-
-- Expected  - 3
-+ Received  + 2
-
-@@ -2,15 +2,14 @@
-    &quot;creationDateTime&quot;: &quot;2020-01-01T00:00:00+01:00&quot;,
-    &quot;name&quot;: &quot;TestProject&quot;,
-    &quot;props&quot;: Object {
-      &quot;author&quot;: &quot;TestAuthor&quot;,
-      &quot;coverImage&quot;: &quot;s3://url&quot;,
-+     &quot;creationDateTime&quot;: &quot;2020-01-01T00:00:00+01:00&quot;,
-      &quot;description&quot;: &quot;This is a Description&quot;,
-      &quot;name&quot;: &quot;TestProject&quot;,
-      &quot;phase&quot;: &quot;Available&quot;,
-      &quot;season&quot;: &quot;Winter&quot;,
--     &quot;tags&quot;: Array [
--       &quot;tag1&quot;,
--     ],
-+     &quot;tags&quot;: &quot;tag1&quot;,
-    },
-    &quot;tableName&quot;: &quot;Projects&quot;,
-  }
-    at /Users/jolo/Development/4dt-api-node/lambdas/test/local.integration.test.ts:29:23
-    at Generator.next (&lt;anonymous&gt;)
-    at fulfilled (/Users/jolo/Development/4dt-api-node/lambdas/test/local.integration.test.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="3.753">
+  <testsuite name="Integration" errors="0" failures="0" skipped="0" timestamp="2021-12-22T10:21:08" time="3.605" tests="4">
+    <testcase classname="Integration add Project and deletes a project based on name" name="Integration add Project and deletes a project based on name" time="0.102">
     </testcase>
-    <testcase classname="POST add Season" name="POST add Season" time="0">
-      <skipped/>
+    <testcase classname="Integration add Season and delete Season based on Name" name="Integration add Season and delete Season based on Name" time="0.064">
     </testcase>
-    <testcase classname="POST deletes a project" name="POST deletes a project" time="0.048">
+    <testcase classname="Integration add Phase and delete Phase based on Name" name="Integration add Phase and delete Phase based on Name" time="0.064">
     </testcase>
-    <testcase classname="POST get all Projects" name="POST get all Projects" time="0">
-      <skipped/>
-    </testcase>
-    <testcase classname="POST get all Seasons" name="POST get all Seasons" time="0">
-      <skipped/>
-    </testcase>
-    <testcase classname="POST add a new Project with storing Season, Phase, and multiple Tags" name="POST add a new Project with storing Season, Phase, and multiple Tags" time="0">
-      <skipped/>
-    </testcase>
-    <testcase classname="POST get all Tags" name="POST get all Tags" time="0">
-      <skipped/>
+    <testcase classname="Integration add multiple Tags and delete them based on Name" name="Integration add multiple Tags and delete them based on Name" time="0.078">
     </testcase>
   </testsuite>
 </testsuites>

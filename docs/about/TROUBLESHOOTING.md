@@ -55,7 +55,7 @@ Error: All arguments to Vpc.fromLookup() must be concrete (no Tokens)
     at LambdaFleetStack.getVpc (/Users/jolo/Development/4dt-api-node/infrastructure/stacks/lambda-fleet/Stack.ts:138:16)
 ```
 
-It is because there was put a wrong `context` in the `cdk.json`. If that happens, delete `cdk.context.json` and run again `pnpm projen` (Make sure you set the AWS credentials in the environment variables).
+It is because there was put a wrong `context` in the `cdk.json`. If that happens, delete `cdk.context.json` and run again `pnpm synth` (Make sure you set the AWS credentials in the environment variables).
 
 ## Deployment did not happen
 

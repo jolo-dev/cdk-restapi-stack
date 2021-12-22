@@ -33,6 +33,7 @@ class DynamoDb {
       if ( response.Items ) {
         return response.Items.map( attributes => {
           const attr: P = this.attributesMapper( attributes );
+          delete attr.creationDateTime; // redudant information
           // This check is needed because there are some Models which only have the Standardattributes
           if ( Object.keys( attr ).length > 2 ) {
             return this.create<T, P>( entity, attr.name, attr, attr.creationDateTime );
@@ -95,8 +96,6 @@ class DynamoDb {
         TableName: tableEntry.getTableName(),
         Item: { ...Item, ...this.dynamoDbDataBuilder( tableEntry.getProps() ) },
       };
-      console.log( input );
-
       const command = new PutItemCommand( input );
       const response = await this.client.send( command );
       return response;
@@ -116,7 +115,30 @@ class DynamoDb {
     const keys = Object.keys( attributes );
     let result: any;
     keys.forEach( value => {
-      result = { ...result, [value]: attributes[value].S };
+      if ('S' in attributes[value]) {
+        result = { ...result, [value]: attributes[value].S };
+      }
+      if ('N' in attributes[value]) {
+        result = { ...result, [value]: attributes[value].N };
+      }
+      if ('B' in attributes[value]) {
+        result = { ...result, [value]: attributes[value].B };
+      }
+      if ('L' in attributes[value]) {
+        const values = attributes[value].L as Array<any>;
+        const foo = values.map(val => {
+          if ('S' in val) {
+            return val.S;
+          }
+          if ('N' in val) {
+            return val.N;
+          }
+          if ('B' in val) {
+            return val.B;
+          }
+        });
+        result = { ...result, [value]: foo };
+      }
     } );
     return result;
   }
@@ -142,7 +164,10 @@ class DynamoDb {
    * @params topLevelName objects can be nested
    * @returns object e.g. { attribute: { S: 'foo' } }
    */
-  public dynamoAttributeKeyValue( object: any, topLevelName: string ): { [key: string]: { [key: string]: string } } | undefined {
+  public dynamoAttributeKeyValue( object: any, topLevelName: string ):
+  { [key: string]: { [key: string]: string }
+  | {[key: string]: { [key: string]: string }[]}; }
+  | undefined {
     try {
       for ( const key in object ) {
         switch ( typeof object[key] ) {
@@ -151,6 +176,15 @@ class DynamoDb {
           case 'boolean':
             return { [topLevelName]: { B: object[key] } };
           case 'object':
+            if (Array.isArray(object[key])) {
+              const objects = object[key] as Array<string | number | boolean>;
+              const listOfObjects = objects.map(obj => {
+                const foo: any = this.dynamoAttributeKeyValue({ foo: obj }, 'bar');
+                return foo.bar;
+              });
+              return { [topLevelName]: { L: listOfObjects } };
+            }
+            // An Array is also an object
             return this.dynamoAttributeKeyValue( object[key], topLevelName );
           default:
             return { [topLevelName]: { S: object[key] } };
