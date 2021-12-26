@@ -43,13 +43,18 @@ Due to that there is a custom CDK-class `LocalStack.ts`. Because the `LambdaFlee
 
 ### Start development
 
-All the commands above a put into `pnpm dev` ([#9]) which [`docker-compose`](#docker-compose), `bootstrap`, and `deploy` and [`watch`](#watch-mode).
+All the commands above a put into `pnpm dev` ([#9]) which [`docker-compose`](#docker-compose), `bootstrap`, and `deploy` and [`watch`](#watch-mode). <br/>
+It could happen that the following command get stucked. If so it is most likely that `docker-compose` is still running. <br/>
 
 ```bash
+# if you want to be super safe
+docker-compose down
 pnpm dev
 ```
 
-![pnpm dev](../../.tours/pnpm-dev.gif)
+The local OpenApi/Swagger Documentation is `http://localhost:4566/restapis/<api-gw-id>/local/_user_request_/openapi/index.html` (Note: The rest api changes everytime you restart `docker-compose up`).
+
+![pnpm dev](../../.tours/swagger-docs.png)
 
 ## Tools
 

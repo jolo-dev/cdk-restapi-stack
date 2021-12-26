@@ -30,10 +30,6 @@ const dynamo = new DynamoDb(config);
 export const handler: APIGatewayProxyHandler = async () => {
   try {
     const entries = await dynamo.listEntries<Project, I4DProject>('Projects', Project);
-    const results = entries.map(value => {
-      delete value.props.creationDateTime;
-      return value;
-    });
     if (entries.length > 0) {
       const result: APIGatewayProxyResult = {
         headers: {

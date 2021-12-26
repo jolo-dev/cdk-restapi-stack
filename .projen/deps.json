@@ -152,11 +152,6 @@
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-s3-deployment",
-      "version": "^1.135.0",
-      "type": "runtime"
-    },
-    {
       "name": "@aws-cdk/aws-s3",
       "version": "^1.135.0",
       "type": "runtime"
@@ -193,10 +188,6 @@
     },
     {
       "name": "swagger-jsdoc",
-      "type": "runtime"
-    },
-    {
-      "name": "uuid",
       "type": "runtime"
     }
   ],

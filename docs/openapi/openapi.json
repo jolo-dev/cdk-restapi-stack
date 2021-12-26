@@ -6,6 +6,278 @@
     "description": "Assetmanagement for 4d"
   },
   "paths": {
+    "/phase": {
+      "delete": {
+        "tags": [
+          "Phases"
+        ],
+        "requestBody": {
+          "description": "Request to delete a Phase by its name.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Phase has been deleted successfully"
+          },
+          "400": {
+            "description": "Error in deleting Phase"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Phases"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Phase_data"
+        },
+        "responses": {
+          "201": {
+            "description": "Phase has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new phase"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Phases"
+        ],
+        "requestBody": {
+          "ref": "#/components/requestBodies/Phase_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Phase has been updated successfully"
+          },
+          "400": {
+            "description": "Error in updating Entry entry in Phases"
+          }
+        }
+      }
+    },
+    "/project": {
+      "delete": {
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "description": "Request to delete a Project by its name.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project has been deleted"
+          },
+          "400": {
+            "description": "Error in deleting Project"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "requestBodies": {
+            "Project_data": {
+              "description": "Request to add a new Project.",
+              "required": true,
+              "content": {
+                "application/json": null,
+                "schema": {
+                  "$ref": "#/components/schemas/Project/properties/props"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new project"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Project has been updated successfully"
+          },
+          "400": {
+            "description": "Error in updating Entry ${entry} in Projects"
+          }
+        }
+      }
+    },
+    "/season": {
+      "delete": {
+        "tags": [
+          "Seasons"
+        ],
+        "requestBody": {
+          "description": "Request to delete a Project by its name.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Season has been deleted successfully"
+          },
+          "400": {
+            "description": "Error in deleting Season"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seasons"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Season_data"
+        },
+        "responses": {
+          "201": {
+            "description": "Season has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new season"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Seasons"
+        ],
+        "requestBody": {
+          "ref": "#/components/requestBodies/Season_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Season has been updated successfully"
+          },
+          "400": {
+            "description": "Error in updating Entry entry in Seasons"
+          }
+        }
+      }
+    },
+    "/tag": {
+      "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "requestBody": {
+          "description": "Request to delete a Tag by its name.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag has been deleted successfully"
+          },
+          "400": {
+            "description": "Error in deleting Tag"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Tag_data"
+        },
+        "responses": {
+          "201": {
+            "description": "Tag has been added successfully"
+          },
+          "400": {
+            "description": "Error in adding a new Tag"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tags"
+        ],
+        "requestBody": {
+          "ref": "#/components/requestBodies/Tag_data"
+        },
+        "responses": {
+          "200": {
+            "description": "Tag has been updated successfully"
+          },
+          "400": {
+            "description": "Error in updating Entry entry in Tags"
+          }
+        }
+      }
+    },
     "/phases": {
       "get": {
         "tags": [
@@ -132,90 +404,6 @@
           }
         }
       }
-    },
-    "/phase": {
-      "post": {
-        "tags": [
-          "Phases"
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Phase_data"
-        },
-        "responses": {
-          "201": {
-            "description": "Phase has been added successfully"
-          },
-          "400": {
-            "description": "Error in adding a new phase"
-          },
-          "406": {
-            "description": "The post body is empty or corrupt"
-          }
-        }
-      }
-    },
-    "/project": {
-      "post": {
-        "tags": [
-          "Projects"
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Project_data"
-        },
-        "responses": {
-          "201": {
-            "description": "Project has been added successfully"
-          },
-          "400": {
-            "description": "Error in adding a new project"
-          },
-          "406": {
-            "description": "The post body is empty or corrupt"
-          }
-        }
-      }
-    },
-    "/season": {
-      "post": {
-        "tags": [
-          "Seasons"
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Season_data"
-        },
-        "responses": {
-          "201": {
-            "description": "Season has been added successfully"
-          },
-          "400": {
-            "description": "Error in adding a new season"
-          },
-          "406": {
-            "description": "The post body is empty or corrupt."
-          }
-        }
-      }
-    },
-    "/tag": {
-      "post": {
-        "tags": [
-          "Tags"
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Tag_data"
-        },
-        "responses": {
-          "201": {
-            "description": "Tag has been added successfully"
-          },
-          "400": {
-            "description": "Error in adding a new Tag"
-          },
-          "406": {
-            "description": "The post body is empty or corrupt."
-          }
-        }
-      }
     }
   },
   "components": {
@@ -232,17 +420,6 @@
                   "type": "string"
                 }
               }
-            }
-          }
-        }
-      },
-      "Project_data": {
-        "description": "Request to add a new Project.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Project/properties/props"
             }
           }
         }

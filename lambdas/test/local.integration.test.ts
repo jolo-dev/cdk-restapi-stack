@@ -96,4 +96,35 @@ describe('Integration', () => {
 
   });
 
+  test.only('update a project', async () => {
+    // Adding a project
+    const props: I4DProject = {
+      name: 'UpdateMe',
+      coverImage: 's3://url',
+      description: 'This is a Description',
+      author: 'TestAuthor',
+      phase,
+      season,
+      tags,
+    };
+    const project = new Project(props.name, props);
+    await dynamo.addEntry(project);
+
+    const propsToUpdate: I4DProject = {
+      name: 'UpdateMe',
+      author: 'UpdateAuthor',
+      description: 'UpdateDescription',
+    };
+    const entry = await dynamo.getItem<I4DProject>('Projects', propsToUpdate.name);
+    const updatedProps = { ...entry, ...propsToUpdate };
+    // Adding an entry with the same partition key works like updating them
+    const updateEntry = new Project(entry.name, updatedProps, entry.creationDateTime);
+    const entries = await dynamo.addEntry(updateEntry);
+    expect(entries.$metadata.httpStatusCode).toBe(200);
+    const checkUpdate = await dynamo.getItem<I4DProject>('Projects', propsToUpdate.name);
+    expect(checkUpdate).toEqual(updatedProps);
+
+    const foo = await dynamo.deleteEntry('Projects', props.name);
+    expect(foo.$metadata.httpStatusCode).toBe(200);
+  });
 });

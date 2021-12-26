@@ -28,9 +28,9 @@ export class LambdaFleetStack extends Stack {
     super(scope, id, props);
 
     // Networking
-    let vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
-    let subnet1 = this.node.tryGetContext('privateSubnet1') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-1/id');
-    let subnet2 = this.node.tryGetContext('privateSubnet2') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-2/id');
+    const vpcId = this.node.tryGetContext('vpcId') ?? StringParameter.valueForStringParameter(this, '/networking/vpc/id');
+    const subnet1 = this.node.tryGetContext('privateSubnet1') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-1/id');
+    const subnet2 = this.node.tryGetContext('privateSubnet2') ?? StringParameter.valueForStringParameter(this, '/networking/private-subnet-2/id');
 
     this.vpc = this.getVpc(vpcId);
     this.subnets = [this.getPrivateSubnet(subnet1), this.getPrivateSubnet(subnet2)];
@@ -83,40 +83,17 @@ export class LambdaFleetStack extends Stack {
       },
     );
 
-    const s3Endpoint = new GatewayVpcEndpoint(this, 'VPCEndpointS3', {
-      vpc: this.vpc,
-      service: {
-        name: `com.amazonaws.${region}.${VpcEndpointServiceName.S3}`,
-      },
-    });
-
-    s3Endpoint.addToPolicy(new PolicyStatement({
-      sid: 'Access-To-4d-Bucket',
-      actions: [
-        's3:GetObject',
-        's3:PutObject',
-        's3:DeleteObject',
-        's3:ListBucket',
-      ],
-      principals: [new AnyPrincipal()],
-      effect: Effect.ALLOW,
-      resources: [`arn:aws:s3:${region}:${this.account}:*`],
-    }));
-
-    this.createCfnOutputs(
-      {
-        vpcEndpointId: s3Endpoint.vpcEndpointId,
-        serviceName: VpcEndpointServiceName.S3,
-        vpcId: this.vpc.vpcId,
-      },
-    );
-
     const api = new PrivateApiGateway(this, 'PrivateApiGateway', {
       region, vpcEndpoint: [apiGatewayVpcEndpoint],
     });
 
     // CreateOpenApi
-    const openApi = new OpenApiDocumentation(this, 'OpenApiDoc', api, this.vpc, this.subnets, apiGatewayVpcEndpoint.vpcEndpointId);
+    new OpenApiDocumentation(this, 'OpenApiDoc', {
+      api,
+      vpc: this.vpc,
+      subnets: this.subnets,
+      vpcEndpointId: apiGatewayVpcEndpoint.vpcEndpointId,
+    });
 
     // Bundling all the Lambdas
     methods.forEach(async (method) => {
@@ -127,7 +104,7 @@ export class LambdaFleetStack extends Stack {
         subnets: this.subnets,
         vpc: this.vpc,
       });
-      await lambda.createLambdaFunctions(openApi);
+      await lambda.createLambdaFunctions();
     });
   }
 

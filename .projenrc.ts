@@ -24,11 +24,10 @@ const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
       '@aws-cdk/aws-ec2',
       '@aws-cdk/aws-iam',
       '@aws-cdk/aws-dynamodb',
-      '@aws-cdk/aws-s3',
-      '@aws-cdk/aws-s3-deployment'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
+      '@aws-cdk/aws-s3'], /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
     disableTsconfig: true, // we use the https://github.com/tsconfig/bases/
     github: false, // Because we are not on github
-    deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'uuid', 'swagger-jsdoc'], /* Runtime dependencies of this module. */
+    deps: ['esbuild', '@aws-sdk/client-ssm', '@aws-sdk/client-service-catalog', '@aws-sdk/util-waiter', 'moment', 'swagger-jsdoc'], /* Runtime dependencies of this module. */
     description: 'Backend for 4dt including Backend APIs and Infrastructure all in Typescript', /* The description is just a string that helps people understand the purpose of the package. */
     devDeps: ['@tsconfig/recommended', 'husky', 'aws-sdk-client-mock', '@types/uuid', '@types/swagger-jsdoc'], /* Build dev dependencies for this module. */
     gitignore: ['.env', 'dist', '.DS_Store', 'test-reports', 'cdk.out'],

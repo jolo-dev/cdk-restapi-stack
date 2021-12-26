@@ -6,6 +6,7 @@ import {
   PutItemCommand,
   ScanCommand,
   DeleteItemCommand,
+  GetItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import { Standard, StandardAttribute } from '../../models/StandardAttribute';
 
@@ -33,10 +34,11 @@ class DynamoDb {
       if ( response.Items ) {
         return response.Items.map( attributes => {
           const attr: P = this.attributesMapper( attributes );
-          delete attr.creationDateTime; // redudant information
           // This check is needed because there are some Models which only have the Standardattributes
           if ( Object.keys( attr ).length > 2 ) {
-            return this.create<T, P>( entity, attr.name, attr, attr.creationDateTime );
+            const object = this.create<T, P>( entity, attr.name, attr, attr.creationDateTime );
+            delete object.getProps().creationDateTime; // remove redundant information
+            return object;
           }
           return this.create<T, P>( entity, attr.name, undefined, attr.creationDateTime );
         } );
@@ -58,6 +60,23 @@ class DynamoDb {
   //     throw new Error(e.message);
   //   }
   // }
+
+  public async getItem<P extends StandardAttribute>(tableName: string, name: string): Promise<P> {
+    try {
+      const command = new GetItemCommand({ TableName: tableName, Key: { name: { S: name } } });
+      const result = await this.client.send(command);
+      if (result.Item) {
+        const props: P = this.attributesMapper(result.Item);
+        return props;
+      } else {
+        throw new Error(`Couldn't find ${name} in ${tableName}`);
+      }
+    } catch (error) {
+      console.error(error);
+      const e = error as Error;
+      throw new Error(e.message);
+    }
+  }
 
   public async deleteEntry(tableName: string, name: string) {
     try {

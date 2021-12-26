@@ -1,9 +1,9 @@
 import { StandardAttribute, Standard } from './StandardAttribute';
 
 export interface I4DProject extends StandardAttribute {
-  author: string;
-  description: string;
-  coverImage: string;
+  author?: string;
+  description?: string;
+  coverImage?: string;
   season?: string;
   phase?: string;
   tags?: string[];
@@ -12,14 +12,6 @@ export interface I4DProject extends StandardAttribute {
 /**
  * @swagger
  * components:
- *   requestBodies:
- *     Project_data:
- *       description: Request to add a new Project.
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: "#/components/schemas/Project/properties/props"
  *   schemas:
  *     Project:
  *       type: object

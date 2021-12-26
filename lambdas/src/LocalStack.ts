@@ -3,6 +3,7 @@ import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Function, AssetCode, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Stack, App, StackProps, CfnOutput } from '@aws-cdk/core';
 import { DynamoDbStack } from '../../infrastructure/stacks/dynamodb/Stack';
+import { OpenApiDocumentation } from '../../infrastructure/stacks/lambda-fleet/OpenApiDocumentation';
 
 class LocalStack extends Stack {
   constructor(scope: App, id: string, props?: StackProps) {
@@ -12,6 +13,10 @@ class LocalStack extends Stack {
       deployOptions: {
         stageName: process.env.STAGE ?? 'local',
       },
+    });
+
+    new OpenApiDocumentation(this, 'LocalOpenApiDocumentation', {
+      api,
     });
 
     fs.readdirSync('dist').forEach(httpMethod => {
@@ -26,9 +31,7 @@ class LocalStack extends Stack {
           },
         });
 
-        const responseCodes = httpMethod === 'get' ? [{ statusCode: '200' }, { statusCode: '400' }] : [{ statusCode: '201' }, { statusCode: '400' }, { statusCode: '406' }];
-
-        api.root
+        const resource = api.root.getResource(lambdaName) ?? api.root
           .addResource(lambdaName, {
             // 👇 set up CORS
             defaultCorsPreflightOptions: {
@@ -42,31 +45,17 @@ class LocalStack extends Stack {
               allowCredentials: true,
               allowOrigins: ['*'],
             },
-          })
-          .addMethod(httpMethod,
-            new LambdaIntegration(handler, { proxy: true, integrationResponses: responseCodes }), { methodResponses: responseCodes });
+          });
 
-        new CfnOutput(this, `LocalLambdaEndpoint${lambdaName}`, {
+        resource.addMethod(httpMethod,
+          new LambdaIntegration(handler, { proxy: true, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }] }),
+          { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }] });
+
+        new CfnOutput(this, `LocalLambdaEndpoint${httpMethod.toUpperCase()}${lambdaName}`, {
           value: `http://localhost:4566/restapis/${api.restApiId}/local/_user_request_/${lambdaName}`,
         });
       });
     });
-
-    // Adding OpenAPI which is a Lambda containing Swagger Documentation
-    const openApi = new Function(this, 'OpenapiDocLambda', {
-      runtime: Runtime.NODEJS_14_X,
-      handler: 'docs.handler',
-      code: Code.fromAsset('../docs', { exclude: ['node_modules', '*.ts', 'package.json'] }),
-      environment: {
-        API_GW_ID: api.restApiId,
-        STAGE: 'local',
-      },
-    });
-    api.root
-      .addResource('openapi')
-      .addProxy({
-        defaultIntegration: new LambdaIntegration(openApi, { integrationResponses: [{ statusCode: '200' }, { statusCode: '404' }] }),
-      });
 
     new CfnOutput(this, 'LocalSwaggerDocumentation', {
       description: 'Use the local Swagger',

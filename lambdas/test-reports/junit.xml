@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="4" failures="0" errors="0" time="3.753">
-  <testsuite name="Integration" errors="0" failures="0" skipped="0" timestamp="2021-12-22T10:21:08" time="3.605" tests="4">
-    <testcase classname="Integration add Project and deletes a project based on name" name="Integration add Project and deletes a project based on name" time="0.102">
+<testsuites name="jest tests" tests="5" failures="0" errors="0" time="3.455">
+  <testsuite name="Integration" errors="0" failures="0" skipped="4" timestamp="2021-12-23T10:24:55" time="3.33" tests="5">
+    <testcase classname="Integration add Project and deletes a project based on name" name="Integration add Project and deletes a project based on name" time="0">
+      <skipped/>
     </testcase>
-    <testcase classname="Integration add Season and delete Season based on Name" name="Integration add Season and delete Season based on Name" time="0.064">
+    <testcase classname="Integration add Season and delete Season based on Name" name="Integration add Season and delete Season based on Name" time="0">
+      <skipped/>
     </testcase>
-    <testcase classname="Integration add Phase and delete Phase based on Name" name="Integration add Phase and delete Phase based on Name" time="0.064">
+    <testcase classname="Integration add Phase and delete Phase based on Name" name="Integration add Phase and delete Phase based on Name" time="0">
+      <skipped/>
     </testcase>
-    <testcase classname="Integration add multiple Tags and delete them based on Name" name="Integration add multiple Tags and delete them based on Name" time="0.078">
+    <testcase classname="Integration add multiple Tags and delete them based on Name" name="Integration add multiple Tags and delete them based on Name" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="Integration update a project" name="Integration update a project" time="0.089">
     </testcase>
   </testsuite>
 </testsuites>

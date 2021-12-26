@@ -5,7 +5,6 @@ import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Code, Function, Runtime, Tracing } from '@aws-cdk/aws-lambda';
 import { Construct, Stack } from '@aws-cdk/core';
 import { build } from 'esbuild';
-import { OpenApiDocumentation } from './OpenApiDocumentation';
 import { PrivateApiGateway } from './PrivateApiGateway';
 
 export enum Method {
@@ -40,7 +39,7 @@ export class LambdaFleet extends Construct {
     void this.bundlingLambdas(this.method);
   }
 
-  public async createLambdaFunctions(docs: OpenApiDocumentation) {
+  public async createLambdaFunctions() {
     const lambdaFolder = `${this.lambdaFolder}/dist/${this.method}`;
     if (fs.existsSync(lambdaFolder)) {
       const lambdas = this.getAllLambdasFromFolder(lambdaFolder);
@@ -67,7 +66,7 @@ export class LambdaFleet extends Construct {
         lambdaFunction.addToRolePolicy(policy);
 
         // // Add Lambda to API Gateway
-        const restEndpoint = this.api.root.addResource(lambdaName, {
+        const restEndpoint = this.api.root.getResource(lambdaName) ?? this.api.root.addResource(lambdaName, {
           // 👇 set up CORS
           defaultCorsPreflightOptions: {
             allowHeaders: [
@@ -82,17 +81,10 @@ export class LambdaFleet extends Construct {
           },
         });
 
-        const responseCodes = this.method === 'get' ? [{ statusCode: '200' }, { statusCode: '400' }] : [{ statusCode: '201' }, { statusCode: '400' }, { statusCode: '406' }];
-
         restEndpoint.addMethod(this.method,
-          new LambdaIntegration(lambdaFunction, { proxy: true, integrationResponses: responseCodes }),
-          { methodResponses: responseCodes },
+          new LambdaIntegration(lambdaFunction, { proxy: true, integrationResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] }),
+          { methodResponses: [{ statusCode: '200' }, { statusCode: '400' }, { statusCode: '404' }] },
         );
-        // For API GW Documentation Part
-        docs.createCfnDocumentationParts({
-          lambdaName,
-          method: this.method,
-        });
       });
     }
   }

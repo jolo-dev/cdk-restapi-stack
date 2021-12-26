@@ -5,14 +5,15 @@
   "scripts": {
     "build": "esbuild ./src/**/**.ts --bundle --minify --platform=node --target=node14.7 --outdir=./dist",
     "build:docs": "esbuild ../docs/docs.ts --bundle --minify --platform=node --target=node14.7 --outfile=../docs/docs.js",
-    "dev": "docker-compose up -d && pnpm local:bootstrap && pnpm build:docs && pnpm local:deploy && pnpm watch",
+    "dev": "pnpm dc && pnpm local:bootstrap && pnpm build:docs && pnpm local:deploy && pnpm watch",
+    "dc": "docker-compose up -d",
     "eslint": "eslint . --fix --ext .ts",
     "local": "cdklocal",
     "local:bootstrap": "export STAGE=local && cdklocal bootstrap",
     "local:deploy": "export STAGE=local && cdklocal deploy --all --require-approval never",
     "test": "jest --silent",
     "test:watch": "jest --watch",
-    "test:integration": "docker-compose up -d && pnpm local:bootstrap && pnpm local:deploy && jest -- test/local.integration.test.ts",
+    "test:integration": "pnpm dc && pnpm local:bootstrap && pnpm local:deploy && jest -- test/local.integration.test.ts",
     "watch": "npx ts-node watch.ts"
   },
   "author": "John Nguyen <john@globaldatanet.com>",
