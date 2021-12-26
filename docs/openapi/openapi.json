@@ -107,25 +107,17 @@
           "Projects"
         ],
         "requestBody": {
-          "requestBodies": {
-            "Project_data": {
-              "description": "Request to add a new Project.",
-              "required": true,
-              "content": {
-                "application/json": null,
-                "schema": {
-                  "$ref": "#/components/schemas/Project/properties/props"
-                }
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Project_data"
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Project has been added successfully"
           },
           "400": {
             "description": "Error in adding a new project"
+          },
+          "406": {
+            "description": "The post body is empty or corrupt"
           }
         }
       },
@@ -407,56 +399,6 @@
     }
   },
   "components": {
-    "requestBodies": {
-      "Phase_data": {
-        "description": "Request to add a new Phase.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "Season_data": {
-        "description": "Request to add a new Season.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "Tag_data": {
-        "description": "Request to add a new Tag.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "schemas": {
       "Phase": {
         "type": "object",
@@ -528,6 +470,24 @@
           },
           "creationDateTime": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Tag_data": {
+        "description": "Request to add a new Tag.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

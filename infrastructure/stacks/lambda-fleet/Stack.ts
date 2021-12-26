@@ -1,5 +1,4 @@
 import { Vpc, PrivateSubnet, IVpc, ISubnet, InterfaceVpcEndpoint, GatewayVpcEndpoint, SecurityGroup, Peer, Port } from '@aws-cdk/aws-ec2';
-import { AnyPrincipal, Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { Stack, Construct, CfnOutput, StackProps } from '@aws-cdk/core';
 import { LambdaFleet, Method } from './LambdaFleet';

@@ -3,6 +3,17 @@ import { Standard } from './StandardAttribute';
 /**
  * @swagger
  * components:
+ *   requestBodies:
+ *     Season_data:
+ *       description: Request to add a new Season.
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
  *   schemas:
  *     Season:
  *       type: object

@@ -1517,15 +1517,6 @@ Object {
         "Ref": "VPCEndpointApiGWDCDB87C3",
       },
     },
-    "CfnVpcEndpoints3": Object {
-      "Description": "VPCEndpoint with Service s3 for VPC: vpc-12345",
-      "Export": Object {
-        "Name": "VPCEndpoints3",
-      },
-      "Value": Object {
-        "Ref": "VPCEndpointS3404479A7",
-      },
-    },
     "PrivateApiGatewayCfnApiUrl952172FA": Object {
       "Value": Object {
         "Fn::Join": Array [
@@ -1577,137 +1568,221 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9ArtifactHash0AD8BB66": Object {
-      "Description": "Artifact hash for asset \\"129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9\\"",
+    "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bArtifactHashB323059C": Object {
+      "Description": "Artifact hash for asset \\"0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27b\\"",
       "Type": "String",
     },
-    "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9S3BucketEE165C07": Object {
-      "Description": "S3 bucket for asset \\"129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9\\"",
+    "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bS3Bucket0B44EB44": Object {
+      "Description": "S3 bucket for asset \\"0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27b\\"",
       "Type": "String",
     },
-    "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9S3VersionKeyF7DAD927": Object {
-      "Description": "S3 key for asset version \\"129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9\\"",
+    "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bS3VersionKey972E3BF4": Object {
+      "Description": "S3 key for asset version \\"0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27b\\"",
       "Type": "String",
     },
-    "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6ArtifactHash44CBDF1C": Object {
-      "Description": "Artifact hash for asset \\"1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6\\"",
+    "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44ArtifactHash3EBE5B0C": Object {
+      "Description": "Artifact hash for asset \\"18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44\\"",
       "Type": "String",
     },
-    "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6S3Bucket0D3B6058": Object {
-      "Description": "S3 bucket for asset \\"1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6\\"",
+    "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44S3Bucket492F80DF": Object {
+      "Description": "S3 bucket for asset \\"18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44\\"",
       "Type": "String",
     },
-    "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6S3VersionKey345EE26B": Object {
-      "Description": "S3 key for asset version \\"1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6\\"",
+    "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44S3VersionKeyAFFEA9E4": Object {
+      "Description": "S3 key for asset version \\"18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44\\"",
       "Type": "String",
     },
-    "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30ArtifactHash63028859": Object {
-      "Description": "Artifact hash for asset \\"50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30\\"",
+    "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4ArtifactHash51892BA1": Object {
+      "Description": "Artifact hash for asset \\"2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4\\"",
       "Type": "String",
     },
-    "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30S3Bucket40AEC50B": Object {
-      "Description": "S3 bucket for asset \\"50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30\\"",
+    "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4S3Bucket2AC68454": Object {
+      "Description": "S3 bucket for asset \\"2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4\\"",
       "Type": "String",
     },
-    "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30S3VersionKey622C6E6F": Object {
-      "Description": "S3 key for asset version \\"50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30\\"",
+    "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4S3VersionKey1D2BF4A0": Object {
+      "Description": "S3 key for asset version \\"2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4\\"",
       "Type": "String",
     },
-    "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37ArtifactHash61698EF9": Object {
-      "Description": "Artifact hash for asset \\"76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37\\"",
+    "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104ArtifactHash98F53081": Object {
+      "Description": "Artifact hash for asset \\"28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104\\"",
       "Type": "String",
     },
-    "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37S3BucketD75143F1": Object {
-      "Description": "S3 bucket for asset \\"76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37\\"",
+    "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104S3Bucket72328C98": Object {
+      "Description": "S3 bucket for asset \\"28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104\\"",
       "Type": "String",
     },
-    "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37S3VersionKey31E4E03E": Object {
-      "Description": "S3 key for asset version \\"76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37\\"",
+    "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104S3VersionKey49C7EF72": Object {
+      "Description": "S3 key for asset version \\"28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104\\"",
       "Type": "String",
     },
-    "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adArtifactHash285A4673": Object {
-      "Description": "Artifact hash for asset \\"88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845ad\\"",
+    "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57ArtifactHash67B74D55": Object {
+      "Description": "Artifact hash for asset \\"301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57\\"",
       "Type": "String",
     },
-    "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adS3Bucket18421C85": Object {
-      "Description": "S3 bucket for asset \\"88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845ad\\"",
+    "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57S3Bucket70AA79F1": Object {
+      "Description": "S3 bucket for asset \\"301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57\\"",
       "Type": "String",
     },
-    "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adS3VersionKeyC3E169D2": Object {
-      "Description": "S3 key for asset version \\"88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845ad\\"",
+    "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57S3VersionKey48861EF2": Object {
+      "Description": "S3 key for asset version \\"301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57\\"",
       "Type": "String",
     },
-    "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7ArtifactHashFDAE846F": Object {
-      "Description": "Artifact hash for asset \\"8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7\\"",
+    "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecArtifactHashF0A2FB09": Object {
+      "Description": "Artifact hash for asset \\"4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ec\\"",
       "Type": "String",
     },
-    "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7S3Bucket73D11BAA": Object {
-      "Description": "S3 bucket for asset \\"8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7\\"",
+    "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecS3Bucket0201B365": Object {
+      "Description": "S3 bucket for asset \\"4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ec\\"",
       "Type": "String",
     },
-    "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7S3VersionKeyED7ACBC0": Object {
-      "Description": "S3 key for asset version \\"8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7\\"",
+    "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecS3VersionKey777484C5": Object {
+      "Description": "S3 key for asset version \\"4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ec\\"",
       "Type": "String",
     },
-    "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecArtifactHashA91C8F62": Object {
-      "Description": "Artifact hash for asset \\"960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfec\\"",
+    "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cArtifactHash1ED9654B": Object {
+      "Description": "Artifact hash for asset \\"67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2c\\"",
       "Type": "String",
     },
-    "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecS3Bucket0A3FD034": Object {
-      "Description": "S3 bucket for asset \\"960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfec\\"",
+    "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3Bucket72B9D8A0": Object {
+      "Description": "S3 bucket for asset \\"67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2c\\"",
       "Type": "String",
     },
-    "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecS3VersionKeyB8A9AF0A": Object {
-      "Description": "S3 key for asset version \\"960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfec\\"",
+    "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3VersionKey294406C0": Object {
+      "Description": "S3 key for asset version \\"67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2c\\"",
       "Type": "String",
     },
-    "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43ArtifactHash395ED06A": Object {
-      "Description": "Artifact hash for asset \\"cf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43\\"",
+    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31ArtifactHashBD81F876": Object {
+      "Description": "Artifact hash for asset \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
       "Type": "String",
     },
-    "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43S3Bucket9481E264": Object {
-      "Description": "S3 bucket for asset \\"cf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43\\"",
+    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3Bucket84998BC3": Object {
+      "Description": "S3 bucket for asset \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
       "Type": "String",
     },
-    "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43S3VersionKeyD5092EE0": Object {
-      "Description": "S3 key for asset version \\"cf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43\\"",
+    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B": Object {
+      "Description": "S3 key for asset version \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
       "Type": "String",
     },
-    "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981ArtifactHash8F68E686": Object {
-      "Description": "Artifact hash for asset \\"de8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981\\"",
+    "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27ArtifactHash00AF141F": Object {
+      "Description": "Artifact hash for asset \\"88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27\\"",
       "Type": "String",
     },
-    "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981S3Bucket256F7A2D": Object {
-      "Description": "S3 bucket for asset \\"de8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981\\"",
+    "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27S3BucketB320250A": Object {
+      "Description": "S3 bucket for asset \\"88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27\\"",
       "Type": "String",
     },
-    "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981S3VersionKey5C1CADAA": Object {
-      "Description": "S3 key for asset version \\"de8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981\\"",
+    "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27S3VersionKey3359A06C": Object {
+      "Description": "S3 key for asset version \\"88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27\\"",
       "Type": "String",
     },
-    "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2ArtifactHash33E0231B": Object {
-      "Description": "Artifact hash for asset \\"ed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2\\"",
+    "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636ArtifactHash85CD444F": Object {
+      "Description": "Artifact hash for asset \\"975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636\\"",
       "Type": "String",
     },
-    "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2S3Bucket88A0DA61": Object {
-      "Description": "S3 bucket for asset \\"ed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2\\"",
+    "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636S3Bucket5877AFD3": Object {
+      "Description": "S3 bucket for asset \\"975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636\\"",
       "Type": "String",
     },
-    "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2S3VersionKey8B3676CE": Object {
-      "Description": "S3 key for asset version \\"ed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2\\"",
+    "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636S3VersionKey4C569A9B": Object {
+      "Description": "S3 key for asset version \\"975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636\\"",
+      "Type": "String",
+    },
+    "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dArtifactHash8CFE1A7F": Object {
+      "Description": "Artifact hash for asset \\"a12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32d\\"",
+      "Type": "String",
+    },
+    "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dS3Bucket6D5B383B": Object {
+      "Description": "S3 bucket for asset \\"a12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32d\\"",
+      "Type": "String",
+    },
+    "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dS3VersionKeyF8A76943": Object {
+      "Description": "S3 key for asset version \\"a12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32d\\"",
+      "Type": "String",
+    },
+    "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fArtifactHash876C4257": Object {
+      "Description": "Artifact hash for asset \\"a1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1f\\"",
+      "Type": "String",
+    },
+    "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fS3Bucket733D6EA1": Object {
+      "Description": "S3 bucket for asset \\"a1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1f\\"",
+      "Type": "String",
+    },
+    "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fS3VersionKey3153E8DF": Object {
+      "Description": "S3 key for asset version \\"a1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1f\\"",
+      "Type": "String",
+    },
+    "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecArtifactHash22D1E51F": Object {
+      "Description": "Artifact hash for asset \\"b8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ec\\"",
+      "Type": "String",
+    },
+    "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecS3Bucket211647CB": Object {
+      "Description": "S3 bucket for asset \\"b8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ec\\"",
+      "Type": "String",
+    },
+    "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecS3VersionKey8D712D9A": Object {
+      "Description": "S3 key for asset version \\"b8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ec\\"",
+      "Type": "String",
+    },
+    "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbArtifactHashC539A7F2": Object {
+      "Description": "Artifact hash for asset \\"ccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714db\\"",
+      "Type": "String",
+    },
+    "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbS3Bucket1609CA34": Object {
+      "Description": "S3 bucket for asset \\"ccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714db\\"",
+      "Type": "String",
+    },
+    "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbS3VersionKey09EE95F7": Object {
+      "Description": "S3 key for asset version \\"ccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714db\\"",
+      "Type": "String",
+    },
+    "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8ArtifactHash9F0F22D2": Object {
+      "Description": "Artifact hash for asset \\"d68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8\\"",
+      "Type": "String",
+    },
+    "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8S3Bucket85DE8C85": Object {
+      "Description": "S3 bucket for asset \\"d68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8\\"",
+      "Type": "String",
+    },
+    "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8S3VersionKey2DBF1530": Object {
+      "Description": "S3 key for asset version \\"d68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8\\"",
+      "Type": "String",
+    },
+    "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9ArtifactHash0A94605F": Object {
+      "Description": "Artifact hash for asset \\"f20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9\\"",
+      "Type": "String",
+    },
+    "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9S3Bucket5B038B88": Object {
+      "Description": "S3 bucket for asset \\"f20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9\\"",
+      "Type": "String",
+    },
+    "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9S3VersionKey39C4F971": Object {
+      "Description": "S3 key for asset version \\"f20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9\\"",
+      "Type": "String",
+    },
+    "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3ArtifactHash41CC16D5": Object {
+      "Description": "Artifact hash for asset \\"fe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3\\"",
+      "Type": "String",
+    },
+    "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3S3Bucket9EE12EB1": Object {
+      "Description": "S3 bucket for asset \\"fe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3\\"",
+      "Type": "String",
+    },
+    "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3S3VersionKey804A0643": Object {
+      "Description": "S3 key for asset version \\"fe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3\\"",
       "Type": "String",
     },
   },
   "Resources": Object {
-    "DELETELambdaFleetdeleteprojectFunction8C785426": Object {
+    "DELETELambdaFleetdeletephaseFunctionE7C4BD49": Object {
       "DependsOn": Array [
-        "DELETELambdaFleetdeleteprojectFunctionServiceRoleDefaultPolicy30CFFBD5",
-        "DELETELambdaFleetdeleteprojectFunctionServiceRole885B1201",
+        "DELETELambdaFleetdeletephaseFunctionServiceRoleDefaultPolicyCE3F7641",
+        "DELETELambdaFleetdeletephaseFunctionServiceRoleCB60BEC1",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37S3BucketD75143F1",
+            "Ref": "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27S3BucketB320250A",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1720,7 +1795,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37S3VersionKey31E4E03E",
+                          "Ref": "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27S3VersionKey3359A06C",
                         },
                       ],
                     },
@@ -1733,7 +1808,165 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters76e8e824aa4dc254348cda66f5b235536d478ab0c754bd197f788269a02cef37S3VersionKey31E4E03E",
+                          "Ref": "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27S3VersionKey3359A06C",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "phase.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletephaseFunctionServiceRoleCB60BEC1",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "DELETELambdaFleetdeletephaseFunctionSecurityGroup2048B7C3",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DELETELambdaFleetdeletephaseFunctionSecurityGroup2048B7C3": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetDELETELambdaFleetdeletephaseFunction268EEE25",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DELETELambdaFleetdeletephaseFunctionServiceRoleCB60BEC1": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DELETELambdaFleetdeletephaseFunctionServiceRoleDefaultPolicyCE3F7641": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DELETELambdaFleetdeletephaseFunctionServiceRoleDefaultPolicyCE3F7641",
+        "Roles": Array [
+          Object {
+            "Ref": "DELETELambdaFleetdeletephaseFunctionServiceRoleCB60BEC1",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DELETELambdaFleetdeleteprojectFunction8C785426": Object {
+      "DependsOn": Array [
+        "DELETELambdaFleetdeleteprojectFunctionServiceRoleDefaultPolicy30CFFBD5",
+        "DELETELambdaFleetdeleteprojectFunctionServiceRole885B1201",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8S3Bucket85DE8C85",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8S3VersionKey2DBF1530",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersd68a153b77de7e2b149c58beaebfa8eb4a6e6704f85237dc4ebae053d34165f8S3VersionKey2DBF1530",
                         },
                       ],
                     },
@@ -1857,6 +2090,322 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
+    "DELETELambdaFleetdeleteseasonFunction334250BE": Object {
+      "DependsOn": Array [
+        "DELETELambdaFleetdeleteseasonFunctionServiceRoleDefaultPolicy9353CD91",
+        "DELETELambdaFleetdeleteseasonFunctionServiceRole19D71C97",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecS3Bucket0201B365",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecS3VersionKey777484C5",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ecS3VersionKey777484C5",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "season.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeleteseasonFunctionServiceRole19D71C97",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "DELETELambdaFleetdeleteseasonFunctionSecurityGroup6522E9DB",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DELETELambdaFleetdeleteseasonFunctionSecurityGroup6522E9DB": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetDELETELambdaFleetdeleteseasonFunctionC46072C1",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DELETELambdaFleetdeleteseasonFunctionServiceRole19D71C97": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DELETELambdaFleetdeleteseasonFunctionServiceRoleDefaultPolicy9353CD91": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DELETELambdaFleetdeleteseasonFunctionServiceRoleDefaultPolicy9353CD91",
+        "Roles": Array [
+          Object {
+            "Ref": "DELETELambdaFleetdeleteseasonFunctionServiceRole19D71C97",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DELETELambdaFleetdeletetagFunction8672E389": Object {
+      "DependsOn": Array [
+        "DELETELambdaFleetdeletetagFunctionServiceRoleDefaultPolicyCECFF403",
+        "DELETELambdaFleetdeletetagFunctionServiceRoleE296182E",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44S3Bucket492F80DF",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44S3VersionKeyAFFEA9E4",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters18c83813034f7c5e2d8675a7b1af6d17b744e7740afd8bf1984ed2f0739a8f44S3VersionKeyAFFEA9E4",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "tag.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletetagFunctionServiceRoleE296182E",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "DELETELambdaFleetdeletetagFunctionSecurityGroup5B4BAD70",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DELETELambdaFleetdeletetagFunctionSecurityGroup5B4BAD70": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetDELETELambdaFleetdeletetagFunction6BF21AB6",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DELETELambdaFleetdeletetagFunctionServiceRoleDefaultPolicyCECFF403": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DELETELambdaFleetdeletetagFunctionServiceRoleDefaultPolicyCECFF403",
+        "Roles": Array [
+          Object {
+            "Ref": "DELETELambdaFleetdeletetagFunctionServiceRoleE296182E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DELETELambdaFleetdeletetagFunctionServiceRoleE296182E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "FourDVPCESgA4A7BE98": Object {
       "Properties": Object {
         "GroupDescription": "Security Group for VPC Endpoint",
@@ -1895,7 +2444,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43S3Bucket9481E264",
+            "Ref": "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3Bucket72B9D8A0",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1908,7 +2457,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43S3VersionKeyD5092EE0",
+                          "Ref": "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3VersionKey294406C0",
                         },
                       ],
                     },
@@ -1921,7 +2470,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameterscf26c537aa6e39fe87fb8b23f2b87c2978e52c797e5607158fd00193216a8b43S3VersionKeyD5092EE0",
+                          "Ref": "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3VersionKey294406C0",
                         },
                       ],
                     },
@@ -2053,7 +2602,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981S3Bucket256F7A2D",
+            "Ref": "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9S3Bucket5B038B88",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2066,7 +2615,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981S3VersionKey5C1CADAA",
+                          "Ref": "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9S3VersionKey39C4F971",
                         },
                       ],
                     },
@@ -2079,7 +2628,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersde8d5e98004e9eb259ac11b90594446017a0a966be6945b81477eaa8a9bd3981S3VersionKey5C1CADAA",
+                          "Ref": "AssetParametersf20255f95eac370e056f4e92b8108406478fc77e69cc840a3e4f8beadfe914c9S3VersionKey39C4F971",
                         },
                       ],
                     },
@@ -2211,7 +2760,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7S3Bucket73D11BAA",
+            "Ref": "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636S3Bucket5877AFD3",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2224,7 +2773,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7S3VersionKeyED7ACBC0",
+                          "Ref": "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636S3VersionKey4C569A9B",
                         },
                       ],
                     },
@@ -2237,7 +2786,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters8fb81833ba0fa302571a890430064b67fdb99fec494080b96a0d2998500f7dc7S3VersionKeyED7ACBC0",
+                          "Ref": "AssetParameters975f9e003fee734d2bbda8a06249ae1057a554c772b7b2672f1b038d42767636S3VersionKey4C569A9B",
                         },
                       ],
                     },
@@ -2369,7 +2918,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adS3Bucket18421C85",
+            "Ref": "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dS3Bucket6D5B383B",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2382,7 +2931,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adS3VersionKeyC3E169D2",
+                          "Ref": "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dS3VersionKeyF8A76943",
                         },
                       ],
                     },
@@ -2395,7 +2944,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters88e4dd25c4eafa50c1610ff494914befdbc9b412782e9718e2f93a656a7845adS3VersionKeyC3E169D2",
+                          "Ref": "AssetParametersa12e24087e1c40f5b56f7832c590eefc0ac3bf27080fb768fa0dd3eabf6bb32dS3VersionKeyF8A76943",
                         },
                       ],
                     },
@@ -2526,7 +3075,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9S3BucketEE165C07",
+            "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3Bucket84998BC3",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2539,7 +3088,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9S3VersionKeyF7DAD927",
+                          "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B",
                         },
                       ],
                     },
@@ -2552,7 +3101,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters129b338ce00e7e2595ed3b21e95fcf61c3f3784d7e7f7709f912032c75c18be9S3VersionKeyF7DAD927",
+                          "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B",
                         },
                       ],
                     },
@@ -2665,7 +3214,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6S3Bucket0D3B6058",
+            "Ref": "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57S3Bucket70AA79F1",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2678,7 +3227,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6S3VersionKey345EE26B",
+                          "Ref": "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57S3VersionKey48861EF2",
                         },
                       ],
                     },
@@ -2691,7 +3240,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters1b35fe972d65a7dfa6e565312517eebfdd0108dbb831f49b9d58e19e6c9a59d6S3VersionKey345EE26B",
+                          "Ref": "AssetParameters301d55ea6a74e4c6edbaccbf82aad21948d5f2c7020fd8f1d50bc6893b737c57S3VersionKey48861EF2",
                         },
                       ],
                     },
@@ -2823,7 +3372,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2S3Bucket88A0DA61",
+            "Ref": "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3S3Bucket9EE12EB1",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2836,7 +3385,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2S3VersionKey8B3676CE",
+                          "Ref": "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3S3VersionKey804A0643",
                         },
                       ],
                     },
@@ -2849,7 +3398,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersed32a1ed19f476a6c2809306b7bd88aabe5bffc36873c9ce324cc4816badd5f2S3VersionKey8B3676CE",
+                          "Ref": "AssetParametersfe00ad75849d8a6cfe6272892161c03dae2fa4a198b92bd717774bc881e93db3S3VersionKey804A0643",
                         },
                       ],
                     },
@@ -2981,7 +3530,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecS3Bucket0A3FD034",
+            "Ref": "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104S3Bucket72328C98",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -2994,7 +3543,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecS3VersionKeyB8A9AF0A",
+                          "Ref": "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104S3VersionKey49C7EF72",
                         },
                       ],
                     },
@@ -3007,7 +3556,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters960953352a730b32ef90e3489373185d228d18c2c134add91eed4d295a49cfecS3VersionKeyB8A9AF0A",
+                          "Ref": "AssetParameters28765f91105fd1062a11a686e1bec69066a281aaf960fca657a4493efd4fd104S3VersionKey49C7EF72",
                         },
                       ],
                     },
@@ -3139,7 +3688,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30S3Bucket40AEC50B",
+            "Ref": "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecS3Bucket211647CB",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -3152,7 +3701,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30S3VersionKey622C6E6F",
+                          "Ref": "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecS3VersionKey8D712D9A",
                         },
                       ],
                     },
@@ -3165,7 +3714,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters50b0d954471ecb6897957083b74607cf6374ae3220bf4ca88af7d917dc2b7c30S3VersionKey622C6E6F",
+                          "Ref": "AssetParametersb8821d65320644ae6205d2bb8c2e516f92adfa988f8a1bcef380418f810026ecS3VersionKey8D712D9A",
                         },
                       ],
                     },
@@ -3289,6 +3838,638 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
+    "PUTLambdaFleetputphaseFunction6C16EBF5": Object {
+      "DependsOn": Array [
+        "PUTLambdaFleetputphaseFunctionServiceRoleDefaultPolicy9CBB0207",
+        "PUTLambdaFleetputphaseFunctionServiceRole001C902B",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4S3Bucket2AC68454",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4S3VersionKey1D2BF4A0",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters2043383ca262a2a8643767aec404a4599ba5445c8344f9b75630451561dae0c4S3VersionKey1D2BF4A0",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "phase.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputphaseFunctionServiceRole001C902B",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "PUTLambdaFleetputphaseFunctionSecurityGroup978C0158",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "PUTLambdaFleetputphaseFunctionSecurityGroup978C0158": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPUTLambdaFleetputphaseFunctionFF1739EC",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "PUTLambdaFleetputphaseFunctionServiceRole001C902B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PUTLambdaFleetputphaseFunctionServiceRoleDefaultPolicy9CBB0207": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PUTLambdaFleetputphaseFunctionServiceRoleDefaultPolicy9CBB0207",
+        "Roles": Array [
+          Object {
+            "Ref": "PUTLambdaFleetputphaseFunctionServiceRole001C902B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PUTLambdaFleetputprojectFunction0C049566": Object {
+      "DependsOn": Array [
+        "PUTLambdaFleetputprojectFunctionServiceRoleDefaultPolicy59BDBADD",
+        "PUTLambdaFleetputprojectFunctionServiceRoleFD63934D",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bS3Bucket0B44EB44",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bS3VersionKey972E3BF4",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters0575542ef2d6fe9f77fb6de069b1b70052a64f6b12abdac1b8d0a424643df27bS3VersionKey972E3BF4",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "project.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputprojectFunctionServiceRoleFD63934D",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "PUTLambdaFleetputprojectFunctionSecurityGroup08B82832",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "PUTLambdaFleetputprojectFunctionSecurityGroup08B82832": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPUTLambdaFleetputprojectFunction7868C9DC",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "PUTLambdaFleetputprojectFunctionServiceRoleDefaultPolicy59BDBADD": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PUTLambdaFleetputprojectFunctionServiceRoleDefaultPolicy59BDBADD",
+        "Roles": Array [
+          Object {
+            "Ref": "PUTLambdaFleetputprojectFunctionServiceRoleFD63934D",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PUTLambdaFleetputprojectFunctionServiceRoleFD63934D": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PUTLambdaFleetputseasonFunctionA68F0D55": Object {
+      "DependsOn": Array [
+        "PUTLambdaFleetputseasonFunctionServiceRoleDefaultPolicy56EC5437",
+        "PUTLambdaFleetputseasonFunctionServiceRole8782C0D5",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fS3Bucket733D6EA1",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fS3VersionKey3153E8DF",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersa1c70b4bdb4e4e56c30b33ed43e9ead98609c4d8b5dedac6bbee2e374ebf7e1fS3VersionKey3153E8DF",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "season.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputseasonFunctionServiceRole8782C0D5",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "PUTLambdaFleetputseasonFunctionSecurityGroup18BCAFB7",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "PUTLambdaFleetputseasonFunctionSecurityGroup18BCAFB7": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPUTLambdaFleetputseasonFunction5B4A4A81",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "PUTLambdaFleetputseasonFunctionServiceRole8782C0D5": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PUTLambdaFleetputseasonFunctionServiceRoleDefaultPolicy56EC5437": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PUTLambdaFleetputseasonFunctionServiceRoleDefaultPolicy56EC5437",
+        "Roles": Array [
+          Object {
+            "Ref": "PUTLambdaFleetputseasonFunctionServiceRole8782C0D5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PUTLambdaFleetputtagFunction4FE1B698": Object {
+      "DependsOn": Array [
+        "PUTLambdaFleetputtagFunctionServiceRoleDefaultPolicyE723213B",
+        "PUTLambdaFleetputtagFunctionServiceRoleD41DC271",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbS3Bucket1609CA34",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbS3VersionKey09EE95F7",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersccc11bfcc0b31ddb73ec498e238cdeb4ed8f167734eadfb70efad1b5c0a714dbS3VersionKey09EE95F7",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "tag.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputtagFunctionServiceRoleD41DC271",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "PUTLambdaFleetputtagFunctionSecurityGroup1D09EAF4",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            "private-subnet-1",
+            "private-subnet-2",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "PUTLambdaFleetputtagFunctionSecurityGroup1D09EAF4": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testlambdafleetPUTLambdaFleetputtagFunction1BD01960",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "PUTLambdaFleetputtagFunctionServiceRoleD41DC271": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PUTLambdaFleetputtagFunctionServiceRoleDefaultPolicyE723213B": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "arn:aws:dynamodb:eu-west-1:123456789010:table/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PUTLambdaFleetputtagFunctionServiceRoleDefaultPolicyE723213B",
+        "Roles": Array [
+          Object {
+            "Ref": "PUTLambdaFleetputtagFunctionServiceRoleD41DC271",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
     "PrivateApiGateway618B725A": Object {
       "Properties": Object {
         "EndpointConfiguration": Object {
@@ -3380,13 +4561,15 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "PrivateApiGatewayDeployment8BFAB2AAb05af8e8e35f5b317a9f4acbad5baee5": Object {
+    "PrivateApiGatewayDeployment8BFAB2AAe8dedc4456263d6295a9b08e203c3bb3": Object {
       "DependsOn": Array [
         "PrivateApiGatewayopenapiproxyANYB6223D91",
         "PrivateApiGatewayopenapiproxy791F6048",
         "PrivateApiGatewayopenapi5C21A45C",
+        "PrivateApiGatewayphasedeleteE2A439DA",
         "PrivateApiGatewayphaseOPTIONSCA2496AC",
         "PrivateApiGatewayphasepost377D8B7F",
+        "PrivateApiGatewayphaseput4CAA5725",
         "PrivateApiGatewayphaseB72A91F5",
         "PrivateApiGatewayphasesget10F99EF2",
         "PrivateApiGatewayphasesOPTIONS7365ECC2",
@@ -3394,18 +4577,23 @@ Object {
         "PrivateApiGatewayprojectdelete3172F768",
         "PrivateApiGatewayprojectOPTIONS1CD18735",
         "PrivateApiGatewayprojectpost39313EE5",
+        "PrivateApiGatewayprojectputA9B5B1B9",
         "PrivateApiGatewayproject915840A4",
         "PrivateApiGatewayprojectsget15711F53",
         "PrivateApiGatewayprojectsOPTIONS1836A009",
         "PrivateApiGatewayprojects94902F3C",
+        "PrivateApiGatewayseasondelete5F1A7777",
         "PrivateApiGatewayseasonOPTIONS62D42098",
         "PrivateApiGatewayseasonpost401889DA",
+        "PrivateApiGatewayseasonput72920437",
         "PrivateApiGatewayseason995346FD",
         "PrivateApiGatewayseasonsget8DD31586",
         "PrivateApiGatewayseasonsOPTIONS4A9945CA",
         "PrivateApiGatewayseasonsFFE4D1FD",
+        "PrivateApiGatewaytagdeleteF36C3901",
         "PrivateApiGatewaytagOPTIONS77553232",
         "PrivateApiGatewaytagpostC1BA149B",
+        "PrivateApiGatewaytagput9ACCEB88",
         "PrivateApiGatewaytag70A3959A",
         "PrivateApiGatewaytagsget6E6A6807",
         "PrivateApiGatewaytagsOPTIONSE846F9A2",
@@ -3422,7 +4610,7 @@ Object {
     "PrivateApiGatewayDeploymentStagedevBF01358E": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "PrivateApiGatewayDeployment8BFAB2AAb05af8e8e35f5b317a9f4acbad5baee5",
+          "Ref": "PrivateApiGatewayDeployment8BFAB2AAe8dedc4456263d6295a9b08e203c3bb3",
         },
         "MethodSettings": Array [
           Object {
@@ -3628,6 +4816,126 @@ Object {
       },
       "Type": "AWS::ApiGateway::Method",
     },
+    "PrivateApiGatewayphasedeleteApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744DELETEphase7D513E4D": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletephaseFunctionE7C4BD49",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/DELETE/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphasedeleteApiPermissiontestlambdafleetPrivateApiGatewayC62DC744DELETEphase40904DAD": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletephaseFunctionE7C4BD49",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/DELETE/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphasedeleteE2A439DA": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "DELETE",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DELETELambdaFleetdeletephaseFunctionE7C4BD49",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphaseB72A91F5",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
     "PrivateApiGatewayphasepost377D8B7F": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
@@ -3640,6 +4948,9 @@ Object {
             },
             Object {
               "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
             },
           ],
           "Type": "AWS_PROXY",
@@ -3669,6 +4980,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -3736,6 +5050,126 @@ Object {
                 "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/POST/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphaseput4CAA5725": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PUTLambdaFleetputphaseFunction6C16EBF5",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayphaseB72A91F5",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayphaseputApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744PUTphase2055A13C": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputphaseFunction6C16EBF5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/PUT/phase",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayphaseputApiPermissiontestlambdafleetPrivateApiGatewayC62DC744PUTphase925F6CBA": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputphaseFunction6C16EBF5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/PUT/phase",
             ],
           ],
         },
@@ -3811,6 +5245,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -3839,6 +5276,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -3981,6 +5421,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4009,6 +5452,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -4095,6 +5541,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4123,6 +5572,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -4190,6 +5642,126 @@ Object {
                 "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/POST/project",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayprojectputA9B5B1B9": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PUTLambdaFleetputprojectFunction0C049566",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayproject915840A4",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayprojectputApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744PUTproject33BFC80D": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputprojectFunction0C049566",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/PUT/project",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayprojectputApiPermissiontestlambdafleetPrivateApiGatewayC62DC744PUTprojectC6FADDCA": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputprojectFunction0C049566",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/PUT/project",
             ],
           ],
         },
@@ -4265,6 +5837,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4293,6 +5868,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -4422,6 +6000,126 @@ Object {
       },
       "Type": "AWS::ApiGateway::Method",
     },
+    "PrivateApiGatewayseasondelete5F1A7777": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "DELETE",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DELETELambdaFleetdeleteseasonFunction334250BE",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseason995346FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasondeleteApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744DELETEseasonA0676CB4": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeleteseasonFunction334250BE",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/DELETE/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasondeleteApiPermissiontestlambdafleetPrivateApiGatewayC62DC744DELETEseason63A94A1A": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeleteseasonFunction334250BE",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/DELETE/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
     "PrivateApiGatewayseasonpost401889DA": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
@@ -4434,6 +6132,9 @@ Object {
             },
             Object {
               "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
             },
           ],
           "Type": "AWS_PROXY",
@@ -4463,6 +6164,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -4530,6 +6234,126 @@ Object {
                 "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
               },
               "/POST/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasonput72920437": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PUTLambdaFleetputseasonFunctionA68F0D55",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewayseason995346FD",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewayseasonputApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744PUTseasonD30F5D26": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputseasonFunctionA68F0D55",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/PUT/season",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewayseasonputApiPermissiontestlambdafleetPrivateApiGatewayC62DC744PUTseason85BC19F0": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputseasonFunctionA68F0D55",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/PUT/season",
             ],
           ],
         },
@@ -4605,6 +6429,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4633,6 +6460,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -4762,6 +6592,126 @@ Object {
       },
       "Type": "AWS::ApiGateway::Method",
     },
+    "PrivateApiGatewaytagdeleteApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744DELETEtag1A8CC80E": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletetagFunction8672E389",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/DELETE/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewaytagdeleteApiPermissiontestlambdafleetPrivateApiGatewayC62DC744DELETEtag40A3C0F0": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "DELETELambdaFleetdeletetagFunction8672E389",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/DELETE/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewaytagdeleteF36C3901": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "DELETE",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DELETELambdaFleetdeletetagFunction8672E389",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewaytag70A3959A",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
     "PrivateApiGatewaytagpostApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744POSTtag81EB1CF4": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
@@ -4837,6 +6787,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4866,6 +6819,9 @@ Object {
           Object {
             "StatusCode": "400",
           },
+          Object {
+            "StatusCode": "404",
+          },
         ],
         "ResourceId": Object {
           "Ref": "PrivateApiGatewaytag70A3959A",
@@ -4875,6 +6831,126 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewaytagput9ACCEB88": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": Array [
+            Object {
+              "StatusCode": "200",
+            },
+            Object {
+              "StatusCode": "400",
+            },
+            Object {
+              "StatusCode": "404",
+            },
+          ],
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:eu-west-1:lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PUTLambdaFleetputtagFunction4FE1B698",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "MethodResponses": Array [
+          Object {
+            "StatusCode": "200",
+          },
+          Object {
+            "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "PrivateApiGatewaytag70A3959A",
+        },
+        "RestApiId": Object {
+          "Ref": "PrivateApiGateway618B725A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PrivateApiGatewaytagputApiPermissionTesttestlambdafleetPrivateApiGatewayC62DC744PUTtag5979F00C": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputtagFunction4FE1B698",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/test-invoke-stage/PUT/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PrivateApiGatewaytagputApiPermissiontestlambdafleetPrivateApiGatewayC62DC744PUTtagCC86704A": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "PUTLambdaFleetputtagFunction4FE1B698",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:eu-west-1:123456789010:",
+              Object {
+                "Ref": "PrivateApiGateway618B725A",
+              },
+              "/",
+              Object {
+                "Ref": "PrivateApiGatewayDeploymentStagedevBF01358E",
+              },
+              "/PUT/tag",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
     },
     "PrivateApiGatewaytags67126F69": Object {
       "Properties": Object {
@@ -4945,6 +7021,9 @@ Object {
             Object {
               "StatusCode": "400",
             },
+            Object {
+              "StatusCode": "404",
+            },
           ],
           "Type": "AWS_PROXY",
           "Uri": Object {
@@ -4973,6 +7052,9 @@ Object {
           },
           Object {
             "StatusCode": "400",
+          },
+          Object {
+            "StatusCode": "404",
           },
         ],
         "ResourceId": Object {
@@ -5076,39 +7158,6 @@ Object {
           "rtb-67890s",
         ],
         "ServiceName": "com.amazonaws.eu-west-1.dynamodb",
-        "VpcEndpointType": "Gateway",
-        "VpcId": "vpc-12345",
-      },
-      "Type": "AWS::EC2::VPCEndpoint",
-    },
-    "VPCEndpointS3404479A7": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
-                "s3:GetObject",
-                "s3:PutObject",
-                "s3:DeleteObject",
-                "s3:ListBucket",
-              ],
-              "Effect": "Allow",
-              "Principal": Object {
-                "AWS": "*",
-              },
-              "Resource": "arn:aws:s3:eu-west-1:123456789010:*",
-              "Sid": "Access-To-4d-Bucket",
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "RouteTableIds": Array [
-          "rtb-12345p",
-          "rtb-57890p",
-          "rtb-12345s",
-          "rtb-67890s",
-        ],
-        "ServiceName": "com.amazonaws.eu-west-1.s3",
         "VpcEndpointType": "Gateway",
         "VpcId": "vpc-12345",
       },
