@@ -1,10 +1,9 @@
-import fs from 'fs';
 import { awscdk, javascript as js } from 'projen';
 import { getNetworkingContext } from './infrastructure/utils/getContext';
 
 const getOptions = async() : Promise<awscdk.AwsCdkTypeScriptAppOptions> => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const context = !fs.existsSync('./cdk.context.json') ? await getNetworkingContext() : require('./cdk.context.json');
+  const context = await getNetworkingContext();
 
   return {
     cdkVersion: '1.137.0',
