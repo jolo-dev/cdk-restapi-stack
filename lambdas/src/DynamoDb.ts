@@ -78,6 +78,12 @@ class DynamoDb {
     }
   }
 
+  /**
+   * Deletes an entry from its table
+   * @param tableName string Name of the table
+   * @param name string Name of the entity
+   * @returns DeleteItemCommandOutput
+   */
   public async deleteEntry(tableName: string, name: string) {
     try {
       const command = new DeleteItemCommand({
@@ -101,6 +107,11 @@ class DynamoDb {
     }
   }
 
+  /**
+   * It adds an entry of a model.
+   * @param tableEntry Entry of the Table with its type
+   * @returns PutItemCommandOutput
+   */
   public async addEntry<T extends Standard>( tableEntry: T ) {
     try {
       const Item = {
@@ -138,10 +149,11 @@ class DynamoDb {
         result = { ...result, [value]: attributes[value].S };
       }
       if ('N' in attributes[value]) {
-        result = { ...result, [value]: attributes[value].N };
+        result = { ...result, [value]: Number(attributes[value].N) };
       }
-      if ('B' in attributes[value]) {
-        result = { ...result, [value]: attributes[value].B };
+      if ('BOOL' in attributes[value]) {
+        const bool = attributes[value].BOOL === 'true';
+        result = { ...result, [value]: bool };
       }
       if ('L' in attributes[value]) {
         const values = attributes[value].L as Array<any>;
@@ -150,10 +162,10 @@ class DynamoDb {
             return val.S;
           }
           if ('N' in val) {
-            return val.N;
+            return Number(val.N);
           }
-          if ('B' in val) {
-            return val.B;
+          if ('BOOL' in val) {
+            return val.BOOL === 'true';
           }
         });
         result = { ...result, [value]: foo };
