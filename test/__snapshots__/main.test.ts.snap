@@ -958,7 +958,8 @@ Object {
     \\"install\\": {
       \\"commands\\": [
         \\"npm install -g pnpm\\",
-        \\"pnpm install\\"
+        \\"pnpm install\\",
+        \\"pnpm projen\\"
       ]
     },
     \\"build\\": {

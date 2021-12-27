@@ -27,7 +27,7 @@ export class FourDPipelineStack extends Stack {
     const build = new Action(this, 'build',
       {
         install: {
-          commands: ['npm install -g pnpm', 'pnpm install'],
+          commands: ['npm install -g pnpm', 'pnpm install', 'pnpm projen'],
         },
         build: {
           commands: ['pnpm build'],
