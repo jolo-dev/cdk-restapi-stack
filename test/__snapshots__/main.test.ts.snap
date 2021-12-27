@@ -1640,6 +1640,18 @@ Object {
       "Description": "S3 key for asset version \\"4b6f518334901e744678cc380bfe2e2393703878339b17509e5bf7a7235517ec\\"",
       "Type": "String",
     },
+    "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bArtifactHash7A13105D": Object {
+      "Description": "Artifact hash for asset \\"61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6b\\"",
+      "Type": "String",
+    },
+    "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bS3BucketB73D3187": Object {
+      "Description": "S3 bucket for asset \\"61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6b\\"",
+      "Type": "String",
+    },
+    "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bS3VersionKey6771D5B8": Object {
+      "Description": "S3 key for asset version \\"61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6b\\"",
+      "Type": "String",
+    },
     "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cArtifactHash1ED9654B": Object {
       "Description": "Artifact hash for asset \\"67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2c\\"",
       "Type": "String",
@@ -1650,18 +1662,6 @@ Object {
     },
     "AssetParameters67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2cS3VersionKey294406C0": Object {
       "Description": "S3 key for asset version \\"67d5f5ec1b1adc01054abdf3312c1a564bb6e0a12ca67ece13dee09667807c2c\\"",
-      "Type": "String",
-    },
-    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31ArtifactHashBD81F876": Object {
-      "Description": "Artifact hash for asset \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
-      "Type": "String",
-    },
-    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3Bucket84998BC3": Object {
-      "Description": "S3 bucket for asset \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
-      "Type": "String",
-    },
-    "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B": Object {
-      "Description": "S3 key for asset version \\"788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31\\"",
       "Type": "String",
     },
     "AssetParameters88b3e491ccc8624c29c3995640564c3bd9e7fad74a6f7a3276579410444a5f27ArtifactHash00AF141F": Object {
@@ -3075,7 +3075,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3Bucket84998BC3",
+            "Ref": "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bS3BucketB73D3187",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -3088,7 +3088,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B",
+                          "Ref": "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bS3VersionKey6771D5B8",
                         },
                       ],
                     },
@@ -3101,7 +3101,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters788ae816a108b9a1384bedacb3696a6548ef68095ec0376b6d2d6250b2328e31S3VersionKey5DF17D4B",
+                          "Ref": "AssetParameters61495ec0aba97f427f3956781c9d12f82287a825bfb05d90adb223eb0d141d6bS3VersionKey6771D5B8",
                         },
                       ],
                     },
@@ -3113,7 +3113,7 @@ Object {
         },
         "Environment": Object {
           "Variables": Object {
-            "ACCOUNT": "",
+            "ACCOUNT": "123456789010",
             "API_GW_ID": Object {
               "Ref": "PrivateApiGateway618B725A",
             },
@@ -4608,6 +4608,9 @@ Object {
       "Type": "AWS::ApiGateway::Deployment",
     },
     "PrivateApiGatewayDeploymentStagedevBF01358E": Object {
+      "DependsOn": Array [
+        "PrivateApiGatewayAccountE06D5DCF",
+      ],
       "Properties": Object {
         "DeploymentId": Object {
           "Ref": "PrivateApiGatewayDeployment8BFAB2AAe8dedc4456263d6295a9b08e203c3bb3",

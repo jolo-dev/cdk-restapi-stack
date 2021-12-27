@@ -7,6 +7,7 @@ interface PrivateApiGatewayProps {
   description?: string;
   vpcEndpoint: IVpcEndpoint[];
   region: string;
+  stage?: string;
 }
 
 export class PrivateApiGateway extends RestApi {
@@ -40,7 +41,7 @@ export class PrivateApiGateway extends RestApi {
       cloudWatchRole: true,
       description: props.description,
       deployOptions: {
-        stageName: process.env.STAGE ?? 'dev',
+        stageName: props.stage ?? 'dev',
         loggingLevel: MethodLoggingLevel.INFO,
         dataTraceEnabled: true,
       },

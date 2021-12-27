@@ -4,7 +4,301 @@
   "steps": [
     {
       "title": "Overview",
-      "description": "# OpenApi/Swagger Documentation\n\nThe package `docs` contains beside the OpenApi/Swagger also the documentation about this project (see `about`- folder)."
+      "description": "# OpenApi/Swagger Documentation\n\nThe package `docs` contains beside the OpenApi/Swagger also the documentation about this project (see `about`- folder).\n\nFind the [`README.md`](./docs/README.md) in the `docs`- folder.\n\n## OpenApi\n\nThe Lambdas are marked with an `@swagger` (it can also be `@openapi`) YAMLnotation.\nThat is needed to synthesize it into a JSON (`openapi.json`) which is parsed by using the [`swagger-jsdoc`- library](https://github.com/Surnet/swagger-jsdoc/) [#3].<br/>\nThe construct `infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts` [#2] scrapes all the files which has as a marker `@swagger` in the `lambdas` and `models`- directories [#4].\n\nThe definition [#5] will be saved in the `docs/openapi/openapi.json` [#6].\n\n## Lambda Swagger Express Documentation\n\nThe Swagger/OpenAPI documentation is deployed via a lambda function [#7].\nIts code is withing the `docs`- folder and is a simple ExpressJS app using `serverless-express`[#8] [#9] [#10] [#11] [#12] [#13] [#14] [#15].\n\nThis lambda is bundled before each deployment (locally or on AWS) [#16].\n\n## Definition\n\nThe definition should start with its model [#17] and its properties (`props`) [#18] [#22] and its `requestBodies` [#19]. The model is extending the `Standard.ts` [#20] and its interface extends the `StandardAttribute`- interface [#21]."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 73,
+          "character": 7
+        },
+        "end": {
+          "line": 73,
+          "character": 120
+        }
+      },
+      "description": "The apis are defined in the `lambdas` and `models`- folder (see `@swagger`- annotation)."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 14
+        },
+        "end": {
+          "line": 20,
+          "character": 34
+        }
+      },
+      "description": "The `OpenApiDocumentation` is a construct and part of the Lambda fleet."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 1
+        }
+      },
+      "description": "It uses [`swagger-jsdoc` ](https://github.com/Surnet/swagger-jsdoc/) which generates OpenAPI/Swagger specification based on the JSDoc- annotation."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 63,
+          "character": 7
+        },
+        "end": {
+          "line": 70,
+          "character": 9
+        }
+      },
+      "description": "The definition defines the meta- data of the OpenAPI-Documentation."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 75,
+          "character": 5
+        },
+        "end": {
+          "line": 76,
+          "character": 119
+        }
+      },
+      "description": "The `definition` and the `api` will be scraped and synthesized and saved in `docs/openapi/openapi.json`."
+    },
+    {
+      "file": "infrastructure/stacks/lambda-fleet/OpenApiDocumentation.ts",
+      "selection": {
+        "start": {
+          "line": 37,
+          "character": 5
+        },
+        "end": {
+          "line": 57,
+          "character": 10
+        }
+      },
+      "description": "The OpenAPI-Documentation is its own lambda behind the API Gateway (`/openapi`).\nOf course, it is also within the VPC and its source code is in the `docs`- folder."
+    },
+    {
+      "file": "docs/docs.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 5,
+          "character": 1
+        }
+      },
+      "description": "This is the handler for using the [`serverless-express`](https://github.com/vendia/serverless-express/)- package."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 23
+        }
+      },
+      "description": "The `docs/app.ts` defines the ExpressJS- app definition."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 44
+        }
+      },
+      "description": "It uses the [`swagger-ui-express`](https://github.com/scottie1984/swagger-ui-express) as a helper package."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 75
+        }
+      },
+      "description": "It fetches some environment variables to define the server interaction.\nIf `restApiId` and `vpcEndpointId` are given then it creates the `vpcEndpoint`- URL otherwise it uses `localhost`."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 1
+        }
+      },
+      "description": "It takes the JSON which is synthesized from the `lambdas/stacks/lambda-fleet/OpenApiDocumentation.ts`, and adds a new `servers`- definition [#13]."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 3
+        },
+        "end": {
+          "line": 58,
+          "character": 3
+        }
+      },
+      "description": "This `servers`- definition is pasting the environment variables in order to let the OpenAPI-Documentation communicate with the VPC-Endpoint."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 59,
+          "character": 1
+        },
+        "end": {
+          "line": 66,
+          "character": 39
+        }
+      },
+      "description": "All the definitions will be merged."
+    },
+    {
+      "file": "docs/app.ts",
+      "selection": {
+        "start": {
+          "line": 67,
+          "character": 1
+        },
+        "end": {
+          "line": 68,
+          "character": 1
+        }
+      },
+      "description": "And then served thanks to the `swagger-ui-express`- package."
+    },
+    {
+      "file": "docs/package.json",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 5
+        },
+        "end": {
+          "line": 7,
+          "character": 97
+        }
+      },
+      "description": "Before the lambdas are deployed, the docs is bundled to `docs.js`. This should be the only JS-file in this (Mono)-Repo and shall also not be touched."
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 6
+        },
+        "end": {
+          "line": 23,
+          "character": 13
+        }
+      },
+      "description": "The `schemas` define the data of the model. `schemas` is part of `components` and describes the data schema of the class."
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 1
+        },
+        "end": {
+          "line": 49,
+          "character": 68
+        }
+      },
+      "description": "This is the definition of the `project`- model.\nThis definition should be reflected to its interface."
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 2
+        },
+        "end": {
+          "line": 22,
+          "character": 69
+        }
+      },
+      "description": "`requestBodies` is part of `components` and describes how a this class should be requested. It mostly references the `props` of the `schemas`-class"
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 51,
+          "character": 14
+        },
+        "end": {
+          "line": 51,
+          "character": 38
+        }
+      },
+      "description": "The class is extending from the abstract class `Standard.ts`."
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 59,
+          "character": 3
+        },
+        "end": {
+          "line": 61,
+          "character": 4
+        }
+      },
+      "description": "and implements its abstract class `getProps()`"
+    },
+    {
+      "file": "models/Project.ts",
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 2
+        }
+      },
+      "description": "Each class can define its own properties (`props`) and it is recommended to extends the `Standardattributes`- interface."
     }
   ]
 }

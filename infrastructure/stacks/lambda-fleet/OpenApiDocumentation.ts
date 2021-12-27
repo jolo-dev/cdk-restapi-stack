@@ -3,7 +3,7 @@ import path from 'path';
 import { LambdaIntegration } from '@aws-cdk/aws-apigateway';
 import { ISubnet, IVpc } from '@aws-cdk/aws-ec2';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
-import { Construct } from '@aws-cdk/core';
+import { Construct, Stack } from '@aws-cdk/core';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { PrivateApiGateway } from './PrivateApiGateway';
 
@@ -13,10 +13,6 @@ interface OpenApiDocumentationProps {
   subnets?: ISubnet[];
   vpcEndpointId?: string;
 }
-
-const account = process.env.CDK_DEFAULT_ACCOUNT ?? '';
-const region = process.env.AWS_REGION ?? 'eu-west-1';
-
 export class OpenApiDocumentation extends Construct {
   private api: PrivateApiGateway;
   private vpc?: IVpc;
@@ -33,6 +29,8 @@ export class OpenApiDocumentation extends Construct {
   }
 
   public deployOpenApiLambda() {
+    const region = Stack.of(this).region;
+    const account = Stack.of(this).account;
     // Adding OpenAPI which is a Lambda containing Swagger Documentation
     const openApi = new Function(this, 'OpenapiDocLambda', {
       runtime: Runtime.NODEJS_14_X,

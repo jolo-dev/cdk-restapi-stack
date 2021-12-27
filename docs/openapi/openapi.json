@@ -399,6 +399,67 @@
     }
   },
   "components": {
+    "requestBodies": {
+      "Phase_data": {
+        "description": "Request to add a new Phase.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Project_data": {
+        "description": "Request to add a new Project.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Project/properties/props"
+            }
+          }
+        }
+      },
+      "Season_data": {
+        "description": "Request to add a new Season.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Tag_data": {
+        "description": "Request to add a new Tag.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "schemas": {
       "Phase": {
         "type": "object",
@@ -470,24 +531,6 @@
           },
           "creationDateTime": {
             "type": "string"
-          }
-        }
-      }
-    },
-    "requestBodies": {
-      "Tag_data": {
-        "description": "Request to add a new Tag.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
           }
         }
       }
