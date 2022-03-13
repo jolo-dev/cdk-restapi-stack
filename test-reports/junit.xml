@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="99" failures="0" errors="0" time="19.585">
-  <testsuite name="Project" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="12.324" tests="3">
-    <testcase classname="Project should return props" name="Project should return props" time="0.017">
+<testsuites name="jest tests" tests="99" failures="0" errors="0" time="22.877">
+  <testsuite name="Project" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="13.323" tests="3">
+    <testcase classname="Project should return props" name="Project should return props" time="0.006">
     </testcase>
     <testcase classname="Project should return CreationDateTime" name="Project should return CreationDateTime" time="0.001">
     </testcase>
     <testcase classname="Project should return ID" name="Project should return ID" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Season" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="12.312" tests="3">
-    <testcase classname="Season should return ID when setting it" name="Season should return ID when setting it" time="0.003">
-    </testcase>
-    <testcase classname="Season should return CreationDateTime when setting it" name="Season should return CreationDateTime when setting it" time="0.001">
-    </testcase>
-    <testcase classname="Season should return props when set" name="Season should return props when set" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="Phase" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="12.426" tests="3">
-    <testcase classname="Phase should return ID when setting it" name="Phase should return ID when setting it" time="0.006">
+  <testsuite name="Phase" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="13.481" tests="3">
+    <testcase classname="Phase should return ID when setting it" name="Phase should return ID when setting it" time="0.009">
     </testcase>
     <testcase classname="Phase should return CreationDateTime when setting it" name="Phase should return CreationDateTime when setting it" time="0.001">
     </testcase>
-    <testcase classname="Phase should return props when set" name="Phase should return props when set" time="0.002">
+    <testcase classname="Phase should return props when set" name="Phase should return props when set" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="Tag" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:15" time="0.263" tests="2">
-    <testcase classname="Tag should return ID when setting it" name="Tag should return ID when setting it" time="0.002">
+  <testsuite name="Season" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="13.553" tests="3">
+    <testcase classname="Season should return ID when setting it" name="Season should return ID when setting it" time="0.008">
+    </testcase>
+    <testcase classname="Season should return CreationDateTime when setting it" name="Season should return CreationDateTime when setting it" time="0.001">
+    </testcase>
+    <testcase classname="Season should return props when set" name="Season should return props when set" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tag" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:41:11" time="0.404" tests="2">
+    <testcase classname="Tag should return ID when setting it" name="Tag should return ID when setting it" time="0.003">
     </testcase>
     <testcase classname="Tag should return CreationDateTime when setting it" name="Tag should return CreationDateTime when setting it" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Integration" errors="0" failures="0" skipped="4" timestamp="2021-12-27T20:30:03" time="13.674" tests="5">
+  <testsuite name="Integration" errors="0" failures="0" skipped="4" timestamp="2021-12-27T22:40:58" time="14.958" tests="5">
     <testcase classname="Integration add Project and deletes a project based on name" name="Integration add Project and deletes a project based on name" time="0">
       <skipped/>
     </testcase>
@@ -43,37 +43,89 @@
     <testcase classname="Integration add multiple Tags and delete them based on Name" name="Integration add multiple Tags and delete them based on Name" time="0">
       <skipped/>
     </testcase>
-    <testcase classname="Integration update a project" name="Integration update a project" time="0.287">
+    <testcase classname="Integration update a project" name="Integration update a project" time="0.301">
     </testcase>
   </testsuite>
-  <testsuite name="DynamoDb" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="13.855" tests="26">
-    <testcase classname="DynamoDb createTable should create the tables" name="DynamoDb createTable should create the tables" time="0.01">
+  <testsuite name="callServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="15.446" tests="20">
+    <testcase classname="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the id" name="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the id" time="0.063">
     </testcase>
-    <testcase classname="DynamoDb createTable should throw when creating table was not successful" name="DynamoDb createTable should throw when creating table was not successful" time="0.083">
+    <testcase classname="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" name="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" time="0.095">
     </testcase>
-    <testcase classname="DynamoDb listEntries should scan the whole Projects table" name="DynamoDb listEntries should scan the whole Projects table" time="0.007">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.003">
     </testcase>
-    <testcase classname="DynamoDb listEntries should throw when no items in table" name="DynamoDb listEntries should throw when no items in table" time="0.003">
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.003">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.004">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" time="0.007">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" time="0.004">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw when `OutputValue === undefined`" name="callServiceCatalog vpc should throw when `OutputValue === undefined`" time="0.005">
+    </testcase>
+    <testcase classname="callServiceCatalog vpc should throw when region is set wrongly" name="callServiceCatalog vpc should throw when region is set wrongly" time="0.005">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the id" name="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the id" time="0.005">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" name="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" time="0.01">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.002">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.002">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.007">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" time="0.006">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" time="0.004">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" name="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" time="0.004">
+    </testcase>
+    <testcase classname="callServiceCatalog private-subnet should throw when region is set wrongly" name="callServiceCatalog private-subnet should throw when region is set wrongly" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="LambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="15.834" tests="4">
+    <testcase classname="LambdaFleet should bundle the code" name="LambdaFleet should bundle the code" time="0.003">
+    </testcase>
+    <testcase classname="LambdaFleet should return the folder of the built Lambdas" name="LambdaFleet should return the folder of the built Lambdas" time="0.014">
+    </testcase>
+    <testcase classname="LambdaFleet should throw when trying to bundle the folder" name="LambdaFleet should throw when trying to bundle the folder" time="0.114">
+    </testcase>
+    <testcase classname="LambdaFleet should throw when folder not exists" name="LambdaFleet should throw when folder not exists" time="0.014">
+    </testcase>
+  </testsuite>
+  <testsuite name="DynamoDb" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="15.854" tests="26">
+    <testcase classname="DynamoDb createTable should create the tables" name="DynamoDb createTable should create the tables" time="0.011">
+    </testcase>
+    <testcase classname="DynamoDb createTable should throw when creating table was not successful" name="DynamoDb createTable should throw when creating table was not successful" time="0.105">
+    </testcase>
+    <testcase classname="DynamoDb listEntries should scan the whole Projects table" name="DynamoDb listEntries should scan the whole Projects table" time="0.005">
+    </testcase>
+    <testcase classname="DynamoDb listEntries should throw when no items in table" name="DynamoDb listEntries should throw when no items in table" time="0.007">
     </testcase>
     <testcase classname="DynamoDb listEntries should scan the whole Tags table" name="DynamoDb listEntries should scan the whole Tags table" time="0.002">
     </testcase>
-    <testcase classname="DynamoDb create should create a Project object with props" name="DynamoDb create should create a Project object with props" time="0.005">
+    <testcase classname="DynamoDb create should create a Project object with props" name="DynamoDb create should create a Project object with props" time="0.007">
     </testcase>
-    <testcase classname="DynamoDb create should create a Tag object without props" name="DynamoDb create should create a Tag object without props" time="0.001">
+    <testcase classname="DynamoDb create should create a Tag object without props" name="DynamoDb create should create a Tag object without props" time="0.004">
     </testcase>
-    <testcase classname="DynamoDb create should create a Project object with props and a creationDateTime" name="DynamoDb create should create a Project object with props and a creationDateTime" time="0">
+    <testcase classname="DynamoDb create should create a Project object with props and a creationDateTime" name="DynamoDb create should create a Project object with props and a creationDateTime" time="0.001">
     </testcase>
-    <testcase classname="DynamoDb addEntry should add a new Project entry to Projects table" name="DynamoDb addEntry should add a new Project entry to Projects table" time="0.006">
+    <testcase classname="DynamoDb addEntry should add a new Project entry to Projects table" name="DynamoDb addEntry should add a new Project entry to Projects table" time="0.003">
     </testcase>
-    <testcase classname="DynamoDb addEntry should add a list of tags to the dynamodb" name="DynamoDb addEntry should add a list of tags to the dynamodb" time="0.004">
+    <testcase classname="DynamoDb addEntry should add a list of tags to the dynamodb" name="DynamoDb addEntry should add a list of tags to the dynamodb" time="0.013">
     </testcase>
-    <testcase classname="DynamoDb addEntry should throw when adding new Project entry was not successful" name="DynamoDb addEntry should throw when adding new Project entry was not successful" time="0.004">
+    <testcase classname="DynamoDb addEntry should throw when adding new Project entry was not successful" name="DynamoDb addEntry should throw when adding new Project entry was not successful" time="0.013">
     </testcase>
-    <testcase classname="DynamoDb getItem should get an the item based on key" name="DynamoDb getItem should get an the item based on key" time="0.003">
+    <testcase classname="DynamoDb getItem should get an the item based on key" name="DynamoDb getItem should get an the item based on key" time="0.004">
     </testcase>
-    <testcase classname="DynamoDb getItem should throw because there is no item" name="DynamoDb getItem should throw because there is no item" time="0.003">
+    <testcase classname="DynamoDb getItem should throw because there is no item" name="DynamoDb getItem should throw because there is no item" time="0.01">
     </testcase>
-    <testcase classname="DynamoDb getItem should throw when GetItemCommand failed" name="DynamoDb getItem should throw when GetItemCommand failed" time="0.004">
+    <testcase classname="DynamoDb getItem should throw when GetItemCommand failed" name="DynamoDb getItem should throw when GetItemCommand failed" time="0.013">
     </testcase>
     <testcase classname="DynamoDb attributesMapper should map the dynamoDbAttributes with strings" name="DynamoDb attributesMapper should map the dynamoDbAttributes with strings" time="0">
     </testcase>
@@ -83,24 +135,36 @@
     </testcase>
     <testcase classname="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB" name="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB" time="0">
     </testcase>
-    <testcase classname="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB when props contains Numbers and Boolean" name="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB when props contains Numbers and Boolean" time="0.001">
+    <testcase classname="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB when props contains Numbers and Boolean" name="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB when props contains Numbers and Boolean" time="0">
     </testcase>
-    <testcase classname="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB after Entity is created" name="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB after Entity is created" time="0.002">
+    <testcase classname="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB after Entity is created" name="DynamoDb dynamoDbDataBuilder should build the dynamoDbAttributes for DynamoDB after Entity is created" time="0.001">
     </testcase>
-    <testcase classname="DynamoDb dynamoAttributeKeyValue should return the correct type of an object" name="DynamoDb dynamoAttributeKeyValue should return the correct type of an object" time="0">
+    <testcase classname="DynamoDb dynamoAttributeKeyValue should return the correct type of an object" name="DynamoDb dynamoAttributeKeyValue should return the correct type of an object" time="0.001">
     </testcase>
-    <testcase classname="DynamoDb dynamoAttributeKeyValue should return the correct type of a really nested object" name="DynamoDb dynamoAttributeKeyValue should return the correct type of a really nested object" time="0.001">
+    <testcase classname="DynamoDb dynamoAttributeKeyValue should return the correct type of a really nested object" name="DynamoDb dynamoAttributeKeyValue should return the correct type of a really nested object" time="0">
     </testcase>
-    <testcase classname="DynamoDb dynamoAttributeKeyValue should return undefined when object is undefined as well" name="DynamoDb dynamoAttributeKeyValue should return undefined when object is undefined as well" time="0.004">
+    <testcase classname="DynamoDb dynamoAttributeKeyValue should return undefined when object is undefined as well" name="DynamoDb dynamoAttributeKeyValue should return undefined when object is undefined as well" time="0.003">
     </testcase>
-    <testcase classname="DynamoDb deleteEntry should delete an entry from table" name="DynamoDb deleteEntry should delete an entry from table" time="0.003">
+    <testcase classname="DynamoDb deleteEntry should delete an entry from table" name="DynamoDb deleteEntry should delete an entry from table" time="0.002">
     </testcase>
-    <testcase classname="DynamoDb deleteEntry should throw when httpStatusCode = 400" name="DynamoDb deleteEntry should throw when httpStatusCode = 400" time="0.003">
+    <testcase classname="DynamoDb deleteEntry should throw when httpStatusCode = 400" name="DynamoDb deleteEntry should throw when httpStatusCode = 400" time="0.004">
     </testcase>
-    <testcase classname="DynamoDb deleteEntry should throw when deleting failed" name="DynamoDb deleteEntry should throw when deleting failed" time="0.005">
+    <testcase classname="DynamoDb deleteEntry should throw when deleting failed" name="DynamoDb deleteEntry should throw when deleting failed" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="integration" errors="0" failures="0" skipped="4" timestamp="2021-12-27T20:30:15" time="1.817" tests="4">
+  <testsuite name="getSsmParams" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="16.015" tests="3">
+    <testcase classname="getSsmParams should get all the requested params" name="getSsmParams should get all the requested params" time="0.089">
+    </testcase>
+    <testcase classname="getSsmParams should throw when error in getSsmParams" name="getSsmParams should throw when error in getSsmParams" time="0.054">
+    </testcase>
+    <testcase classname="getSsmParams should throw when region name is set not correctly" name="getSsmParams should throw when region name is set not correctly" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="PrivateGateway" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="16.146" tests="1">
+    <testcase classname="PrivateGateway should create a PrivateGateway" name="PrivateGateway should create a PrivateGateway" time="0.265">
+    </testcase>
+  </testsuite>
+  <testsuite name="integration" errors="0" failures="0" skipped="4" timestamp="2021-12-27T22:41:12" time="2.713" tests="4">
     <testcase classname="integration should launch a private subnet in the service catalog" name="integration should launch a private subnet in the service catalog" time="0">
       <skipped/>
     </testcase>
@@ -114,130 +178,66 @@
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="getNetworkingContext" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.255" tests="6">
-    <testcase classname="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" name="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" time="0.073">
+  <testsuite name="ServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="16.422" tests="13">
+    <testcase classname="ServiceCatalog should launch a product" name="ServiceCatalog should launch a product" time="0.011">
     </testcase>
-    <testcase classname="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" name="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" time="0.007">
+    <testcase classname="ServiceCatalog should throw when error in launching a product" name="ServiceCatalog should throw when error in launching a product" time="0.078">
     </testcase>
-    <testcase classname="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" name="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" time="0.006">
+    <testcase classname="ServiceCatalog should get resource by ProvisionedProductName" name="ServiceCatalog should get resource by ProvisionedProductName" time="0.004">
     </testcase>
-    <testcase classname="getNetworkingContext should return vpcId with three subnets" name="getNetworkingContext should return vpcId with three subnets" time="0.004">
+    <testcase classname="ServiceCatalog should get resource by ProvisionedProductId" name="ServiceCatalog should get resource by ProvisionedProductId" time="0.001">
     </testcase>
-    <testcase classname="toCamelCase should convert camel-case to camelCase " name="toCamelCase should convert camel-case to camelCase " time="0.001">
+    <testcase classname="ServiceCatalog should throw when getting ressource" name="ServiceCatalog should throw when getting ressource" time="0.004">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" time="0.002">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" time="0.003">
+    </testcase>
+    <testcase classname="ServiceCatalog should set a parameter" name="ServiceCatalog should set a parameter" time="0.005">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because name of parameter does not follow the convention" name="ServiceCatalog should throw because name of parameter does not follow the convention" time="0.005">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because name is not undefined" name="ServiceCatalog should throw because name is not undefined" time="0.002">
+    </testcase>
+    <testcase classname="ServiceCatalog should throw because value is not undefined" name="ServiceCatalog should throw because value is not undefined" time="0.003">
+    </testcase>
+    <testcase classname="ServiceCatalog should check state" name="ServiceCatalog should check state" time="0.004">
+    </testcase>
+    <testcase classname="ServiceCatalog should abort state" name="ServiceCatalog should abort state" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="getNetworkingContext" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="16.916" tests="6">
+    <testcase classname="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" name="getNetworkingContext should return the correct context for networking when all parameters in SSM Parameter Store" time="0.041">
+    </testcase>
+    <testcase classname="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" name="getNetworkingContext should start launching product when no parameters in SSM Parameter Store" time="0.005">
+    </testcase>
+    <testcase classname="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" name="getNetworkingContext should return vpcID for networking because its in SSM Parameter Store but should launch Private Subnets and return their IDs" time="0.002">
+    </testcase>
+    <testcase classname="getNetworkingContext should return vpcId with three subnets" name="getNetworkingContext should return vpcId with three subnets" time="0.003">
+    </testcase>
+    <testcase classname="toCamelCase should convert camel-case to camelCase " name="toCamelCase should convert camel-case to camelCase " time="0">
     </testcase>
     <testcase classname="toCamelCase should not camelCase because its already camelCased" name="toCamelCase should not camelCase because its already camelCased" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="PrivateGateway" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.441" tests="1">
-    <testcase classname="PrivateGateway should create a PrivateGateway" name="PrivateGateway should create a PrivateGateway" time="0.192">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="17.325" tests="1">
+    <testcase classname=" CodePipeline" name=" CodePipeline" time="0.393">
     </testcase>
   </testsuite>
-  <testsuite name="getSsmParams" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.472" tests="3">
-    <testcase classname="getSsmParams should get all the requested params" name="getSsmParams should get all the requested params" time="0.058">
-    </testcase>
-    <testcase classname="getSsmParams should throw when error in getSsmParams" name="getSsmParams should throw when error in getSsmParams" time="0.036">
-    </testcase>
-    <testcase classname="getSsmParams should throw when region name is set not correctly" name="getSsmParams should throw when region name is set not correctly" time="0.005">
+  <testsuite name="OpenApiDocumentation" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="17.672" tests="1">
+    <testcase classname="OpenApiDocumentation should create a Lambda for the OpenApiDocumentation" name="OpenApiDocumentation should create a Lambda for the OpenApiDocumentation" time="0.939">
     </testcase>
   </testsuite>
-  <testsuite name="callServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.584" tests="20">
-    <testcase classname="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the id" name="callServiceCatalog vpc should call SSM Parameter store, launch product, get the new launched product and return the id" time="0.059">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" name="callServiceCatalog vpc should throw when getting SSM Parameters are undefined" time="0.048">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog vpc should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog vpc should throw when something wrong with the ProvisionedProductName" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog vpc should throw when launching product and the `RecordDetail === undefined`" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when `OutputValue === undefined`" name="callServiceCatalog vpc should throw when `OutputValue === undefined`" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog vpc should throw when region is set wrongly" name="callServiceCatalog vpc should throw when region is set wrongly" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the id" name="callServiceCatalog private-subnet should call SSM Parameter store, launch product, get the new launched product and return the id" time="0.004">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" name="callServiceCatalog private-subnet should throw when getting SSM Parameters are undefined" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` `Parameter.Value === undefined`" time="0.001">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` `Parameter.Value === undefined`" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `product-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.001">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" name="callServiceCatalog private-subnet should throw after getting SSM Parameters for `provisioning-artifact-id` when `Parameter.Value &amp;&amp; Parameter.Name === undefined`" time="0.002">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" name="callServiceCatalog private-subnet should throw when something wrong with the ProvisionedProductName" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" name="callServiceCatalog private-subnet should throw when launching product and the `RecordDetail === undefined`" time="0.003">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" name="callServiceCatalog private-subnet should throw when `OutputValue === undefined`" time="0.004">
-    </testcase>
-    <testcase classname="callServiceCatalog private-subnet should throw when region is set wrongly" name="callServiceCatalog private-subnet should throw when region is set wrongly" time="0.003">
+  <testsuite name="lambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="19.229" tests="1">
+    <testcase classname="lambdaFleet should stub SSM Parameter Store when no context" name="lambdaFleet should stub SSM Parameter Store when no context" time="2.177">
     </testcase>
   </testsuite>
-  <testsuite name="LambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.616" tests="4">
-    <testcase classname="LambdaFleet should bundle the code" name="LambdaFleet should bundle the code" time="0.001">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-27T22:40:58" time="21.604" tests="3">
+    <testcase classname=" FourDPipelineStack" name=" FourDPipelineStack" time="0.817">
     </testcase>
-    <testcase classname="LambdaFleet should return the folder of the built Lambdas" name="LambdaFleet should return the folder of the built Lambdas" time="0.003">
+    <testcase classname=" LambdaFleetStack" name=" LambdaFleetStack" time="2.461">
     </testcase>
-    <testcase classname="LambdaFleet should throw when trying to bundle the folder" name="LambdaFleet should throw when trying to bundle the folder" time="0.041">
-    </testcase>
-    <testcase classname="LambdaFleet should throw when folder not exists" name="LambdaFleet should throw when folder not exists" time="0.005">
-    </testcase>
-  </testsuite>
-  <testsuite name="ServiceCatalog" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="14.756" tests="13">
-    <testcase classname="ServiceCatalog should launch a product" name="ServiceCatalog should launch a product" time="0.008">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when error in launching a product" name="ServiceCatalog should throw when error in launching a product" time="0.047">
-    </testcase>
-    <testcase classname="ServiceCatalog should get resource by ProvisionedProductName" name="ServiceCatalog should get resource by ProvisionedProductName" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should get resource by ProvisionedProductId" name="ServiceCatalog should get resource by ProvisionedProductId" time="0.001">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource" name="ServiceCatalog should throw when getting ressource" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductName" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" name="ServiceCatalog should throw when getting ressource did not find anything by given ProvisionedProductId" time="0.002">
-    </testcase>
-    <testcase classname="ServiceCatalog should set a parameter" name="ServiceCatalog should set a parameter" time="0.003">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because name of parameter does not follow the convention" name="ServiceCatalog should throw because name of parameter does not follow the convention" time="0.005">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because name is not undefined" name="ServiceCatalog should throw because name is not undefined" time="0.004">
-    </testcase>
-    <testcase classname="ServiceCatalog should throw because value is not undefined" name="ServiceCatalog should throw because value is not undefined" time="0.004">
-    </testcase>
-    <testcase classname="ServiceCatalog should check state" name="ServiceCatalog should check state" time="0.004">
-    </testcase>
-    <testcase classname="ServiceCatalog should abort state" name="ServiceCatalog should abort state" time="0.005">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="15.648" tests="1">
-    <testcase classname=" CodePipeline" name=" CodePipeline" time="0.376">
-    </testcase>
-  </testsuite>
-  <testsuite name="OpenApiDocumentation" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="15.924" tests="1">
-    <testcase classname="OpenApiDocumentation should create a Lambda for the OpenApiDocumentation" name="OpenApiDocumentation should create a Lambda for the OpenApiDocumentation" time="0.869">
-    </testcase>
-  </testsuite>
-  <testsuite name="lambdaFleet" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="16.561" tests="1">
-    <testcase classname="lambdaFleet should stub SSM Parameter Store when no context" name="lambdaFleet should stub SSM Parameter Store when no context" time="1.505">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-12-27T20:30:03" time="18.619" tests="3">
-    <testcase classname=" FourDPipelineStack" name=" FourDPipelineStack" time="0.715">
-    </testcase>
-    <testcase classname=" LambdaFleetStack" name=" LambdaFleetStack" time="2.068">
-    </testcase>
-    <testcase classname=" DynamoDbStack" name=" DynamoDbStack" time="0.039">
+    <testcase classname=" DynamoDbStack" name=" DynamoDbStack" time="0.051">
     </testcase>
   </testsuite>
 </testsuites>

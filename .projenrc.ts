@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { awscdk, javascript as js } from 'projen';
 import { getNetworkingContext } from './infrastructure/utils/getContext';
 
